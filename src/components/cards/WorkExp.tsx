@@ -101,8 +101,9 @@ const WorkExp = () => {
                                             <li key={i}>
                                                 <TextHighlighting
                                                     text={item}
-                                                    highlightedTextClassName="font-bold text-foreground"
-                                                    specialTextClassName="italic font-bold text-foreground"
+                                                    className="text-foreground/70"
+                                                    highlightedTextClassName="font-semibold text-foreground"
+                                                    specialTextClassName="italic font-semibold text-foreground"
                                                 />
                                             </li>
                                         ))}

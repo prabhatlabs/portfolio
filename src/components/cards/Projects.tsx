@@ -152,7 +152,9 @@ const Projects = () => {
                                 height={270}
                                 className="w-full rounded-lg border border-border"
                             />
-                            <p className="text-sm">{project.description}</p>
+                            <p className="text-sm text-foreground/70">
+                                {project.description}
+                            </p>
                             <div className="flex flex-wrap gap-2">
                                 {project.skils.map((skill, i) => (
                                     <Button

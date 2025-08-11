@@ -1,8 +1,11 @@
+"use client";
+import { useTheme } from "next-themes";
 import GitHubCalendar from "react-github-calendar";
 import { IoLogoGithub } from "react-icons/io";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 const GithubChart = () => {
+    const { theme } = useTheme();
     return (
         <Card>
             <CardHeader>
@@ -12,7 +15,16 @@ const GithubChart = () => {
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <GitHubCalendar username="prabhatm8000" colorScheme="light" />
+                <GitHubCalendar
+                    username="prabhatm8000"
+                    colorScheme={
+                        theme === "light"
+                            ? "light"
+                            : theme === "dark"
+                            ? "dark"
+                            : undefined
+                    }
+                />
             </CardContent>
         </Card>
     );

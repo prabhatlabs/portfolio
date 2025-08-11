@@ -41,7 +41,7 @@ const ConnectWithMe = () => {
                 </CardDescription>
             </CardHeader>
             <CardContent className="mb-2">
-                <div className="flex flex-col sm:flex-row gap-2">
+                <div className="flex gap-2">
                     {contacts.map((contact, i) => (
                         <a
                             key={i}

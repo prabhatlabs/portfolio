@@ -25,9 +25,13 @@ export default function RootLayout({
 }>) {
     return (
         <>
-            <html lang="en" suppressContentEditableWarning>
+            <html
+                lang="en"
+                suppressHydrationWarning
+                suppressContentEditableWarning
+            >
                 <body
-                    className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+                    className={`${geistSans.variable} ${geistMono.variable} font-mono antialiased`}
                 >
                     <ThemeProvider
                         attribute="class"
