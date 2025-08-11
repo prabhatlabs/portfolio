@@ -36,7 +36,7 @@ const ConnectWithMe = () => {
                     <VscDebugDisconnect />
                     <span>Connect with me</span>
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-foreground/70">
                     You can find me on the following platforms!
                 </CardDescription>
             </CardHeader>

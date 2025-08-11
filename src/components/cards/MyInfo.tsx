@@ -19,7 +19,7 @@ const MyInfo = () => {
                         height={80}
                     />
                 </div>
-                <CardDescription>
+                <CardDescription className="text-foreground/70">
                     I build software the way some people build puzzles, piece by
                     piece, until everything clicks.
                 </CardDescription>

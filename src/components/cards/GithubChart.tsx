@@ -1,11 +1,21 @@
 "use client";
 import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 import GitHubCalendar from "react-github-calendar";
 import { IoLogoGithub } from "react-icons/io";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 const GithubChart = () => {
     const { theme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return null;
+    }
     return (
         <Card>
             <CardHeader>

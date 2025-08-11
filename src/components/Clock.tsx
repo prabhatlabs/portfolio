@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 const Clock = () => {
-    const [time, setTime] = useState(new Date().toLocaleTimeString());
+    const [time, setTime] = useState<string | null>(null);
 
     useEffect(() => {
         const intervalId = setInterval(
@@ -14,7 +14,7 @@ const Clock = () => {
     }, []);
 
     return (
-        <div className="relative w-fit px-1 py-0 rounded-md border border-muted-foreground/30">
+        <div className="relative w-fit px-1.5 py-0.5 rounded-md border border-muted-foreground/30">
             {time}
         </div>
     );

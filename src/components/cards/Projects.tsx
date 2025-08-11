@@ -31,7 +31,7 @@ const projects = [
         links: [
             {
                 name: "Live",
-                url: "https://yapless.vercel.app/",
+                url: "https://yapless.vercel.app",
             },
             {
                 name: "Github",
@@ -60,11 +60,11 @@ const projects = [
         links: [
             {
                 name: "Live",
-                url: "https://ref.com/",
+                url: "https://zippy-kacey-prabhats-c81a00cc.koyeb.app",
             },
             {
                 name: "Github",
-                url: "https://github.com/prabhatm8000/ref",
+                url: "https://github.com/prabhatm8000/link-manager",
             },
         ],
     },
@@ -84,12 +84,11 @@ const projects = [
         links: [
             {
                 name: "Live",
-                url: "https://hbench.vercel.app/",
+                url: "https://hbench.vercel.app",
             },
             {
                 name: "Github",
-                icon: null,
-                url: "https://github.com/prabhatm8000/hbench",
+                url: "https://github.com/prabhatm8000/h-bench",
             },
         ],
     },
