@@ -7,7 +7,7 @@ const MyInfo = () => {
             <CardHeader className="flex flex-col mb-4">
                 <div className="flex gap-6 w-full">
                     <CardTitle className="text-2xl w-full">
-                        Hey there, <br /> I'm Prabhat Mishra
+                        Hey there, <br /> I&apos;m Prabhat Mishra
                     </CardTitle>
                     <Image
                         className="rounded-full object-cover size-20"
