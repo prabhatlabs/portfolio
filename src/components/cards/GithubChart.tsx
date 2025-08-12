@@ -17,7 +17,7 @@ const GithubChart = () => {
         return null;
     }
     return (
-        <Card>
+        <Card className="w-full">
             <CardHeader>
                 <CardTitle className="text-2xl w-full flex justify-start items-center gap-2">
                     <IoLogoGithub />

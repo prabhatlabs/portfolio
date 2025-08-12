@@ -9,27 +9,28 @@ import StatusBar from "@/components/StatusBar";
 
 function Home() {
     return (
-        <div className="h-dvh lg:overflow-y-hidden font-mono">
+        <div className="h-dvh lg:overflow-y-hidden font-mono w-full">
             <StatusBar />
 
-            <div className="mt-8 relative max-w-[1500px] mx-auto p-4 grid grid-cols-1 lg:grid-cols-[320px_1fr] xl:grid-cols-[384px_1fr] gap-6 lg:gap-0">
-                <div className="flex flex-col gap-6 md:max-w-md lg:max-w-xs xl:max-w-sm w-full mx-auto lg:mx-0">
+            <div className="mt-8 relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[320px_1fr] xl:grid-cols-[384px_1fr] gap-4 lg:gap-0">
+                <div className="pr-4 pl-4 pt-4 pb-0 lg:pr-0 lg:pl-4 lg:pb-4 flex flex-col gap-4 md:max-w-xl lg:max-w-xs xl:max-w-sm w-full mx-auto lg:mx-0 lg:h-[calc(100dvh-4rem)] lg:overflow-y-auto hideScrollbar">
                     <MyInfo />
                     <ConnectWithMe />
                     <Skills />
                 </div>
-                <div className="mb-4 pb-20 lg:pl-6 flex flex-col w-full gap-6 lg:h-[calc(100dvh-7rem)] lg:overflow-y-auto hideScrollbar">
-                    <GithubChart />
-                    <div className="flex flex-col xl:flex-row items-start gap-6 md:max-w-md lg:max-w-full w-full mx-auto lg:mx-0">
+                <div className="py-0 lg:py-4 z-10 flex flex-col w-full gap-4 lg:h-[calc(100dvh-4rem)] lg:overflow-y-auto hideScrollbar">
+                    <div className="flex flex-row items-start gap-4 md:max-w-xl lg:max-w-full w-full px-4 mx-auto lg:mx-0">
+                        <GithubChart />
+                    </div>
+                    <div className="flex flex-col xl:flex-row items-start gap-4 md:max-w-xl lg:max-w-full w-full px-4 mx-auto lg:mx-0">
                         <WorkExp />
                         <Projects />
                     </div>
                 </div>
-                <span className="text-xs w-full text-center">
-                    • Prabhat Mishra • © 2025 • All Rights Reserved •
-                </span>
             </div>
-
+            <div className="text-xs w-full text-center py-2 px-4">
+                • Prabhat Mishra • © 2025 • All Rights Reserved •
+            </div>
             <BG />
         </div>
     );

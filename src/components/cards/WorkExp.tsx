@@ -93,7 +93,7 @@ const WorkExp = () => {
                         <div className="flex flex-col gap-2 py-1">
                             {exp.description.map((desc, i) => (
                                 <div key={i} className="flex flex-col gap-2">
-                                    <h5 className="text-lg font-semibold w-full border-b border-border">
+                                    <h5 className="text-lg font-semibold w-full">
                                         {desc.projectName}
                                     </h5>
                                     <ul className="list-disc pl-5 text-sm">

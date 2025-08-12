@@ -20,8 +20,9 @@ const MyInfo = () => {
                     />
                 </div>
                 <CardDescription className="text-foreground/70">
-                    I build software the way some people build puzzles, piece by
-                    piece, until everything clicks.
+                    I&apos;m a self-taught software developer, buildling
+                    software the way some people build puzzles, piece by piece,
+                    until everything clicks.
                 </CardDescription>
             </CardHeader>
         </Card>
