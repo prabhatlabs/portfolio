@@ -12,7 +12,7 @@ function Home() {
         <div className="h-dvh lg:overflow-y-hidden font-mono w-full">
             <StatusBar />
 
-            <div className="mt-8 relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[320px_1fr] xl:grid-cols-[384px_1fr] gap-4 lg:gap-0">
+            <div className="pb-96 md:pb-10 mt-8 relative max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[320px_1fr] xl:grid-cols-[384px_1fr] gap-4 lg:gap-0">
                 <div className="pr-4 pl-4 pt-4 pb-0 lg:pr-0 lg:pl-4 lg:pb-4 flex flex-col gap-4 md:max-w-xl lg:max-w-xs xl:max-w-sm w-full mx-auto lg:mx-0 lg:h-[calc(100dvh-4rem)] lg:overflow-y-auto hideScrollbar">
                     <MyInfo />
                     <ConnectWithMe />
@@ -28,7 +28,7 @@ function Home() {
                     </div>
                 </div>
             </div>
-            <div className="text-xs w-full text-center py-2 px-4">
+            <div className="fixed bottom-0 text-xs w-full text-center py-2 px-4">
                 • Prabhat Mishra • © 2025 • All Rights Reserved •
             </div>
             <BG />

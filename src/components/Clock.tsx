@@ -15,7 +15,7 @@ const Clock = () => {
 
     return (
         <div className="relative w-fit px-1.5 py-0.5 rounded-md border border-muted-foreground/30">
-            {time}
+            {time || "00:00:00 AM"}
         </div>
     );
 };
