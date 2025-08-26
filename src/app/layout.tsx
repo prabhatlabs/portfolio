@@ -1,17 +1,6 @@
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
     title: "Prabhat | Software Developer",
@@ -44,6 +33,18 @@ export const metadata: Metadata = {
     },
 };
 
+import localFont from "next/font/local";
+
+const myFont = localFont({
+    src: [
+        {
+            path: "./_fonts/SF_Pro_Semibold_Rounded.otf",
+            weight: "600",
+            style: "sf-semibold-rounded",
+        },
+    ],
+});
+
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -51,9 +52,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning suppressContentEditableWarning>
-            <body
-                className={`${geistSans.variable} ${geistMono.variable} font-mono antialiased`}
-            >
+            <body className={`${myFont.className} antialiased`}>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="system"
