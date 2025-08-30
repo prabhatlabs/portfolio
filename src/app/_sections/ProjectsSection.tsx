@@ -59,7 +59,10 @@ const ProjectsSection = () => {
                                 </div>
                             </div>
                         </div>
-                        <Video src={project.video} />
+                        <Video
+                            src={project.video}
+                            placeholder={project.thumbnail}
+                        />
                         <div className="flex flex-wrap gap-2">
                             {project.skils.map((skill, i) => (
                                 <span

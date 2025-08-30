@@ -4,37 +4,56 @@ import { Fullscreen } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "./ui/button";
 
-function Video({ src }: { src: string }) {
-    const [mounted, setMounted] = useState(false);
-    const ref = useRef<HTMLVideoElement>(null);
-    const handleFullscreen = () => {
-        if (ref.current) {
-            ref.current.requestFullscreen();
-        }
-    };
+function Video({ src, placeholder }: { src: string; placeholder?: string }) {
+    const [inView, setInView] = useState(false);
+    const ref = useRef<HTMLDivElement>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
-        setMounted(true);
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setInView(true);
+                        observer.disconnect();
+                    }
+                });
+            },
+            { threshold: 0.25 }
+        );
+        if (ref.current) observer.observe(ref.current);
+        return () => observer.disconnect();
     }, []);
 
-    if (!mounted) {
-        return null;
-    }
+    const handleFullscreen = () => {
+        if (videoRef.current) {
+            videoRef.current.requestFullscreen();
+        }
+    };
     return (
-        <div className="relative w-full overflow-hidden rounded-lg aspect-video object-cover">
-            <video
-                ref={ref}
-                muted
-                autoPlay
-                loop
-                src={src}
-                className="rounded-md"
-                style={{
-                    width: "100%",
-                    height: "100%",
-                    display: "block",
-                }}
-            />
+        <div
+            ref={ref}
+            className="relative w-full overflow-hidden rounded-lg aspect-video object-cover"
+        >
+            {inView ? (
+                <video
+                    ref={videoRef}
+                    muted
+                    autoPlay
+                    loop
+                    preload="none"
+                    src={src}
+                    poster={placeholder}
+                    className="rounded-md"
+                    style={{
+                        width: "100%",
+                        height: "100%",
+                        display: "block",
+                    }}
+                />
+            ) : (
+                <div className="w-full h-full bg-gray-800 animate-pulse rounded-md" />
+            )}
             <Button
                 className="absolute bottom-0 right-0 m-2"
                 variant={"secondary"}
