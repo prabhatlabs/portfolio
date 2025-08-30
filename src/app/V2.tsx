@@ -1,4 +1,3 @@
-import { ThemeToggle } from "@/components/ThemeToggle";
 import NavBar from "./_components/NavBar";
 import SectionLayout from "./_components/SectionLayout";
 import HeroSection from "./_sections/HeroSection";
@@ -18,7 +17,6 @@ const V2 = () => {
             <SectionLayout>
                 <ProjectsSection />
             </SectionLayout>
-            <ThemeToggle />
 
             <div className="text-xs w-full text-center py-2 px-4">
                 • Prabhat Mishra © 2025 • All Rights Reserved •

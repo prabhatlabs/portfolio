@@ -9,8 +9,10 @@ const ProjectsSection = () => {
     ) => {
         const pos = i + 1;
         return (
-            (pos % maxInRow === 0 ? "" : "border-r ") +
-            (pos > maxInRow * maxInCol - maxInRow ? "" : "border-b")
+            (pos % maxInRow === 0 ? "border-b" : "border-b-0 md:border-r ") +
+            (pos > maxInRow * maxInCol - maxInRow
+                ? "border-b"
+                : "border-b-0 md:border-b")
         );
     };
     return (

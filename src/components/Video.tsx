@@ -27,8 +27,8 @@ function Video({ src }: { src: string }) {
                 }}
             />
             <Button
-                className="absolute bottom-0 right-0 m-2 bg-black/60 text-white/80 hover:bg-black/80 hover:text-white"
-                variant={"outline"}
+                className="absolute bottom-0 right-0 m-2"
+                variant={"secondary"}
                 size={"icon"}
                 onClick={handleFullscreen}
             >

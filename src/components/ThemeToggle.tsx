@@ -3,7 +3,6 @@
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { Button } from "./ui/button";
 
 export function ThemeToggle() {
     const { setTheme, theme, systemTheme } = useTheme();
@@ -26,11 +25,9 @@ export function ThemeToggle() {
     }
 
     return (
-        <Button
+        <span
             onClick={handleToggle}
-            variant={"outline"}
-            size={"icon"}
-            className="fixed bottom-0 right-0 m-6 rounded-full text-foreground/70"
+            className="text-white rounded-full p-0 px-0 py-0 cursor-pointer"
         >
             {theme === "system" ? (
                 systemTheme === "dark" ? (
@@ -43,6 +40,6 @@ export function ThemeToggle() {
             ) : (
                 <Sun className="size-5" />
             )}
-        </Button>
+        </span>
     );
 }

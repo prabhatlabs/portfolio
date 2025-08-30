@@ -213,7 +213,7 @@ export const projectsData = {
         {
             logo: "/projectLogos/mapware.ico",
             thumbnail: "/projectThumbnails/mapware.png",
-            video: "/videos/mapware-preview.mp4",
+            video: "https://res.cloudinary.com/dtapvbbzb/video/upload/v1756537370/portfolio/mapware-preview_ww3tss.mp4",
             title: "mapware.com",
             description:
                 "Tracks abusive activity of IP with their locations and shows the data on a 3D map with location, timezone and ISP information.",
@@ -241,7 +241,7 @@ export const projectsData = {
         {
             logo: "/projectLogos/ref.svg",
             thumbnail: "/projectThumbnails/ref.png",
-            video: "/videos/ref-preview.mp4",
+            video: "https://res.cloudinary.com/dtapvbbzb/video/upload/v1756537244/portfolio/ref-preview_wks3zn.mp4",
             title: "Ref.com",
             description:
                 "Ref is an advanced link management platform for business, creators, and growth teams to manage, track and analyse all the links and their events in one place (Ref.com).",
@@ -271,7 +271,7 @@ export const projectsData = {
         {
             logo: "/projectLogos/yapless.svg",
             thumbnail: "/projectThumbnails/yapless.png",
-            video: "/videos/yapless-preview.mp4",
+            video: "https://res.cloudinary.com/dtapvbbzb/video/upload/v1756537373/portfolio/yapless-preview_s55qxu.mp4",
             title: "Yapless",
             description:
                 "An attitude-adjustable AI chat that thinks when it should, searches when it must, and always skips the pointless yapping.",
@@ -304,7 +304,7 @@ export const projectsData = {
         {
             logo: "/projectLogos/hbench.ico",
             thumbnail: "/projectThumbnails/hbench.png",
-            video: "/videos/hbench-preview.mp4",
+            video: "https://res.cloudinary.com/dtapvbbzb/video/upload/v1756537240/portfolio/hbench-preview_xmgsdu.mp4",
             title: "HBench | Human Benchmark",
             description:
                 "Train your brain. Test your reflexes. A fun and minimal suite of cognitive challenges, from memory to motor skills.",

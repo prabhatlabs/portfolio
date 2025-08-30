@@ -7,8 +7,8 @@ import TypingText from "../_components/TypingText";
 
 function generatePositions(
     count: number,
-    radiusMin: number,
-    radiusMax: number,
+    spreadX: number, // how far they can go left/right
+    spreadY: number, // how far they can go up/down
     minDistance: number
 ) {
     const positions: { x: number; y: number }[] = [];
@@ -18,9 +18,11 @@ function generatePositions(
         let tries = 0;
 
         do {
-            const angle = Math.random() * Math.PI * 2;
-            const radius = radiusMin + Math.random() * (radiusMax - radiusMin);
-            pos = { x: Math.cos(angle) * radius, y: Math.sin(angle) * radius };
+            // random position in a rectangle around hero
+            pos = {
+                x: (Math.random() - 0.5) * 2 * spreadX,
+                y: (Math.random() - 0.5) * 2 * spreadY,
+            };
 
             const tooClose = positions.some(
                 (p) => Math.hypot(p.x - pos.x, p.y - pos.y) < minDistance
@@ -28,7 +30,7 @@ function generatePositions(
 
             if (!tooClose) break;
             tries++;
-        } while (tries < 50);
+        } while (tries < 100);
 
         positions.push(pos);
     }
@@ -39,11 +41,11 @@ function generatePositions(
 const HeroSection = () => {
     const [mouse, setMouse] = useState({ x: 0, y: 0 });
     const [currentPositions, setCurrentPositions] = useState(() =>
-        generatePositions(skills.length, 150, 280, 100)
+        generatePositions(skills.length, 450, 280, 100)
     );
 
     const handleSkillClick = () => {
-        const newPositions = generatePositions(skills.length, 150, 280, 100);
+        const newPositions = generatePositions(skills.length, 450, 280, 100);
         setCurrentPositions(newPositions);
     };
 

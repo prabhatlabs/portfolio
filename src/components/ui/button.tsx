@@ -24,7 +24,7 @@ const buttonVariants = cva(
                 link: "text-primary underline-offset-4 hover:underline",
                 glitch: "border border-muted-foreground/20 rounded-none",
                 blueText:
-                    "rounded-lg text-lg px-4 py-2 shadow-md backdrop-blur-md hover:scale-110 hover:text-white hover:bg-gradient-to-b from-blue-400 to-90% to-blue-600 transition-all duration-300 ease-in-out",
+                    "bg-background/70 rounded-lg text-lg px-4 py-2 shadow-md backdrop-blur-md hover:scale-110 hover:text-white hover:bg-gradient-to-b from-blue-400 to-90% to-blue-600 transition-all duration-300 ease-in-out",
             },
             size: {
                 default: "h-9 px-4 py-2 has-[>svg]:px-3",
