@@ -3,8 +3,9 @@
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { Button } from "./ui/button";
 
-export function ThemeToggle() {
+export function ThemeToggle({ className }: { className?: string }) {
     const { setTheme, theme, systemTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
 
@@ -20,14 +21,27 @@ export function ThemeToggle() {
         setMounted(true);
     }, []);
 
+    useEffect(() => {
+        if (!mounted) return;
+        const handleListener = (e: KeyboardEvent) => {
+            if (e.ctrlKey && e.key === ",") handleToggle();
+        };
+        addEventListener("keydown", handleListener);
+        return () => {
+            removeEventListener("keydown", handleListener);
+        };
+    }, [mounted, theme]);
+
     if (!mounted) {
         return null;
     }
 
     return (
-        <span
+        <Button
+            variant={"ghost"}
+            size={"icon"}
+            className={className}
             onClick={handleToggle}
-            className="text-white rounded-full p-0 px-0 py-0 cursor-pointer"
         >
             {theme === "system" ? (
                 systemTheme === "dark" ? (
@@ -40,6 +54,6 @@ export function ThemeToggle() {
             ) : (
                 <Sun className="size-5" />
             )}
-        </span>
+        </Button>
     );
 }

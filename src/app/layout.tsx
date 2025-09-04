@@ -1,6 +1,12 @@
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({
+    variable: "--font-inter",
+    subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
     title: "Prabhat | Software Developer",
@@ -33,18 +39,6 @@ export const metadata: Metadata = {
     },
 };
 
-import localFont from "next/font/local";
-
-const myFont = localFont({
-    src: [
-        {
-            path: "./_fonts/SF_Pro_Semibold_Rounded.otf",
-            weight: "600",
-            style: "sf-semibold-rounded",
-        },
-    ],
-});
-
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -52,7 +46,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning suppressContentEditableWarning>
-            <body className={`${myFont.className} antialiased`}>
+            <body className={`${inter.variable} antialiased`}>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="system"

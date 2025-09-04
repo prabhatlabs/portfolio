@@ -1,7 +1,7 @@
-import V2 from "@/app/V2";
+import V3 from "./v3/V3";
 
 function Home() {
-    return <V2 />;
+    return <V3 />;
 }
 
 export default Home;

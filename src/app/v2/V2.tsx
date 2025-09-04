@@ -1,12 +1,23 @@
+import localFont from "next/font/local";
 import NavBar from "./_components/NavBar";
 import SectionLayout from "./_components/SectionLayout";
 import HeroSection from "./_sections/HeroSection";
 import ProjectsSection from "./_sections/ProjectsSection";
 import WorkExpSection from "./_sections/WorkExpSection";
 
+const myFont = localFont({
+    src: [
+        {
+            path: "./_fonts/SF_Pro_Semibold_Rounded.otf",
+            weight: "600",
+            style: "sf-semibold-rounded",
+        },
+    ],
+});
+
 const V2 = () => {
     return (
-        <div className="font-light">
+        <div className={`font-light ${myFont.className}`}>
             <NavBar />
             <SectionLayout>
                 <HeroSection />

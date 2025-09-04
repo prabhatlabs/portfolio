@@ -1,4 +1,5 @@
-import { BiLogoGmail, BiLogoPostgresql } from "react-icons/bi";
+import { BiLogoPostgresql } from "react-icons/bi";
+import { BsPersonFill } from "react-icons/bs";
 import { DiRedis } from "react-icons/di";
 import { FaLinkedinIn, FaNodeJs, FaPython, FaWrench } from "react-icons/fa";
 import { FaGolang } from "react-icons/fa6";
@@ -24,12 +25,18 @@ import {
     SiTailwindcss,
     SiTypescript,
 } from "react-icons/si";
+import { VscLinkExternal } from "react-icons/vsc";
 
 export const myInfoData = {
     name: "Prabhat Mishra",
-    title: "Hey there, I'm Prabhat Mishra",
+    title: "Hi, I'm Prabhat Mishra, a software developer",
     description:
-        "I'm a self-taught software developer, buildling software the way some people build puzzles, piece by piece, until everything clicks.",
+        "Buildling software the way some people build puzzles, piece by piece, until everything clicks.",
+    details: [
+        "Self-taught software developer with hands-on experience in full-stack, backend, and frontend development, complemented by a Bachelor's degree in Computer Applications.",
+        "Passionate about building user-friendly, impactful software solutions that address real-world problems, with a strong drive for continuous learning and growth.",
+        "Actively seeking opportunities for a software development internship or full-time role to contribute technical expertise and expand professional experience.",
+    ],
     pfp: "https://avatars.githubusercontent.com/u/138608570?v=4",
 };
 
@@ -39,7 +46,7 @@ export const contactsData = {
     mail: "prabhatm8000@gmail.com",
     links: [
         {
-            name: "X",
+            name: "X (Twitter)",
             blank: true,
             url: "https://x.com/prabhatsuntoh",
             icon: <RiTwitterXFill className="size-6" />,
@@ -56,33 +63,34 @@ export const contactsData = {
             url: "https://linkedin.com/in/prabhatm8000",
             icon: <FaLinkedinIn className="size-6" />,
         },
-        {
-            name: "Mail",
-            blank: true,
-            url: "mailto:prabhatm8000@gmail.com",
-            icon: <BiLogoGmail className="size-6" />,
-        },
     ],
 };
 
 export const navBarData = [
-    [
-        {
-            name: "Home",
-            icon: <IoHome className="size-6" />,
-            url: "#home",
-        },
-        {
-            name: "Work Experience",
-            icon: <MdWork className="size-6" />,
-            url: "#workexp",
-        },
-        {
-            name: "Projects",
-            icon: <FaWrench className="size-6" />,
-            url: "#projects",
-        },
-    ],
+    {
+        name: "Home",
+        icon: <IoHome className="size-6" />,
+        url: "#home",
+    },
+    {
+        name: "About",
+        icon: <BsPersonFill className="size-6" />,
+        url: "#about",
+    },
+    {
+        name: "Experience",
+        icon: <MdWork className="size-6" />,
+        url: "#workexp",
+    },
+    {
+        name: "Projects",
+        icon: <FaWrench className="size-6" />,
+        url: "#projects",
+    },
+];
+
+export const navBarDataWithContacts = [
+    [...navBarData],
     [...contactsData.links],
 ];
 
@@ -211,10 +219,10 @@ export const projectsData = {
     title: "Projects",
     projects: [
         {
-            logo: "/projectLogos/mapware.ico",
+            logo: "/projectLogos/mapware.jpg",
             thumbnail: "/projectThumbnails/mapware.png",
             video: "https://res.cloudinary.com/dtapvbbzb/video/upload/v1756537370/portfolio/mapware-preview_ww3tss.mp4",
-            title: "mapware.com",
+            title: "mapware",
             description:
                 "Tracks abusive activity of IP with their locations and shows the data on a 3D map with location, timezone and ISP information.",
             skils: [
@@ -229,10 +237,12 @@ export const projectsData = {
             ],
             links: [
                 {
+                    icon: <VscLinkExternal />,
                     name: "Live",
                     url: "https://mapware.vercel.app",
                 },
                 {
+                    icon: <IoLogoGithub />,
                     name: "Github",
                     url: "https://github.com/prabhatm8000",
                 },
@@ -259,10 +269,12 @@ export const projectsData = {
             ],
             links: [
                 {
+                    icon: <VscLinkExternal />,
                     name: "Live",
                     url: "https://zippy-kacey-prabhats-c81a00cc.koyeb.app",
                 },
                 {
+                    icon: <IoLogoGithub />,
                     name: "Github",
                     url: "https://github.com/prabhatm8000/link-manager",
                 },
@@ -292,10 +304,12 @@ export const projectsData = {
             ],
             links: [
                 // {
+                // icon: <VscLinkExternal />,
                 //     name: "Live",
                 //     url: "https://yapless.vercel.app",
                 // },
                 {
+                    icon: <IoLogoGithub />,
                     name: "Github",
                     url: "https://github.com/prabhatm8000/yapless",
                 },
@@ -317,10 +331,12 @@ export const projectsData = {
             ],
             links: [
                 {
+                    icon: <VscLinkExternal />,
                     name: "Live",
                     url: "https://hbench.vercel.app",
                 },
                 {
+                    icon: <IoLogoGithub />,
                     name: "Github",
                     url: "https://github.com/prabhatm8000/h-bench",
                 },
