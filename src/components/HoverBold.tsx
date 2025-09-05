@@ -23,7 +23,7 @@ function HoverBold({ text }: { text: string }) {
     let globalIndex = 0;
 
     const wordElements = words.map((word, wordIndex) => {
-        const letters = word.split("").map((letter, letterIndex) => {
+        const letters = word.split("").map((letter) => {
             const currentIndex = globalIndex++;
             const targetWeight = getFontWeight(currentIndex);
             const targetScale = hoveredIndex === currentIndex ? 1.1 : 1;

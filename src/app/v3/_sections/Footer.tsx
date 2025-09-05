@@ -1,6 +1,7 @@
 "use client";
 import { contactsData, myInfoData } from "@/data/data";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useState } from "react";
 
 const UnderScoreBlink = ({ show }: { show?: boolean }) => {
@@ -27,7 +28,7 @@ const Footer = () => {
         <div className="min-h-[300px] h-full relative z-10 mt-16 pt-6 text-white">
             <div className="px-4 max-w-7xl mx-auto">
                 <h4 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light">
-                    want to collaborate? Let's connect!
+                    {"want to collaborate? Let's connect!"}
                 </h4>
                 <h2
                     className="mt-2 text-xl sm:text-2xl md:text-3xl lg:text-5xl w-fit flex items-end"
@@ -60,7 +61,8 @@ const Footer = () => {
                     </span>
                 </div>
             </div>
-            <img
+            <Image
+                alt={myInfoData.name}
                 width={2000}
                 height={400}
                 src={"/v3/footer.jpg"}

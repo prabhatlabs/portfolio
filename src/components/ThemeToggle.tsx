@@ -30,7 +30,7 @@ export function ThemeToggle({ className }: { className?: string }) {
         return () => {
             removeEventListener("keydown", handleListener);
         };
-    }, [mounted, theme]);
+    }, [mounted, theme, handleToggle]);
 
     if (!mounted) {
         return null;

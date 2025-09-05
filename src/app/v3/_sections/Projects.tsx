@@ -11,7 +11,7 @@ const Projects = () => {
                 {projectsData.projects.map((project, i) => (
                     <div
                         key={i}
-                        className="flex flex-col gap-2 border border-border rounded-md p-2"
+                        className="flex flex-col gap-2 border border-border rounded-md px-4 py-2"
                     >
                         <div className="flex items-center gap-2 w-fit">
                             <div className="rounded-full bg-white p-1">

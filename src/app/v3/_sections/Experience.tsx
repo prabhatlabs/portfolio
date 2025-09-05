@@ -1,19 +1,16 @@
-import { skills, workexpData } from "@/data/data";
+import { workexpData } from "@/data/data";
 import Image from "next/image";
 
 function Experience() {
     return (
-        <div
-            id="workexp"
-            className="grid md:grid-cols-[2fr_1fr] gap-8 w-full pt-16 pb-2"
-        >
+        <div id="workexp" className="pt-16 pb-2">
             <div className="">
                 <h5 className="text-sm font-light">{workexpData.title}</h5>
-                <div className="mt-2 flex flex-col gap-2">
+                <div className="mt-2 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {workexpData.workexp.map((exp, i) => (
                         <div
                             key={i}
-                            className="flex gap-2 items-start border border-border rounded-md px-4 py-2"
+                            className="flex gap-2 items-start border border-border p-2 rounded-md"
                         >
                             <div className="rounded-full bg-white p-1">
                                 <Image
@@ -28,18 +25,16 @@ function Experience() {
                                 <h5 className="text-lg font-semibold">
                                     {exp.company}
                                 </h5>
-                                <div className="flex justify-between items-center">
-                                    <h6>{exp.title}</h6>
-                                    <p className="text-xs">
-                                        {exp.start} - {exp.end}
-                                    </p>
-                                </div>
+                                <h6>{exp.title}</h6>
+                                <p className="text-xs">
+                                    {exp.start} - {exp.end}
+                                </p>
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
-            <div>
+            {/* <div>
                 <h5 className="text-sm font-light">Skills</h5>
                 <div className="text-lg sm:text-xl md:text-2xl mt-2 flex flex-wrap gap-2">
                     {skills.map((skill, i) => (
@@ -52,7 +47,7 @@ function Experience() {
                         </span>
                     ))}
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }

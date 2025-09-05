@@ -48,13 +48,13 @@ export const contactsData = {
         {
             name: "X (Twitter)",
             blank: true,
-            url: "https://x.com/prabhatsuntoh",
+            url: "https://x.com/IsayAyase",
             icon: <RiTwitterXFill className="size-6" />,
         },
         {
             name: "GitHub",
             blank: true,
-            url: "https://github.com/prabhatm8000",
+            url: "https://github.com/IsayAyase",
             icon: <IoLogoGithub className="size-6" />,
         },
         {
@@ -244,7 +244,7 @@ export const projectsData = {
                 {
                     icon: <IoLogoGithub />,
                     name: "Github",
-                    url: "https://github.com/prabhatm8000",
+                    url: "https://github.com/IsayAyase",
                 },
             ],
         },
@@ -276,7 +276,7 @@ export const projectsData = {
                 {
                     icon: <IoLogoGithub />,
                     name: "Github",
-                    url: "https://github.com/prabhatm8000/link-manager",
+                    url: "https://github.com/IsayAyase/link-manager",
                 },
             ],
         },
@@ -311,7 +311,7 @@ export const projectsData = {
                 {
                     icon: <IoLogoGithub />,
                     name: "Github",
-                    url: "https://github.com/prabhatm8000/yapless",
+                    url: "https://github.com/IsayAyase/yapless",
                 },
             ],
         },
@@ -338,7 +338,7 @@ export const projectsData = {
                 {
                     icon: <IoLogoGithub />,
                     name: "Github",
-                    url: "https://github.com/prabhatm8000/h-bench",
+                    url: "https://github.com/IsayAyase/h-bench",
                 },
             ],
         },
@@ -356,24 +356,20 @@ export const workexpData = {
             end: "Present",
             description: [
                 {
-                    projectName: "HealthProNext",
+                    projectName: "HealthProNext | EMR for Nutritionist",
                     description: [
-                        "**Dynamic visit form builder** for customizable patient forms with field validation and conditional logic.",
-                        "**Multi-template functionality** to streamline clinical workflows by creating multiple templates for different types of visits and assigning them to different roles.",
+                        "**Dynamic visit form builder** with **multi-template** functionality and field validation for customizable patient forms.",
                         "**Visit comparison module** for side-by-side tracking & diagnosis accuracy, to help doctors compare past visits and identify patterns.",
-                        "**Calendar-based appointment view** for quick follow-ups & scheduling, allowing doctors to schedule appointments and set reminders.",
-                        "**Cross-device responsive front-end** for consistent UX, ensuring that the application works seamlessly on all devices, from desktops to mobile phones.",
-                        "Reduced redundant **API calls** by ||~40-45%|| via **reducer** and **dispatch** optimization, resulting in faster rendering and improved performance.",
+                        "**Calendar-based appointment view** for quick follow-ups & schedulingwith a **cross-device responsive** front-end for consistent UX",
+                        "Reduced redundant **API calls** by ||~40-45%|| via reducer and dispatch optimization, resulting in faster rendering and improved performance.",
                     ],
                 },
                 {
-                    projectName: "Primes360",
+                    projectName: "Primes360 | Premises Management",
                     description: [
-                        "**Role-based authentication system** with permissions for all user tiers, ensuring that each user can only access the features and data they are authorized to.",
-                        "Modules for **inventory**, **asset**, **schedule**, and **task management** with automation, allowing users to automate tasks and manage their resources more efficiently.",
-                        "**Centralized dashboard** combining resources, assets, and inventory, providing a single place for users to view and manage all their data.",
-                        "Reduced **database calls** by ||~20-30%|| using **MongoDB aggregation pipeline**, Instead of calling multiple database functions, reducing the load on the database and improving performance.",
-                        "**Enhanced UI responsiveness** with bug fixes & stability improvements, ensuring that the application is more responsive and reliable.",
+                        "**Role-based authentication system** with permissions for all user tiers, ensuring data integrity and security.",
+                        "Reduced **database calls by 20-30%** using MongoDB aggregation pipeline, instead of multiple direct queries.",
+                        "Built modules for inventory, asset, schedule, and task management with centralized dashboard, allowing users to **track tasks and manage resources efficiently**.",
                     ],
                 },
             ],
@@ -386,13 +382,14 @@ export const workexpData = {
             end: "Dec 2024",
             description: [
                 {
-                    projectName: "Robosensy",
+                    projectName:
+                        "Robosensy | Electronic Medical Record Manager",
                     description: [
-                        "Developed **API workflow** to auto-create **follow-up appointments** when submitting prescriptions with next visit details.",
-                        "Built feature to generate **prescription PDFs** from doctor-submitted forms and **invoice PDFs** for reception workflows.",
-                        "Integrated **WhatsApp bot** via **3rd-party provider** for sending notifications and prescriptions.",
-                        "Created **backend API documentation**, reducing **development time** by ||~20%|| through parallel backend-frontend workflows.",
-                        "Improved **backend efficiency** and reduced **database/API response times** by ||~20-30%|| via **aggregation pipeline optimization**, **indexing**, and **fixing unexpected lookup errors** that returned empty arrays.",
+                        "Developed API workflow to auto-create follow-up appointments when submitting prescriptions with next visit details.",
+                        "Built feature to generate prescription PDFs from doctor-submitted forms and invoice PDFs for reception workflows.",
+                        "Integrated **WhatsApp bot** via 3rd-party provider for sending notifications and prescriptions.",
+                        "Documented all API endpoints, which **reduced development time by 20%**, streamlining backend and frontend workflows.",
+                        "Improved **backend efficiency and reduced database/API response times by 20-30%** via aggregation pipeline optimization, indexing, and fixing unexpected lookup errors.",
                     ],
                 },
             ],
