@@ -25,7 +25,7 @@ const UnderScoreBlink = ({ show }: { show?: boolean }) => {
 const Footer = () => {
     const [emailHover, setEmailHover] = useState(false);
     return (
-        <div className="min-h-[300px] h-full relative z-10 mt-16 pt-6 text-white">
+        <div className="min-h-[200px] lg:min-h-[300px] h-full relative z-10 mt-16 pt-6 text-white">
             <div className="px-4 max-w-7xl mx-auto">
                 <h4 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light">
                     {"want to collaborate? Let's connect!"}
@@ -66,9 +66,9 @@ const Footer = () => {
                 width={2000}
                 height={400}
                 src={"/v3/footer.jpg"}
-                className="absolute top-0 left-0 -z-10 h-[300px] w-full object-cover object-left-top aspect-auto"
+                className="absolute top-0 left-0 -z-20 h-[200px] lg:h-[300px] w-full object-cover object-right-bottom md:object-left-top aspect-auto"
             />
-            <div className="bg-black/20 absolute top-0 left-0 -z-10 h-[300px] w-full" />
+            <div className="bg-black/40 md:bg-black/20 absolute top-0 left-0 -z-10 h-[200px] lg:h-[300px] w-full" />
         </div>
     );
 };
