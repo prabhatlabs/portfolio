@@ -9,9 +9,9 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 const Navbar = () => {
     return (
-        <nav className="px-4 sm:px-6 h-16 w-full fixed top-0 left-0 right-0 z-50 flex items-center justify-between gap-2 border-b border-border bg-background">
+        <nav className="px-4 sm:px-6 h-12 w-full fixed top-0 left-0 right-0 z-50 flex items-center justify-between gap-2 border-b border-border bg-background">
             <div className={`flex items-center gap-2`}>
-                <h3 className={`text-xl sm:text-2xl ${ibmPlexMono.className}`}>
+                <h3 className={`text-lg sm:text-xl ${ibmPlexMono.className}`}>
                     prabhatlabs.dev
                 </h3>
             </div>

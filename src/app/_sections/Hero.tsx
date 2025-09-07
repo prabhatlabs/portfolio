@@ -24,7 +24,7 @@ const Hero = () => {
                         start: 35,
                         end: 44,
                     }}
-                    className="tracking-tighter text-balance text-5xl sm:text-6xl lg:text-7xl xl:text-8xl"
+                    className="tracking-tighter md:text-balance text-5xl sm:text-6xl lg:text-7xl xl:text-8xl"
                 />
             </div>
             <div
