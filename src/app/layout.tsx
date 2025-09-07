@@ -46,7 +46,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning suppressContentEditableWarning>
-            <body className={`${inter.variable} antialiased`}>
+            <body className={`${inter.className} antialiased hideScrollbar`}>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="system"

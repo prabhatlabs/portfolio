@@ -1,12 +1,9 @@
 import { BiLogoPostgresql } from "react-icons/bi";
-import { BsPersonFill } from "react-icons/bs";
 import { DiRedis } from "react-icons/di";
-import { FaLinkedinIn, FaNodeJs, FaPython, FaWrench } from "react-icons/fa";
+import { FaLinkedinIn, FaNodeJs, FaPython } from "react-icons/fa";
 import { FaGolang } from "react-icons/fa6";
 import { GrMysql } from "react-icons/gr";
 import { IoLogoGithub } from "react-icons/io";
-import { IoHome } from "react-icons/io5";
-import { MdWork } from "react-icons/md";
 import { RiTwitterXFill } from "react-icons/ri";
 import {
     SiDocker,
@@ -49,50 +46,22 @@ export const contactsData = {
             name: "X (Twitter)",
             blank: true,
             url: "https://x.com/IsayAyase",
-            icon: <RiTwitterXFill className="size-6" />,
+            icon: <RiTwitterXFill className="size-5 sm:size-6" />,
         },
         {
             name: "GitHub",
             blank: true,
             url: "https://github.com/IsayAyase",
-            icon: <IoLogoGithub className="size-6" />,
+            icon: <IoLogoGithub className="size-5 sm:size-6" />,
         },
         {
             name: "Linkedin",
             blank: true,
             url: "https://linkedin.com/in/prabhatm8000",
-            icon: <FaLinkedinIn className="size-6" />,
+            icon: <FaLinkedinIn className="size-5 sm:size-6" />,
         },
     ],
 };
-
-export const navBarData = [
-    {
-        name: "Home",
-        icon: <IoHome className="size-6" />,
-        url: "#home",
-    },
-    {
-        name: "About",
-        icon: <BsPersonFill className="size-6" />,
-        url: "#about",
-    },
-    {
-        name: "Experience",
-        icon: <MdWork className="size-6" />,
-        url: "#workexp",
-    },
-    {
-        name: "Projects",
-        icon: <FaWrench className="size-6" />,
-        url: "#projects",
-    },
-];
-
-export const navBarDataWithContacts = [
-    [...navBarData],
-    [...contactsData.links],
-];
 
 export const skillsObj = {
     TypeScript: {
@@ -224,7 +193,7 @@ export const projectsData = {
             video: "https://res.cloudinary.com/dtapvbbzb/video/upload/v1756537370/portfolio/mapware-preview_ww3tss.mp4",
             title: "mapware",
             description:
-                "Tracks abusive activity of IP with their locations and shows the data on a 3D map with location, timezone and ISP information.",
+                "Tracks abusive activity of IP with their locations and shows the data on a 3D map with location(with country, state, city, town and pincode), timezone and ISP information.",
             skils: [
                 skillsObj.TypeScript,
                 skillsObj.Nodejs,
@@ -286,7 +255,7 @@ export const projectsData = {
             video: "https://res.cloudinary.com/dtapvbbzb/video/upload/v1756537373/portfolio/yapless-preview_s55qxu.mp4",
             title: "Yapless",
             description:
-                "An attitude-adjustable AI chat that thinks when it should, searches when it must, and always skips the pointless yapping.",
+                "An attitude-adjustable AI chat that web searches when it must, and always skips the pointless yapping. Search supports on wikipedia, reddit and top sites from google search.",
             skils: [
                 skillsObj.TypeScript,
                 skillsObj.Python,
@@ -321,7 +290,7 @@ export const projectsData = {
             video: "https://res.cloudinary.com/dtapvbbzb/video/upload/v1756537240/portfolio/hbench-preview_xmgsdu.mp4",
             title: "HBench | Human Benchmark",
             description:
-                "Train your brain. Test your reflexes. A fun and minimal suite of cognitive challenges, from memory to motor skills.",
+                "Train your brain. Test your reflexes. A fun and minimal suite of cognitive challenges like click speed and typing speed, sequence memory, visual memory and number memory.",
             skils: [
                 skillsObj.TypeScript,
                 skillsObj.Nodejs,

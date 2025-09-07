@@ -40,6 +40,7 @@ export function ThemeToggle({ className }: { className?: string }) {
         <Button
             variant={"ghost"}
             size={"icon"}
+            title="Ctrl + ,"
             className={className}
             onClick={handleToggle}
         >

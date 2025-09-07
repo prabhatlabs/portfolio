@@ -3,7 +3,21 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-function HoverBold({ text }: { text: string }) {
+function HoverBold({
+    text,
+    highlightedIndexs = {
+        start: 0,
+        end: 0,
+    },
+    className,
+}: {
+    text: string;
+    highlightedIndexs: {
+        start: number;
+        end: number;
+    };
+    className?: string;
+}) {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     const getFontWeight = (index: number) => {
@@ -11,11 +25,13 @@ function HoverBold({ text }: { text: string }) {
 
         const distance = Math.abs(index - hoveredIndex);
 
-        if (distance === 0) return 450; // semibold - hovered letter
-        if (distance === 1) return 410; // medium - adjacent letters
-        if (distance === 2) return 370; // normal - two letters away
+        if (distance === 0) return 500; // semibold - hovered letter
+        if (distance === 1) return 470; // medium - adjacent letters
+        if (distance === 2) return 440; // normal - two letters away
+        if (distance === 3) return 410; // normal - two letters away
+        if (distance === 4) return 380; // normal - two letters away
 
-        return 330;
+        return 350;
     };
 
     // Split text into words, then split each word into letters while keeping track of global index
@@ -26,7 +42,6 @@ function HoverBold({ text }: { text: string }) {
         const letters = word.split("").map((letter) => {
             const currentIndex = globalIndex++;
             const targetWeight = getFontWeight(currentIndex);
-            const targetScale = hoveredIndex === currentIndex ? 1.1 : 1;
 
             return (
                 <motion.span
@@ -35,7 +50,6 @@ function HoverBold({ text }: { text: string }) {
                     initial={false}
                     animate={{
                         fontWeight: targetWeight,
-                        scale: targetScale,
                     }}
                     transition={{
                         duration: 0.15,
@@ -45,8 +59,12 @@ function HoverBold({ text }: { text: string }) {
                         display: "inline-block",
                         transformOrigin: "center",
                         color:
-                            word === "developer" ||
-                            currentIndex === hoveredIndex
+                            highlightedIndexs.start <= currentIndex &&
+                            currentIndex <= highlightedIndexs.end
+                                ? currentIndex === hoveredIndex
+                                    ? "var(--foreground)"
+                                    : "red"
+                                : currentIndex === hoveredIndex
                                 ? "red"
                                 : "var(--foreground)",
                     }}
@@ -63,7 +81,6 @@ function HoverBold({ text }: { text: string }) {
         if (wordIndex < words.length - 1) {
             const spaceIndex = globalIndex++;
             const spaceWeight = getFontWeight(spaceIndex);
-            const spaceScale = hoveredIndex === spaceIndex ? 1.1 : 1;
 
             spaceElement = (
                 <motion.span
@@ -72,7 +89,6 @@ function HoverBold({ text }: { text: string }) {
                     initial={false}
                     animate={{
                         fontWeight: spaceWeight,
-                        scale: spaceScale,
                     }}
                     transition={{
                         duration: 0.15,
@@ -98,11 +114,7 @@ function HoverBold({ text }: { text: string }) {
         );
     });
 
-    return (
-        <h1 className="text-5xl md:text-7xl select-none max-w-7xl">
-            {wordElements}
-        </h1>
-    );
+    return <h1 className={className}>{wordElements}</h1>;
 }
 
 export default HoverBold;
