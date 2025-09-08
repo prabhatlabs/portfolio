@@ -208,7 +208,7 @@ export const projectsData = {
                 {
                     icon: <VscLinkExternal />,
                     name: "Live",
-                    url: "https://mapware.vercel.app",
+                    url: "https://mapware.prabhatlabs.dev",
                 },
                 {
                     icon: <IoLogoGithub />,
@@ -275,7 +275,7 @@ export const projectsData = {
                 // {
                 // icon: <VscLinkExternal />,
                 //     name: "Live",
-                //     url: "https://yapless.vercel.app",
+                //     url: "https://yapless.prabhatlabs.dev",
                 // },
                 {
                     icon: <IoLogoGithub />,
@@ -302,7 +302,7 @@ export const projectsData = {
                 {
                     icon: <VscLinkExternal />,
                     name: "Live",
-                    url: "https://hbench.vercel.app",
+                    url: "https://hbench.prabhatlabs.dev",
                 },
                 {
                     icon: <IoLogoGithub />,

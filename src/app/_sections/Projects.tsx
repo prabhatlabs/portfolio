@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import Video from "@/components/Video";
 import { projectsData } from "@/data/data";
 import { IBM_Plex_Mono } from "next/font/google";
 import Image from "next/image";
@@ -17,14 +16,14 @@ const ProjectItemsRenderer = ({}) => {
                 <div key={index} className="grid grid-cols-1">
                     <div className="grid grid-cols-1 sm:grid-cols-[300px_1px_auto] items-start gap-2">
                         <div className="py-2">
-                            {/* <Image
+                            <Image
                                 src={project.thumbnail}
                                 alt={project.title}
                                 width={500}
                                 height={500}
                                 className="object-contain w-full"
-                            /> */}
-                            <Video src={project.video} className="w-full" />
+                            />
+                            {/* <Video src={project.video} className="w-full" /> */}
                         </div>
                         <div className="bg-border h-full w-full" />
                         <div className="grid grid-cols-1 py-2">
