@@ -38,7 +38,7 @@ export function ThemeToggle({ className }: { className?: string }) {
 
     return (
         <Button
-            variant={"ghost"}
+            variant={"default"}
             size={"icon"}
             title="Ctrl + ,"
             className={className}

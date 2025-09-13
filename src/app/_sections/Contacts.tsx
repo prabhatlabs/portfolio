@@ -13,14 +13,14 @@ const Contacts = () => {
     return (
         <div
             id="contacts"
-            className="grid grid-cols-1 h-fit gap-8 grid-auto-block mb-4"
+            className="grid grid-cols-1 h-fit gap-4 grid-auto-block mb-4"
         >
             <div
                 className={`${ibmPlexMono.className} text-xs md:text-sm text-pink-500 h-20 flex flex-col justify-end`}
             >
                 <h6>{contactsData.title}</h6>
             </div>
-            <div className="h-full px-2">
+            <div className="h-full bg-background">
                 <Link href={`mailto:${contactsData.mail}`}>
                     <HoverBold
                         text={contactsData.mail}
@@ -28,12 +28,14 @@ const Contacts = () => {
                             start: 12,
                             end: 17,
                         }}
-                        className="tracking-tighter text-balance text-5xl sm:text-6xl lg:text-7xl xl:text-8xl"
+                        className="tracking-tighter text-balance text-5xl sm:text-6xl lg:text-7xl xl:text-8xl px-2"
                     />
                 </Link>
             </div>
 
-            <div className={`text-[14px] md:text-[16px] xl:text-lg`}>
+            <div
+                className={`text-[14px] md:text-[16px] xl:text-lg bg-background`}
+            >
                 <p className="text-foreground/70">{contactsData.description}</p>
                 <div className="flex flex-wrap gap-2 mt-1">
                     {contactsData.links.map((link, index) => (

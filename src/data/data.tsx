@@ -329,7 +329,7 @@ export const workexpData = {
                     description: [
                         "**Dynamic visit form builder** with **multi-template** functionality and field validation for customizable patient forms.",
                         "**Visit comparison module** for side-by-side tracking & diagnosis accuracy, to help doctors compare past visits and identify patterns.",
-                        "**Calendar-based appointment view** for quick follow-ups & schedulingwith a **cross-device responsive** front-end for consistent UX",
+                        "**Calendar-based appointment view** for quick follow-ups & schedulingwith a **cross-device responsive** front-end for consistent UX.",
                         "Reduced redundant **API calls** by ||~40-45%|| via reducer and dispatch optimization, resulting in faster rendering and improved performance.",
                     ],
                 },

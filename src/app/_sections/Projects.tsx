@@ -14,8 +14,13 @@ const ProjectItemsRenderer = ({}) => {
         <div className="grid grid-cols-1 gap-8 h-fit grid-auto-block">
             {projectsData.projects.map((project, index) => (
                 <div key={index} className="grid grid-cols-1">
-                    <div className="grid grid-cols-1 sm:grid-cols-[300px_1px_auto] items-start gap-2">
-                        <div className="py-2">
+                    <div
+                        className="grid grid-cols-1 sm:grid-cols-[300px_1px_auto] items-start gap-0"
+                        style={{
+                            padding: 0,
+                        }}
+                    >
+                        <div className="py-2 px-2">
                             <Image
                                 src={project.thumbnail}
                                 alt={project.title}
@@ -25,8 +30,8 @@ const ProjectItemsRenderer = ({}) => {
                             />
                             {/* <Video src={project.video} className="w-full" /> */}
                         </div>
-                        <div className="bg-border h-full w-full" />
-                        <div className="grid grid-cols-1 py-2">
+                        <div className="bg-border h-px sm:h-full w-full" />
+                        <div className="grid grid-cols-1 py-2 px-2">
                             <div className="flex items-center gap-2">
                                 <Image
                                     src={project.logo}
@@ -83,11 +88,11 @@ const Projects = () => {
         // Do not need grid-auto-block, As there will be a grid inside grid with multiple columns
         // in the project item renderer So to avoid conflict, will use grid-auto-block only inside
         // the renderer, and for the title we can manually put px-2.
-        <div className="grid grid-cols-1 h-fit gap-8">
+        <div className="grid grid-cols-1 h-fit gap-4">
             <div
                 className={`${ibmPlexMono.className} text-xs md:text-sm text-pink-500 h-20 flex flex-col justify-end`}
             >
-                <h6 className="border-y border-border w-full px-2">
+                <h6 className="border-y border-border bg-background w-full px-2">
                     {projectsData.title}
                 </h6>
             </div>

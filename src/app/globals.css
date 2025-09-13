@@ -129,7 +129,7 @@
 
 @layer utilities {
   .grid-auto-block>*>* {
-    @apply px-2
+    @apply px-2 bg-background
   }
 
   .grid-auto-block>*::before,
