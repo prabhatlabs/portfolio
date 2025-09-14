@@ -63,9 +63,9 @@ function HoverBold({
                             currentIndex <= highlightedIndexs.end
                                 ? currentIndex === hoveredIndex
                                     ? "var(--foreground)"
-                                    : "red"
+                                    : "blue"
                                 : currentIndex === hoveredIndex
-                                ? "red"
+                                ? "blue"
                                 : "var(--foreground)",
                     }}
                     onMouseEnter={() => setHoveredIndex(currentIndex)}
