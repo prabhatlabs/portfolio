@@ -11,7 +11,7 @@ const WorkExp = () => {
     return (
         <div className="grid grid-cols-1 h-fit gap-4">
             <div
-                className={`${ibmPlexMono.className} text-xs md:text-sm text-pink-500 h-20 flex flex-col justify-end`}
+                className={`${ibmPlexMono.className} text-xs md:text-sm text-cyan-500 h-20 flex flex-col justify-end`}
             >
                 <h6 className="border-y border-border bg-background w-full px-2">
                     {workexpData.title}

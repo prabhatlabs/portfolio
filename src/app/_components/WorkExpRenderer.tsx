@@ -20,9 +20,11 @@ const WorkExpRenderer = () => {
                         padding: 0,
                     }}
                 >
-                    <h3 className="text-[16px] md:text-lg px-2">
-                        {workexp.title}
-                    </h3>
+                    <div className="border-b border-border w-full">
+                        <h3 className="text-[16px] md:text-lg px-2">
+                            {workexp.title}
+                        </h3>
+                    </div>
 
                     <div className="flex justify-between items-center px-2">
                         <div className="flex items-center gap-2">

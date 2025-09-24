@@ -16,7 +16,7 @@ const Contacts = () => {
             className="grid grid-cols-1 h-fit gap-4 grid-auto-block mb-4"
         >
             <div
-                className={`${ibmPlexMono.className} text-xs md:text-sm text-pink-500 h-20 flex flex-col justify-end`}
+                className={`${ibmPlexMono.className} text-xs md:text-sm text-cyan-500 h-20 flex flex-col justify-end`}
             >
                 <h6>{contactsData.title}</h6>
             </div>
