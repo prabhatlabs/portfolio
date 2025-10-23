@@ -1,9 +1,9 @@
 "use client";
 
-import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { Button } from "./ui/button";
+import { TbCircleHalf2 } from "react-icons/tb";
+import { Button } from "./button";
 
 export function ThemeToggle({ className }: { className?: string }) {
     const { setTheme, theme, systemTheme } = useTheme();
@@ -38,23 +38,13 @@ export function ThemeToggle({ className }: { className?: string }) {
 
     return (
         <Button
-            variant={"default"}
-            size={"icon"}
+            size={'icon'}
+            variant={'ghost'}
             title="Ctrl + ,"
             className={className}
             onClick={handleToggle}
         >
-            {theme === "system" ? (
-                systemTheme === "dark" ? (
-                    <Moon className="size-5" />
-                ) : (
-                    <Sun className="size-5" />
-                )
-            ) : theme === "light" ? (
-                <Moon className="size-5" />
-            ) : (
-                <Sun className="size-5" />
-            )}
+            <TbCircleHalf2 className="size-5" />
         </Button>
     );
 }

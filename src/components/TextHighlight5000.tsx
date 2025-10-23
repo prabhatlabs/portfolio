@@ -6,7 +6,7 @@ import type { JSX } from "react";
  *  - **double asterisks** for highlight
  *  - ||double pipes|| for special emphasis (e.g., metrics)
  */
-const TextHighlighting = ({
+const TextHighlighting5000 = ({
     text,
     className,
     textClassName,
@@ -120,4 +120,4 @@ const TextHighlighting = ({
     return <p className={cn(className)}>{textArr}</p>;
 };
 
-export default TextHighlighting;
+export default TextHighlighting5000;
