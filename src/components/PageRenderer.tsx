@@ -13,7 +13,7 @@ const TextHighlight5000Options = {
 };
 
 export const PageRenderer = ({ page }: { page: PageData }) => (
-  <div className="space-y-8">
+  <div className="space-y-12">
     <header className="flex flex-col lg:flex-row gap-2 lg:gap-4">
       {page.imageUrl && (
         <div className="w-fit h-full border border-border rounded-md">
@@ -34,8 +34,8 @@ export const PageRenderer = ({ page }: { page: PageData }) => (
 
     {page.contents.map((section, i) => (
       <Fragment key={i}>
-        <Separator />
-        <section id={`${section.title}_${i}`} className="space-y-4">
+        <Separator id={`${section.title}_${i}`} />
+        <section className="space-y-4">
           <div>
             <h2 className="text-2xl flex items-center gap-2">
               {section.icon && <section.icon className="size-5" />}

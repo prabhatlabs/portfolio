@@ -13,7 +13,7 @@ function PageSideIndex({ page }: PageSideIndexProps) {
           <div key={i} className="flex flex-col gap-2">
             <a href={`#${c.title}_${i}`} className="hover:underline">{c.title}</a>
             {c.content && typeof c.content !== "string" && typeof c.content?.[0] !== "string" && c.content.map((content, j) => (
-              <div key={j} className="pl-6">
+              <div key={j} className="pl-4">
                 {typeof content !== "string" && content.title && (
                   <a href={`#${content.title}_${j}`} className="hover:underline">{content.title}</a>
                 )}

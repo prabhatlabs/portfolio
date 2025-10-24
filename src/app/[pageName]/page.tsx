@@ -1,4 +1,3 @@
-import MyAdsPageSide from "@/components/MyAdsPageSide";
 import { PageRenderer } from "@/components/PageRenderer";
 import PageSideIndex from "@/components/PageSideIndex";
 import {
@@ -34,7 +33,6 @@ async function Page({ params }: { params: Promise<{ pageName: string }> }) {
 
   return (
     <>
-      <MyAdsPageSide />
       <PageRenderer page={pageData} />
       <PageSideIndex page={pageData.contents} />
     </>

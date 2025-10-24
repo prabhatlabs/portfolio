@@ -65,35 +65,37 @@ export const skills = {
     git: { name: "Git", icon: SiGit },
     postman: { name: "Postman", icon: SiPostman },
     cloudinary: { name: "Cloudinary", icon: SiCloudinary },
-    vercel: {name: "Vercel", icon: SiVercel}
+    vercel: { name: "Vercel", icon: SiVercel }
 };
 
-export const contactLinks: LinkItem[] = [
-    {
+export const contactLinks: Record<'twitter' | 'github' | 'linkedIn' | 'mail', LinkItem> = {
+    twitter: {
         name: "X (Twitter)",
         url: "https://x.com/prabhatlabs",
         icon: RiTwitterXFill,
         target: "_blank",
     },
-    {
+    github: {
         name: "GitHub",
         url: "https://github.com/IsayAyase",
         icon: IoLogoGithub,
         target: "_blank",
     },
-    {
+    linkedIn: {
         name: "LinkedIn",
         url: "https://linkedin.com/in/prabhatm8000",
         icon: FaLinkedinIn,
         target: "_blank",
     },
-    {
+    mail: {
         name: "Mail",
         url: "mailto:prabhatm8000@gmail.com",
         icon: SiGmail,
         target: "_self",
     },
-]
+}
+
+export const contactLinksArray = Object.values(contactLinks);
 
 export const myInfoPage: PageData = {
     title: "Prabhat Mishra",
@@ -114,12 +116,12 @@ export const myInfoPage: PageData = {
                 {
                     title: "Passion",
                     content:
-                        "I love crafting software that balances functionality and simplicity — whether it's designing intuitive UIs, optimizing backend performance, or integrating AI features that make applications smarter and more personal. My curiosity drives me to explore new technologies and understand systems from end to end, from database design to user interaction. Coding, for me, is not just about building — it's about solving meaningful problems and learning something new every day.",
+                        "I love crafting software that balances functionality and simplicity - whether it's designing intuitive UIs, optimizing backend performance, or integrating AI features that make applications smarter and more personal. My curiosity drives me to explore new technologies and understand systems from end to end, from database design to user interaction. Coding, for me, is not just about building - it's about solving meaningful problems and learning something new every day.",
                 },
                 {
                     title: "Experience",
                     content:
-                        "I've interned at NxTechWorks Consulting and TecoNico Pvt. Ltd., where I contributed to real-world projects involving SaaS product development, RESTful API design, and frontend optimization. I've also built several personal projects, including Ref.com — a shortlink management SaaS platform — and YouLearn, an AI-driven learning platform leveraging RAG (Retrieval-Augmented Generation). These experiences have honed my skills in building production-grade applications and collaborating within agile teams.",
+                        "I've interned at NxTechWorks Consulting and TecoNico Pvt. Ltd., where I contributed to real-world projects involving SaaS product development, RESTful API design, and frontend optimization. I've also built several personal projects, including Ref.com - a shortlink management SaaS platform - and YouLearn, an AI-driven learning platform leveraging RAG (Retrieval-Augmented Generation). These experiences have honed my skills in building production-grade applications and collaborating within agile teams.",
                 },
                 {
                     title: "Career Goal",
@@ -130,7 +132,7 @@ export const myInfoPage: PageData = {
         },
         {
             title: "Connect with Me",
-            links: contactLinks,
+            links: contactLinksArray,
             content:
                 "I'm always open to new opportunities, collaborations, or simply tech conversations. Feel free to reach out or follow my work on above platforms.",
         },
@@ -142,7 +144,7 @@ export const skillsPage: PageData = {
     name: "Skills",
     tabName: "skills",
     description:
-        "A well-rounded technical toolkit built through hands-on experience across backend systems, frontend interfaces, databases, and DevOps tools — enabling me to design, develop, and deploy complete software solutions from scratch.",
+        "A well-rounded technical toolkit built through hands-on experience across backend systems, frontend interfaces, databases, and DevOps tools - enabling me to design, develop, and deploy complete software solutions from scratch.",
     contents: [
         {
             title: "Languages",
@@ -203,7 +205,7 @@ export const projectsPage: PageData = {
     name: "Projects",
     tabName: "projects",
     description:
-        "A curated collection of projects that reflect my journey as a developer — blending creativity, scalability, and problem-solving through code.",
+        "A curated collection of projects that reflect my journey as a developer - blending creativity, scalability, and problem-solving through code.",
     contents: [
         {
             title: "Mapware",

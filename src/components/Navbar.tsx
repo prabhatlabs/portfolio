@@ -18,8 +18,7 @@ import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 
 const NavBar = () => {
-  const topContactLink =
-    contactLinks.length > 0 ? [contactLinks[0], contactLinks[1]] : [];
+  const topContactLink = [contactLinks.twitter,  contactLinks.mail]
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
