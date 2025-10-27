@@ -17,12 +17,12 @@ import { ThemeToggle } from "./ui/ThemeToggle";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 
-const NavBar = () => {
-  const topContactLink = [contactLinks.twitter,  contactLinks.mail]
+const NavBar = ({ bgTransparent = false, textWhite = false }: { bgTransparent?: boolean; textWhite?: boolean }) => {
+  const topContactLink = [contactLinks.twitter, contactLinks.mail]
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="sticky top-0 z-50 w-full bg-background px-4">
+    <div className={`sticky top-0 z-50 w-full ${bgTransparent ? "bg-transparent" : "bg-background"} ${textWhite ? "text-white" : "text-foreground"} px-4`}>
       <nav className="flex justify-between items-center gap-2 lg:gap-4">
         {/* bigger screens */}
         <div className="hidden md:flex flex-1 gap-2 lg:gap-4 xl:gap-5 items-center h-14 py-4">
@@ -75,11 +75,12 @@ const NavBar = () => {
           <ThemeToggle />
         </div>
       </nav>
-      
+
       {/* smaller screens */}
-      <div className={`md:hidden absolute z-50 top-full left-0 p-4 flex flex-col gap-2 h-[calc(100dvh-50px)] w-full bg-background
-        ${
-          isMenuOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
+      <div className={`md:hidden absolute z-50 top-full left-0 p-4 flex flex-col gap-2 h-[calc(100dvh-50px)] w-full 
+      ${bgTransparent ? "bg-transparent" : "bg-background"} 
+      ${textWhite ? "text-white" : "text-foreground"} 
+        ${isMenuOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
         } transition-all duration-150 ease-in-out`}>
         <Link href="/" className="text-2xl font-semibold mb-4">
           {navData.title}
