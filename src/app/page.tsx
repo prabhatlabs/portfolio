@@ -3,9 +3,8 @@
 import AsciiVideoPlayer from "@/components/AsciiVideoPlayer";
 import NavBar from "@/components/NavBar";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Speaker } from "lucide-react";
+import { AlertTriangle, Speaker } from "lucide-react";
 import { useCallback, useEffect, useState } from 'react';
-import { FaWandMagicSparkles } from "react-icons/fa6";
 
 export default function MyPage() {
     const [unmuteAudio, setUnmuteAudio] = useState<(() => void) | null>(null);
@@ -33,6 +32,7 @@ export default function MyPage() {
             }} className="max-w-7xl fixed z-50 top-0 left-1/2 -translate-x-1/2 p-2 my-4 md:my-6 rounded-lg backdrop-blur-xs border border-white/20 bg-white/5">
                 <NavBar bgTransparent textWhite />
             </div>
+
             {/* Unmute button, only visible when audio is ready */}
             {unmuteAudio && (
                 <Button
@@ -40,11 +40,11 @@ export default function MyPage() {
                     className="absolute bottom-4 right-4 p-2 z-50"
                     size={'icon'}
                 >
-                    <Sparkles />
+                    <Speaker />
                 </Button>
             )}
 
-            <div className="fixed z-10 mb-6 ml-8 md:mb-14 md:ml-10 lg:mb-16 lg:ml-12 xl:mb-20 xl:ml-24 bottom-0 left-0">
+            <div className="fixed z-10 mb-6 ml-8 md:mb-14 md:ml-10 lg:mb-16 lg:ml-12 bottom-0 left-0">
                 <div className="relative flex flex-col gap-4 w-full">
                     {/* Wider elliptical gradient */}
                     <div
@@ -57,6 +57,10 @@ export default function MyPage() {
                         {"prabhatlabs.dev"}
                     </h2>
                     <div className="text-white/50 text-xs lg:text-sm">
+                        <p className="flex gap-2 items-center">
+                            <AlertTriangle className="text-yellow-500 size-4" />
+                            <span>{"A lil resource hungry! Press the speaker icon to play/unmute."}</span>
+                        </p>
                         <span>
                             {"Build by"}{" "}
                             <a

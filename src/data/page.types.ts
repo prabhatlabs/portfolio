@@ -13,14 +13,24 @@ export type PillItem = {
     icon: IconType;
 }
 
+export type ContentContent = {
+    iconUrl?: string;
+    title: string,
+    imageUrl?: string;
+    content: string | string[]
+    links?: LinkItem[];
+    pills?: PillItem[]
+}
+
 export type PageContent = {
     title: string;
     subtitle?: string;
     description?: string;
-    content?: string | string[] | { title: string, content: string | string[] }[];
+    content?: string | string[] | ContentContent[];
     icon?: IconType;
     iconUrl?: string;
     links?: LinkItem[];
+    bottomLinks?: LinkItem[];
     imageUrl?: string;
     videoUrl?: string;
     pills?: PillItem[];

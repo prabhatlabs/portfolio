@@ -97,48 +97,6 @@ export const contactLinks: Record<'twitter' | 'github' | 'linkedIn' | 'mail', Li
 
 export const contactLinksArray = Object.values(contactLinks);
 
-export const myInfoPage: PageData = {
-    title: "Prabhat Mishra",
-    name: "Overview",
-    tabName: "overview",
-    description:
-        "Building software the way some people build puzzles - carefully, thoughtfully, and with a vision for the bigger picture.",
-    imageUrl: "https://avatars.githubusercontent.com/u/138608570?v=4",
-    contents: [
-        {
-            title: "Software Developer",
-            content: [
-                {
-                    title: "Overview",
-                    content:
-                        "I'm a self-taught software developer with a Bachelor's in Computer Applications (BCA, 2022-2025) and hands-on experience in full-stack web development. Over the past few years, I've built and maintained scalable web apps, backend systems, and developer tools using modern technologies like TypeScript, Node.js, React, and Next.js. My technical foundation spans backend design, API architecture, cloud deployment, and building intelligent applications with AI integration.",
-                },
-                {
-                    title: "Passion",
-                    content:
-                        "I love crafting software that balances functionality and simplicity - whether it's designing intuitive UIs, optimizing backend performance, or integrating AI features that make applications smarter and more personal. My curiosity drives me to explore new technologies and understand systems from end to end, from database design to user interaction. Coding, for me, is not just about building - it's about solving meaningful problems and learning something new every day.",
-                },
-                {
-                    title: "Experience",
-                    content:
-                        "I've interned at NxTechWorks Consulting and TecoNico Pvt. Ltd., where I contributed to real-world projects involving SaaS product development, RESTful API design, and frontend optimization. I've also built several personal projects, including Ref.com - a shortlink management SaaS platform - and YouLearn, an AI-driven learning platform leveraging RAG (Retrieval-Augmented Generation). These experiences have honed my skills in building production-grade applications and collaborating within agile teams.",
-                },
-                {
-                    title: "Career Goal",
-                    content:
-                        "I'm currently seeking internship or entry-level software engineering opportunities where I can work with a talented team, contribute to meaningful projects, and continue sharpening my skills in backend systems, cloud infrastructure, and intelligent application design. My long-term goal is to evolve into a developer who not only writes efficient code but also designs solutions that truly make an impact.",
-                },
-            ],
-        },
-        {
-            title: "Connect with Me",
-            links: contactLinksArray,
-            content:
-                "I'm always open to new opportunities, collaborations, or simply tech conversations. Feel free to reach out or follow my work on above platforms.",
-        },
-    ],
-};
-
 export const skillsPage: PageData = {
     title: "Skills",
     name: "Skills",
@@ -217,7 +175,7 @@ export const projectsPage: PageData = {
                 "Optimized data retrieval using Redis, fetching ||~18,000-23,000|| **coordinates** in real-time, reducing response times by ||40-50%||."
             ],
             imageUrl: "/projectThumbnails/mapware.png",
-            iconUrl: "/projectIcons/mapware.png",
+            iconUrl: "/projectLogos/mapware.ico",
             videoUrl:
                 "https://res.cloudinary.com/dtapvbbzb/video/upload/v1756537370/portfolio/mapware-preview_ww3tss.mp4",
             pills: [
@@ -256,7 +214,7 @@ export const projectsPage: PageData = {
                 "Integrated **advanced analytics** for clicks and QR scans, with **geo-location tracking** and **CSV export**, providing actionable insights.",
                 "Dockerized microservices and Redis caching for **fast response times and smooth deployment**."
             ],
-            iconUrl: "/projectIcons/ref.png",
+            iconUrl: "/projectLogos/ref.svg",
             imageUrl: "/projectThumbnails/ref.png",
             videoUrl:
                 "https://res.cloudinary.com/dtapvbbzb/video/upload/v1756537244/portfolio/ref-preview_wks3zn.mp4",
@@ -297,8 +255,8 @@ export const projectsPage: PageData = {
                 "Designed a **dual-service architecture** using FastAPI and Node.js, with Prisma for unified database access.",
                 "Demonstrated expertise in **multi-service communication, LLM orchestration, and vector-based data retrieval**, handling complex backend workflows seamlessly."
             ],
+            iconUrl: "/projectLogos/yapless.svg",
             imageUrl: "/projectThumbnails/yapless.png",
-            iconUrl: "/projectIcons/yapless.png",
             videoUrl:
                 "https://res.cloudinary.com/dtapvbbzb/video/upload/v1756537373/portfolio/yapless-preview_s55qxu.mp4",
             pills: [
@@ -334,7 +292,7 @@ export const projectsPage: PageData = {
                 "Ensured **mobile responsiveness** and clean UI design, demonstrating frontend craftsmanship and attention to interaction design.",
                 "Built with Next.js, Zustand, and Framer Motion, highlighting expertise in **modern React state management and animation libraries**."
             ],
-            iconUrl: "/projectIcons/hbench.png",
+            iconUrl: "/projectLogos/hbench.ico",
             imageUrl: "/projectThumbnails/hbench.png",
             videoUrl:
                 "https://res.cloudinary.com/dtapvbbzb/video/upload/v1756537240/portfolio/hbench-preview_xmgsdu.mp4",
@@ -373,8 +331,9 @@ export const experiencePage: PageData = {
         "Practical, hands-on experience building scalable full-stack applications, optimizing system performance, and integrating AI-driven features into real-world products. Demonstrated proficiency in backend APIs, frontend dashboards, RAG systems, and data analytics.",
     contents: [
         {
-            title: "Full Stack Developer Intern",
-            subtitle: "NxTechWorks Consulting",
+            iconUrl: "/companyLogos/nxtechworks_logo.jpeg",
+            title: "NxTechWorks Consulting",
+            subtitle: "Full Stack Developer Intern",
             description: "Remote • Jan 2025 - Sep 2025",
             content: [
                 {
@@ -420,8 +379,9 @@ export const experiencePage: PageData = {
             ],
         },
         {
-            title: "Full Stack Developer Intern",
-            subtitle: "TecoNico Pvt. Ltd.",
+            iconUrl: "/companyLogos/teconicopvtltd_logo.jpeg",
+            title: "TecoNico Pvt. Ltd.",
+            subtitle: "Full Stack Developer Intern",
             description: "Remote • Jul 2024 - Dec 2024",
             content: [
                 {
@@ -458,9 +418,74 @@ export const blogsPage: PageData = {
     ],
 };
 
+export const myInfoPage: PageData = {
+    title: "Prabhat Mishra",
+    name: "Overview",
+    tabName: "overview",
+    description:
+        "Building software the way some people build puzzles - carefully, thoughtfully, and with a vision for the bigger picture.",
+    imageUrl: "/me.png",
+    contents: [
+        {
+            title: "Connect with Me",
+            content:
+                [{
+                    title: "Let's Collaborate",
+                    content: "I'm always open to new opportunities, collaborations, or simply tech conversations. Feel free to reach out or follow my work on above platforms.",
+                    links: contactLinksArray,
+                }],
+        },
+        {
+            title: experiencePage.title,
+            content: experiencePage.contents.slice(0, 2).map(content => {
+                return {
+                    iconUrl: content.iconUrl,
+                    title: content.title,
+                    content: `${content.subtitle}\n${content.description}` || "",
+                }
+            }),
+            bottomLinks: [
+                {
+                    name: "More",
+                    target: "_self",
+                    url: `/${experiencePage.tabName}`
+                }
+            ]
+        },
+        {
+            title: projectsPage.title,
+            content: projectsPage.contents.slice(0, 2).map(content => {
+                return {
+                    title: content.title,
+                    iconUrl: content.iconUrl,
+                    imageUrl: content.imageUrl,
+                    content: `${content.subtitle}` || "",
+                    links: content.links
+                }
+            }),
+            bottomLinks: [
+                {
+                    name: "More",
+                    target: "_self",
+                    url: `/${projectsPage.tabName}`
+                }
+            ]
+        },
+        {
+            title: skillsPage.title,
+            content: [{
+                title: "",
+                content: "",
+                pills: skillsPage.contents.map(c => c.pills || []).flat()
+            }],
+        },
+
+    ],
+};
+
 export const pages: PageData[] = [
     myInfoPage,
-    skillsPage,
+    // skillsPage,
     projectsPage,
     experiencePage,
     blogsPage,

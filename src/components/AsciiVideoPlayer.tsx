@@ -32,6 +32,7 @@ export default function AsciiVideoPlayer({
   const currentFrameRef = useRef(0);
   const animationRef = useRef<number | null>(null);
   const [dimensions, setDimensions] = useState({ width, height });
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
     const loadVideo = async () => {
@@ -69,7 +70,7 @@ export default function AsciiVideoPlayer({
         if (onCanPlayAudio) {
           onCanPlayAudio(() => {
             if (audioRef.current) {
-              audioRef.current.muted = false;
+              audioRef.current.muted = !audioRef.current.muted;
               audioRef.current.play().catch(e => console.error("Error playing audio after unmute:", e));
             }
           });
@@ -81,13 +82,24 @@ export default function AsciiVideoPlayer({
         });
       };
 
+      const handlePlaying = () => {
+        setIsPlaying(true);
+      }
+      const handlePaused = () => {
+        setIsPlaying(false);
+      }
+
       audioRef.current.addEventListener('canplaythrough', handleCanPlayThrough);
+      audioRef.current.addEventListener("playing", handlePlaying)
+      audioRef.current.addEventListener("pause", handlePaused)
 
       // Cleanup audio
       return () => {
         if (animationRef.current) cancelAnimationFrame(animationRef.current);
         if (audioRef.current) {
           audioRef.current.removeEventListener('canplaythrough', handleCanPlayThrough);
+          audioRef.current.removeEventListener("playing", handlePlaying)
+          audioRef.current.removeEventListener("pause", handlePaused)
           audioRef.current.pause();
           audioRef.current = null;
         }
@@ -172,7 +184,7 @@ export default function AsciiVideoPlayer({
   };
 
   if (error) {
-    return <div className="text-red-500 p-4">Error loading video: {error}</div>;
+    return <div className="text-destructive p-4">Error loading video: {error}</div>;
   }
 
   if (isLoading) {
@@ -188,7 +200,12 @@ export default function AsciiVideoPlayer({
 
   return (
     <div className="overflow-hidden h-dvh">
-      {audioRef?.current?.paused}
+      {!isPlaying &&
+        <div className='fixed z-50 top-1/2 left-1/2 -translate-1/2'>
+          <h3 className='text-xl md:text-3xl lg:text-5xl'>paused</h3>
+        </div>
+      }
+
       <canvas
         ref={canvasRef}
         width={canvasWidth}
