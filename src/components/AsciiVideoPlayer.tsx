@@ -189,7 +189,7 @@ export default function AsciiVideoPlayer({
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-64 bg-black text-white">
+      <div className="flex items-center justify-center h-64">
         <Loader className='animate-spin size-5' />
       </div>
     );
