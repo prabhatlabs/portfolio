@@ -29,7 +29,7 @@ export default function MyPage() {
         <div className="min-h-dvh h-full relative">
             <div style={{
                 width: "calc(100% - 2rem)"
-            }} className="max-w-7xl fixed z-50 top-0 left-1/2 -translate-x-1/2 p-2 my-4 md:my-6 rounded-lg backdrop-blur-xs border border-white/20 bg-white/5">
+            }} className="max-w-7xl fixed z-50 top-0 left-1/2 -translate-x-1/2 p-2 my-4 md:my-6 rounded-lg border border-white/20 bg-black/60">
                 <NavBar bgTransparent textWhite />
             </div>
 
@@ -44,7 +44,7 @@ export default function MyPage() {
                 </Button>
             )}
 
-            <div className="fixed z-10 mb-6 ml-8 md:mb-14 md:ml-10 lg:mb-16 lg:ml-12 bottom-0 left-0">
+            <div className="fixed z-10  ml-4 mb-6 sm:ml-8 md:mb-14 md:ml-10 lg:mb-16 lg:ml-12 bottom-0 left-0">
                 <div className="relative flex flex-col gap-4 w-full">
                     {/* Wider elliptical gradient */}
                     <div

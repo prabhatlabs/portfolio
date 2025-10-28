@@ -202,7 +202,7 @@ export default function AsciiVideoPlayer({
     <div className="overflow-hidden h-dvh">
       {!isPlaying &&
         <div className='fixed z-50 top-1/2 left-1/2 -translate-1/2'>
-          <h3 className='text-xl md:text-3xl lg:text-5xl'>paused</h3>
+          <h3 className='text-xl md:text-3xl lg:text-5xl text-white'>paused</h3>
         </div>
       }
 

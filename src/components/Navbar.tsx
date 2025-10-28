@@ -77,8 +77,8 @@ const NavBar = ({ bgTransparent = false, textWhite = false }: { bgTransparent?: 
       </nav>
 
       {/* smaller screens */}
-      <div className={`md:hidden absolute z-50 top-full left-0 p-4 flex flex-col gap-2 h-[calc(100dvh-50px)] w-full 
-      ${bgTransparent ? "bg-transparent" : "bg-background"} 
+      <div className={`md:hidden absolute z-50 top-full left-0 p-4 flex flex-col gap-2 w-full 
+      ${bgTransparent ? "bg-black/60 rounded-lg border mt-4" : "bg-background h-[calc(100dvh-50px)]"} 
       ${textWhite ? "text-white" : "text-foreground"} 
         ${isMenuOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"
         } transition-all duration-150 ease-in-out`}>
