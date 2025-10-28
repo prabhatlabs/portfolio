@@ -81,8 +81,8 @@ export default function MyPage() {
 
             <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center">
                 <AsciiVideoPlayer
-                    src="/extra/ascii_video.bin"
-                    audioSrc="/extra/audio.mp3"
+                    src="/extra/ascii_video-2.bin"
+                    audioSrc="/extra/audio-2.mp3"
                     width={128}
                     height={72}
                     fps={30}

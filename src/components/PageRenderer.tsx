@@ -241,7 +241,7 @@ function LinkItemRenderer({ props, bottomLink }: { props: LinkItem, bottomLink?:
 
 function PillRenderer({ props }: { props: PillItem }) {
   return (
-    <div className="inline-flex items-center gap-1 border border-border rounded-sm px-2 py-1 text-xs">
+    <div className="inline-flex items-center gap-1 border border-foreground/30 rounded-sm px-2 py-1 text-xs">
       <props.icon className="size-4" />
       {props.name}
     </div>

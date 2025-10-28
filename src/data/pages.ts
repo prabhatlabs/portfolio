@@ -162,8 +162,7 @@ export const projectsPage: PageData = {
     title: "Projects",
     name: "Projects",
     tabName: "projects",
-    description:
-        "A curated collection of projects that reflect my journey as a developer - blending creativity, scalability, and problem-solving through code.",
+    description: "A curated collection of projects that reflect my journey as a developer - blending creativity, scalability, and problem-solving through code.",
     contents: [
         {
             title: "Mapware",
@@ -212,7 +211,7 @@ export const projectsPage: PageData = {
                 "Implemented **multiple workspaces** for separate teams to manage their own links securely.",
                 "Enabled **custom aliases, branded QR codes, password-protected links, and link expiration** for secure sharing.",
                 "Integrated **advanced analytics** for clicks and QR scans, with **geo-location tracking** and **CSV export**, providing actionable insights.",
-                "Dockerized microservices and Redis caching for **fast response times and smooth deployment**."
+                "Dockerized and Redis caching for **fast response times and smooth deployment**."
             ],
             iconUrl: "/projectLogos/ref.svg",
             imageUrl: "/projectThumbnails/ref.png",
@@ -339,7 +338,7 @@ export const experiencePage: PageData = {
                 {
                     title: "PaperNextTech | Document Intelligence Platform",
                     content: [
-                        "Engineered a production-ready **RAG microservice** using FastAPI, Gemma-3, and ChromaDB for semantic retrieval, summarization, and contextual Q&A.",
+                        "Engineered a production-ready **RAG microservice** using FastAPI, Gemma-3, and ChromaDB for vector based data retrieval, summarization, and contextual Q&A.",
                         "Implemented session-based chat history, for a seamless conversational interface.",
                         "Designed the system with modular architecture for **easy scaling across multiple AI-driven features** and smooth deployment.",
                     ],
@@ -349,8 +348,8 @@ export const experiencePage: PageData = {
                     content: [
                         "Developed **dynamic visit form builders** with multi-template functionality and field validation for customizable patient forms.",
                         "Implemented a **visit comparison module** to track patient progress side-by-side, enabling nutritionists to detect trends and improve treatment accuracy.",
+                        "Reduced redundant API requests by ||40-45%|| by optimizing state management, improving dashboard load times and lowering server strain.",
                         "Built **calendar-based appointment views** for scheduling and follow-ups, ensuring **cross-device responsive UI** for consistent user experience.",
-                        "Reduced redundant API requests by ||40-45%||, improving dashboard load times and lowering server strain."
                     ],
                 },
                 {
@@ -389,7 +388,7 @@ export const experiencePage: PageData = {
                     content: [
                         "Developed API workflows to **auto-create follow-up appointments** when submitting prescriptions with next visit details.",
                         "Built features to **generate prescription PDFs** from doctor-submitted forms and **invoice PDFs** for reception workflows.",
-                        "Integrated **WhatsApp chatbot communication** for sending notifications, confirmations, and prescription reminders.",
+                        "Integrated **WhatsApp chatbot communication** via third party provider for sending notifications, confirmations, and prescription reminders.",
                         "Documented all API endpoints thoroughly, **reducing development time by** ||20%|| and streamlining frontend-backend workflows.",
                         "Refactored backend modules to improve query performance, **enhancing efficiency by** ||20-30%|| through aggregation pipeline optimization, indexing, and error handling."
                     ],
