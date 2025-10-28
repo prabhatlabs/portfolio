@@ -1,12 +1,13 @@
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Ubuntu } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-    variable: "--font-inter",
+const ubuntu = Ubuntu({
     subsets: ["latin"],
+    weight: ["400", "500", "700"],
+    variable: "--font-ubuntu",
 });
 
 export const metadata: Metadata = {
@@ -47,7 +48,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning suppressContentEditableWarning>
-            <body className={`${inter.className} antialiased hideScrollbar`}>
+            <body className={`antialiased hideScrollbar ${ubuntu.className}`}>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="system"

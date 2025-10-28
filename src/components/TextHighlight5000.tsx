@@ -1,23 +1,26 @@
 import { cn } from "@/lib/utils";
-import type { JSX } from "react";
+import { Fragment, type JSX } from "react";
 
 /**
  * Wrap text in:
  *  - **double asterisks** for highlight
  *  - ||double pipes|| for special emphasis (e.g., metrics)
+ *  - <br /> for '\n'
  */
-const TextHighlighting = ({
+const TextHighlighting5000 = ({
     text,
     className,
     textClassName,
     highlightedTextClassName,
     specialTextClassName,
+    enableNewLine = true,
 }: {
     text: string;
     className?: string;
     textClassName?: string;
     highlightedTextClassName?: string;
     specialTextClassName?: string;
+    enableNewLine?: boolean;
 }) => {
     text = `${text} `;
     const textArr: JSX.Element[] = [];
@@ -28,6 +31,36 @@ const TextHighlighting = ({
     let pushSpecial = false;
 
     for (let i = 0; i < text.length - 1; i++) {
+        // Add <br /> for '\n'
+        if (text[i] === "\n") {
+            if (aText) {
+                textArr.push(
+                    <span key={`t-${i}`} className={textClassName}>
+                        {aText}
+                    </span>
+                );
+                aText = "";
+            }
+            if (aHighlightedText) {
+                textArr.push(
+                    <span key={`h-${i}`} className={highlightedTextClassName}>
+                        {aHighlightedText}
+                    </span>
+                );
+                aHighlightedText = "";
+            }
+            if (aSpecialText) {
+                textArr.push(
+                    <span key={`s-${i}`} className={specialTextClassName}>
+                        {aSpecialText}
+                    </span>
+                );
+                aSpecialText = "";
+            }
+            textArr.push(enableNewLine ? <br key={`br-${i}`} /> : <Fragment key={`br-${i}`}>{" • "}</Fragment>);
+            continue;
+        }
+
         // Toggle highlight mode (** **)
         if (text[i] === "*" && text[i + 1] === "*") {
             pushHighlight = !pushHighlight;
@@ -120,4 +153,4 @@ const TextHighlighting = ({
     return <p className={cn(className)}>{textArr}</p>;
 };
 
-export default TextHighlighting;
+export default TextHighlighting5000;
