@@ -1,6 +1,6 @@
 import Footer from "@/components/Footer"
 import MyAdsPageSide from "@/components/MyAdsPageSide"
-import NavBar from "@/components/NavBar"
+import NavBar from "@/components/Navbar"
 import LayoutContextProvider from "@/contexts/LayoutContext"
 import type { ReactNode } from "react"
 
