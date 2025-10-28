@@ -1,7 +1,7 @@
 "use client";
 
 import AsciiVideoPlayer from "@/components/AsciiVideoPlayer";
-import NavBar from "@/components/NavBar";
+import NavBar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { AlertTriangle, Speaker } from "lucide-react";
 import { useCallback, useEffect, useState } from 'react';
