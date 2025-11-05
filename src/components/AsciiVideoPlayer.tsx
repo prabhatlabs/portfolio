@@ -265,9 +265,3 @@ function parseBinaryData(
 
   return [width, height, frames];
 }
-
-
-
-
-
-

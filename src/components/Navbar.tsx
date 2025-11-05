@@ -28,7 +28,7 @@ const NavBar = ({ bgTransparent = false, textWhite = false }: { bgTransparent?: 
         <div className="hidden md:flex flex-1 gap-2 lg:gap-4 xl:gap-5 items-center h-14 py-4">
           {/* logo */}
           <Link
-            href="/"
+            href="/crazy"
             className="hover:border-b border-muted-foreground transition-colors font-good-mono"
           >
             {/* {navData.title} */}
