@@ -327,8 +327,28 @@ export const experiencePage: PageData = {
     tabName: "experience",
     name: "Experience",
     description:
-        "Practical, hands-on experience building scalable full-stack applications, optimizing system performance, and integrating AI-driven features into real-world products. Demonstrated proficiency in backend APIs, frontend dashboards, RAG systems, and data analytics.",
+        "Practical, hands-on experience building scalable full-stack applications, optimizing system performance, and integrating AI-driven features into real-world products. Demonstrated proficiency in backend, frontend and RAG systems.",
     contents: [
+        {
+            iconUrl: "/companyLogos/flexzistay_logo.png",
+            title: "Flexzistay",
+            subtitle: "Software Developer Intern",
+            description: "Remote • Oct 2025 - Present",
+            content: [
+                "Revamped the frontend, **streamlining user experience** and **improving performance**.",
+                "Optimized and **increased mantainability and consistency** of Tailwind classes.",
+            ],
+            pills: [
+                skills.typescript,
+                skills.nodejs,
+                skills.express,
+                skills.nextjs,
+                skills.postgresql,
+                skills.redis,
+                skills.tailwind,
+                skills.git,
+            ],
+        },
         {
             iconUrl: "/companyLogos/nxtechworks_logo.jpeg",
             title: "NxTechWorks Consulting",
@@ -445,7 +465,7 @@ export const myInfoPage: PageData = {
             }),
             bottomLinks: [
                 {
-                    name: "More",
+                    name: experiencePage.contents.length > 2 ? `+${experiencePage.contents.length - 2} More` : "More",
                     target: "_self",
                     url: `/${experiencePage.tabName}`
                 }
@@ -464,7 +484,7 @@ export const myInfoPage: PageData = {
             }),
             bottomLinks: [
                 {
-                    name: "More",
+                    name: projectsPage.contents.length > 2 ? `+${projectsPage.contents.length - 2} More` : "More",
                     target: "_self",
                     url: `/${projectsPage.tabName}`
                 }

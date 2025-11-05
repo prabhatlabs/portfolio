@@ -18,11 +18,11 @@ export const metadata: Metadata = {
         title: "Prabhat | Software Developer",
         description:
             "I'm a self-taught software developer, buildling software the way some people build puzzles, piece by piece, until everything clicks.",
-        url: "https://prabhatmishra.vercel.app/",
+        url: "https://prabhatlabs.dev/",
         siteName: "Prabhat Mishra",
         images: [
             {
-                url: "https://prabhatmishra.vercel.app/preview.png",
+                url: "https://prabhatlabs.dev/preview.png",
                 width: 1200,
                 height: 630,
                 alt: "Preview",
@@ -32,12 +32,25 @@ export const metadata: Metadata = {
         type: "website",
     },
     twitter: {
-        card: "summary_large_image",
+        card: "summary",
         title: "Prabhat | Software Developer",
         description:
             "I'm a self-taught software developer, buildling software the way some people build puzzles, piece by piece, until everything clicks.",
-        images: ["https://prabhatmishra.vercel.app/preview.png"],
-        creator: "@prabhatsuntoh",
+        images: ["https://prabhatlabs.dev/preview.png"],
+        creator: "@prabhatlabs",
+    },
+    robots: {
+        index: true,
+        follow: true,
+        nocache: true,
+        googleBot: {
+            index: true,
+            follow: true,
+            noimageindex: true,
+            "max-video-preview": -1,
+            "max-image-preview": "large",
+            "max-snippet": -1,
+        },
     },
 };
 
@@ -54,7 +67,9 @@ export default function RootLayout({
                     defaultTheme="system"
                     enableSystem
                 >
+                    <div className="transition-colors duration-500 ease-in-out">
                     {children}
+                    </div>
                 </ThemeProvider>
                 <Analytics />
             </body>

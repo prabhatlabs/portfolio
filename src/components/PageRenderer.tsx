@@ -205,7 +205,7 @@ export const PageRenderer = ({ page }: { page: PageData }) => (
         )}
 
         {section.bottomLinks && (
-          <div className="flex justify-end flex-wrap gap-2 my-1">
+          <div className="flex justify-end flex-wrap gap-2 my-1 text-muted-foreground">
             {section.bottomLinks.map((link, j) => (
               <LinkItemRenderer key={j} props={link} bottomLink />
             ))}
