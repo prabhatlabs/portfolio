@@ -62,7 +62,7 @@ export default function AsciiVideoPlayer({
     if (audioSrc) {
       audioRef.current = new Audio(audioSrc);
       audioRef.current.loop = true;
-      audioRef.current.muted = true; // Start muted
+      audioRef.current.muted = false; // Start muted
       audioRef.current.load(); // Load the audio
 
       const handleCanPlayThrough = () => {
@@ -70,7 +70,7 @@ export default function AsciiVideoPlayer({
         if (onCanPlayAudio) {
           onCanPlayAudio(() => {
             if (audioRef.current) {
-              audioRef.current.muted = !audioRef.current.muted;
+              audioRef.current.muted = false;
               audioRef.current.play().catch(e => console.error("Error playing audio after unmute:", e));
             }
           });

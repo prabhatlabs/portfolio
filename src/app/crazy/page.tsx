@@ -29,7 +29,7 @@ export default function MyPage() {
         <div className="min-h-dvh h-full relative">
             <div style={{
                 width: "calc(100% - 2rem)"
-            }} className="max-w-7xl fixed z-50 top-0 left-1/2 -translate-x-1/2 p-2 my-4 md:my-6 rounded-lg border border-white/20 bg-black/60">
+            }} className="max-w-3xl fixed z-50 top-0 left-1/2 -translate-x-1/2 p-2 my-4 md:my-6 rounded-lg border border-white/20 bg-white/10 backdrop-blur-[2px]">
                 <NavBar bgTransparent textWhite />
             </div>
 
@@ -81,8 +81,8 @@ export default function MyPage() {
 
             <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center">
                 <AsciiVideoPlayer
-                    src="/extra/ascii_video-3.bin"
-                    audioSrc="/extra/audio-3.mp3"
+                    src="/extra/ascii_video.bin"
+                    audioSrc="/extra/audio.mp3"
                     width={128}
                     height={72}
                     fps={30}
