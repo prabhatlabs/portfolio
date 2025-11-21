@@ -70,7 +70,7 @@ export default function AsciiVideoPlayer({
         if (onCanPlayAudio) {
           onCanPlayAudio(() => {
             if (audioRef.current) {
-              audioRef.current.muted = false;
+              audioRef.current.muted = !audioRef.current.muted;
               audioRef.current.play().catch(e => console.error("Error playing audio after unmute:", e));
             }
           });
@@ -172,12 +172,12 @@ export default function AsciiVideoPlayer({
       // Draw background
       const color = frame.colors.subarray(i * 3, i * 3 + 3);
       ctx.fillStyle = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
-      // ctx.fillStyle = '#000';
+      // ctx.fillStyle = "rgb(0, 0, 0)";
       ctx.fillRect(x, y, cellWidth, cellHeight);
 
       // Draw character (white)
       const char = DENSITY_STRING[frame.chars[i]];
-      ctx.fillStyle = '#ffffff';
+      ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
       // ctx.fillStyle = `rgb(${color[0]}, ${color[1]}, ${color[2]})`;
       ctx.fillText(char, x + cellWidth / 2, y + cellHeight / 2);
     }

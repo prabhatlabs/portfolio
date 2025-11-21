@@ -1,10 +1,10 @@
 "use client";
 
 import AsciiVideoPlayer from "@/components/AsciiVideoPlayer";
-import NavBar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { AlertTriangle, Speaker } from "lucide-react";
-import { useCallback, useEffect, useState } from 'react';
+import Link from "next/link";
+import { useCallback, useEffect, useState } from "react";
 
 export default function MyPage() {
     const [unmuteAudio, setUnmuteAudio] = useState<(() => void) | null>(null);
@@ -15,30 +15,24 @@ export default function MyPage() {
 
     useEffect(() => {
         const handleKeydown = (event: KeyboardEvent) => {
-            if (event.ctrlKey && event.key === '.') {
+            if (event.ctrlKey && event.key === ".") {
                 unmuteAudio?.();
             }
         };
-        document.addEventListener('keydown', handleKeydown);
+        document.addEventListener("keydown", handleKeydown);
         return () => {
-            document.removeEventListener('keydown', handleKeydown);
+            document.removeEventListener("keydown", handleKeydown);
         };
-    }, [unmuteAudio])
+    }, [unmuteAudio]);
 
     return (
         <div className="min-h-dvh h-full relative">
-            <div style={{
-                width: "calc(100% - 2rem)"
-            }} className="max-w-3xl fixed z-50 top-0 left-1/2 -translate-x-1/2 p-2 my-4 md:my-6 rounded-lg border border-white/20 bg-white/10 backdrop-blur-[2px]">
-                <NavBar bgTransparent textWhite />
-            </div>
-
             {/* Unmute button, only visible when audio is ready */}
             {unmuteAudio && (
                 <Button
                     onClick={() => unmuteAudio()}
                     className="absolute bottom-4 right-4 p-2 z-50"
-                    size={'icon'}
+                    size={"icon"}
                 >
                     <Speaker />
                 </Button>
@@ -53,13 +47,19 @@ export default function MyPage() {
       blur-2xl rounded-full"
                     ></div>
 
-                    <h2 className="text-white text-3xl sm:text-5xl md:text-7xl font-extralight tracking-wide">
-                        {"prabhatlabs.dev"}
-                    </h2>
+                    <Link href="/">
+                        <h2 className="text-white text-3xl sm:text-5xl md:text-7xl font-extralight tracking-wide">
+                            {"prabhatlabs.dev"}
+                        </h2>
+                    </Link>
                     <div className="text-white/50 text-xs lg:text-sm">
                         <p className="flex gap-2 items-center">
                             <AlertTriangle className="text-yellow-500 size-4" />
-                            <span>{"A lil resource hungry! Press the speaker icon to play/unmute."}</span>
+                            <span>
+                                {
+                                    "A lil resource hungry! Press the speaker icon to play/unmute."
+                                }
+                            </span>
                         </p>
                         <span>
                             {"Build by"}{" "}
