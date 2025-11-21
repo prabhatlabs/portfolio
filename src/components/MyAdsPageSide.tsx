@@ -13,7 +13,7 @@ function MyAdsPageSide() {
         >
           <p className="text-sm text-muted-foreground">{ad.description}</p>
           {ad.imageUrl && (
-            <div className="w-full h-20 border border-border rounded-md">
+            <div className="w-full h-36 border border-border rounded-md">
               <Image
                 src={ad.imageUrl}
                 alt={ad.title}

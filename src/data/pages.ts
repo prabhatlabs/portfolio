@@ -345,6 +345,7 @@ export const experiencePage: PageData = {
                 skills.nextjs,
                 skills.postgresql,
                 skills.redis,
+                skills.cloudinary,
                 skills.tailwind,
                 skills.git,
             ],
@@ -450,7 +451,7 @@ export const myInfoPage: PageData = {
             content:
                 [{
                     title: "Let's Collaborate",
-                    content: "I'm always open to new opportunities, collaborations, or simply tech conversations. Feel free to reach out or follow my work on above platforms.",
+                    content: "I'm always open to new opportunities, collaborations, or simply tech conversations. Feel free to reach out or follow my work on below platforms.",
                     links: contactLinksArray,
                 }],
         },
@@ -503,7 +504,7 @@ export const myInfoPage: PageData = {
 };
 
 export const pages: PageData[] = [
-    myInfoPage,
+    // myInfoPage,
     // skillsPage,
     projectsPage,
     experiencePage,

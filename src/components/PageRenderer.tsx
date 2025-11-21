@@ -33,18 +33,18 @@ export const PageRenderer = ({ page }: { page: PageData }) => (
     </header>
 
     {page.contents.map((section, i) => (
-      <section key={i} className="space-y-4 relative" id={`${section.title}_${i}`}>
-        <Separator />
-        <div>
+      <section key={i} className="relative" id={`${section.title}_${i}`}>
+        <Separator className="mb-4" />
+        <div className="mb-2">
           <div className="flex gap-4 items-center">
             {section.iconUrl
               &&
-              <div className="size-[35px] border border-border rounded">
+              <div className="size-11 border border-border rounded">
                 <Image
                   src={section.iconUrl}
                   alt={section.title}
-                  width={35}
-                  height={35}
+                  width={44}
+                  height={44}
                   className="object-cover w-full h-full rounded"
                 />
               </div>
@@ -101,7 +101,7 @@ export const PageRenderer = ({ page }: { page: PageData }) => (
                 className={
                   typeof section.content?.[0] === "string"
                     ? "pl-4 lg:pl-6 list-disc"
-                    : "space-y-4"
+                    : "space-y-2"
                 }
               >
                 {section.content?.map((sub, j) => (
@@ -114,7 +114,7 @@ export const PageRenderer = ({ page }: { page: PageData }) => (
                         />
                       </li>
                     ) : (
-                      <div id={`${sub.title}_${j}`} className="flex flex-col sm:flex-row sm:gap-4 flex-1 mb-8 sm:mb-4">
+                      <div id={`${sub.title}_${j}`} className="flex flex-col sm:flex-row gap-2 sm:gap-4 flex-1">
                         {sub.imageUrl &&
                           <div className="sm:w-fit sm:h-fit border border-border rounded-md shrink-0">
                             <Image
@@ -126,8 +126,8 @@ export const PageRenderer = ({ page }: { page: PageData }) => (
                             />
                           </div>
                         }
-                        <div className="w-full">
-                          <div className="flex gap-4 sm:gap-2 items-center">
+                        <div className="w-full space-y-2">
+                          <div className="flex gap-2">
                             {sub.iconUrl
                               &&
                               <div className="size-[35px] border border-border rounded shrink-0">
@@ -141,7 +141,7 @@ export const PageRenderer = ({ page }: { page: PageData }) => (
                               </div>
                             }
                             <div className="w-full">
-                              <h3 className="text-base text-foreground/80">
+                              <h3 className="text-base text-foreground/80 leading-4 mb-1">
                                 {sub.title}
                               </h3>
                               {typeof sub.content === "string" ? (
@@ -181,7 +181,7 @@ export const PageRenderer = ({ page }: { page: PageData }) => (
                             </div>
                           </div>
                           {sub.links && (
-                            <div className="flex flex-wrap gap-2 my-1">
+                            <div className="flex flex-wrap gap-2">
                               {sub.links.map((link, j) => (
                                 <LinkItemRenderer key={j} props={link} />
                               ))}
@@ -213,7 +213,7 @@ export const PageRenderer = ({ page }: { page: PageData }) => (
         )}
 
         {section.pills && (
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 my-2">
             {section.pills.map((pill, j) => (
               <PillRenderer key={j} props={pill} />
             ))}

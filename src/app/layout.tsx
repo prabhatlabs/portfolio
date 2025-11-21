@@ -1,3 +1,4 @@
+import { CrazyBtn } from "@/components/ui/CrazyBtn";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
@@ -68,8 +69,9 @@ export default function RootLayout({
                     enableSystem
                 >
                     <div className="transition-colors duration-500 ease-in-out">
-                    {children}
+                        {children}
                     </div>
+                    <CrazyBtn className="fixed bottom-0 right-0 m-4" />
                 </ThemeProvider>
                 <Analytics />
             </body>
