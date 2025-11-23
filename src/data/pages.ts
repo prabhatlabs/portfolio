@@ -296,7 +296,7 @@ export const projectsPage: PageData = {
                 "Utilized **Redis for rate limiting and caching**, preventing abuse and speeding up fetch operations.",
                 "Handled **native Google OAuth** authentication, Designed an **API-driven architecture**, accessing clipboard operations through REST-like endpoints inside the Next.js App Router.",
             ],
-            iconUrl: "/projectLogos/clipb.ico",
+            iconUrl: "/projectLogos/clipb.png",
             imageUrl: "/projectThumbnails/clipb.png",
             pills: [
                 skills.typescript,
