@@ -4,6 +4,7 @@ import { Speaker } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "./button";
+import { cn } from "@/lib/utils";
 
 export function CrazyBtn({ className }: { className?: string }) {
     const [mounted, setMounted] = useState(false);
@@ -26,7 +27,7 @@ export function CrazyBtn({ className }: { className?: string }) {
             size={"icon"}
             variant={"outlineBold"}
             title="Ctrl + ,"
-            className={className}
+            className={cn(className, "bg-background text-foreground")}
             onClick={handleClick}
         >
             <Speaker />

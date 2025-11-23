@@ -65,10 +65,13 @@ export const skills = {
     git: { name: "Git", icon: SiGit },
     postman: { name: "Postman", icon: SiPostman },
     cloudinary: { name: "Cloudinary", icon: SiCloudinary },
-    vercel: { name: "Vercel", icon: SiVercel }
+    vercel: { name: "Vercel", icon: SiVercel },
 };
 
-export const contactLinks: Record<'twitter' | 'github' | 'linkedIn' | 'mail', LinkItem> = {
+export const contactLinks: Record<
+    "twitter" | "github" | "linkedIn" | "mail",
+    LinkItem
+> = {
     twitter: {
         name: "X (Twitter)",
         url: "https://x.com/prabhatlabs",
@@ -93,7 +96,7 @@ export const contactLinks: Record<'twitter' | 'github' | 'linkedIn' | 'mail', Li
         icon: SiGmail,
         target: "_self",
     },
-}
+};
 
 export const contactLinksArray = Object.values(contactLinks);
 
@@ -152,7 +155,7 @@ export const skillsPage: PageData = {
                 skills.git,
                 skills.postman,
                 skills.cloudinary,
-                skills.vercel
+                skills.vercel,
             ],
         },
     ],
@@ -162,7 +165,8 @@ export const projectsPage: PageData = {
     title: "Projects",
     name: "Projects",
     tabName: "projects",
-    description: "A curated collection of projects that reflect my journey as a developer - blending creativity, scalability, and problem-solving through code.",
+    description:
+        "A curated collection of projects that reflect my journey as a developer - blending creativity, scalability, and problem-solving through code.",
     contents: [
         {
             title: "Mapware",
@@ -171,7 +175,7 @@ export const projectsPage: PageData = {
                 "Implemented a pipeline to fetch ||10,000+|| **abusive IPs** from AbuseIPDB, using **IP Geolocation** to retrieve physical location, ISP, and additional metadata, storing everything efficiently in MongoDB.",
                 "Built a **worker service** to automatically refresh the data every 6 hours, keeping insights up-to-date.",
                 "Developed a Next.js frontend to **visualize abusive IP locations** on a 3D OpenStreetMap, complete with heatmaps and interactive IP info.",
-                "Optimized data retrieval using Redis, fetching ||~18,000-23,000|| **coordinates** in real-time, reducing response times by ||40-50%||."
+                "Optimized data retrieval using Redis, fetching ||~18,000-23,000|| **coordinates** in real-time, reducing response times by ||40-50%||.",
             ],
             imageUrl: "/projectThumbnails/mapware.png",
             iconUrl: "/projectLogos/mapware.ico",
@@ -211,7 +215,7 @@ export const projectsPage: PageData = {
                 "Implemented **multiple workspaces** for separate teams to manage their own links securely.",
                 "Enabled **custom aliases, branded QR codes, password-protected links, and link expiration** for secure sharing.",
                 "Integrated **advanced analytics** for clicks and QR scans, with **geo-location tracking** and **CSV export**, providing actionable insights.",
-                "Dockerized and Redis caching for **fast response times and smooth deployment**."
+                "Dockerized and Redis caching for **fast response times and smooth deployment**.",
             ],
             iconUrl: "/projectLogos/ref.svg",
             imageUrl: "/projectThumbnails/ref.png",
@@ -251,8 +255,8 @@ export const projectsPage: PageData = {
             content: [
                 "Developed an AI-powered chat platform integrating selective web search for context-aware responses.",
                 "Implemented a RAG-inspired retrieval layer to intelligently filter and rank information from trusted sources, saving time and improving accuracy.",
-                "Designed a **dual-service architecture** using FastAPI and Node.js, with Prisma for unified database access.",
-                "Demonstrated expertise in **multi-service communication, LLM orchestration, and vector-based data retrieval**, handling complex backend workflows seamlessly."
+                "Designed a **micro-service architecture** using FastAPI and Node.js, to Modularise, Web searching, LLM handling and A main core api service.",
+                "Demonstrated expertise in **multi-service communication, LLM orchestration, and vector-based data retrieval**, handling complex backend workflows seamlessly.",
             ],
             iconUrl: "/projectLogos/yapless.svg",
             imageUrl: "/projectThumbnails/yapless.png",
@@ -283,13 +287,51 @@ export const projectsPage: PageData = {
             ],
         },
         {
+            title: "ClipB",
+            subtitle: "Clipboard made simple.",
+            content: [
+                "Added **cURL support** for direct access to items through API or UI.",
+                "Developed a **one-time fetch** system, deleting items immediately after being fetched once through the API or UI.",
+                "Implemented **auto-clear in 40 minutes**, removing items after 40-45 minutes.",
+                "Utilized **Redis for rate limiting and caching**, preventing abuse and speeding up fetch operations.",
+                "Handled **native Google OAuth** authentication, Designed an **API-driven architecture**, accessing clipboard operations through REST-like endpoints inside the Next.js App Router.",
+            ],
+            iconUrl: "/projectLogos/clipb.ico",
+            imageUrl: "/projectThumbnails/clipb.png",
+            pills: [
+                skills.typescript,
+                skills.nodejs,
+                skills.nextjs,
+                skills.mongodb,
+                skills.redis,
+                skills.zustand,
+                skills.tailwind,
+                skills.framer,
+                skills.git,
+            ],
+            links: [
+                {
+                    name: "Live",
+                    url: "https://clipb.prabhatlabs.dev",
+                    icon: VscLinkExternal,
+                    target: "_blank",
+                },
+                {
+                    name: "GitHub",
+                    url: "https://github.com/IsayAyase/global-clipboard",
+                    icon: IoLogoGithub,
+                    target: "_blank",
+                },
+            ],
+        },
+        {
             title: "HBench | Human Benchmark",
             subtitle: "Cognitive Training Games",
             content: [
                 "Recreated popular cognitive and reflex-based tests such as reaction speed, memory sequences, typing, and aim training in a **minimalist web app**.",
                 "Developed smooth animations and fast state updates for an **interactive and engaging user experience**.",
                 "Ensured **mobile responsiveness** and clean UI design, demonstrating frontend craftsmanship and attention to interaction design.",
-                "Built with Next.js, Zustand, and Framer Motion, highlighting expertise in **modern React state management and animation libraries**."
+                "Built with Next.js, Zustand, and Framer Motion, highlighting expertise in **modern React state management and animation libraries**.",
             ],
             iconUrl: "/projectLogos/hbench.ico",
             imageUrl: "/projectThumbnails/hbench.png",
@@ -379,7 +421,7 @@ export const experiencePage: PageData = {
                         "Implemented **role-based authentication** with permissions for multiple user tiers, ensuring secure access to sensitive data.",
                         "Reduced database calls by ||20-30%|| using MongoDB aggregation pipelines, caching, and query restructuring.",
                         "Built real-time dashboards for inventory, asset, schedule, and task management, allowing admins and operators to **track tasks and manage resources efficiently**.",
-                        "Delivered **responsive, multi-tenant dashboards** for admins and on-ground operators."
+                        "Delivered **responsive, multi-tenant dashboards** for admins and on-ground operators.",
                     ],
                 },
             ],
@@ -411,7 +453,7 @@ export const experiencePage: PageData = {
                         "Built features to **generate prescription PDFs** from doctor-submitted forms and **invoice PDFs** for reception workflows.",
                         "Integrated **WhatsApp chatbot communication** via third party provider for sending notifications, confirmations, and prescription reminders.",
                         "Documented all API endpoints thoroughly, **reducing development time by** ||20%|| and streamlining frontend-backend workflows.",
-                        "Refactored backend modules to improve query performance, **enhancing efficiency by** ||20-30%|| through aggregation pipeline optimization, indexing, and error handling."
+                        "Refactored backend modules to improve query performance, **enhancing efficiency by** ||20-30%|| through aggregation pipeline optimization, indexing, and error handling.",
                     ],
                 },
             ],
@@ -434,7 +476,7 @@ export const blogsPage: PageData = {
     contents: [
         {
             title: "Coming Soon...",
-        }
+        },
     ],
 };
 
@@ -448,58 +490,68 @@ export const myInfoPage: PageData = {
     contents: [
         {
             title: "Connect with Me",
-            content:
-                [{
+            content: [
+                {
                     title: "Let's Collaborate",
-                    content: "I'm always open to new opportunities, collaborations, or simply tech conversations. Feel free to reach out or follow my work on below platforms.",
+                    content:
+                        "I'm always open to new opportunities, collaborations, or simply tech conversations. Feel free to reach out or follow my work on below platforms.",
                     links: contactLinksArray,
-                }],
+                },
+            ],
         },
         {
             title: experiencePage.title,
-            content: experiencePage.contents.slice(0, 2).map(content => {
+            content: experiencePage.contents.slice(0, 2).map((content) => {
                 return {
                     iconUrl: content.iconUrl,
                     title: content.title,
-                    content: `${content.subtitle}\n${content.description}` || "",
-                }
+                    content:
+                        `${content.subtitle}\n${content.description}` || "",
+                };
             }),
             bottomLinks: [
                 {
-                    name: experiencePage.contents.length > 2 ? `+${experiencePage.contents.length - 2} More` : "More",
+                    name:
+                        experiencePage.contents.length > 2
+                            ? `+${experiencePage.contents.length - 2} More`
+                            : "More",
                     target: "_self",
-                    url: `/${experiencePage.tabName}`
-                }
-            ]
+                    url: `/${experiencePage.tabName}`,
+                },
+            ],
         },
         {
             title: projectsPage.title,
-            content: projectsPage.contents.slice(0, 2).map(content => {
+            content: projectsPage.contents.slice(0, 2).map((content) => {
                 return {
                     title: content.title,
                     iconUrl: content.iconUrl,
                     imageUrl: content.imageUrl,
                     content: `${content.subtitle}` || "",
-                    links: content.links
-                }
+                    links: content.links,
+                };
             }),
             bottomLinks: [
                 {
-                    name: projectsPage.contents.length > 2 ? `+${projectsPage.contents.length - 2} More` : "More",
+                    name:
+                        projectsPage.contents.length > 2
+                            ? `+${projectsPage.contents.length - 2} More`
+                            : "More",
                     target: "_self",
-                    url: `/${projectsPage.tabName}`
-                }
-            ]
+                    url: `/${projectsPage.tabName}`,
+                },
+            ],
         },
         {
             title: skillsPage.title,
-            content: [{
-                title: "",
-                content: "",
-                pills: skillsPage.contents.map(c => c.pills || []).flat()
-            }],
+            content: [
+                {
+                    title: "",
+                    content: "",
+                    pills: skillsPage.contents.map((c) => c.pills || []).flat(),
+                },
+            ],
         },
-
     ],
 };
 
