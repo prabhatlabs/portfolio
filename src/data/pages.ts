@@ -377,8 +377,9 @@ export const experiencePage: PageData = {
             subtitle: "Software Developer Intern",
             description: "Remote • Oct 2025 - Present",
             content: [
-                "Revamped the frontend, **streamlining user experience** and **improving performance**.",
-                "Optimized and **increased mantainability and consistency** of Tailwind classes.",
+                "Revamped the UI, **streamlining user experience** and **improving performance**. Optimized and **increased mantainability and consistency** of Tailwind classes.",
+                "Implemented a **feature to manage price and aviailability** of rooms for hotels. Added **cashfree payout integration**, invoice generation, all with **Pub/Sub** (event-based) architecture.",
+                "Cloudinary asset migration, security and authentication setup. ",
             ],
             pills: [
                 skills.typescript,
