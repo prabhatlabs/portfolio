@@ -25,9 +25,8 @@ export function CrazyBtn({ className }: { className?: string }) {
     return (
         <Button
             size={"icon"}
-            variant={"outlineBold"}
             title="Ctrl + ,"
-            className={cn(className, "bg-background text-foreground")}
+            className={className}
             onClick={handleClick}
         >
             <Speaker />
