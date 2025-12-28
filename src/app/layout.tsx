@@ -1,14 +1,13 @@
-import { CrazyBtn } from "@/components/ui/CrazyBtn";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { Ubuntu } from "next/font/google";
+import { IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 
-const ubuntu = Ubuntu({
+const ibmPlexMono = IBM_Plex_Mono({
     subsets: ["latin"],
     weight: ["400", "500", "700"],
-    variable: "--font-ubuntu",
+    variable: "--font-ibm-plex-mono",
 });
 
 export const metadata: Metadata = {
@@ -62,7 +61,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning suppressContentEditableWarning>
-            <body className={`antialiased hideScrollbar ${ubuntu.className}`}>
+            <body
+                className={`antialiased hideScrollbar ${ibmPlexMono.className}`}
+            >
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="system"
@@ -71,7 +72,7 @@ export default function RootLayout({
                     <div className="transition-colors duration-500 ease-in-out">
                         {children}
                     </div>
-                    <CrazyBtn className="fixed bottom-0 right-0 m-4" />
+                    {/* <CrazyBtn className="fixed bottom-0 right-0 m-4" /> */}
                 </ThemeProvider>
                 <Analytics />
             </body>

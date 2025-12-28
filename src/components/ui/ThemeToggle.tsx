@@ -24,7 +24,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     useEffect(() => {
         if (!mounted) return;
         const handleListener = (e: KeyboardEvent) => {
-            if (e.ctrlKey && e.key === ",") handleToggle();
+            if (e.ctrlKey && e.key === "m") handleToggle();
         };
         addEventListener("keydown", handleListener);
         return () => {

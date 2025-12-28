@@ -1,21 +1,23 @@
-import Footer from "@/components/Footer";
-import MyAdsPageSide from "@/components/MyAdsPageSide";
-import NavBar from "@/components/Navbar";
-import { PageRenderer } from "@/components/PageRenderer";
-import LayoutContextProvider from "@/contexts/LayoutContext";
-import { myInfoPage } from "@/data/pages";
+import Contact from "./_components/Contact";
+import Experience from "./_components/Experience";
+import Footer from "./_components/Footer";
+import MyInfo from "./_components/MyInfo";
+import NavBar from "./_components/NavBar";
+import Projects from "./_components/Projects";
+import VideoComp from "./_components/VideoComp";
 
 export default function MyPage() {
     return (
-        <div className="relative max-w-3xl mx-auto">
-            <LayoutContextProvider>
+        <div className="relative max-w-6xl mx-auto min-h-dvh space-y-8">
+            <div className="border-r border-l">
                 <NavBar />
-                <MyAdsPageSide />
-                <div className="min-h-dvh mx-auto w-full h-full p-4 mb-8 md:mb-12 lg:mb-16">
-                    <PageRenderer page={myInfoPage} />
-                </div>
-                <Footer />
-            </LayoutContextProvider>
+                <MyInfo />
+                <Experience />
+                <Projects />
+                <VideoComp />
+                <Contact />
+            </div>
+            <Footer />
         </div>
     );
 }

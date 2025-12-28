@@ -1,5 +1,4 @@
 import type { IconType } from "react-icons";
-import type { TabNames } from "./nav.types";
 
 export type LinkItem = {
     name: string;
@@ -34,13 +33,4 @@ export type PageContent = {
     imageUrl?: string;
     videoUrl?: string;
     pills?: PillItem[];
-}
-
-export type PageData = {
-    tabName: TabNames;      // lowercase
-    name: string;           // one word
-    title: string;          // full title
-    description: string;
-    imageUrl?: string;
-    contents: PageContent[]
 }
