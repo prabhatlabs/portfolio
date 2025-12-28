@@ -23,7 +23,7 @@ export function SkillsMarquee({ speed = 20 }: { speed?: number }) {
             <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-linear-to-l from-background to-transparent z-10" />
 
             <motion.div
-                className="flex w-max gap-4"
+                className="flex w-full gap-4"
                 animate={{ x: ["0%", "-50%"] }}
                 transition={{
                     repeat: Infinity,

@@ -19,7 +19,7 @@ export default function Experience() {
                                 {item.company}
                             </p>
                         </div>
-                        <div className="text-muted-foreground flex flex-col items-end">
+                        <div className="text-muted-foreground flex flex-col md:items-end">
                             <p className="">{item.period}</p>
                             <p className="">{item.location}</p>
                         </div>

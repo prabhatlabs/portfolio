@@ -1,4 +1,4 @@
-export function Logo() {
+export function Logo({ className }: { className?: string }) {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -6,6 +6,7 @@ export function Logo() {
             height="42"
             viewBox="0 0 330 42"
             fill="none"
+            className={className}
         >
             {/* P (0) */}
             <path d="M0 36V6H18V24H6V36H0Z" fill="var(--foreground)" />
