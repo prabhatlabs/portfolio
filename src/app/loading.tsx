@@ -1,9 +1,11 @@
-const loading = () => {
+import { Logo } from "./_components/Logo";
+
+const Loading = () => {
     return (
-        <div className="w-dvw h-dvh p-4 flex items-center justify-center font-mono animate-pulse">
-            prabhatlabs.dev
+        <div className="w-dvw h-dvh p-4 flex items-center justify-center animate-pulse">
+            <Logo />
         </div>
     );
 };
 
-export default loading;
+export default Loading;

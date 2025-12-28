@@ -34,12 +34,12 @@ export function SkillsMarquee({ speed = 20 }: { speed?: number }) {
             >
                 {/* First copy */}
                 {myInfo.skills.map((skill) => (
-                    <SkillItem skill={skill} />
+                    <SkillItem key={skill.name} skill={skill} />
                 ))}
 
                 {/* Second copy (for seamless loop) */}
                 {myInfo.skills.map((skill) => (
-                    <SkillItem skill={skill} />
+                    <SkillItem key={skill.name} skill={skill} />
                 ))}
             </motion.div>
         </div>
