@@ -4,7 +4,6 @@ import { Speaker } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Button } from "./button";
-import { cn } from "@/lib/utils";
 
 export function CrazyBtn({ className }: { className?: string }) {
     const [mounted, setMounted] = useState(false);

@@ -6,7 +6,7 @@ import { TbCircleHalf2 } from "react-icons/tb";
 import { Button } from "./button";
 
 export function ThemeToggle({ className }: { className?: string }) {
-    const { setTheme, theme, systemTheme } = useTheme();
+    const { setTheme, theme } = useTheme();
     const [mounted, setMounted] = useState(false);
 
     const handleToggle = () => {
@@ -24,7 +24,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     useEffect(() => {
         if (!mounted) return;
         const handleListener = (e: KeyboardEvent) => {
-            if (e.ctrlKey && e.key === ",") handleToggle();
+            if (e.ctrlKey && e.key === "m") handleToggle();
         };
         addEventListener("keydown", handleListener);
         return () => {
