@@ -5,20 +5,70 @@ import { useEffect, useRef, useState } from "react";
 
 const DENSITY_STRING = [
     " ",
+    "·",
     "･",
+    ".",
+    "˙",
     "。",
+    "､",
+    "､",
+    "､",
+    ":",
+    ";",
+    ",",
+    "丶",
     "っ",
     "つ",
+    "i",
+    "l",
+    "|",
+    "I",
+    "!",
+    "¡",
     "の",
+    "へ",
+    "て",
+    "c",
+    "r",
+    "v",
+    "u",
+    "n",
     "め",
     "る",
     "ぬ",
+    "a",
+    "e",
+    "o",
     "あ",
     "お",
+    "s",
+    "x",
+    "z",
     "ま",
     "ほ",
+    "m",
+    "w",
     "ぼ",
     "ぽ",
+    "二",
+    "三",
+    "十",
+    "干",
+    "工",
+    "王",
+    "田",
+    "由",
+    "甲",
+    "申",
+    "白",
+    "百",
+    "国",
+    "園",
+    "圓",
+    "滿",
+    "黒",
+    "▓",
+    "█",
 ];
 
 interface FrameData {
@@ -42,7 +92,7 @@ export default function AsciiVideoPlayer({
     onCanPlayAudio?: (unmute: () => void) => void;
 }) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const audioRef = useRef<HTMLAudioElement | null>(null);
+    const audioRef = useRef<HTMLVideoElement | null>(null);
     const frameDataRef = useRef<FrameData[]>([]);
     const currentFrameRef = useRef(0);
     const rafRef = useRef<number | null>(null);
@@ -95,36 +145,12 @@ export default function AsciiVideoPlayer({
     /* ----------------------------- AUDIO MODE ----------------------------- */
 
     useEffect(() => {
-        if (!audioSrc) return;
-
-        const audio = new Audio(audioSrc);
-        audio.loop = true;
-        audio.muted = true;
-        audioRef.current = audio;
-
-        const unlock = () => {
-            audio.muted = false;
-            audio
-                .play()
-                .then(() => {
-                    if (!startedRef.current) {
-                        startedRef.current = true;
-                        startAudioPlayback();
-                    }
-                })
-                .catch(() => {});
-        };
-
-        onCanPlayAudio?.(unlock);
-
-        audio.addEventListener("playing", () => setIsPlaying(true));
-        audio.addEventListener("pause", () => setIsPlaying(false));
-
-        return () => {
-            audio.pause();
-            audioRef.current = null;
-        };
-    }, [audioSrc, onCanPlayAudio]);
+        onCanPlayAudio?.(() => {
+            if (!audioRef.current) return;
+            audioRef.current.muted = !audioRef.current.muted;
+            audioRef.current.play();
+        });
+    }, [audioRef, onCanPlayAudio]); 
 
     /* ----------------------------- PLAYBACK ----------------------------- */
 
@@ -199,10 +225,11 @@ export default function AsciiVideoPlayer({
             const y = Math.floor(i / dimensions.width) * ch;
 
             const c = frame.colors.subarray(i * 3, i * 3 + 3);
-            ctx.fillStyle = `rgb(${c[0]},${c[1]},${c[2]})`;
+            ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},0.5)`;
             ctx.fillRect(x, y, cw, ch);
 
-            ctx.fillStyle = "rgba(255,255,255,0.5)";
+            // ctx.fillStyle = "rgba(255,255,255,0.5)";
+            ctx.fillStyle = `rgb(${c[0]},${c[1]},${c[2]})`;
             ctx.fillText(
                 DENSITY_STRING[frame.chars[i]],
                 x + cw / 2,
@@ -232,6 +259,32 @@ export default function AsciiVideoPlayer({
                     <h3 className="text-3xl text-white">paused</h3>
                 </div>
             )}
+
+            <div className="absolute inset-0 z-10">
+                <video
+                    src={audioSrc}
+                    ref={audioRef}
+                    muted
+                    autoPlay
+                    playsInline
+                    loop
+                    // className="hidden"
+                    // controls
+                    onPlay={(e) => {
+                        // e.preventDefault();
+                        if (!startedRef.current) {
+                            startedRef.current = true;
+                            startAudioPlayback();
+                        }
+                    }}
+                    onPlaying={() => {
+                        setIsPlaying(true);
+                    }}
+                    onPause={() => {
+                        setIsPlaying(false);
+                    }}
+                />
+            </div>
 
             <canvas
                 ref={canvasRef}

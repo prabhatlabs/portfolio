@@ -7,18 +7,19 @@ import MyInfo from "./_components/MyInfo";
 import NavBar from "./_components/NavBar";
 import Projects from "./_components/Projects";
 import Loading from "./loading";
+import VideoComp from "./_components/VideoComp";
 
 export default function MyPage() {
     return (
         <Suspense fallback={<Loading />}>
-            <div className="relative max-w-6xl mx-auto min-h-dvh space-y-8">
+            <div className="relative max-w-6xl mx-auto min-h-dvh">
                 <div className="border-r border-l">
                     <NavBar />
                     <MyInfo />
                     <Experience />
                     <Contributions />
                     <Projects />
-                    {/* <VideoComp /> */}
+                    <VideoComp />
                     <Contact />
                 </div>
                 <Footer />

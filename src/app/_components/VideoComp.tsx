@@ -26,25 +26,25 @@ export default function VideoComp() {
     }, [unmuteAudio]);
 
     // Auto-unmute when in view
-    useEffect(() => {
-        if (!containerRef.current || !unmuteAudio) return;
+    // useEffect(() => {
+    //     if (!containerRef.current || !unmuteAudio) return;
 
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting && !hasUnmutedRef.current) {
-                    unmuteAudio();
-                    hasUnmutedRef.current = true;
-                }
-            },
-            {
-                threshold: 0.4, // 40% visible
-            }
-        );
+    //     const observer = new IntersectionObserver(
+    //         ([entry]) => {
+    //             if (entry.isIntersecting && !hasUnmutedRef.current) {
+    //                 unmuteAudio();
+    //                 hasUnmutedRef.current = true;
+    //             }
+    //         },
+    //         {
+    //             threshold: 0.4, // 40% visible
+    //         }
+    //     );
 
-        observer.observe(containerRef.current);
+    //     observer.observe(containerRef.current);
 
-        return () => observer.disconnect();
-    }, [unmuteAudio]);
+    //     return () => observer.disconnect();
+    // }, [unmuteAudio]);
 
     return (
         <div ref={containerRef} className="w-full h-[500px] relative border-b">
@@ -61,9 +61,9 @@ export default function VideoComp() {
             <div className="w-full h-full flex items-center justify-center">
                 <AsciiVideoPlayer
                     src="/extra/ascii_video.bin"
-                    // audioSrc="/extra/audio.mp3"
-                    width={128}
-                    height={72}
+                    audioSrc="/extra/bg_audio.mp3"
+                    width={96}
+                    height={54}
                     fps={30}
                     onCanPlayAudio={handleAudioReady}
                 />
