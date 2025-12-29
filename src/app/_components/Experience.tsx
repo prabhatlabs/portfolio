@@ -6,7 +6,7 @@ export default function Experience() {
         <section className="px-6 md:px-8 xl:px-20 py-10 md:py-14 lg:py-20 border-b flex justify-center flex-col gap-8">
             <h3>Experience</h3>
             <div className="flex flex-col">
-                {experiences.slice(0, 3).map((item, index) => (
+                {experiences.slice(0, 3).map((item) => (
                     <div
                         key={item.company}
                         className="flex flex-col md:flex-row justify-between md:items-center py-2"

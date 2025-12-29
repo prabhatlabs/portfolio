@@ -6,7 +6,7 @@ import { TbCircleHalf2 } from "react-icons/tb";
 import { Button } from "./button";
 
 export function ThemeToggle({ className }: { className?: string }) {
-    const { setTheme, theme, systemTheme } = useTheme();
+    const { setTheme, theme } = useTheme();
     const [mounted, setMounted] = useState(false);
 
     const handleToggle = () => {

@@ -13,9 +13,10 @@ export default function NavBar() {
                         key={item.name}
                         href={item.url}
                         target={item.target}
-                        children={item.name}
                         className="px-4 py-8 hover:bg-secondary"
-                    />
+                    >
+                        {item.name}
+                    </Link>
                 ))}
             </div>
         </nav>

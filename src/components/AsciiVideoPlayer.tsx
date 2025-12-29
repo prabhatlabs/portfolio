@@ -116,7 +116,7 @@ export default function AsciiVideoPlayer({
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
                 const buffer = await res.arrayBuffer();
-                const [w, h, frames] = parseBinaryData(buffer, width, height);
+                const [w, h, frames] = parseBinaryData(buffer);
 
                 if (cancelled) return;
 
@@ -298,11 +298,7 @@ export default function AsciiVideoPlayer({
 
 /* ----------------------------- PARSER ----------------------------- */
 
-function parseBinaryData(
-    buffer: ArrayBuffer,
-    expectedWidth: number,
-    expectedHeight: number
-): [number, number, FrameData[]] {
+function parseBinaryData(buffer: ArrayBuffer): [number, number, FrameData[]] {
     const u8 = new Uint8Array(buffer);
     const view = new DataView(buffer);
 

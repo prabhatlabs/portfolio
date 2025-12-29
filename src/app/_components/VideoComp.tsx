@@ -8,7 +8,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 export default function VideoComp() {
     const [unmuteAudio, setUnmuteAudio] = useState<(() => void) | null>(null);
     const containerRef = useRef<HTMLDivElement | null>(null);
-    const hasUnmutedRef = useRef(false);
+    // const hasUnmutedRef = useRef(false);
 
     const handleAudioReady = useCallback((unmuteFn: () => void) => {
         setUnmuteAudio(() => unmuteFn);

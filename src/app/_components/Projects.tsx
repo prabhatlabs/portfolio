@@ -25,9 +25,10 @@ export default function Projects() {
                                     key={link.name}
                                     href={link.url}
                                     target={link.target}
-                                    children={link.name}
                                     className="bg-foreground hover:bg-foreground/80 text-background px-2 py-1"
-                                />
+                                >
+                                    {link.name}
+                                </Link>
                             ))}
                         </div>
                     </div>
