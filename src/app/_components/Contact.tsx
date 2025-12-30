@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Contact() {
     return (
-        <section className="border-b flex justify-center flex-col gap-8">
+        <section className="flex justify-center flex-col gap-8">
             <div className="flex flex-col sm:flex-row items-center justify-between">
                 {contactLinksArray.map((item, index) => (
                     <Link

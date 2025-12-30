@@ -6,8 +6,8 @@ import { SkillsMarquee } from "./SkillsMarquee";
 export default function MyInfo() {
     const mostActiveContact = myInfo.contacts[0];
     return (
-        <section className="px-6 md:px-8 xl:px-20 py-12 md:py-20 lg:py-24 border-b relative flex justify-between gap-8">
-            <div className="flex flex-col gap-2 w-full max-w-2xl">
+        <section className="px-6 md:px-8 xl:px-20 py-12 md:py-20 lg:py-24 border-b flex justify-between gap-8 w-full">
+            <div className="space-y-3 w-full max-w-lg lg:max-w-2xl">
                 <div className="inline-flex items-center gap-2 text-xs md:text-sm">
                     {myInfo.contacts.map((contact, index) => (
                         <Link
@@ -43,9 +43,9 @@ export default function MyInfo() {
                 <p className="text-xs sm:text-sm md:text-base text-muted-foreground leading-relaxed md:leading-loose">
                     {myInfo.description}
                 </p>
-                <SkillsMarquee speed={40} />
+                <SkillsMarquee speed={30} />
             </div>
-            <div className="w-full hidden md:flex items-center justify-center">
+            <div className="shrink-0 hidden md:flex justify-center items-center flex-1">
                 <AmbientHoverGrid />
             </div>
         </section>

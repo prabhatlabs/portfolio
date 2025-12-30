@@ -49,7 +49,7 @@ export default function AmbientHoverGrid() {
   }, []);
 
   return (
-    <div className="grid grid-cols-10 gap-x-1.5 gap-y-1.5 w-fit">
+    <div className="shrink-0 grid grid-cols-10 gap-x-1.5 gap-y-1.5 w-fit">
       {Array.from({ length: TOTAL }).map((_, i) => {
         const pos = active.indexOf(i);
 
@@ -77,7 +77,7 @@ export default function AmbientHoverGrid() {
               scale: 1.3,
               opacity: 1,
             }}
-            className="size-4 rounded-[2px]"
+            className="size-3 lg:size-4 rounded-[2px]"
           />
         );
       })}

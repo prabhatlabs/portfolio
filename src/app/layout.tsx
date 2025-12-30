@@ -2,6 +2,8 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
 import { IBM_Plex_Mono } from "next/font/google";
+import Footer from "./_components/Footer";
+import NavBar from "./_components/NavBar";
 import "./globals.css";
 
 const ibmPlexMono = IBM_Plex_Mono({
@@ -69,8 +71,12 @@ export default function RootLayout({
                     defaultTheme="dark"
                     enableSystem
                 >
-                    <div className="transition-colors duration-500 ease-in-out">
-                        {children}
+                    <div className="transition-colors duration-500 ease-in-out relative max-w-6xl mx-auto min-h-dvh overflow-x-hidden">
+                        <div className="border-r border-l">
+                            <NavBar />
+                            {children}
+                        </div>
+                        <Footer />
                     </div>
                     {/* <CrazyBtn className="fixed bottom-0 right-0 m-4" /> */}
                 </ThemeProvider>

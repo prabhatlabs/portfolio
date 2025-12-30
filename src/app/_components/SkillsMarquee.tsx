@@ -7,7 +7,7 @@ export function SkillItem({ skill }: { skill: (typeof myInfo.skills)[0] }) {
     return (
         <span
             key={skill.name}
-            className="flex items-center gap-2 px-2 py-1 bg-secondary border whitespace-nowrap"
+            className="flex items-center gap-2 px-2 py-1 bg-secondary/50 border border-dashed whitespace-nowrap"
         >
             <skill.icon />
             <span className="text-xs">{skill.name}</span>
@@ -17,7 +17,7 @@ export function SkillItem({ skill }: { skill: (typeof myInfo.skills)[0] }) {
 
 export function SkillsMarquee({ speed = 20 }: { speed?: number }) {
     return (
-        <div className="relative overflow-hidden w-full">
+        <div className="relative overflow-hidden">
             {/* Fade masks */}
             <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-linear-to-r from-background to-transparent z-10" />
             <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-linear-to-l from-background to-transparent z-10" />
