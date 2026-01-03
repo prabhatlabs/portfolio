@@ -35,7 +35,7 @@ export default function Projects() {
                                     key={link.name}
                                     href={link.url}
                                     target={link.target}
-                                    className="bg-foreground hover:bg-foreground/80 text-background px-2 py-1"
+                                    className="bg-foreground hover:bg-foreground/80 text-background px-2 py-1 h-fit"
                                 >
                                     {link.name}
                                 </Link>
