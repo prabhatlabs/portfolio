@@ -18,7 +18,7 @@ export default function Projects() {
                                 width={50}
                                 height={50}
                                 alt={item.title}
-                                className="object-cover"
+                                className="object-cover shrink-0 size-[50px]"
                             />
                             <div>
                                 <h4 className="text-lg font-semibold">
@@ -29,7 +29,7 @@ export default function Projects() {
                                 </p>
                             </div>
                         </div>
-                        <div className="flex gap-2 items-center">
+                        <div className="flex justify-end gap-2 pl-[calc(50px+12px)] w-fit">
                             {item.links.map((link) => (
                                 <Link
                                     key={link.name}

@@ -18,7 +18,7 @@ export default function Experience() {
                                 width={50}
                                 height={50}
                                 alt={item.company}
-                                className="object-cover"
+                                className="object-cover shrink-0 size-[50px]"
                             />
                             <div>
                                 <h4 className="text-lg font-semibold">
@@ -29,7 +29,7 @@ export default function Experience() {
                                 </p>
                             </div>
                         </div>
-                        <div className="text-muted-foreground flex flex-col md:items-end">
+                        <div className="text-muted-foreground flex flex-col md:items-end pl-[calc(50px+12px)]">
                             <p className="">{item.period}</p>
                             <p className="">{item.location}</p>
                         </div>
