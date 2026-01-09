@@ -19,7 +19,7 @@ export default function Contributions() {
                             "color-mix(in oklab, var(--foreground) 35%, transparent)",
                             "color-mix(in oklab, var(--foreground) 55%, transparent)",
                             "color-mix(in oklab, var(--foreground) 75%, transparent)",
-                            "hsl(var(--foreground))",
+                            "color-mix(in oklab, var(--foreground) 100%, transparent)",
                         ],
                     }}
                 />
