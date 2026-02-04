@@ -32,71 +32,71 @@ import { VscLinkExternal } from "react-icons/vsc";
 
 export const skills = {
     // Languages
-    typescript: { name: "TypeScript", icon: SiTypescript },
-    javascript: { name: "JavaScript", icon: SiJavascript },
-    python: { name: "Python", icon: FaPython },
-    go: { name: "Go", icon: FaGolang },
+    typescript: { name: "TypeScript", iconName: "SiTypescript" },
+    javascript: { name: "JavaScript", iconName: "SiJavascript" },
+    python: { name: "Python", iconName: "FaPython" },
+    go: { name: "Go", iconName: "FaGolang" },
 
     // Backend
-    nodejs: { name: "Node.js", icon: FaNodeJs },
-    express: { name: "Express", icon: SiExpress },
-    fastapi: { name: "FastAPI", icon: SiFastapi },
-    flask: { name: "Flask", icon: SiFlask },
+    nodejs: { name: "Node.js", iconName: "FaNodeJs" },
+    express: { name: "Express", iconName: "SiExpress" },
+    fastapi: { name: "FastAPI", iconName: "SiFastapi" },
+    flask: { name: "Flask", iconName: "SiFlask" },
 
     // Frontend
-    react: { name: "React", icon: SiReact },
-    redux: { name: "Redux", icon: SiRedux },
-    zustand: { name: "Zustand", icon: SiReact },
-    nextjs: { name: "Next.js", icon: SiNextdotjs },
-    mui: { name: "MUI", icon: SiMui },
-    tailwind: { name: "TailwindCSS", icon: SiTailwindcss },
-    framer: { name: "Framer Motion", icon: SiFramer },
+    react: { name: "React", iconName: "SiReact" },
+    redux: { name: "Redux", iconName: "SiRedux" },
+    zustand: { name: "Zustand", iconName: "SiReact" },
+    nextjs: { name: "Next.js", iconName: "SiNextdotjs" },
+    mui: { name: "MUI", iconName: "SiMui" },
+    tailwind: { name: "TailwindCSS", iconName: "SiTailwindcss" },
+    framer: { name: "Framer Motion", iconName: "SiFramer" },
 
     // Databases
-    mongodb: { name: "MongoDB", icon: SiMongodb },
-    mysql: { name: "MySQL", icon: GrMysql },
-    postgresql: { name: "PostgreSQL", icon: BiLogoPostgresql },
-    sqlite: { name: "SQLite", icon: SiSqlite },
-    redis: { name: "Redis", icon: DiRedis },
-    prisma: { name: "Prisma", icon: SiPrisma },
+    mongodb: { name: "MongoDB", iconName: "SiMongodb" },
+    mysql: { name: "MySQL", iconName: "GrMysql" },
+    postgresql: { name: "PostgreSQL", iconName: "BiLogoPostgresql" },
+    sqlite: { name: "SQLite", iconName: "SiSqlite" },
+    redis: { name: "Redis", iconName: "DiRedis" },
+    prisma: { name: "Prisma", iconName: "SiPrisma" },
 
     // Dev / Tools
-    docker: { name: "Docker", icon: SiDocker },
-    git: { name: "Git", icon: SiGit },
-    postman: { name: "Postman", icon: SiPostman },
-    cloudinary: { name: "Cloudinary", icon: SiCloudinary },
-    vercel: { name: "Vercel", icon: SiVercel },
+    docker: { name: "Docker", iconName: "SiDocker" },
+    git: { name: "Git", iconName: "SiGit" },
+    postman: { name: "Postman", iconName: "SiPostman" },
+    cloudinary: { name: "Cloudinary", iconName: "SiCloudinary" },
+    vercel: { name: "Vercel", iconName: "SiVercel" },
 };
 
 export const contactLinks = {
     twitter: {
         name: "x",
         url: "https://x.com/prabhatlabs",
-        icon: RiTwitterXFill,
+        iconName: "RiTwitterXFill",
         target: "_blank",
     },
     github: {
         name: "github",
         url: "https://github.com/IsayAyase",
-        icon: IoLogoGithub,
+        iconName: "IoLogoGithub",
         target: "_blank",
     },
     linkedIn: {
         name: "linkedin",
         url: "https://linkedin.com/in/prabhatm8000",
-        icon: FaLinkedinIn,
+        iconName: "FaLinkedinIn",
         target: "_blank",
     },
     mail: {
         name: "mail",
         url: "mailto:prabhatm8000@gmail.com",
-        icon: SiGmail,
+        iconName: "SiGmail",
         target: "_self",
     },
     instagram: {
         name: "instagram",
         url: "https://instagram.com/prabhatm8000",
-        icon: SiInstagram,
+        iconName: "SiInstagram",
         target: "_blank",
     },
 };
@@ -107,7 +107,7 @@ export const skillsArray = Object.values(skills);
 export const projects = [
     {
         title: "Blade Tools",
-        subtitle: "Client-side only suite of utility tools",
+        subtitle: "Client-side suite of utility tools",
         content: [
             "Developed a suite of ||12+|| **high-performance tools** for PDF, Image, and Video processing, utilizing Next.js **SSG/SSR** to achieve near-instant routing and optimized SEO.",
             "Integrated **FFmpeg WASM** to enable local media transcoding, **reducing file processing latency** by ||100%|| by eliminating the need for server-side uploads and downloads.",
@@ -129,13 +129,13 @@ export const projects = [
             {
                 name: "Live",
                 url: "https://bladetools.prabhatlabs.dev",
-                icon: VscLinkExternal,
+                iconName: "VscLinkExternal",
                 target: "_blank",
             },
             {
                 name: "GitHub",
                 url: "https://github.com/IsayAyase",
-                icon: IoLogoGithub,
+                iconName: "IoLogoGithub",
                 target: "_blank",
             },
         ],
@@ -168,13 +168,13 @@ export const projects = [
             {
                 name: "Live",
                 url: "https://mapware.prabhatlabs.dev",
-                icon: VscLinkExternal,
+                iconName: "VscLinkExternal",
                 target: "_blank",
             },
             {
                 name: "GitHub",
                 url: "https://github.com/IsayAyase/abuseIP-map",
-                icon: IoLogoGithub,
+                iconName: "IoLogoGithub",
                 target: "_blank",
             },
         ],
@@ -210,13 +210,13 @@ export const projects = [
             {
                 name: "Live",
                 url: "https://zippy-kacey-prabhats-c81a00cc.koyeb.app",
-                icon: VscLinkExternal,
+                iconName: "VscLinkExternal",
                 target: "_blank",
             },
             {
                 name: "GitHub",
                 url: "https://github.com/IsayAyase/link-manager",
-                icon: IoLogoGithub,
+                iconName: "IoLogoGithub",
                 target: "_blank",
             },
         ],
@@ -253,7 +253,7 @@ export const projects = [
             {
                 name: "GitHub",
                 url: "https://github.com/IsayAyase/yapless",
-                icon: IoLogoGithub,
+                iconName: "IoLogoGithub",
                 target: "_blank",
             },
         ],
@@ -285,13 +285,13 @@ export const projects = [
             {
                 name: "Live",
                 url: "https://clipb.prabhatlabs.dev",
-                icon: VscLinkExternal,
+                iconName: "VscLinkExternal",
                 target: "_blank",
             },
             {
                 name: "GitHub",
                 url: "https://github.com/IsayAyase/global-clipboard",
-                icon: IoLogoGithub,
+                iconName: "IoLogoGithub",
                 target: "_blank",
             },
         ],
@@ -322,13 +322,13 @@ export const projects = [
             {
                 name: "Live",
                 url: "https://hbench.prabhatlabs.dev",
-                icon: VscLinkExternal,
+                iconName: "VscLinkExternal",
                 target: "_blank",
             },
             {
                 name: "GitHub",
                 url: "https://github.com/IsayAyase/h-bench",
-                icon: IoLogoGithub,
+                iconName: "IoLogoGithub",
                 target: "_blank",
             },
         ],
