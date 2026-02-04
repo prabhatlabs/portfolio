@@ -2,14 +2,16 @@
 
 import { myInfo } from "@/data/pages";
 import { motion } from "framer-motion";
+import { getIcon } from "@/lib/icons";
 
 export function SkillItem({ skill }: { skill: (typeof myInfo.skills)[0] }) {
+    const IconComponent = getIcon(skill.iconName);
     return (
         <span
             key={skill.name}
             className="flex items-center gap-2 px-2 py-1 bg-secondary/50 border border-dashed whitespace-nowrap"
         >
-            <skill.icon />
+            <IconComponent />
             <span className="text-xs">{skill.name}</span>
         </span>
     );

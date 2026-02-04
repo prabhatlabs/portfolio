@@ -1,6 +1,7 @@
 import { contactLinksArray } from "@/data/pages";
 import Link from "next/link";
 import { Logo } from "./Logo";
+import { getIcon } from "@/lib/icons";
 
 export default function NavBar() {
     return (
@@ -10,16 +11,19 @@ export default function NavBar() {
                 <Logo className="w-60 md:w-fit" />
             </Link>
             <div className="hidden md:flex justify-end">
-                {contactLinksArray.map((item) => (
-                    <Link
-                        key={item.name}
-                        href={item.url}
-                        target={item.target}
-                        className="px-4 py-8 hover:bg-secondary"
-                    >
-                        {item.name}
-                    </Link>
-                ))}
+                {contactLinksArray.map((item) => {
+                    const IconComponent = getIcon(item.iconName);
+                    return (
+                        <Link
+                            key={item.name}
+                            href={item.url}
+                            target={item.target}
+                            className="px-4 py-8 hover:bg-secondary flex items-center gap-2"
+                        >
+                            <IconComponent className="size-5" />
+                        </Link>
+                    );
+                })}
             </div>
         </nav>
     );
