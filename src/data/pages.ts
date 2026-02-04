@@ -1,34 +1,3 @@
-import { BiLogoPostgresql } from "react-icons/bi";
-import { DiRedis } from "react-icons/di";
-import { FaLinkedinIn, FaNodeJs, FaPython } from "react-icons/fa";
-import { FaGolang } from "react-icons/fa6";
-import { GrMysql } from "react-icons/gr";
-import { IoLogoGithub } from "react-icons/io";
-import { RiTwitterXFill } from "react-icons/ri";
-import {
-    SiCloudinary,
-    SiDocker,
-    SiExpress,
-    SiFastapi,
-    SiFlask,
-    SiFramer,
-    SiGit,
-    SiGmail,
-    SiInstagram,
-    SiJavascript,
-    SiMongodb,
-    SiMui,
-    SiNextdotjs,
-    SiPostman,
-    SiPrisma,
-    SiReact,
-    SiRedux,
-    SiSqlite,
-    SiTailwindcss,
-    SiTypescript,
-    SiVercel,
-} from "react-icons/si";
-import { VscLinkExternal } from "react-icons/vsc";
 
 export const skills = {
     // Languages
