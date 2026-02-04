@@ -106,6 +106,41 @@ export const skillsArray = Object.values(skills);
 
 export const projects = [
     {
+        title: "Blade Tools",
+        subtitle: "Client-side only suite of utility tools",
+        content: [
+            "Developed a suite of ||12+|| **high-performance tools** for PDF, Image, and Video processing, utilizing Next.js **SSG/SSR** to achieve near-instant routing and optimized SEO.",
+            "Integrated **FFmpeg WASM** to enable local media transcoding, **reducing file processing latency** by ||100%|| by eliminating the need for server-side uploads and downloads.",
+            "**Ensured** ||100%|| user data **privacy** and **zero infrastructure overhead** by architecting a purely client-side system where all file manipulations occur strictly within the browser.",
+        ],
+        imageUrl: "/projectThumbnails/bladetools.webp",
+        iconUrl: "/projectLogos/bladetools.ico",
+        videoUrl:
+            "https://res.cloudinary.com/dtapvbbzb/video/upload/v1756537370/portfolio/mapware-preview_ww3tss.mp4",
+        pills: [
+            skills.typescript,
+            skills.nodejs,
+            skills.mongodb,
+            skills.nextjs,
+            skills.tailwind,
+            skills.git,
+        ],
+        links: [
+            {
+                name: "Live",
+                url: "https://bladetools.prabhatlabs.dev",
+                icon: VscLinkExternal,
+                target: "_blank",
+            },
+            {
+                name: "GitHub",
+                url: "https://github.com/IsayAyase",
+                icon: IoLogoGithub,
+                target: "_blank",
+            },
+        ],
+    },
+    {
         title: "Mapware",
         subtitle: "IP Abuse Tracking Dashboard",
         content: [
@@ -306,7 +341,7 @@ export const experiences = [
         company: "Flexzistay",
         position: "Software Developer Intern",
         location: "Remote",
-        period: "Oct 2025 - Present",
+        period: "Oct 2025 - Dec 2025",
         skills: [
             skills.typescript,
             skills.nodejs,
@@ -354,7 +389,7 @@ export const experiences = [
             skills.git,
         ],
     },
-]
+];
 
 export const myInfo = {
     name: "Prabhat Mishra",
