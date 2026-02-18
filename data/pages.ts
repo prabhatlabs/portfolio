@@ -14,12 +14,14 @@ export const skills = {
 
     // Frontend
     react: { name: "React", iconName: "SiReact" },
+    nextjs: { name: "Next.js", iconName: "SiNextdotjs" },
     redux: { name: "Redux", iconName: "SiRedux" },
     zustand: { name: "Zustand", iconName: "SiReact" },
-    nextjs: { name: "Next.js", iconName: "SiNextdotjs" },
+    shadcn: { name: "Shadcn UI", iconName: "SiShadcnui" },
     mui: { name: "MUI", iconName: "SiMui" },
     tailwind: { name: "TailwindCSS", iconName: "SiTailwindcss" },
     framer: { name: "Framer Motion", iconName: "SiFramer" },
+    ffmpeg: { name: "Ffmpeg wasm", iconName: "SiFfmpeg" },
 
     // Databases
     mongodb: { name: "MongoDB", iconName: "SiMongodb" },
@@ -62,6 +64,12 @@ export const contactLinks = {
         iconName: "SiGmail",
         target: "_self",
     },
+    buymeacoffee: {
+        name: "buymeacoffee",
+        url: "https://www.buymeacoffee.com/prabhatlabs",
+        iconName: "SiBuymeacoffee",
+        target: "_blank",
+    },
     instagram: {
         name: "instagram",
         url: "https://instagram.com/prabhatm8000",
@@ -88,7 +96,9 @@ export const projects = [
         pills: [
             skills.typescript,
             skills.nextjs,
+            skills.ffmpeg,
             skills.tailwind,
+            skills.shadcn,
             skills.git,
         ],
         links: [
@@ -162,6 +172,7 @@ export const projects = [
             skills.redis,
             skills.react,
             skills.redux,
+            skills.shadcn,
             skills.tailwind,
             skills.framer,
             skills.docker,

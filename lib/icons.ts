@@ -6,10 +6,12 @@ import { GrMysql } from "react-icons/gr";
 import { IoLogoGithub } from "react-icons/io";
 import { RiTwitterXFill } from "react-icons/ri";
 import {
+    SiBuymeacoffee,
     SiCloudinary,
     SiDocker,
     SiExpress,
     SiFastapi,
+    SiFfmpeg,
     SiFlask,
     SiFramer,
     SiGit,
@@ -23,6 +25,7 @@ import {
     SiPrisma,
     SiReact,
     SiRedux,
+    SiShadcnui,
     SiSqlite,
     SiTailwindcss,
     SiTypescript,
@@ -47,6 +50,8 @@ const iconMap = {
     SiReact,
     SiRedux,
     SiNextdotjs,
+    SiFfmpeg,
+    SiShadcnui,
     SiMui,
     SiTailwindcss,
     SiFramer,
@@ -71,6 +76,7 @@ const iconMap = {
     IoLogoGithub,
     FaLinkedinIn,
     SiGmail,
+    SiBuymeacoffee,
     SiInstagram,
     VscLinkExternal,
 };
