@@ -1,12 +1,14 @@
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { Logo } from "./Logo";
 
 export default function Footer() {
     return (
-        <footer className="px-8 md:px-14 lg:px-20 py-10 md:py-14 lg:py-20 relative border-t">
-            <div className="flex flex-col gap-8 items-center">
+        <footer className="px-6 md:px-8 xl:px-20 py-10 md:py-14 lg:py-20 relative border-t">
+            <div className="flex justify-between items-center">
                 <Logo className="w-40 md:w-60" />
+                <ThemeToggle />
             </div>
-            <p className="text-muted-foreground text-center w-full text-xs">
+            <p className="text-muted-foreground text-xs">
                 <span>
                     {"Build by"}{" "}
                     <a

@@ -10,7 +10,7 @@ export default function Experience() {
                 {experiences.slice(0, 3).map((item) => (
                     <div
                         key={item.company}
-                        className="flex flex-col md:flex-row justify-between md:items-center py-2"
+                        className="flex flex-col md:flex-row justify-between md:items-center md:gap-2 pb-4 text-sm md:text-base"
                     >
                         <div className="flex gap-3">
                             <Image
@@ -18,10 +18,10 @@ export default function Experience() {
                                 width={50}
                                 height={50}
                                 alt={item.company}
-                                className="object-cover shrink-0 size-[50px]"
+                                className="object-cover shrink-0 size-[35px] md:size-[45px] lg:size-[50px] mt-1"
                             />
                             <div>
-                                <h4 className="text-lg font-semibold">
+                                <h4 className="text-base md:text-lg font-semibold">
                                     {item.position}
                                 </h4>
                                 <p className="text-muted-foreground">
@@ -29,15 +29,15 @@ export default function Experience() {
                                 </p>
                             </div>
                         </div>
-                        <div className="text-muted-foreground flex flex-col md:items-end pl-[calc(50px+12px)]">
+                        <div className="text-muted-foreground flex flex-col md:items-end pl-[calc(35px+12px)] md:pl-[calc(45px+12px)] lg:pl-[calc(50px+12px)]">
                             <p className="">{item.period}</p>
-                            <p className="">{item.location}</p>
+                            <p className="hidden md:block">{item.location}</p>
                         </div>
                     </div>
                 ))}
             </div>
             {experiences.length > 3 && (
-                <div className="flex justify-end absolute right-0 bottom-0 mx-6 md:mx-8 xl:mx-20 my-6">
+                <div className="flex justify-end absolute right-0 bottom-0 mx-6 md:mx-8 xl:mx-20 my-5 md:my-7 lg:my-10">
                     <Link
                         href="/experience"
                         className="text-muted-foreground underline"

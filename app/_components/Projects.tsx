@@ -10,7 +10,7 @@ export default function Projects() {
                 {projects.slice(0, 3).map((item) => (
                     <div
                         key={item.title}
-                        className="flex flex-col sm:flex-row gap-1 sm:gap-0 justify-between py-2"
+                        className="flex flex-col md:flex-row justify-between md:items-center gap-2 pb-4 text-sm md:text-base"
                     >
                         <div className="flex gap-3">
                             <Image
@@ -18,10 +18,10 @@ export default function Projects() {
                                 width={50}
                                 height={50}
                                 alt={item.title}
-                                className="object-cover shrink-0 size-[50px]"
+                                className="object-cover shrink-0 size-[35px] md:size-[45px] lg:size-[50px] mt-1"
                             />
                             <div>
-                                <h4 className="text-lg font-semibold">
+                                <h4 className="text-base md:text-lg font-semibold">
                                     {item.title}
                                 </h4>
                                 <p className="text-muted-foreground">
@@ -29,7 +29,7 @@ export default function Projects() {
                                 </p>
                             </div>
                         </div>
-                        <div className="flex justify-end gap-2 pl-[calc(50px+12px)] w-fit">
+                        <div className="text-muted-foreground flex gap-2 pl-[calc(35px+12px)] md:pl-[calc(45px+12px)] lg:pl-[calc(50px+12px)] w-fit">
                             {item.links.map((link) => (
                                 <Link
                                     key={link.name}
@@ -45,7 +45,7 @@ export default function Projects() {
                 ))}
             </div>
             {projects.length > 3 && (
-                <div className="flex justify-end absolute right-0 bottom-0 mx-6 md:mx-8 xl:mx-20 my-6">
+                <div className="flex justify-end absolute right-0 bottom-0 mx-6 md:mx-8 xl:mx-20 my-5 md:my-7 lg:my-10">
                     <Link
                         href="/projects"
                         className="text-muted-foreground underline"
