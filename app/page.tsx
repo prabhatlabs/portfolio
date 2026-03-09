@@ -13,8 +13,8 @@ export default function MyPage() {
             <div className="relative bg-background">
                 <MyInfo />
                 <Experience />
-                <Contributions />
                 <Projects />
+                <Contributions />
                 <VideoComp />
                 <Contact />
                 <SpaceBackground />

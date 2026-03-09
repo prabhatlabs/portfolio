@@ -360,8 +360,10 @@ export const experiences = [
 export const myInfo = {
     name: "Prabhat Mishra",
     title: "Software Developer",
-    description:
-        "Building software the way some people build puzzles - carefully, thoughtfully, and with a vision for the bigger picture.",
+    description: [
+        `I am a ||Full Stack Developer|| specializing in the **TypeScript and Node.js** ecosystem, driven by the corporate philosophy that the most scalable backend is the one you never have to pay for. My experience ranges from architecting **RAG-based microservices** using FastAPI and ChromaDB to managing **multi-tenant SaaS platforms** with strict workspace isolation. I have a proven track record of maintaining system integrity during high-stakes transitions, such as leading a **Next.js v15 to v16 upgrade** with zero downtime.`,
+        `I have a particular obsession with architectural efficiency and **"privacy-first"** engineering—the kind that keeps legal teams happy and infrastructure bills non-existent. I recently developed ||Blade Tools||, a suite of **12+ browser-based utilities** leveraging **FFmpeg WASM** to handle heavy media transcoding entirely on the client side. By offloading the compute to the user's browser, I ||eliminated 100% of server-side latency and infrastructure costs||. Whether I'm optimizing **MongoDB aggregation pipelines** to slash database hits by 30% or orchestrating **event-driven Pub/Sub architectures**, I build for enterprise reliability with the efficiency of a dev who genuinely hates being paged for on-call rotations.`
+    ],
     imageUrl: "/me.png",
     contacts: contactLinksArray,
     skills: skillsArray,

@@ -3,6 +3,7 @@ import { getIcon } from "@/lib/icons";
 import Image from "next/image";
 import Link from "next/link";
 import { SkillItem } from "../_components/SkillsMarquee";
+import { FormattedText } from "../_components/FormattedText";
 import Layout from "@/components/Layout";
 
 export default function Projects() {
@@ -71,35 +72,7 @@ export default function Projects() {
                                         key={index}
                                         className="text-sm leading-relaxed font-light"
                                     >
-                                        {paragraph.split("||").map((part, i) =>
-                                            i % 2 === 1 ? (
-                                                <span
-                                                    key={i}
-                                                    className="font-bold italic"
-                                                >
-                                                    {part}
-                                                </span>
-                                            ) : (
-                                                <span key={i}>
-                                                    {part
-                                                        .split("**")
-                                                        .map((boldPart, j) =>
-                                                            j % 2 === 1 ? (
-                                                                <span
-                                                                    key={j}
-                                                                    className="font-bold"
-                                                                >
-                                                                    {boldPart}
-                                                                </span>
-                                                            ) : (
-                                                                <span key={j}>
-                                                                    {boldPart}
-                                                                </span>
-                                                            ),
-                                                        )}
-                                                </span>
-                                            ),
-                                        )}
+                                        <FormattedText text={paragraph} />
                                     </p>
                                 ))}
                             </div>
