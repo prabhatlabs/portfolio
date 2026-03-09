@@ -4,7 +4,7 @@ import Contributions from "./_components/Contributions";
 import Experience from "./_components/Experience";
 import MyInfo from "./_components/MyInfo";
 import Projects from "./_components/Projects";
-import SpaceBackground from "./_components/SpaceBackground";
+import SpaceBackground from "./games/spacewar/_components/SpaceBackground";
 import VideoComp from "./_components/VideoComp";
 
 export default function MyPage() {
