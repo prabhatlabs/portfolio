@@ -2,7 +2,7 @@ import { projects } from "@/data/pages";
 import { getIcon } from "@/lib/icons";
 import Image from "next/image";
 import Link from "next/link";
-import { SkillItem } from "../_components/SkillsMarquee";
+import SkillItem from "../../components/SkillItem";
 import { FormattedText } from "../_components/FormattedText";
 import Layout from "@/components/Layout";
 

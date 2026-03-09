@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Experience() {
     return (
         <section className="px-6 md:px-8 xl:px-20 py-10 md:py-14 lg:py-20 border-b flex justify-center flex-col gap-8">
-            <h3 className="border border-dashed w-fit">Experience</h3>
+            <h3 className="border border-dashed w-fit px-1">Experience</h3>
             <div className="flex flex-col">
                 {experiences.slice(0, 3).map((item) => (
                     <div

@@ -84,9 +84,9 @@ export const skillsArray = Object.values(skills);
 export const projects = [
     {
         title: "Blade Tools",
-        subtitle: "12+ browser-based tools for PDF, image & video processing",
+        subtitle: "20+ browser-based tools for PDF, image & video processing",
         content: [
-            "Developed suite of **12+ high-performance client-side tools** for PDF manipulation, image optimization, and video transcoding using **Next.js SSG/SSR**, achieving near-instant routing and optimized SEO through static generation",
+            "Developed suite of **20+ high-performance client-side tools** for PDF manipulation, image optimization, and video transcoding using **Next.js SSG/SSR**, achieving near-instant routing and optimized SEO through static generation",
             "Integrated **FFmpeg WASM** for in-browser media transcoding, **eliminating 100% of server-side latency** and infrastructure costs by processing files entirely client-side without uploads or downloads",
             "Architected **privacy-first system with zero backend dependency**, ensuring complete user data privacy through browser-only file manipulation, resulting in **zero operational costs** and maximum data security",
         ],
@@ -361,8 +361,8 @@ export const myInfo = {
     name: "Prabhat Mishra",
     title: "Software Developer",
     description: [
-        `I am a ||Full Stack Developer|| specializing in the **TypeScript and Node.js** ecosystem, driven by the corporate philosophy that the most scalable backend is the one you never have to pay for. My experience ranges from architecting **RAG-based microservices** using FastAPI and ChromaDB to managing **multi-tenant SaaS platforms** with strict workspace isolation. I have a proven track record of maintaining system integrity during high-stakes transitions, such as leading a **Next.js v15 to v16 upgrade** with zero downtime.`,
-        `I have a particular obsession with architectural efficiency and **"privacy-first"** engineering—the kind that keeps legal teams happy and infrastructure bills non-existent. I recently developed ||Blade Tools||, a suite of **12+ browser-based utilities** leveraging **FFmpeg WASM** to handle heavy media transcoding entirely on the client side. By offloading the compute to the user's browser, I ||eliminated 100% of server-side latency and infrastructure costs||. Whether I'm optimizing **MongoDB aggregation pipelines** to slash database hits by 30% or orchestrating **event-driven Pub/Sub architectures**, I build for enterprise reliability with the efficiency of a dev who genuinely hates being paged for on-call rotations.`
+        `I am a ||Full Stack Developer|| specializing in the **TypeScript and Node.js** ecosystem, currently developing ||Blade Tools|| a suite of browser-based utilities leveraging **FFmpeg WASM** to perform heavy media transcoding on the client side. This project demonstrates my commitment to **infrastructure efficiency**, effectively eliminating server-side compute costs and latency. My experience includes architecting **RAG-based microservices** using FastAPI and ChromaDB, as well as managing **multi-tenant SaaS platforms** with strict workspace isolation.`,
+        `My approach to software engineering emphasizes **"privacy-by-design"** and operational reliability. I have a proven track record of maintaining system integrity during critical transitions, such as leading a **Next.js v15 to v16 upgrade** with zero downtime. From optimizing **MongoDB aggregation pipelines** to reduce database load by 30% to implementing **event-driven Pub/Sub architectures**, I focus on building scalable, maintainable systems that prioritize high availability and long-term cost-efficiency.`
     ],
     imageUrl: "/me.png",
     contacts: contactLinksArray,

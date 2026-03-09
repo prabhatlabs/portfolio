@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Projects() {
     return (
         <section className="px-6 md:px-8 xl:px-20 py-10 md:py-14 lg:py-20 relative border-b flex justify-center flex-col gap-8">
-            <h3 className="border border-dashed w-fit">Projects</h3>
+            <h3 className="border border-dashed w-fit px-1">Projects</h3>
             <div className="flex flex-col">
                 {projects.slice(0, 3).map((item) => (
                     <div

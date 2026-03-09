@@ -5,7 +5,7 @@ import GitHubCalendar from "react-github-calendar";
 export default function Contributions() {
     return (
         <section className="px-6 md:px-8 xl:px-20 py-10 md:py-14 lg:py-20 relative border-b flex justify-center flex-col gap-8">
-            <h3 className="border border-dashed w-fit">Contributions</h3>
+            <h3 className="border border-dashed w-fit px-1">Contributions</h3>
             <div className="w-full flex justify-center items-center">
                 <GitHubCalendar
                     username="IsayAyase"

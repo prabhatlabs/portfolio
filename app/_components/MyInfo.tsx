@@ -4,7 +4,6 @@ import { useState } from "react";
 import { myInfo } from "@/data/pages";
 import Link from "next/link";
 import AmbientHoverGrid from "./AmbientHoverGrid";
-import { SkillsMarquee } from "./SkillsMarquee";
 import { getIcon } from "@/lib/icons";
 import { FormattedText } from "./FormattedText";
 
