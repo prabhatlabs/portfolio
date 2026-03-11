@@ -61,7 +61,7 @@ export default function VideoComp() {
             <div className="w-full h-full flex items-center justify-center">
                 <AsciiVideoPlayer
                     src="/extra/ascii_video.bin"
-                    audioSrc="/extra/bg_audio.mp3"
+                    audioSrc="/extra/long_drive_trimmed_blade_tools.mp3"
                     width={96}
                     height={54}
                     fps={30}
