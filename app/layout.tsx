@@ -3,8 +3,6 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { IBM_Plex_Mono } from "next/font/google";
-import Footer from "./_components/Footer";
-import NavBar from "./_components/NavBar";
 import "./globals.css";
 
 const ibmPlexMono = IBM_Plex_Mono({
@@ -106,6 +104,7 @@ export default function RootLayout({
                 </ThemeProvider>
                 <Analytics />
                 <SpeedInsights />
+                {/* <script src="https://cdn.jsdelivr.net/gh/IsayAyase/rum-core-client-script@1.0.6/dist/rum-core.js" data-worker="http://127.0.0.1:8787" data-key="X74ymKYEqzFKWeVV7HxY7cqI" /> */}
             </body>
         </html>
     );
