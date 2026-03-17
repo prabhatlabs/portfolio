@@ -18,7 +18,6 @@ export default function MyPage() {
                 <SkillsSection />
                 <VideoComp />
                 <Contact />
-                {/* <SpaceBackground /> */}
             </div>
         </Layout>
     );
