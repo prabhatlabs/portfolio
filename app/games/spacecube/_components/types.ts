@@ -9,7 +9,7 @@ export interface Bullet {
   id: string;
   x: number;
   y: number;
-  type: 'playerBullet' | 'enemyBullet';
+  type: 'playerBullet' | 'enemyBullet' | 'playerLaser';
 }
 
 export interface Enemy {
@@ -54,6 +54,9 @@ export const GAME_CONFIG = {
   STAR_COUNT: 100,
   MAX_ENEMIES: 8,
   LASER_DAMAGE_INTERVAL: 300,
+  POWER_UP_MAX: 100,
+  POWER_UP_CHARGE_PER_SEC: 10,
+  POWER_UP_USE_PER_700MS: 10,
 } as const;
 
 export const ENEMY_TYPES: Array<{ size: 30 | 40 | 50; hp: number; speed: number; rare: boolean; score: number }> = [

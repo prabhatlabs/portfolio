@@ -18,22 +18,26 @@ export default function Game() {
   const [renderKey, setRenderKey] = useState(0);
   const [playerHit, setPlayerHit] = useState(false);
   const [hitEnemies, setHitEnemies] = useState<Set<string>>(new Set());
+  const [powerUpCharge, setPowerUpCharge] = useState(0);
   
   const gameWidth = typeof window !== 'undefined' ? window.innerWidth : 800;
   const gameHeight = typeof window !== 'undefined' ? window.innerHeight : 600;
   
   const [playerX, setPlayerX] = useState(gameWidth / 2 - GAME_CONFIG.PLAYER_SIZE / 2);
+  const [playerY, setPlayerY] = useState(gameHeight - GAME_CONFIG.PLAYER_SIZE - 20);
   const [bullets, setBullets] = useState<Bullet[]>([]);
   const [enemies, setEnemies] = useState<EnemyType[]>([]);
   const [lasers, setLasers] = useState<{ id: string; x: number; y: number }[]>([]);
+  const [playerLaser, setPlayerLaser] = useState(false);
   
-  const keysRef = useRef<{ left: boolean; right: boolean }>({ left: false, right: false });
+  const keysRef = useRef<{ left: boolean; right: boolean; up: boolean; down: boolean; space: boolean }>({ left: false, right: false, up: false, down: false, space: false });
   const bulletsRef = useRef<Bullet[]>([]);
   const enemiesRef = useRef<EnemyType[]>([]);
-  const playerRef = useRef({ x: gameWidth / 2 - GAME_CONFIG.PLAYER_SIZE / 2, hp: 100 });
+  const playerRef = useRef({ x: gameWidth / 2 - GAME_CONFIG.PLAYER_SIZE / 2, y: gameHeight - GAME_CONFIG.PLAYER_SIZE - 20, hp: 100 });
   const lastPlayerShoot = useRef(0);
   const lastEnemySpawn = useRef(0);
   const lastLaserDamage = useRef(0);
+  const lastPlayerLaser = useRef(0);
   const animationRef = useRef<number>(0);
   const scoreRef = useRef(0);
   const playerHpRef = useRef(100);
@@ -41,6 +45,7 @@ export default function Game() {
   const isInitialized = useRef(false);
   const hitEnemiesRef = useRef<Set<string>>(new Set());
   const playerHitRef = useRef(false);
+  const powerUpChargeRef = useRef(0);
 
   const checkCollision = (x1: number, y1: number, w1: number, h1: number, x2: number, y2: number, w2: number, h2: number) => {
     return x1 < x2 + w2 && x1 + w1 > x2 && y1 < y2 + h2 && y1 + h1 > y2;
@@ -83,12 +88,23 @@ export default function Game() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === ' ' || e.code === 'Space') {
+        e.preventDefault();
+        keysRef.current.space = true;
+      }
       if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') keysRef.current.left = true;
       if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') keysRef.current.right = true;
+      if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') keysRef.current.up = true;
+      if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') keysRef.current.down = true;
     };
     const handleKeyUp = (e: KeyboardEvent) => {
+      if (e.key === ' ' || e.code === 'Space') {
+        keysRef.current.space = false;
+      }
       if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') keysRef.current.left = false;
       if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') keysRef.current.right = false;
+      if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') keysRef.current.up = false;
+      if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') keysRef.current.down = false;
     };
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('keyup', handleKeyUp);
@@ -104,20 +120,25 @@ export default function Game() {
     isInitialized.current = true;
     bulletsRef.current = [];
     enemiesRef.current = [];
-    playerRef.current = { x: gameWidth / 2 - GAME_CONFIG.PLAYER_SIZE / 2, hp: 100 };
+    playerRef.current = { x: gameWidth / 2 - GAME_CONFIG.PLAYER_SIZE / 2, y: gameHeight - GAME_CONFIG.PLAYER_SIZE - 20, hp: 100 };
     playerHpRef.current = 100;
     scoreRef.current = 0;
     setScore(0);
     setHp(100);
     setGameOver(false);
     setPlayerX(gameWidth / 2 - GAME_CONFIG.PLAYER_SIZE / 2);
+    setPlayerY(gameHeight - GAME_CONFIG.PLAYER_SIZE - 20);
     setBullets([]);
     setEnemies([]);
     setPlayerHit(false);
     setHitEnemies(new Set());
+    setPowerUpCharge(0);
+    setPlayerLaser(false);
+    powerUpChargeRef.current = 0;
     lastPlayerShoot.current = Date.now();
     lastEnemySpawn.current = Date.now();
     lastLaserDamage.current = Date.now();
+    lastPlayerLaser.current = Date.now();
     startTimeRef.current = Date.now();
     setRenderKey(k => k + 1);
   }, [gameStarted, gameOver]);
@@ -131,6 +152,7 @@ export default function Game() {
       setGameTime(elapsed);
       
       let currentX = playerRef.current.x;
+      let currentY = playerRef.current.y;
       let currentHp = playerHpRef.current;
       let currentScore = scoreRef.current;
 
@@ -140,15 +162,39 @@ export default function Game() {
       if (keysRef.current.right) {
         currentX = Math.min(gameWidth - GAME_CONFIG.PLAYER_SIZE, currentX + GAME_CONFIG.PLAYER_SPEED);
       }
+      if (keysRef.current.up) {
+        currentY = Math.max(0, currentY - GAME_CONFIG.PLAYER_SPEED);
+      }
+      if (keysRef.current.down) {
+        currentY = Math.min(gameHeight - GAME_CONFIG.PLAYER_SIZE, currentY + GAME_CONFIG.PLAYER_SPEED);
+      }
 
-      if (now - lastPlayerShoot.current > GAME_CONFIG.PLAYER_SHOOT_INTERVAL) {
-        bulletsRef.current.push({
-          id: generateId(),
-          x: currentX + GAME_CONFIG.PLAYER_SIZE / 2 - GAME_CONFIG.BULLET_SIZE / 2,
-          y: gameHeight - GAME_CONFIG.PLAYER_SIZE - 20,
-          type: 'playerBullet'
-        });
-        lastPlayerShoot.current = now;
+      const isSpaceHeld = keysRef.current.space;
+      const hasPower = powerUpChargeRef.current >= GAME_CONFIG.POWER_UP_MAX;
+
+      if (isSpaceHeld && powerUpChargeRef.current > 0) {
+        powerUpChargeRef.current -= (GAME_CONFIG.POWER_UP_USE_PER_700MS / 700) * 16.67;
+        if (powerUpChargeRef.current < 0) powerUpChargeRef.current = 0;
+      } else if (!isSpaceHeld && powerUpChargeRef.current < GAME_CONFIG.POWER_UP_MAX) {
+        powerUpChargeRef.current += (GAME_CONFIG.POWER_UP_CHARGE_PER_SEC / 1000) * 16.67;
+        if (powerUpChargeRef.current > GAME_CONFIG.POWER_UP_MAX) powerUpChargeRef.current = GAME_CONFIG.POWER_UP_MAX;
+      }
+
+      const newLasers: { id: string; x: number; y: number }[] = [];
+
+      if (isSpaceHeld) {
+        setPlayerLaser(true);
+      } else {
+        setPlayerLaser(false);
+        if (now - lastPlayerShoot.current > GAME_CONFIG.PLAYER_SHOOT_INTERVAL) {
+          bulletsRef.current.push({
+            id: generateId(),
+            x: currentX + GAME_CONFIG.PLAYER_SIZE / 2 - GAME_CONFIG.BULLET_SIZE / 2,
+            y: currentY,
+            type: 'playerBullet'
+          });
+          lastPlayerShoot.current = now;
+        }
       }
 
       if (now - lastEnemySpawn.current > GAME_CONFIG.ENEMY_SPAWN_INTERVAL) {
@@ -166,8 +212,6 @@ export default function Game() {
       enemiesRef.current = enemiesRef.current
         .map(e => ({ ...e, y: e.y + e.speed }))
         .filter(e => e.y < gameHeight + e.size);
-
-      const newLasers: { id: string; x: number; y: number }[] = [];
 
       enemiesRef.current.forEach(enemy => {
         const waveAmplitude = enemy.size === 50 ? 100 : 50;
@@ -193,7 +237,6 @@ export default function Game() {
         }
       });
 
-      const playerY = gameHeight - GAME_CONFIG.PLAYER_SIZE - 20;
       playerHitRef.current = false;
       hitEnemiesRef.current = new Set();
 
@@ -203,7 +246,7 @@ export default function Game() {
           const waveX = Math.sin(elapsed * 0.002 + enemy.waveOffset) * waveAmplitude;
           const displayX = enemy.x + waveX;
           const laserX = displayX + enemy.size / 2 - 3;
-          if (checkCollision(laserX, enemy.y + enemy.size, 6, gameHeight, currentX, playerY, GAME_CONFIG.PLAYER_SIZE, GAME_CONFIG.PLAYER_SIZE)) {
+          if (checkCollision(laserX, enemy.y + enemy.size, 6, gameHeight, currentX, currentY, GAME_CONFIG.PLAYER_SIZE, GAME_CONFIG.PLAYER_SIZE)) {
             if (now - lastLaserDamage.current > GAME_CONFIG.LASER_DAMAGE_INTERVAL) {
               currentHp -= 1;
               playerHitRef.current = true;
@@ -215,7 +258,7 @@ export default function Game() {
 
       bulletsRef.current.forEach(bullet => {
         if (bullet.type === 'enemyBullet') {
-          if (checkCollision(bullet.x, bullet.y, GAME_CONFIG.BULLET_SIZE, GAME_CONFIG.BULLET_SIZE, currentX, playerY, GAME_CONFIG.PLAYER_SIZE, GAME_CONFIG.PLAYER_SIZE)) {
+          if (checkCollision(bullet.x, bullet.y, GAME_CONFIG.BULLET_SIZE, GAME_CONFIG.BULLET_SIZE, currentX, currentY, GAME_CONFIG.PLAYER_SIZE, GAME_CONFIG.PLAYER_SIZE)) {
             currentHp -= 1;
             playerHitRef.current = true;
             bullet.y = -100;
@@ -239,22 +282,43 @@ export default function Game() {
         }
       });
 
+      if (isSpaceHeld && hasPower && now - lastPlayerLaser.current > 100) {
+        const playerLaserX = currentX + GAME_CONFIG.PLAYER_SIZE / 2 - 3;
+        enemiesRef.current.forEach(enemy => {
+          const waveAmplitude = enemy.size === 50 ? 100 : 50;
+          const waveX = Math.sin(elapsed * 0.002 + enemy.waveOffset) * waveAmplitude;
+          const displayX = enemy.x + waveX;
+          if (checkCollision(playerLaserX, 0, 6, currentY, displayX, enemy.y, enemy.size, enemy.size)) {
+            enemy.hp -= 1;
+            hitEnemiesRef.current.add(enemy.id);
+            if (enemy.hp <= 0) {
+              currentScore += getEnemyScore(enemy.size);
+            } else {
+              currentScore += 1;
+            }
+          }
+        });
+        lastPlayerLaser.current = now;
+      }
+
       enemiesRef.current = enemiesRef.current.filter(e => e.hp > 0);
 
       enemiesRef.current.forEach(enemy => {
         const waveAmplitude = enemy.size === 50 ? 100 : 50;
         const waveX = Math.sin(elapsed * 0.002 + enemy.waveOffset) * waveAmplitude;
         const displayX = enemy.x + waveX;
-        if (checkCollision(currentX, playerY, GAME_CONFIG.PLAYER_SIZE, GAME_CONFIG.PLAYER_SIZE, displayX, enemy.y, enemy.size, enemy.size)) {
+        if (checkCollision(currentX, currentY, GAME_CONFIG.PLAYER_SIZE, GAME_CONFIG.PLAYER_SIZE, displayX, enemy.y, enemy.size, enemy.size)) {
           currentHp = 0;
         }
       });
 
       playerRef.current.x = currentX;
+      playerRef.current.y = currentY;
       playerHpRef.current = currentHp;
       scoreRef.current = currentScore;
 
       setPlayerX(currentX);
+      setPlayerY(currentY);
       setHp(currentHp);
       setScore(currentScore);
       setBullets([...bulletsRef.current]);
@@ -262,6 +326,7 @@ export default function Game() {
       setLasers(newLasers);
       setPlayerHit(playerHitRef.current);
       setHitEnemies(new Set(hitEnemiesRef.current));
+      setPowerUpCharge(powerUpChargeRef.current);
 
       if (currentHp <= 0) {
         setGameOver(true);
@@ -280,7 +345,6 @@ export default function Game() {
   }, [gameStarted, gameOver, renderKey]);
 
   const hpPercentage = (hp / maxHp) * 100;
-  const playerY = gameHeight - GAME_CONFIG.PLAYER_SIZE - 20;
 
   const handleStart = () => {
     setGameStarted(true);
@@ -324,6 +388,21 @@ export default function Game() {
               }}
             />
           ))}
+
+          {playerLaser && (
+            <div
+              style={{
+                position: 'absolute',
+                left: playerX + GAME_CONFIG.PLAYER_SIZE / 2 - 3,
+                top: 0,
+                width: 6,
+                height: playerY,
+                backgroundColor: '#ff0000',
+                boxShadow: '0 0 15px #ff0000, 0 0 30px #ff0000, 0 0 50px #ff0000',
+                opacity: 0.9,
+              }}
+            />
+          )}
 
           {enemies.map(enemy => {
             const waveAmplitude = enemy.size === 50 ? 100 : 50;
@@ -380,6 +459,20 @@ export default function Game() {
             <span className="text-white text-sm">{hp}/{maxHp}</span>
           </div>
 
+          <div className="absolute top-10 left-4 flex items-center gap-2 z-50">
+            <span className="text-yellow-400 text-xs font-bold">SPACE:</span>
+            <div className="w-32 h-2 bg-gray-800 rounded overflow-hidden border border-gray-600">
+              <div
+                className="h-full transition-all duration-200"
+                style={{
+                  width: `${Math.min(100, (powerUpCharge / GAME_CONFIG.POWER_UP_MAX) * 100)}%`,
+                  backgroundColor: powerUpCharge >= GAME_CONFIG.POWER_UP_MAX ? '#ffff00' : '#ca8a04',
+                }}
+              />
+            </div>
+            <span className="text-yellow-400 text-xs">{powerUpCharge >= GAME_CONFIG.POWER_UP_MAX ? 'READY' : ''}</span>
+          </div>
+
           <div className="absolute top-4 right-4 z-50">
             <span className="text-white text-lg font-bold">Score: {score}</span>
           </div>
@@ -390,7 +483,8 @@ export default function Game() {
         <div className="absolute inset-0 flex items-center justify-center bg-black/70 z-50">
           <div className="text-center">
             <h1 className="text-5xl font-bold text-green-500 mb-4">SPACECUBE</h1>
-            <p className="text-white mb-6">Use Left/Right arrows or A/D to move</p>
+            <p className="text-white mb-2">WASD or Arrows to move</p>
+            <p className="text-white mb-6">Hold SPACE for laser when charged</p>
             <button
               onClick={handleStart}
               className="px-8 py-3 bg-green-600 text-white text-xl font-bold rounded hover:bg-green-500 transition-colors"
