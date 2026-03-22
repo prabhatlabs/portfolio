@@ -104,7 +104,7 @@ export default function RootLayout({
                 </ThemeProvider>
                 <Analytics />
                 <SpeedInsights />
-                <script src="https://cdn.jsdelivr.net/gh/IsayAyase/rum-core-client-script@1.0.9/dist/rum-core.js" data-worker="https://rum-core-worker.workforprabhat1254.workers.dev" data-key="X74ymKYEqzFKWeVV7HxY7cqI" />
+                <script src="https://cdn.jsdelivr.net/gh/IsayAyase/rum-core-client-script@1.0.9/dist/rum-core.js" data-worker="https://rum-core-worker.rumcore.workers.dev" data-key="X74ymKYEqzFKWeVV7HxY7cqI" />
             </body>
         </html>
     );
