@@ -48,7 +48,7 @@ export const contactLinks = {
     },
     github: {
         name: "github",
-        url: "https://github.com/IsayAyase",
+        url: "https://github.com/prabhatlabs",
         iconName: "IoLogoGithub",
         target: "_blank",
     },
@@ -110,7 +110,7 @@ export const projects = [
             },
             {
                 name: "GitHub",
-                url: "https://github.com/IsayAyase",
+                url: "https://github.com/prabhatlabs",
                 iconName: "IoLogoGithub",
                 target: "_blank",
             },
@@ -147,7 +147,7 @@ export const projects = [
             },
             {
                 name: "GitHub",
-                url: "https://github.com/IsayAyase/abuseIP-map",
+                url: "https://github.com/prabhatlabs/abuseIP-map",
                 iconName: "IoLogoGithub",
                 target: "_blank",
             },
@@ -187,7 +187,7 @@ export const projects = [
             },
             {
                 name: "GitHub",
-                url: "https://github.com/IsayAyase/link-manager",
+                url: "https://github.com/prabhatlabs/link-manager",
                 iconName: "IoLogoGithub",
                 target: "_blank",
             },
@@ -222,7 +222,7 @@ export const projects = [
         links: [
             {
                 name: "GitHub",
-                url: "https://github.com/IsayAyase/yapless",
+                url: "https://github.com/prabhatlabs/yapless",
                 iconName: "IoLogoGithub",
                 target: "_blank",
             },
@@ -258,7 +258,7 @@ export const projects = [
             },
             {
                 name: "GitHub",
-                url: "https://github.com/IsayAyase/global-clipboard",
+                url: "https://github.com/prabhatlabs/global-clipboard",
                 iconName: "IoLogoGithub",
                 target: "_blank",
             },
@@ -293,7 +293,7 @@ export const projects = [
             },
             {
                 name: "GitHub",
-                url: "https://github.com/IsayAyase/h-bench",
+                url: "https://github.com/prabhatlabs/h-bench",
                 iconName: "IoLogoGithub",
                 target: "_blank",
             },

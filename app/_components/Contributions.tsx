@@ -8,7 +8,7 @@ export default function Contributions() {
             <h3 className="border border-dashed w-fit px-1">Contributions</h3>
             <div className="w-full flex justify-center items-center">
                 <GitHubCalendar
-                    username="IsayAyase"
+                    username="prabhatlabs"
                     blockSize={12}
                     blockMargin={4}
                     fontSize={12}

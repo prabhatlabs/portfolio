@@ -12,12 +12,12 @@ export default function Footer() {
                 <span>
                     {"Build by"}{" "}
                     <a
-                        href="https://github.com/IsayAyase"
+                        href="https://github.com/prabhatlabs"
                         target="_blank"
                         rel="noreferrer"
                         className="underline"
                     >
-                        IsayAyase
+                        prabhatlabs
                     </a>
                 </span>{" "}
                 <span>{`• prabhatlabs.dev © 2025 • All rights reserved.`}</span>
