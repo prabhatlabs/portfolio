@@ -1,8 +1,8 @@
 import { BiLogoPostgresql } from "react-icons/bi";
 import { DiRedis } from "react-icons/di";
 import { FaLinkedinIn, FaNodeJs, FaPython } from "react-icons/fa";
-import { FaGolang } from "react-icons/fa6";
-import { GrMysql } from "react-icons/gr";
+import { FaCloudflare, FaGolang } from "react-icons/fa6";
+import { GrFirefox, GrMysql } from "react-icons/gr";
 import { IoLogoGithub } from "react-icons/io";
 import { RiTwitterXFill } from "react-icons/ri";
 import {
@@ -30,6 +30,9 @@ import {
     SiTailwindcss,
     SiTypescript,
     SiVercel,
+    SiBun,
+    SiHono,
+    SiDrizzle,
 } from "react-icons/si";
 import { VscLinkExternal } from "react-icons/vsc";
 
@@ -42,6 +45,9 @@ const iconMap = {
 
     // Backend
     FaNodeJs,
+    SiBun,
+    SiHono,
+    GrFirefox,
     SiExpress,
     SiFastapi,
     SiFlask,
@@ -63,6 +69,7 @@ const iconMap = {
     SiSqlite,
     DiRedis,
     SiPrisma,
+    SiDrizzle,
 
     // Dev / Tools
     SiDocker,
@@ -70,6 +77,7 @@ const iconMap = {
     SiPostman,
     SiCloudinary,
     SiVercel,
+    FaCloudflare,
 
     // Contact links
     RiTwitterXFill,

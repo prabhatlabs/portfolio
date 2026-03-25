@@ -8,7 +8,10 @@ export const skills = {
 
     // Backend
     nodejs: { name: "Node.js", iconName: "FaNodeJs" },
+    bun: { name: "Bun", iconName: "SiBun" },
+    elysia: { name: "Elysia", iconName: "GrFirefox" },
     express: { name: "Express", iconName: "SiExpress" },
+    hono: { name: "Hono", iconName: "SiHono" },
     fastapi: { name: "FastAPI", iconName: "SiFastapi" },
     flask: { name: "Flask", iconName: "SiFlask" },
 
@@ -30,8 +33,10 @@ export const skills = {
     sqlite: { name: "SQLite", iconName: "SiSqlite" },
     redis: { name: "Redis", iconName: "DiRedis" },
     prisma: { name: "Prisma", iconName: "SiPrisma" },
+    drizzle: { name: "Drizzle", iconName: "SiDrizzle" },
 
     // Dev / Tools
+    cloudflare: { name: "Cloudflare", iconName: "FaCloudflare" },
     docker: { name: "Docker", iconName: "SiDocker" },
     git: { name: "Git", iconName: "SiGit" },
     postman: { name: "Postman", iconName: "SiPostman" },
@@ -83,6 +88,44 @@ export const skillsArray = Object.values(skills);
 
 export const projects = [
     {
+        title: "rum-core",
+        subtitle: "Real User Monitoring SaaS for browser performance & web vitals",
+        content: [
+            "Architected **full-stack RUM platform** capturing browser performance data, API request timing, and **Core Web Vitals (LCP, FCP, CLS, INP)** via a lightweight browser script using monkey-patched `fetch`/`XHR` and `web-vitals/slim`, deployed via **jsDelivr CDN**",
+            "Engineered **pre-aggregation pipeline** across **34 Turso/SQLite tables** (2 raw append-only + 32 rollup tables) with hourly and daily cadences, reducing dashboard query cost to near-zero while maintaining **32-day data retention** for actionable trend analysis",
+            "Built **multi-service monorepo** with a **Bun/Elysia API** on Koyeb, **Cloudflare Workers/Hono** event ingestion worker, and **Next.js** dashboard — featuring per-project URL filtering, vitals toggles, and a list→detail drilldown across Pages, Endpoints, Geography, and Environment views",
+        ],
+        imageUrl: "/projectThumbnails/rum-core.webp",
+        iconUrl: "/projectLogos/rum-core.png",
+        pills: [
+            skills.typescript,
+            skills.bun,
+            skills.elysia,
+            skills.hono,
+            skills.nextjs,
+            skills.drizzle,
+            skills.sqlite,
+            skills.postgresql,
+            skills.redis,
+            skills.tailwind,
+            skills.git,
+        ],
+        links: [
+            {
+                name: "Live",
+                url: "https://rum-core.prabhatlabs.dev",
+                iconName: "VscLinkExternal",
+                target: "_blank",
+            },
+            {
+                name: "GitHub",
+                url: "https://github.com/prabhatlabs/rum-core",
+                iconName: "IoLogoGithub",
+                target: "_blank",
+            },
+        ],
+    },
+    {
         title: "Blade Tools",
         subtitle: "20+ browser-based tools for PDF, image & video processing",
         content: [
@@ -92,7 +135,6 @@ export const projects = [
         ],
         imageUrl: "/projectThumbnails/bladetools.webp",
         iconUrl: "/projectLogos/bladetools.ico",
-        videoUrl: "https://res.cloudinary.com/dtapvbbzb/video/upload/v1756537370/portfolio/mapware-preview_ww3tss.mp4",
         pills: [
             skills.typescript,
             skills.nextjs,
@@ -126,7 +168,6 @@ export const projects = [
         ],
         imageUrl: "/projectThumbnails/mapware.png",
         iconUrl: "/projectLogos/mapware.ico",
-        videoUrl: "https://res.cloudinary.com/dtapvbbzb/video/upload/v1756537370/portfolio/mapware-preview_ww3tss.mp4",
         pills: [
             skills.typescript,
             skills.nodejs,
@@ -163,7 +204,6 @@ export const projects = [
         ],
         iconUrl: "/projectLogos/ref.svg",
         imageUrl: "/projectThumbnails/ref.png",
-        videoUrl: "https://res.cloudinary.com/dtapvbbzb/video/upload/v1756537244/portfolio/ref-preview_wks3zn.mp4",
         pills: [
             skills.typescript,
             skills.nodejs,
@@ -203,7 +243,6 @@ export const projects = [
         ],
         iconUrl: "/projectLogos/yapless.svg",
         imageUrl: "/projectThumbnails/yapless.png",
-        videoUrl: "https://res.cloudinary.com/dtapvbbzb/video/upload/v1756537373/portfolio/yapless-preview_s55qxu.mp4",
         pills: [
             skills.python,
             skills.typescript,
@@ -274,7 +313,6 @@ export const projects = [
         ],
         iconUrl: "/projectLogos/hbench.ico",
         imageUrl: "/projectThumbnails/hbench.png",
-        videoUrl: "https://res.cloudinary.com/dtapvbbzb/video/upload/v1756537240/portfolio/hbench-preview_xmgsdu.mp4",
         pills: [
             skills.typescript,
             skills.nodejs,
@@ -361,7 +399,7 @@ export const myInfo = {
     name: "Prabhat Mishra",
     title: "Software Developer",
     description: [
-        `I am a ||Full Stack Developer|| specializing in the **TypeScript and Node.js** ecosystem, currently developing ||Blade Tools|| a suite of browser-based utilities leveraging **FFmpeg WASM** to perform heavy media transcoding on the client side. This project demonstrates my commitment to **infrastructure efficiency**, effectively eliminating server-side compute costs and latency. My experience includes architecting **RAG-based microservices** using FastAPI and ChromaDB, as well as managing **multi-tenant SaaS platforms** with strict workspace isolation.`,
+        `I am a ||Full Stack Software Developer|| specializing in the **TypeScript and Node.js** ecosystem, currently building two projects: ||rum-core||, a **Real User Monitoring SaaS** that captures browser performance data, API timing, and web vitals with a pre-aggregation architecture across **Neon/Postgres and Turso/SQLite** — and ||Blade Tools||, a suite of browser-based utilities leveraging **FFmpeg WASM** to perform heavy media transcoding entirely on the client side, eliminating server-side compute costs and latency. My experience spans architecting **RAG-based microservices** using FastAPI and ChromaDB, and managing **multi-tenant SaaS platforms** with strict workspace isolation.`,
         `My approach to software engineering emphasizes **"privacy-by-design"** and operational reliability. I have a proven track record of maintaining system integrity during critical transitions, such as leading a **Next.js v15 to v16 upgrade** with zero downtime. From optimizing **MongoDB aggregation pipelines** to reduce database load by 30% to implementing **event-driven Pub/Sub architectures**, I focus on building scalable, maintainable systems that prioritize high availability and long-term cost-efficiency.`
     ],
     imageUrl: "/me.png",

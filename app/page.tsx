@@ -5,7 +5,6 @@ import Experience from "./_components/Experience";
 import MyInfo from "./_components/MyInfo";
 import Projects from "./_components/Projects";
 import SkillsSection from "./_components/SkillsSection";
-import VideoComp from "./_components/VideoComp";
 
 export default function MyPage() {
     return (
@@ -16,7 +15,6 @@ export default function MyPage() {
                 <Projects />
                 <Contributions />
                 <SkillsSection />
-                <VideoComp />
                 <Contact />
             </div>
         </Layout>
