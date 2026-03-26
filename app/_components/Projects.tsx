@@ -1,59 +1,62 @@
 import { projects } from "@/data/pages";
+import { getIcon } from "@/lib/icon";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Projects() {
+export function Projects() {
     return (
-        <section className="px-6 md:px-8 xl:px-20 py-10 md:py-14 lg:py-20 relative border-b flex justify-center flex-col gap-8">
-            <h3 className="border border-dashed w-fit px-1">Projects</h3>
-            <div className="flex flex-col">
-                {projects.slice(0, 3).map((item) => (
+        <div className="p-6 border-b border-dashed space-y-4">
+            <h2 className="text-2xl font-bold">Projects</h2>
+            <div className="grid md:grid-cols-2 gap-4">
+                {projects.map((project) => (
                     <div
-                        key={item.title}
-                        className="flex flex-col md:flex-row justify-between md:items-center gap-2 pb-4 text-sm md:text-base"
+                        key={project.title}
+                        className="p-2 border border-dashed rounded-xl flex flex-col gap-2 justify-between"
                     >
-                        <div className="flex gap-3">
+                        <div className="space-y-2">
                             <Image
-                                src={item.iconUrl}
-                                width={50}
-                                height={50}
-                                alt={item.title}
-                                className="object-cover shrink-0 size-[35px] md:size-[45px] lg:size-[50px] mt-1"
+                                src={project.imageUrl}
+                                alt={project.title}
+                                width={300}
+                                height={160}
+                                className="w-full h-fit aspect-video rounded-sm"
                             />
-                            <div>
-                                <h4 className="text-base md:text-lg font-semibold">
-                                    {item.title}
-                                </h4>
-                                <p className="text-muted-foreground">
-                                    {item.subtitle}
-                                </p>
+                            <div className="flex items-center gap-2">
+                                <Image
+                                    src={project.iconUrl}
+                                    alt={project.title}
+                                    width={32}
+                                    height={32}
+                                    className="size-5"
+                                />
+                                <h3 className="font-semibold">
+                                    {project.title}
+                                </h3>
                             </div>
+                            <p className="text-sm text-muted-foreground">
+                                {project.description}
+                            </p>
                         </div>
-                        <div className="text-muted-foreground flex gap-2 pl-[calc(35px+12px)] md:pl-[calc(45px+12px)] lg:pl-[calc(50px+12px)] w-fit">
-                            {item.links.map((link) => (
-                                <Link
-                                    key={link.name}
-                                    href={link.url}
-                                    target={link.target}
-                                    className="bg-foreground hover:bg-foreground/80 text-background px-2 py-1 h-fit"
-                                >
-                                    {link.name}
-                                </Link>
-                            ))}
+
+                        <div className="flex gap-2 items-center">
+                            {project.links.map((link) => {
+                                const IconComp = getIcon(link.iconName);
+                                return (
+                                    <Link
+                                        key={link.name}
+                                        href={link.url}
+                                        target={link.target}
+                                        className="text-sm bg-foreground text-background px-1.5 py-0.5 border rounded flex items-center gap-2 justify-center"
+                                    >
+                                        <IconComp className="size-4" />
+                                        {link.name}
+                                    </Link>
+                                );
+                            })}
                         </div>
                     </div>
                 ))}
             </div>
-            {projects.length > 3 && (
-                <div className="flex justify-end absolute right-0 bottom-0 mx-6 md:mx-8 xl:mx-20 my-5 md:my-7 lg:my-10">
-                    <Link
-                        href="/projects"
-                        className="text-muted-foreground underline"
-                    >
-                        see all
-                    </Link>
-                </div>
-            )}
-        </section>
+        </div>
     );
 }

@@ -1,22 +1,15 @@
-import { BiLogoPostgresql } from "react-icons/bi";
-import { DiRedis } from "react-icons/di";
-import { FaLinkedinIn, FaNodeJs, FaPython } from "react-icons/fa";
-import { FaCloudflare, FaGolang } from "react-icons/fa6";
-import { GrFirefox, GrMysql } from "react-icons/gr";
-import { IoLogoGithub } from "react-icons/io";
-import { RiTwitterXFill } from "react-icons/ri";
 import {
-    SiBuymeacoffee,
+    SiBun,
     SiCloudinary,
     SiDocker,
+    SiDrizzle,
     SiExpress,
     SiFastapi,
     SiFfmpeg,
     SiFlask,
     SiFramer,
     SiGit,
-    SiGmail,
-    SiInstagram,
+    SiHono,
     SiJavascript,
     SiMongodb,
     SiMui,
@@ -30,13 +23,25 @@ import {
     SiTailwindcss,
     SiTypescript,
     SiVercel,
-    SiBun,
-    SiHono,
-    SiDrizzle,
+    SiGmail,
+    SiBuymeacoffee,
+    SiInstagram,
 } from "react-icons/si";
+import { IoLogoGithub } from "react-icons/io5";
+import {
+    FaPython,
+    FaGolang,
+    FaNodeJs,
+    FaCloudflare,
+    FaLinkedinIn,
+} from "react-icons/fa6";
+import { GrFirefox, GrMysql } from "react-icons/gr";
+import { BiLogoPostgresql } from "react-icons/bi";
+import { DiRedis } from "react-icons/di";
+import { RiTwitterXFill } from "react-icons/ri";
 import { VscLinkExternal } from "react-icons/vsc";
 
-const iconMap = {
+export const icons = {
     // Languages
     SiTypescript,
     SiJavascript,
@@ -46,21 +51,21 @@ const iconMap = {
     // Backend
     FaNodeJs,
     SiBun,
-    SiHono,
     GrFirefox,
     SiExpress,
+    SiHono,
     SiFastapi,
     SiFlask,
 
     // Frontend
     SiReact,
-    SiRedux,
     SiNextdotjs,
-    SiFfmpeg,
+    SiRedux,
     SiShadcnui,
     SiMui,
     SiTailwindcss,
     SiFramer,
+    SiFfmpeg,
 
     // Databases
     SiMongodb,
@@ -72,14 +77,14 @@ const iconMap = {
     SiDrizzle,
 
     // Dev / Tools
+    FaCloudflare,
     SiDocker,
     SiGit,
     SiPostman,
     SiCloudinary,
     SiVercel,
-    FaCloudflare,
 
-    // Contact links
+    // contacts
     RiTwitterXFill,
     IoLogoGithub,
     FaLinkedinIn,
@@ -90,5 +95,5 @@ const iconMap = {
 };
 
 export function getIcon(iconName: string) {
-    return iconMap[iconName as keyof typeof iconMap] || SiReact;
+    return icons[iconName as keyof typeof icons];
 }

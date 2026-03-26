@@ -2,13 +2,13 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { IBM_Plex_Mono } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
-const ibmPlexMono = IBM_Plex_Mono({
+const dmsans = DM_Sans({
     subsets: ["latin"],
-    weight: ["400", "500", "700"],
-    variable: "--font-ibm-plex-mono",
+    variable: "--font-dmsans",
 });
 
 export const metadata: Metadata = {
@@ -92,9 +92,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning suppressContentEditableWarning>
-            <body
-                className={`antialiased hideScrollbar ${ibmPlexMono.className}`}
-            >
+            <body className={`antialiased hideScrollbar ${dmsans.className}`}>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="dark"
@@ -104,7 +102,11 @@ export default function RootLayout({
                 </ThemeProvider>
                 <Analytics />
                 <SpeedInsights />
-                <script src="https://cdn.jsdelivr.net/gh/prabhatlabs/rum-core-client-script@1.0.9/dist/rum-core.js" data-worker="https://rum-core-worker.rumcore.workers.dev" data-key="X74ymKYEqzFKWeVV7HxY7cqI" />
+                <Script
+                    src="https://cdn.jsdelivr.net/gh/prabhatlabs/rum-core-client-script@1.0.9/dist/rum-core.js"
+                    data-worker="https://rum-core-worker.rumcore.workers.dev"
+                    data-key="X74ymKYEqzFKWeVV7HxY7cqI"
+                />
             </body>
         </html>
     );
