@@ -6,7 +6,7 @@ function Skill({ skill }: { skill: { name: string; iconName: string } }) {
     return (
         <div
             key={skill.name}
-            className="flex items-center gap-1.5 border border-dashed rounded p-1.5"
+            className="flex items-center gap-1.5 border   rounded p-1.5"
         >
             <IconComp className="size-4" />
             <span className="text-xs text-muted-foreground">{skill.name}</span>
@@ -25,7 +25,7 @@ export function Skills() {
         ),
     };
     return (
-        <div className="p-6 border-b border-dashed space-y-4">
+        <div className="p-6 border-b space-y-4">
             <h2 className="text-2xl font-bold">Skills</h2>
             <div className="space-y-4">
                 {Object.entries(grps).map(([type, skills]) => (

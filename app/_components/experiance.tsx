@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export function Experiance() {
     return (
-        <div className="p-6 border-b border-dashed space-y-4">
+        <div className="p-6 border-b space-y-4">
             <h2 className="text-2xl font-bold">Experience</h2>
             {experiences.map((experience) => (
                 <div

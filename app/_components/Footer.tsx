@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export function Footer({ asNav }: { asNav?: boolean }) {
     return (
-        <div className={`p-6 ${asNav ? "border-b border-dashed" : ""}`}>
+        <div className={`p-6 ${asNav ? "border-b" : ""}`}>
             <div className="flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4">
                 <div>
                     <h2 className="text-2xl font-bold">prabhatlabs</h2>

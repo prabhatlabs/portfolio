@@ -5,13 +5,13 @@ import Link from "next/link";
 
 export function Projects() {
     return (
-        <div className="p-6 border-b border-dashed space-y-4">
+        <div className="p-6 border-b space-y-4">
             <h2 className="text-2xl font-bold">Projects</h2>
             <div className="grid md:grid-cols-2 gap-4">
                 {projects.map((project) => (
                     <div
                         key={project.title}
-                        className="p-2 border border-dashed rounded-xl flex flex-col gap-2 justify-between"
+                        className="p-2 border   rounded-xl flex flex-col gap-2 justify-between"
                     >
                         <div className="space-y-2">
                             <Image

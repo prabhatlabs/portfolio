@@ -92,7 +92,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning suppressContentEditableWarning>
-            <body className={`antialiased hideScrollbar ${dmsans.className}`}>
+            <body className={`antialiased no-scrollbar ${dmsans.className}`}>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="dark"
