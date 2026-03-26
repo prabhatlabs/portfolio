@@ -114,8 +114,8 @@ export const projects = [
         title: "rum-core",
         description:
             "Full-stack RUM SaaS capturing Core Web Vitals and API timing via a lightweight browser script. Built on a pre-aggregation pipeline across 34 Turso/SQLite tables with a Bun/Elysia + Cloudflare Workers backend and Next.js dashboard.",
-        imageUrl: "/projectThumbnails/rum-core.png",
-        iconUrl: "/projectLogos/rum-core.png",
+        imageUrl: "/projectThumbnails/rum-core.webp",
+        iconUrl: "/projectLogos/rum-core.ico",
         links: [
             {
                 name: "Live",
@@ -156,7 +156,7 @@ export const projects = [
         title: "Mapware",
         description:
             "Real-time IP threat intelligence platform that fetches and geo-enriches 10,000+ abusive IPs from AbuseIPDB on a 6-hour refresh cycle. Visualized via a 3D OpenStreetMap heatmap with Redis-cached coordinates.",
-        imageUrl: "/projectThumbnails/mapware.png",
+        imageUrl: "/projectThumbnails/mapware.webp",
         iconUrl: "/projectLogos/mapware.ico",
         links: [
             {
@@ -178,7 +178,7 @@ export const projects = [
         description:
             "Multi-tenant link management SaaS with custom aliases, branded QR codes, password protection, and click analytics. Built with React/Redux, Express.js, MongoDB aggregation pipelines, and Redis caching.",
         iconUrl: "/projectLogos/ref.svg",
-        imageUrl: "/projectThumbnails/ref.png",
+        imageUrl: "/projectThumbnails/ref.webp",
         links: [
             {
                 name: "Live",
@@ -199,7 +199,7 @@ export const projects = [
         description:
             "Microservice AI chat platform combining FastAPI and Node.js with a RAG-inspired retrieval layer for vector-based document search. Reduces hallucination through intelligent source ranking and context-aware response generation.",
         iconUrl: "/projectLogos/yapless.svg",
-        imageUrl: "/projectThumbnails/yapless.png",
+        imageUrl: "/projectThumbnails/yapless.webp",
         links: [
             {
                 name: "GitHub",
@@ -213,8 +213,8 @@ export const projects = [
         title: "ClipB",
         description:
             "Ephemeral clipboard sharing with cURL/API support, one-time self-destructing fetch, and 40-minute Redis TTL auto-expiry. Secured with Google OAuth and rate limiting.",
-        iconUrl: "/projectLogos/clipb.png",
-        imageUrl: "/projectThumbnails/clipb.png",
+        iconUrl: "/projectLogos/clipb.ico",
+        imageUrl: "/projectThumbnails/clipb.webp",
         links: [
             {
                 name: "Live",
@@ -235,7 +235,7 @@ export const projects = [
         description:
             "Minimalist cognitive and reflex training app recreating reaction speed, memory, typing, and aim tests at 60fps. Built with Next.js, Zustand, Framer Motion, and Tailwind CSS.",
         iconUrl: "/projectLogos/hbench.ico",
-        imageUrl: "/projectThumbnails/hbench.png",
+        imageUrl: "/projectThumbnails/hbench.webp",
         links: [
             {
                 name: "Live",
@@ -314,7 +314,7 @@ export const myInfo = {
     title: "Software Developer",
     description:
         "Software Developer specializing in the TypeScript/Node.js ecosystem, building privacy-first, scalable SaaS products with a focus on operational reliability and long-term cost-efficiency.",
-    imageUrl: "/me.png",
+    imageUrl: "/me.webp",
     contacts: contactLinksArray,
     skills: skillsArray,
 };
