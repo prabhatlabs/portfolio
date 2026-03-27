@@ -1,3 +1,4 @@
+import { LineShadowText } from "@/components/ui/line-shadow-text";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { myInfo } from "@/data/pages";
 import Image from "next/image";
@@ -23,7 +24,20 @@ export function About() {
 
                 <div className="my-2">
                     <h1 className="text-3xl font-bold">{myInfo.name}</h1>
-                    <h3 className="text-xl">{myInfo.title}</h3>
+                    <h3 className="text-xl">
+                        <LineShadowText
+                            className="italic"
+                            shadowColor={"var(--foreground)"}
+                        >
+                            Software
+                        </LineShadowText>
+                        <LineShadowText
+                            className="italic ml-1"
+                            shadowColor={"var(--foreground)"}
+                        >
+                            Developer
+                        </LineShadowText>
+                    </h3>
                     <p className="text-sm text-muted-foreground mt-1 mb-3">
                         {myInfo.description}
                     </p>

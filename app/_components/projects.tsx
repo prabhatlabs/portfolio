@@ -1,3 +1,4 @@
+import { LineShadowText } from "@/components/ui/line-shadow-text";
 import { projects } from "@/data/pages";
 import { getIcon } from "@/lib/icon";
 import Image from "next/image";
@@ -6,7 +7,14 @@ import Link from "next/link";
 export function Projects() {
     return (
         <div className="p-4 sm:p-6 border-b space-y-4">
-            <h2 className="text-2xl font-bold">Projects</h2>
+            <h2 className="text-2xl font-bold">
+                <LineShadowText
+                    className="italic"
+                    shadowColor={"var(--foreground)"}
+                >
+                    Projects
+                </LineShadowText>
+            </h2>
             <div className="grid md:grid-cols-2 gap-4">
                 {projects.map((project) => (
                     <div

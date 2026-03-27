@@ -1,10 +1,18 @@
+import { LineShadowText } from "@/components/ui/line-shadow-text";
 import { experiences } from "@/data/pages";
 import Image from "next/image";
 
 export function Experiance() {
     return (
         <div className="p-4 sm:p-6 border-b space-y-4">
-            <h2 className="text-2xl font-bold">Experience</h2>
+            <h2 className="text-2xl font-bold">
+                <LineShadowText
+                    className="italic"
+                    shadowColor={"var(--foreground)"}
+                >
+                    Experience
+                </LineShadowText>
+            </h2>
             {experiences.map((experience) => (
                 <div
                     key={experience.company}

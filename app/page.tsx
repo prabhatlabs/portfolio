@@ -1,3 +1,4 @@
+import { BorderBeam } from "@/components/ui/border-beam";
 import { About } from "./_components/about";
 import { Experiance } from "./_components/experiance";
 import { Footer } from "./_components/footer";
@@ -23,6 +24,20 @@ export default function MyPage() {
                     <Projects />
                     <Skills />
                     <Footer />
+
+                    <BorderBeam
+                        duration={6}
+                        size={400}
+                        borderWidth={2}
+                        className="from-transparent via-purple-500 to-transparent"
+                    />
+                    <BorderBeam
+                        duration={6}
+                        delay={6}
+                        size={400}
+                        borderWidth={2}
+                        className="from-transparent via-cyan-500 to-transparent"
+                    />
                 </div>
             </div>
         </div>

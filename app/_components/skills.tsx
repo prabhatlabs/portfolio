@@ -1,3 +1,4 @@
+import { LineShadowText } from "@/components/ui/line-shadow-text";
 import { skillsArray } from "@/data/pages";
 import { getIcon } from "@/lib/icon";
 
@@ -26,7 +27,14 @@ export function Skills() {
     };
     return (
         <div className="p-4 sm:p-6 border-b space-y-4">
-            <h2 className="text-2xl font-bold">Skills</h2>
+            <h2 className="text-2xl font-bold">
+                <LineShadowText
+                    className="italic"
+                    shadowColor={"var(--foreground)"}
+                >
+                    Skills
+                </LineShadowText>
+            </h2>
             <div className="space-y-4">
                 {Object.entries(grps).map(([type, skills]) => (
                     <div key={type} className="space-y-1">
