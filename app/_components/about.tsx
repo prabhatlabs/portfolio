@@ -10,7 +10,7 @@ export function About() {
                 {/* image */}
                 <div className="p-2 pb-0 border   rounded-md w-fit h-fit shrink-0">
                     <Image
-                        src="/me.png"
+                        src={myInfo.imageUrl}
                         alt="Prabhat Mishra"
                         width={100}
                         height={100}
