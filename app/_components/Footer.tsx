@@ -1,27 +1,34 @@
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { Logo } from "./Logo";
+import { myInfo } from "@/data/pages";
+import { getIcon } from "@/lib/icon";
+import Link from "next/link";
 
-export default function Footer() {
+export function Footer({ asNav }: { asNav?: boolean }) {
     return (
-        <footer className="px-6 md:px-8 xl:px-20 py-10 md:py-14 lg:py-20 relative border-t">
-            <div className="flex justify-between items-center">
-                <Logo className="w-40 md:w-60" />
-                <ThemeToggle />
+        <div className={`p-6 ${asNav ? "border-b" : ""}`}>
+            <div className="flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4">
+                <div>
+                    <h2 className="text-2xl font-bold">prabhatlabs</h2>
+                    {!asNav && (
+                        <p className="text-xs text-muted-foreground">
+                            prabhatlabs.dev &copy; {new Date().getFullYear()}
+                        </p>
+                    )}
+                </div>
+                <div className="flex gap-2 items-center">
+                    {myInfo.contacts.map((contact) => {
+                        const Icon = getIcon(contact.iconName);
+                        return (
+                            <Link
+                                key={contact.name}
+                                href={contact.url}
+                                className="p-1 rounded hover:bg-muted text-muted-foreground hover:text-foreground transition-colors duration-300"
+                            >
+                                <Icon className="size-5" />
+                            </Link>
+                        );
+                    })}
+                </div>
             </div>
-            <p className="text-muted-foreground text-xs">
-                <span>
-                    {"Build by"}{" "}
-                    <a
-                        href="https://github.com/prabhatlabs"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="underline"
-                    >
-                        prabhatlabs
-                    </a>
-                </span>{" "}
-                <span>{`• prabhatlabs.dev © 2025 • All rights reserved.`}</span>
-            </p>
-        </footer>
+        </div>
     );
 }
