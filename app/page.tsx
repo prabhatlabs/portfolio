@@ -15,7 +15,7 @@ export default function MyPage() {
                 muted
                 playsInline
             />
-            <div className="z-10 relative h-dvh overflow-auto py-20">
+            <div className="z-10 relative h-dvh overflow-auto py-2 md:py-20">
                 <div className="max-w-3xl mx-auto backdrop-blur-xl bg-background/50 border rounded-md">
                     <Footer asNav />
                     <About />

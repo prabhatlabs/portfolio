@@ -25,7 +25,7 @@ export function Skills() {
         ),
     };
     return (
-        <div className="p-6 border-b space-y-4">
+        <div className="p-4 sm:p-6 border-b space-y-4">
             <h2 className="text-2xl font-bold">Skills</h2>
             <div className="space-y-4">
                 {Object.entries(grps).map(([type, skills]) => (

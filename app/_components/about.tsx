@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export function About() {
     return (
-        <div className="p-6 border-b relative">
+        <div className="p-4 sm:p-6 border-b relative">
             <ThemeToggle className="absolute top-0 right-0 m-6 hover:bg-muted dark:hover:bg-muted" />
             <div className="flex flex-col md:flex-row md:gap-4">
                 {/* image */}
@@ -17,7 +17,7 @@ export function About() {
                         className="rounded-sm object-cover size-[100px] border  "
                     />
                     <p className="pb-0.5 text-muted-foreground font-mono text-xs text-center w-full">
-                        me.png
+                        me.webp
                     </p>
                 </div>
 

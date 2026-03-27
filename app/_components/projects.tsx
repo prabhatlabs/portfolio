@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export function Projects() {
     return (
-        <div className="p-6 border-b space-y-4">
+        <div className="p-4 sm:p-6 border-b space-y-4">
             <h2 className="text-2xl font-bold">Projects</h2>
             <div className="grid md:grid-cols-2 gap-4">
                 {projects.map((project) => (
