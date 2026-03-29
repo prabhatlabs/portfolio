@@ -1,4 +1,3 @@
-import { BorderBeam } from "@/components/ui/border-beam";
 import { About } from "./_components/about";
 import { Experiance } from "./_components/experiance";
 import { Footer } from "./_components/footer";
@@ -7,37 +6,23 @@ import { Skills } from "./_components/skills";
 
 export default function MyPage() {
     return (
-        <div className="relative px-2 overflow-hidden">
+        <div className="relative px-4 overflow-hidden">
             <video
-                className="object-cover w-full h-full absolute z-0 top-0 left-0 dark:opacity-70"
+                className="object-cover w-full h-full absolute z-0 top-0 left-0"
                 src="/bg.mp4"
                 autoPlay
                 loop
                 muted
                 playsInline
             />
-            <div className="z-10 relative h-dvh overflow-auto py-2 md:py-20">
-                <div className="max-w-3xl mx-auto backdrop-blur-xl bg-background/50 border rounded-md">
+            <div className="z-10 relative h-dvh overflow-auto py-4 md:py-20">
+                <div className="max-w-3xl mx-auto space-y-4 md:space-y-6">
                     <Footer asNav />
                     <About />
                     <Experiance />
                     <Projects />
                     <Skills />
                     <Footer />
-
-                    <BorderBeam
-                        duration={6}
-                        size={400}
-                        borderWidth={2}
-                        className="from-transparent via-purple-500 to-transparent"
-                    />
-                    <BorderBeam
-                        duration={6}
-                        delay={6}
-                        size={400}
-                        borderWidth={2}
-                        className="from-transparent via-cyan-500 to-transparent"
-                    />
                 </div>
             </div>
         </div>

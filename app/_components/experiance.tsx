@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export function Experiance() {
     return (
-        <div className="p-4 sm:p-6 border-b space-y-4">
+        <div className="p-4 sm:p-6 backdrop-blur-sm bg-white/10 border rounded-md space-y-4">
             <h2 className="text-2xl font-bold">
                 <LineShadowText
                     className="italic"
