@@ -7,10 +7,10 @@ function Skill({ skill }: { skill: { name: string; iconName: string } }) {
     return (
         <div
             key={skill.name}
-            className="flex items-center gap-1.5 border   rounded p-1.5"
+            className="flex items-center gap-1.5 p-1.5 text-muted bg-foreground/90"
         >
             <IconComp className="size-4" />
-            <span className="text-xs text-muted-foreground">{skill.name}</span>
+            <span className="text-xs">{skill.name}</span>
         </div>
     );
 }
@@ -26,8 +26,8 @@ export function Skills() {
         ),
     };
     return (
-        <div className="p-4 sm:p-6 backdrop-blur-sm bg-white/10 border rounded-md space-y-4">
-            <h2 className="text-2xl font-bold">
+        <div className="space-y-4">
+            <h2 className="p-4 md:p-6 mt-16 sm:mt-20 md:mt-24 border-y text-3xl md:text-5xl font-bold">
                 <LineShadowText
                     className="italic"
                     shadowColor={"var(--foreground)"}
@@ -35,11 +35,11 @@ export function Skills() {
                     Skills
                 </LineShadowText>
             </h2>
-            <div className="space-y-4">
+            <div className="space-y-4 px-4 mb-10 sm:mb-12 md:mb-14">
                 {Object.entries(grps).map(([type, skills]) => (
-                    <div key={type} className="space-y-1">
-                        <h3 className="capitalize">{type}</h3>
-                        <div key={type} className="flex flex-wrap gap-2">
+                    <div key={type} className="md:space-y-1">
+                        <h3 className="capitalize md:text-lg">{type}</h3>
+                        <div key={type} className="flex flex-wrap gap-px p-px">
                             {skills.map((skill) => (
                                 <Skill key={skill.name} skill={skill} />
                             ))}

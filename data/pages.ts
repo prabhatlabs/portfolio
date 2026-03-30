@@ -313,7 +313,7 @@ export const myInfo = {
     name: "Prabhat Mishra",
     title: "Software Developer",
     description:
-        "Software Developer specializing in the TypeScript/Node.js ecosystem, building privacy-first, scalable SaaS products with a focus on operational reliability and long-term cost-efficiency.",
+        "Software Developer specializing in the **TypeScript/Node.js ecosystem**, building ||privacy-first||, scalable ||SaaS products|| with a focus on operational reliability and long-term cost-efficiency.\\\\I work across the **full stack** — from **database design** and **backend APIs** to responsive **frontend interfaces** — preferring to ||own features end-to-end||.\\\\Most of what I build is shaped by one question: ||does this stay fast and cost less as it scales?||",
     imageUrl: "/me.webp",
     contacts: contactLinksArray,
     skills: skillsArray,
