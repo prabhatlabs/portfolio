@@ -2,7 +2,9 @@ import { LineShadowText } from "@/components/ui/line-shadow-text";
 import RenderText from "@/components/ui/render-text";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { myInfo } from "@/data/pages";
+import { getIcon } from "@/lib/icon";
 import Image from "next/image";
+import Link from "next/link";
 
 export function About() {
     return (
@@ -49,6 +51,25 @@ export function About() {
                     <p className="text-sm text-muted-foreground mt-1 mb-3">
                         <RenderText>{myInfo.description}</RenderText>
                     </p>
+                </div>
+                <div className="w-4 md:w-6 shrink-0"></div>
+            </div>
+
+            <div className="my-4 flex items-center w-[calc(100%-2px)] ml-px py-0.5 bg-border">
+                <div className="w-4 md:w-6 shrink-0"></div>
+                <div className="flex items-center gap-0.5 w-full">
+                    {myInfo.contacts.map((contact) => {
+                        const Icon = getIcon(contact.iconName);
+                        return (
+                            <Link
+                                key={contact.name}
+                                href={contact.url}
+                                className="p-2 text-foreground bg-background transition-colors duration-300"
+                            >
+                                <Icon className="size-5" />
+                            </Link>
+                        );
+                    })}
                 </div>
                 <div className="w-4 md:w-6 shrink-0"></div>
             </div>
