@@ -6,7 +6,7 @@ import { Skills } from "./_components/skills";
 
 export default function MyPage() {
     return (
-        <div className="relative px-4 overflow-hidden">
+        <div className="h-dvh overflow-auto relative">
             {/*<video
                 className="object-cover w-full h-full absolute z-0 top-0 left-0"
                 src="/bg.mp4"
@@ -15,8 +15,10 @@ export default function MyPage() {
                 muted
                 playsInline
             />*/}
-            <div className="z-10 relative h-dvh overflow-auto py-4 md:py-20">
-                <div className="max-w-3xl mx-auto border space-y-4 md:space-y-6">
+            <div className="h-4 md:h-20 w-full border-b"></div>
+            <div className="z-10 max-w-3xl mx-auto relative">
+                <div className="-z-10 absolute top-0 left-0 w-4 h-full border-l"></div>
+                <div className="space-y-4 md:space-y-6">
                     <Footer asNav />
                     <About />
                     <Experiance />
@@ -24,7 +26,9 @@ export default function MyPage() {
                     <Skills />
                     <Footer />
                 </div>
+                <div className="-z-10 absolute top-0 right-0 w-4 h-full border-r"></div>
             </div>
+            <div className="h-4 md:h-20 w-full border-t"></div>
         </div>
     );
 }

@@ -9,8 +9,8 @@ export function About() {
         <div className="py-4 sm:py-6 relative mt-6 sm:mt-8 md:mt-10">
             {/* image */}
             <div className="flex items-center w-full border-y">
-                <div className="sm:w-4 md:w-6 shrink-0"></div>
-                <div className="flex items-center w-full sm:border-x">
+                <div className="w-4 md:w-6 shrink-0"></div>
+                <div className="flex items-center w-full border-x">
                     <div className="p-0.5 w-fit h-fit shrink-0 border-r">
                         <Image
                             src={myInfo.imageUrl}
@@ -23,12 +23,12 @@ export function About() {
                     <div className="w-full h-[54px] bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_2px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed [--pattern-fg:var(--color-black)]/5 dark:[--pattern-fg:var(--color-white)]/10"></div>
                     <ThemeToggle className="hover:bg-muted dark:hover:bg-muted w-[54px] h-[54px] rounded-none border-l" />
                 </div>
-                <div className="sm:w-4 md:w-6 shrink-0"></div>
+                <div className="w-4 md:w-6 shrink-0"></div>
             </div>
 
             <div className="my-4 flex items-center w-full border-y">
-                <div className="sm:w-4 md:w-6 shrink-0"></div>
-                <div className="sm:border-x px-2">
+                <div className="w-4 md:w-6 shrink-0"></div>
+                <div className="border-x px-2">
                     <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold">
                         {myInfo.name}
                     </h1>
@@ -50,7 +50,7 @@ export function About() {
                         <RenderText>{myInfo.description}</RenderText>
                     </p>
                 </div>
-                <div className="sm:w-4 md:w-6 shrink-0"></div>
+                <div className="w-4 md:w-6 shrink-0"></div>
             </div>
         </div>
     );

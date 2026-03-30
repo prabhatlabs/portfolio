@@ -8,7 +8,7 @@ export function Projects() {
     const showFiller = projects.length % 2 !== 0;
     return (
         <div>
-            <h2 className="p-4 md:p-6 mt-16 sm:mt-20 md:mt-24 border-y text-3xl md:text-5xl font-bold">
+            <h2 className="p-6 mt-16 sm:mt-20 md:mt-24 border-y text-3xl md:text-5xl font-bold">
                 <LineShadowText
                     className="italic"
                     shadowColor={"var(--foreground)"}
@@ -16,7 +16,7 @@ export function Projects() {
                     Projects
                 </LineShadowText>
             </h2>
-            <div className="relative grid md:grid-cols-2 p-4 pb-0 gap-4">
+            <div className="relative grid md:grid-cols-2 p-6 pb-0 gap-6">
                 <div className="absolute mask-b-from-85% w-full h-full bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_2px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed [--pattern-fg:var(--color-black)]/5 dark:[--pattern-fg:var(--color-white)]/10"></div>
                 {projects.map((project) => {
                     return (
