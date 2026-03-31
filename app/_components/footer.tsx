@@ -6,12 +6,13 @@ export function Footer({ asNav }: { asNav?: boolean }) {
     return (
         <div className={`p-4 sm:p-6 ${asNav ? "border-b" : "border-t"}`}>
             <div className="flex flex-col sm:flex-row items-center justify-between gap-1 sm:gap-4">
-                <div className="text-center sm:text-start">
-                    {asNav ? (
-                        <h2 className="text-2xl font-bold">prabhatlabs.dev</h2>
-                    ) : (
-                        <h2 className="text-2xl font-bold">prabhatlabs</h2>
-                    )}
+                <div className={asNav ? "w-full sm:w-fit" : "w-fit"}>
+                    <h2 className="text-2xl font-bold">
+                        prabhatlabs
+                        {asNav && (
+                            <span className="text-muted-foreground">.dev</span>
+                        )}
+                    </h2>
                     {!asNav && (
                         <p className="text-xs text-muted-foreground">
                             prabhatlabs.dev &copy; {new Date().getFullYear()}

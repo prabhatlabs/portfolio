@@ -15,7 +15,13 @@ export default function MyPage() {
                 muted
                 playsInline
             />*/}
-            <div className="h-4 md:h-20 w-full border-b"></div>
+            <div className="h-6 md:h-20 w-full border-b">
+                <div className="max-w-3xl mx-auto border-x h-full relative">
+                    <span className="text-muted-foreground/75 text-[10px] font-mono absolute bottom-1 left-2">
+                        max-w-3xl mx-auto
+                    </span>
+                </div>
+            </div>
             <div className="z-10 max-w-3xl mx-auto relative">
                 <div className="-z-10 absolute top-0 left-0 w-4 h-full border-l"></div>
                 <div className="space-y-4 md:space-y-6">
@@ -28,7 +34,9 @@ export default function MyPage() {
                 </div>
                 <div className="-z-10 absolute top-0 right-0 w-4 h-full border-r"></div>
             </div>
-            <div className="h-4 md:h-20 w-full border-t"></div>
+            <div className="h-4 md:h-20 w-full border-t">
+                <div className="max-w-3xl mx-auto border-x h-full"></div>
+            </div>
         </div>
     );
 }

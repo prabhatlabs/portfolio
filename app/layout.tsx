@@ -2,13 +2,19 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
+import { DM_Sans, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 
 const dmsans = DM_Sans({
     subsets: ["latin"],
     variable: "--font-dmsans",
+});
+
+const geist_mono = Geist_Mono({
+    subsets: ["latin"],
+    variable: "--font-geist-mono",
+    weight: "500",
 });
 
 export const metadata: Metadata = {
@@ -92,7 +98,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning suppressContentEditableWarning>
-            <body className={`antialiased no-scrollbar ${dmsans.className}`}>
+            <body
+                className={`antialiased no-scrollbar ${dmsans.className} ${geist_mono.variable}`}
+            >
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="dark"
