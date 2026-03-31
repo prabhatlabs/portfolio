@@ -28,7 +28,7 @@ export function About() {
                             className="object-cover size-[50px] border  "
                         />
                     </div>
-                    <div className="w-full h-[54px] bg-[repeating-linear-gradient(315deg,color-mix(in_oklab,var(--border)60%,transparent)_0,color-mix(in_oklab,var(--border)60%,transparent)_2px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed"></div>
+                    <div className="animate-line-shadow w-full h-[54px] bg-[repeating-linear-gradient(315deg,color-mix(in_oklab,var(--border)60%,transparent)_0,color-mix(in_oklab,var(--border)60%,transparent)_2px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed"></div>
                     <ThemeToggle className="hover:bg-muted dark:hover:bg-muted w-[54px] h-[54px] rounded-none border-l" />
                 </div>
                 <div className="w-4 md:w-6 shrink-0 bg-muted h-[54px] border-x"></div>

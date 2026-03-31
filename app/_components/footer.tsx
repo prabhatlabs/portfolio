@@ -4,8 +4,11 @@ import Link from "next/link";
 
 export function Footer({ asNav }: { asNav?: boolean }) {
     return (
-        <div className={`p-4 sm:p-6 ${asNav ? "border-b" : "border-t"}`}>
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-1 sm:gap-4">
+        <div className={`py-4 sm:py-6 ${asNav ? "border-b" : "border-t"}`}>
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-1 sm:gap-4 sm:border-y px-4 sm:px-6 relative">
+                <span className="text-muted-foreground/75 text-[10px] font-mono absolute bottom-full left-6 hidden sm:block">
+                    flex items-center justify-between gap-4
+                </span>
                 <div className={asNav ? "w-full sm:w-fit" : "w-fit"}>
                     <h2 className="text-2xl font-bold">
                         prabhatlabs

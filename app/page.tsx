@@ -6,7 +6,7 @@ import { Skills } from "./_components/skills";
 
 export default function MyPage() {
     return (
-        <div className="h-dvh overflow-auto relative">
+        <div className="min-h-dvh h-full overflow-auto relative">
             {/*<video
                 className="object-cover w-full h-full absolute z-0 top-0 left-0"
                 src="/bg.mp4"
@@ -15,6 +15,7 @@ export default function MyPage() {
                 muted
                 playsInline
             />*/}
+            <div className="animate-line-shadow absolute -z-10 w-screen h-full top-0 left-0 bg-[repeating-linear-gradient(315deg,color-mix(in_oklab,var(--border)60%,transparent)_0,color-mix(in_oklab,var(--border)60%,transparent)_2px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed"></div>
             <div className="h-6 md:h-20 w-full border-b">
                 <div className="max-w-3xl mx-auto border-x h-full relative">
                     <span className="text-muted-foreground/75 text-[10px] font-mono absolute bottom-1 left-2">
@@ -22,7 +23,7 @@ export default function MyPage() {
                     </span>
                 </div>
             </div>
-            <div className="z-10 max-w-3xl mx-auto relative">
+            <div className="z-10 max-w-3xl mx-auto relative bg-background">
                 <div className="-z-10 absolute top-0 left-0 w-4 h-full border-l"></div>
                 <div className="space-y-4 md:space-y-6">
                     <Footer asNav />

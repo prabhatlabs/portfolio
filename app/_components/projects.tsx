@@ -16,13 +16,13 @@ export function Projects() {
                     Projects
                 </LineShadowText>
             </h2>
-            <div className="relative grid md:grid-cols-2 p-6 pb-0 gap-6">
-                <div className="absolute mask-b-from-85% w-full h-full bg-[repeating-linear-gradient(315deg,color-mix(in_oklab,var(--border)60%,transparent)_0,color-mix(in_oklab,var(--border)60%,transparent)_2px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed"></div>
+            <div className="relative grid sm:grid-cols-2 px-4 py-6 pb-0 gap-4">
+                <div className="absolute mask-b-from-85% mask-t-from-85% mask-l-from-85% mask-r-from-85% w-full h-full animate-line-shadow bg-[repeating-linear-gradient(315deg,color-mix(in_oklab,var(--border)60%,transparent)_0,color-mix(in_oklab,var(--border)60%,transparent)_2px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed"></div>
                 {projects.map((project) => {
                     return (
                         <div
                             key={project.title}
-                            className="z-10 bg-background p-4 border flex flex-col gap-2 justify-between"
+                            className="z-10 bg-background p-2 md:p-3 border flex flex-col gap-2 justify-between"
                         >
                             <div className="space-y-2">
                                 <Image
@@ -30,7 +30,7 @@ export function Projects() {
                                     alt={project.title}
                                     width={300}
                                     height={160}
-                                    className="w-full h-fit aspect-video rounded"
+                                    className="w-full h-fit aspect-video rounded border"
                                 />
                                 <div className="flex items-center gap-2">
                                     <Image

@@ -50,7 +50,7 @@ export function LineShadowText({
             style={{ "--shadow-color": shadowColor } as CSSProperties}
             className={cn(
                 "relative z-0 inline-flex",
-                "after:absolute after:top-[0.1em] after:left-[0.1em] after:content-[attr(data-text)]",
+                "after:absolute after:top-[0.08em] after:left-[0.08em] after:content-[attr(data-text)]",
                 "after:bg-[linear-gradient(45deg,transparent_45%,var(--shadow-color)_45%,var(--shadow-color)_55%,transparent_0)]",
                 "after:-z-10 after:bg-size-[0.1em_0.1em] after:bg-clip-text after:text-transparent",
                 "after:animate-line-shadow",
