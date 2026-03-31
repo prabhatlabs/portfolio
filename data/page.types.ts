@@ -4,22 +4,22 @@ export type LinkItem = {
     name: string;
     url: string;
     icon?: IconType;
-    target: '_blank' | '_self';
-}
+    target: "_blank" | "_self";
+};
 
 export type PillItem = {
     name: string;
     icon: IconType;
-}
+};
 
 export type ContentContent = {
     iconUrl?: string;
-    title: string,
+    title: string;
     imageUrl?: string;
-    content: string | string[]
+    content: string | string[];
     links?: LinkItem[];
-    pills?: PillItem[]
-}
+    pills?: PillItem[];
+};
 
 export type PageContent = {
     title: string;
@@ -33,4 +33,4 @@ export type PageContent = {
     imageUrl?: string;
     videoUrl?: string;
     pills?: PillItem[];
-}
+};
