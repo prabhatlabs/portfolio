@@ -14,8 +14,8 @@ export function About() {
                 <span className="absolute bottom-full left-0 my-1 mx-4 sm:mx-6 font-mono text-[10px] text-muted-foreground/75">
                     me.webp
                 </span>
-                <span className="absolute bottom-full right-0 my-1 mx-4 sm:mx-6 font-mono text-[10px] text-muted-foreground/75">
-                    mode-toggle
+                <span className="absolute hidden sm:block bottom-full right-0 my-1 mx-4 sm:mx-6 font-mono text-[10px] text-muted-foreground/75">
+                    ctrl + m
                 </span>
                 <div className="w-4 md:w-6 shrink-0 bg-muted h-[54px] border-x"></div>
                 <div className="flex items-center w-full">

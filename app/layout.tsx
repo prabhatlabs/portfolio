@@ -58,7 +58,7 @@ export const metadata: Metadata = {
         siteName: "Prabhat Mishra - Software Developer",
         images: [
             {
-                url: "https://prabhatlabs.dev/preview.png",
+                url: "https://prabhatlabs.dev/preview.webp",
                 width: 1200,
                 height: 630,
                 alt: "Prabhat Mishra - Software Developer Portfolio",
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
         title: "Prabhat Mishra | Software Developer",
         description:
             "Self-taught software developer building scalable applications with TypeScript, React, Node.js, Python, and Go.",
-        images: ["https://prabhatlabs.dev/preview.png"],
+        images: ["https://prabhatlabs.dev/preview.webp"],
         creator: "@prabhatlabs",
         site: "@prabhatlabs",
     },
