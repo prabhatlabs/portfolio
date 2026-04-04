@@ -71,6 +71,9 @@ export function About() {
 
             {/* contacts */}
             <div className="my-4 flex items-center w-full ml-px border-y relative">
+                <span className="absolute bottom-full my-0.5 left-4 md:left-6 font-mono text-[10px] text-muted-foreground/75">
+                    flex items-center w-fit
+                </span>
                 <div className="w-4 md:w-6 shrink-0"></div>
                 <div className="flex items-center w-fit border-x">
                     {myInfo.contacts.map((contact, index) => {

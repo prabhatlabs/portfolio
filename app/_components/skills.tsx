@@ -35,11 +35,21 @@ export function Skills() {
                     Skills
                 </LineShadowText>
             </h2>
-            <div className="space-y-4 px-6 mb-10 sm:mb-12 md:mb-14">
+            <div className="space-y-4 pb-4 mb-10 sm:mb-12 md:mb-14 relative border-b">
+                <div className="absolute h-full w-px border-l top-0 left-4"></div>
+                <div className="absolute h-full w-px border-l top-0 right-4"></div>
+                <span className="absolute top-0 left-0 -translate-x-[50%] translate-y-[100px] rotate-270 my-2 mx-2 font-mono text-[10px] text-muted-foreground/75">
+                    flex flex-wrap gap-px p-px
+                </span>
                 {Object.entries(grps).map(([type, skills]) => (
-                    <div key={type} className="md:space-y-1">
-                        <h3 className="capitalize md:text-lg">{type}</h3>
-                        <div key={type} className="flex flex-wrap gap-px p-px">
+                    <div key={type} className="space-y-1 md:space-y-2">
+                        <h3 className="px-6 capitalize md:text-lg w-full border-y">
+                            {type}
+                        </h3>
+                        <div
+                            key={type}
+                            className="px-6 flex flex-wrap gap-px p-px"
+                        >
                             {skills.map((skill) => (
                                 <Skill key={skill.name} skill={skill} />
                             ))}

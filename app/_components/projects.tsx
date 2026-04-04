@@ -18,6 +18,9 @@ export function Projects() {
             </h2>
             <div className="relative grid sm:grid-cols-2 px-4 py-6 pb-0 gap-4">
                 <div className="absolute mask-b-from-85% mask-t-from-85% mask-l-from-85% mask-r-from-85% w-full h-full animate-line-shadow bg-[repeating-linear-gradient(315deg,color-mix(in_oklab,var(--border)60%,transparent)_0,color-mix(in_oklab,var(--border)60%,transparent)_2px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed"></div>
+                <span className="absolute top-0 left-0 my-1 mx-4 font-mono text-[10px] text-muted-foreground/75">
+                    grid sm:grid-cols-2 gap-4 px-4 py-6
+                </span>
                 {projects.map((project) => {
                     return (
                         <div

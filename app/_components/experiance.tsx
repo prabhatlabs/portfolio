@@ -14,14 +14,17 @@ export function Experiance() {
                 </LineShadowText>
             </h2>
 
-            <div className="">
+            <div className="relative">
+                <span className="absolute top-0 left-0 -translate-x-[50%] translate-y-[100px] rotate-270 my-2 mx-2 font-mono text-[10px] text-muted-foreground/75">
+                    flex sm:gap-2 justify-between px-4
+                </span>
                 {experiences.map((experience, index) => (
                     <div
                         key={index}
                         className={`flex sm:gap-2 justify-between px-4 ${index !== 0 ? "border-b" : "border-y"}`}
                     >
                         <div
-                            className={`flex items-center gap-2 sm:gap-4 w-full sm:w-fit px-2 py-4 border-l border-r sm:border-r-0`}
+                            className={`flex  gap-2 sm:gap-4 w-full sm:w-fit px-2 py-4 border-l border-r sm:border-r-0`}
                         >
                             <Image
                                 src={experience.iconUrl}
