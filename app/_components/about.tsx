@@ -25,7 +25,7 @@ export function About() {
                             alt="Prabhat Mishra"
                             width={100}
                             height={100}
-                            className="object-cover size-[50px] border  "
+                            className="object-cover size-[50px] border grayscale-50"
                         />
                     </div>
                     <div className="animate-line-shadow w-full h-[54px] bg-[repeating-linear-gradient(315deg,color-mix(in_oklab,var(--border)60%,transparent)_0,color-mix(in_oklab,var(--border)60%,transparent)_2px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed"></div>

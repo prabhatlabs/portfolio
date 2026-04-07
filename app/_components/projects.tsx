@@ -22,7 +22,7 @@ export function Projects() {
                     grid sm:grid-cols-2 gap-4 px-4 py-6
                 </span>
                 {projects.map((project) => {
-                    return (
+                    return project?.show ? (
                         <div
                             key={project.title}
                             className="z-10 bg-background p-2 md:p-3 border flex flex-col gap-2 justify-between"
@@ -69,7 +69,7 @@ export function Projects() {
                                 })}
                             </div>
                         </div>
-                    );
+                    ) : null;
                 })}
             </div>
         </div>

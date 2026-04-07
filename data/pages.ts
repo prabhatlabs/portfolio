@@ -111,6 +111,7 @@ export const skillsArray = Object.values(skills);
 
 export const projects = [
     {
+        show: true,
         title: "rum-core",
         description:
             "Full-stack RUM SaaS capturing Core Web Vitals and API timing via a lightweight browser script. Built on a pre-aggregation pipeline across 34 Turso/SQLite tables with a Bun/Elysia + Cloudflare Workers backend and Next.js dashboard.",
@@ -132,6 +133,7 @@ export const projects = [
         ],
     },
     {
+        show: true,
         title: "Blade Tools",
         description:
             "Suite of 20+ privacy-first, browser-based tools for PDF, image, and video processing. Leverages FFmpeg WASM for client-side media transcoding — zero uploads, zero server costs.",
@@ -153,6 +155,7 @@ export const projects = [
         ],
     },
     {
+        show: true,
         title: "Mapware",
         description:
             "Real-time IP threat intelligence platform that fetches and geo-enriches 10,000+ abusive IPs from AbuseIPDB on a 6-hour refresh cycle. Visualized via a 3D OpenStreetMap heatmap with Redis-cached coordinates.",
@@ -174,6 +177,7 @@ export const projects = [
         ],
     },
     {
+        show: true,
         title: "Ref.com",
         description:
             "Multi-tenant link management SaaS with custom aliases, branded QR codes, password protection, and click analytics. Built with React/Redux, Express.js, MongoDB aggregation pipelines, and Redis caching.",
@@ -195,6 +199,7 @@ export const projects = [
         ],
     },
     {
+        show: false,
         title: "Yapless",
         description:
             "Microservice AI chat platform combining FastAPI and Node.js with a RAG-inspired retrieval layer for vector-based document search. Reduces hallucination through intelligent source ranking and context-aware response generation.",
@@ -210,6 +215,7 @@ export const projects = [
         ],
     },
     {
+        show: false,
         title: "ClipB",
         description:
             "Ephemeral clipboard sharing with cURL/API support, one-time self-destructing fetch, and 40-minute Redis TTL auto-expiry. Secured with Google OAuth and rate limiting.",
@@ -231,6 +237,7 @@ export const projects = [
         ],
     },
     {
+        show: false,
         title: "HBench | Human Benchmark",
         description:
             "Minimalist cognitive and reflex training app recreating reaction speed, memory, typing, and aim tests at 60fps. Built with Next.js, Zustand, Framer Motion, and Tailwind CSS.",
