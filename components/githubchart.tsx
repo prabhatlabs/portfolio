@@ -3,17 +3,18 @@
 import { useContributionData } from "@/hooks/use-contributions";
 import {
     CellRendererProps,
+    ContributionData,
     ContributionDay,
     ContributionWeek,
 } from "@/types/contributions";
 import { useState } from "react";
 
 const LEVEL_COLORS = [
-    "bg-muted/60",
-    "bg-emerald-900/60",
-    "bg-emerald-700/80",
-    "bg-emerald-500",
-    "bg-emerald-400",
+    "bg-muted dark:bg-muted/70",
+    "bg-emerald-200 dark:bg-emerald-900/60",
+    "bg-emerald-400 dark:bg-emerald-700/80",
+    "bg-emerald-600 dark:bg-emerald-500",
+    "bg-emerald-700 dark:bg-emerald-400",
 ];
 
 export function DefaultCellRenderer({ day, size }: CellRendererProps) {
@@ -22,8 +23,48 @@ export function DefaultCellRenderer({ day, size }: CellRendererProps) {
         <div
             style={{ width: size, height: size }}
             className={`transition-all duration-150 hover:ring-1 hover:ring-emerald-400/60 hover:scale-110 ${LEVEL_COLORS[day.level]}`}
-            title={day.date ? `${day.date}: ${day.count} contributions` : ""}
         />
+    );
+}
+
+export function Stats({
+    loading,
+    data,
+}: {
+    loading: boolean;
+    data: ContributionData;
+}) {
+    return (
+        <div className="flex gap-3 md:gap-5 mb-4 text-muted-foreground text-xs">
+            {loading ? (
+                <>
+                    <span className="w-[110px] h-4 rounded-sm bg-foreground/10 animate-pulse"></span>
+                    <span className="w-[98px] h-4 rounded-sm bg-foreground/10 animate-pulse"></span>
+                    <span className="w-[86px] h-4 rounded-sm bg-foreground/10 animate-pulse"></span>
+                </>
+            ) : (
+                <>
+                    <span>
+                        <span className="text-foreground font-semibold">
+                            {data.totalContributions.toLocaleString()}
+                        </span>{" "}
+                        contributions
+                    </span>
+                    <span>
+                        <span className="text-foreground font-semibold">
+                            {data.currentStreak}d
+                        </span>{" "}
+                        current streak
+                    </span>
+                    <span>
+                        <span className="text-foreground font-semibold">
+                            {data.longestStreak}d
+                        </span>{" "}
+                        max streak
+                    </span>
+                </>
+            )}
+        </div>
     );
 }
 
@@ -48,7 +89,7 @@ function MonthLabels({ weeks }: { weeks: ContributionWeek[] }) {
 
     return (
         <div
-            className="relative h-5 w-[736px] mb-1"
+            className="relative h-5 w-full mb-1"
             style={{
                 display: "grid",
                 gridTemplateColumns: `repeat(${weeks.length}, 1fr)`,
@@ -87,7 +128,7 @@ function DayLabels({ cellSize, gap }: { cellSize: number; gap: number }) {
 function Tooltip({ day }: { day: ContributionDay | null }) {
     if (!day || !day.date) return null;
     return (
-        <div className="fixed z-50 pointer-events-none px-2 py-1 rounded-md bg-popover border border-border text-xs text-popover-foreground shadow-md">
+        <div className="fixed z-50 pointer-events-none px-2 py-1 rounded-md bg-popover border border-border text-xs text-popover-foreground shadow-lg">
             <span className="font-semibold">{day.count}</span> contributions on{" "}
             {new Date(day.date + "T00:00:00").toLocaleDateString("default", {
                 weekday: "short",
@@ -119,6 +160,7 @@ export function ContributionChart({
         day: ContributionDay;
         x: number;
         y: number;
+        showLeft: boolean;
     } | null>(null);
 
     if (error) {
@@ -134,48 +176,17 @@ export function ContributionChart({
     return (
         <div className={`select-none ${className}`}>
             {/* Stats */}
-            {showStats && (
-                <div className="flex gap-6 mb-4 text-sm text-muted-foreground">
-                    {loading ? (
-                        <>
-                            <span className="w-[186px] h-5 rounded-sm bg-foreground/20 animate-pulse"></span>
-                            <span className="w-[112px] h-5 rounded-sm bg-foreground/20 animate-pulse"></span>
-                            <span className="w-[120px] h-5 rounded-sm bg-foreground/20 animate-pulse"></span>
-                        </>
-                    ) : (
-                        <>
-                            <span>
-                                <span className="text-foreground font-semibold">
-                                    {data.totalContributions.toLocaleString()}
-                                </span>{" "}
-                                contributions this year
-                            </span>
-                            <span>
-                                <span className="text-foreground font-semibold">
-                                    {data.currentStreak}
-                                </span>
-                                d current streak
-                            </span>
-                            <span>
-                                <span className="text-foreground font-semibold">
-                                    {data.longestStreak}
-                                </span>
-                                d longest streak
-                            </span>
-                        </>
-                    )}
-                </div>
-            )}
+            {showStats && <Stats loading={loading} data={data} />}
 
             {/* Grid */}
-            <div className="flex w-full">
+            <div className="flex">
                 {/*{showLabels && <DayLabels cellSize={cellSize} gap={gap} />}*/}
-                <div className="w-full flex flex-col overflow-x-auto">
+                <div className="flex flex-col overflow-x-auto">
                     {showLabels && <MonthLabels weeks={data.weeks} />}
 
                     {loading ? (
                         <div
-                            className="h-[102px] w-full animate-pulse bg-foreground/20 rounded"
+                            className="h-[102px] w-full animate-pulse bg-foreground/10 rounded"
                             style={{ gap }}
                         ></div>
                     ) : error ? (
@@ -186,7 +197,7 @@ export function ContributionChart({
                             Something went wrong!
                         </div>
                     ) : (
-                        <div className="flex" style={{ gap }}>
+                        <div className="flex w-full" style={{ gap }}>
                             {data.weeks.map((week, wi) => (
                                 <div
                                     key={wi}
@@ -202,6 +213,10 @@ export function ContributionChart({
                                                         day,
                                                         x: e.clientX,
                                                         y: e.clientY,
+                                                        showLeft:
+                                                            e.clientX >
+                                                            window.innerWidth /
+                                                                2,
                                                     });
                                             }}
                                             onMouseMove={(e) => {
@@ -210,6 +225,10 @@ export function ContributionChart({
                                                         day,
                                                         x: e.clientX,
                                                         y: e.clientY,
+                                                        showLeft:
+                                                            e.clientX >
+                                                            window.innerWidth /
+                                                                2,
                                                     });
                                             }}
                                             onMouseLeave={() =>
@@ -230,7 +249,7 @@ export function ContributionChart({
             </div>
 
             {/* Legend */}
-            <div className="flex items-center gap-1 mt-3 text-[10px] text-muted-foreground/60">
+            <div className="flex justify-end items-center gap-1 mt-3 text-[10px] text-muted-foreground/60">
                 <span>Less</span>
                 {LEVEL_COLORS.map((c, i) => (
                     <div
@@ -247,8 +266,10 @@ export function ContributionChart({
                 <div
                     style={{
                         position: "fixed",
-                        left: tooltip.x + 12,
-                        top: tooltip.y - 36,
+                        left: tooltip.showLeft
+                            ? tooltip.x - 230
+                            : tooltip.x + 10,
+                        top: tooltip.y - 30,
                         pointerEvents: "none",
                         zIndex: 50,
                     }}
