@@ -1,7 +1,7 @@
 import { About } from "./_components/about";
 import { Experiance } from "./_components/experiance";
 import { Footer } from "./_components/footer";
-import { GithubStats } from "./_components/githubstats";
+import { Contributions } from "./_components/contributions";
 import { Projects } from "./_components/projects";
 import { Skills } from "./_components/skills";
 
@@ -35,7 +35,7 @@ export default function MyPage() {
                     <About />
                     <Experiance />
                     <Projects />
-                    <GithubStats />
+                    <Contributions />
                     <Skills />
                     <Footer />
                 </div>

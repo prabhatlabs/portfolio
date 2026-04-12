@@ -10,16 +10,16 @@ export function About() {
     return (
         <div className="py-4 sm:py-6 relative mt-6 sm:mt-8 md:mt-10">
             {/* image */}
-            <div className="flex items-center w-full border-y relative">
+            <div className="flex items-center w-full border border-x-border/10 relative">
                 <span className="absolute bottom-full left-0 my-1 mx-4 sm:mx-6 font-mono text-[10px] text-muted-foreground/75">
                     me.webp
                 </span>
                 <span className="absolute hidden sm:block bottom-full right-0 my-1 mx-4 sm:mx-6 font-mono text-[10px] text-muted-foreground/75">
                     ctrl + m
                 </span>
-                <div className="w-4 md:w-6 shrink-0 bg-muted h-[54px] border-x"></div>
+                <div className="animate-line-shadow w-4 md:w-6 shrink-0 h-[54px] bg-[repeating-linear-gradient(315deg,color-mix(in_oklab,var(--border)60%,transparent)_0,color-mix(in_oklab,var(--border)60%,transparent)_2px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed"></div>
                 <div className="flex items-center w-full">
-                    <div className="p-0.5 w-fit h-fit shrink-0 border-r">
+                    <div className="p-0.5 w-fit h-fit shrink-0 border-x">
                         <Image
                             src={myInfo.imageUrl}
                             alt="Prabhat Mishra"
@@ -29,9 +29,9 @@ export function About() {
                         />
                     </div>
                     <div className="animate-line-shadow w-full h-[54px] bg-[repeating-linear-gradient(315deg,color-mix(in_oklab,var(--border)60%,transparent)_0,color-mix(in_oklab,var(--border)60%,transparent)_2px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed"></div>
-                    <ThemeToggle className="hover:bg-muted dark:hover:bg-muted w-[54px] h-[54px] rounded-none border-l" />
+                    <ThemeToggle className="hover:bg-muted dark:hover:bg-muted w-[54px] h-[54px] rounded-none border-x" />
                 </div>
-                <div className="w-4 md:w-6 shrink-0 bg-muted h-[54px] border-x"></div>
+                <div className="animate-line-shadow w-4 md:w-6 shrink-0 h-[54px] bg-[repeating-linear-gradient(315deg,color-mix(in_oklab,var(--border)60%,transparent)_0,color-mix(in_oklab,var(--border)60%,transparent)_2px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed"></div>
             </div>
 
             {/* about */}

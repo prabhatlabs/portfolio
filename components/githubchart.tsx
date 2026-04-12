@@ -89,16 +89,18 @@ function MonthLabels({ weeks }: { weeks: ContributionWeek[] }) {
 
     return (
         <div
-            className="relative h-5 w-full mb-1"
-            style={{
-                display: "grid",
-                gridTemplateColumns: `repeat(${weeks.length}, 1fr)`,
-            }}
+            className="relative h-5 w-[800px] flex justify-between mb-1"
+            style={
+                {
+                    // display: "grid",
+                    // gridTemplateColumns: `repeat(${weeks.length}, 1fr)`,
+                }
+            }
         >
             {labels.map(({ label, index }) => (
                 <span
                     key={label + index}
-                    className="absolute text-[10px] text-muted-foreground/70 w-full"
+                    className="text-[10px] text-muted-foreground/70 w-full"
                     style={{ left: `${(index / weeks.length) * 100}%` }}
                 >
                     {label}
@@ -179,7 +181,7 @@ export function ContributionChart({
             {showStats && <Stats loading={loading} data={data} />}
 
             {/* Grid */}
-            <div className="flex">
+            <div className="flex w-full ">
                 {/*{showLabels && <DayLabels cellSize={cellSize} gap={gap} />}*/}
                 <div className="flex flex-col overflow-x-auto">
                     {showLabels && <MonthLabels weeks={data.weeks} />}
