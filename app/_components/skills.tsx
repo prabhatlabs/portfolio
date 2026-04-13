@@ -7,7 +7,7 @@ function Skill({ skill }: { skill: { name: string; iconName: string } }) {
     return (
         <div
             key={skill.name}
-            className="flex items-center gap-1.5 p-1.5 text-muted bg-foreground/90"
+            className="flex items-center gap-1.5 p-1.5 bg-foreground/10"
         >
             <IconComp className="size-4" />
             <span className="text-xs">{skill.name}</span>

@@ -47,7 +47,7 @@ function ProjectCard({
                             key={link.name}
                             href={link.url}
                             target={link.target}
-                            className="text-sm bg-foreground/90 text-background px-1.5 py-0.5 border flex items-center gap-2 justify-center"
+                            className="text-sm bg-foreground/10 px-1.5 py-0.5 flex items-center gap-2 justify-center"
                         >
                             <IconComp className="size-4" />
                             {link.name}

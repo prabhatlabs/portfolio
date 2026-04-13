@@ -33,7 +33,7 @@ export function About() {
 
             {/* about */}
             <div className="my-4 flex items-center w-full h-full border-y relative">
-                <div className="w-4 md:w-6 shrink-0 h-80 sm:h-60 md:h-55 border-x"></div>
+                <div className="w-4 md:w-6 shrink-0 h-80 sm:h-60 md:h-55 border-r"></div>
                 <div className="px-2 h-80 sm:h-60 md:h-55 flex flex-col justify-center">
                     <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold flex gap-2 sm:gap-3 md:gap-4 items-center">
                         {myInfo.name.split(" ").map((char, index) => (
@@ -63,7 +63,7 @@ export function About() {
                         <RenderText>{myInfo.description}</RenderText>
                     </p>
                 </div>
-                <div className="w-4 md:w-6 shrink-0 h-80 sm:h-60 md:h-55 border-x"></div>
+                <div className="w-4 md:w-6 shrink-0 h-80 sm:h-60 md:h-55 border-l"></div>
             </div>
 
             {/* contacts */}

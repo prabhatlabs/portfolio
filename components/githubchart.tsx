@@ -10,11 +10,11 @@ import {
 import { useState } from "react";
 
 const LEVEL_COLORS = [
-    "bg-muted dark:bg-muted/70",
-    "bg-emerald-200 dark:bg-emerald-900/60",
-    "bg-emerald-400 dark:bg-emerald-700/80",
-    "bg-emerald-600 dark:bg-emerald-500",
-    "bg-emerald-700 dark:bg-emerald-400",
+    "bg-foreground/5",
+    "bg-foreground/30",
+    "bg-foreground/50",
+    "bg-foreground/70",
+    "bg-foreground/90",
 ];
 
 export function DefaultCellRenderer({ day, size }: CellRendererProps) {
