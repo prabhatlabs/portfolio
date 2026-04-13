@@ -4,11 +4,17 @@ import { getIcon } from "@/lib/icon";
 import Image from "next/image";
 import Link from "next/link";
 
-function ProjectCard({ project }: { project: (typeof projects)[0] }) {
+function ProjectCard({
+    project,
+    idx,
+}: {
+    project: (typeof projects)[0];
+    idx: number;
+}) {
     return (
         <div
             key={project.title}
-            className="z-10 bg-background p-2 md:p-3 border flex flex-col gap-2 justify-between min-w-[300px]"
+            className={`${idx === 0 || idx === projects.length - 1 ? "" : "border-l"} z-10 p-2 md:p-3 flex flex-col gap-2 justify-between min-w-[300px]`}
         >
             <div className="space-y-2">
                 <Image
@@ -65,14 +71,17 @@ export function Projects() {
                 </LineShadowText>
             </h2>
             <div className="relative w-full px-4 py-6 border-b overflow-hidden">
-                <div className="flex gap-4 w-full overflow-auto">
-                    <div className="absolute mask-b-from-85% mask-t-from-85% mask-l-from-85% mask-r-from-85% w-full h-full animate-line-shadow bg-[repeating-linear-gradient(315deg,color-mix(in_oklab,var(--border)60%,transparent)_0,color-mix(in_oklab,var(--border)60%,transparent)_2px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed"></div>
-                    <span className="absolute top-0 left-0 my-1 mx-4 font-mono text-[10px] text-muted-foreground/75">
+                <div className="flex w-full overflow-auto border">
+                    <span className="absolute top-0 left-0 my-1 mx-4 font-mono text-[10px] text-muted-foreground">
                         flex gap-4 w-full overflow-auto
                     </span>
-                    {projects.map((project) => {
+                    {projects.map((project, index) => {
                         return project?.show ? (
-                            <ProjectCard project={project} />
+                            <ProjectCard
+                                project={project}
+                                idx={index}
+                                key={index}
+                            />
                         ) : null;
                     })}
                 </div>

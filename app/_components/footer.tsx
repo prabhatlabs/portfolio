@@ -6,14 +6,17 @@ export function Footer({ asNav }: { asNav?: boolean }) {
     return (
         <div className={`py-4 sm:py-6 ${asNav ? "border-b" : "border-t"}`}>
             <div className="flex flex-col sm:flex-row items-center justify-between gap-1 sm:gap-4 sm:border-y px-4 sm:px-6 relative">
-                <span className="text-muted-foreground/75 text-[10px] font-mono absolute bottom-full left-6 hidden sm:block">
+                <span className="text-muted-foreground text-[10px] font-mono absolute bottom-full left-2 hidden sm:block mb-1.5">
+                    max-w-3xl mx-auto
+                </span>
+                <span className="text-muted-foreground text-[10px] font-mono absolute top-full left-6 hidden sm:block mt-1.5">
                     flex items-center justify-between gap-4
                 </span>
                 <div className={asNav ? "w-full sm:w-fit" : "w-fit"}>
                     <h2 className="text-2xl font-bold">
                         prabhatlabs
                         {asNav && (
-                            <span className="text-muted-foreground">.dev</span>
+                            <span className="text-foreground/60">.dev</span>
                         )}
                     </h2>
                     {!asNav && (
