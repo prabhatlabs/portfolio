@@ -1,11 +1,10 @@
-import Image from "next/image";
+import Bg from "@/components/bg";
 import { About } from "./_components/about";
 import { Contributions } from "./_components/contributions";
 import { Experiance } from "./_components/experiance";
 import { Footer } from "./_components/footer";
 import { Projects } from "./_components/projects";
 import { Skills } from "./_components/skills";
-import Bg from "@/components/bg";
 
 export default function MyPage() {
     return (
