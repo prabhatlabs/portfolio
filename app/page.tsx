@@ -5,6 +5,7 @@ import { Experiance } from "./_components/experiance";
 import { Footer } from "./_components/footer";
 import { Projects } from "./_components/projects";
 import { Skills } from "./_components/skills";
+import RandomShit from "./_components/randomshit";
 
 export default function MyPage() {
     return (
@@ -28,9 +29,10 @@ export default function MyPage() {
                     <Experiance />
                     <Projects />
                     <Contributions />
-                    <Skills />
-                    <Footer />
                 </div>
+                <Skills />
+                <RandomShit />
+                <Footer />
                 <div className="-z-10 absolute top-0 right-0 w-4 h-full border-r"></div>
             </div>
 

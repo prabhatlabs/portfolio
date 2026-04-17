@@ -35,7 +35,7 @@ export function Skills() {
                     Skills
                 </LineShadowText>
             </h2>
-            <div className="space-y-2 pb-4 mb-10 sm:mb-12 md:mb-14 relative border-y">
+            <div className="space-y-2 pb-2 relative border-y">
                 <div className="absolute h-full w-px border-l top-0 left-4"></div>
                 <div className="absolute h-full w-px border-l top-0 right-4"></div>
                 <span className="absolute top-0 left-0 -translate-x-[50%] translate-y-[100px] rotate-270 my-2 mx-2 font-mono text-[10px] text-muted-foreground">
