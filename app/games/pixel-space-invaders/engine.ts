@@ -2,9 +2,7 @@ import {
     BULLET_SIZE,
     BULLET_SPEED,
     COLORS,
-    ENEMY_COLS,
     ENEMY_DESCEND_STEP,
-    ENEMY_ROWS,
     ENEMY_SIZE,
     ENEMY_SPACING,
     ENEMY_SPEED_INITIAL,
@@ -39,7 +37,7 @@ export class GameEngine {
             width: PLAYER_SIZE,
             height: PLAYER_SIZE,
             hp: 100,
-            maxHp: 100
+            maxHp: 100,
         };
         this.initEnemies();
     }
@@ -51,29 +49,33 @@ export class GameEngine {
 
         const count = 6 + Math.floor(Math.random() * 5); // 6 to 10 enemies
         const patternType = (this.wave - 1) % 4; // 0: Up Arrow, 1: Down Arrow, 2: Angle /, 3: Angle \
-        
+
         const startX = GAME_WIDTH / 2;
         const spacing = ENEMY_SIZE + ENEMY_SPACING;
 
         for (let i = 0; i < count; i++) {
             let x = 0;
             let targetY = 0;
-            
-            if (patternType === 0) { // Upward Arrow
+
+            if (patternType === 0) {
+                // Upward Arrow
                 const mid = Math.floor(count / 2);
                 x = startX + (i - mid) * spacing;
                 targetY = 100 + Math.abs(i - mid) * 35;
-            } else if (patternType === 1) { // Downward Arrow
+            } else if (patternType === 1) {
+                // Downward Arrow
                 const mid = Math.floor(count / 2);
                 x = startX + (i - mid) * spacing;
                 targetY = 200 - Math.abs(i - mid) * 35;
-            } else if (patternType === 2) { // Angle /
+            } else if (patternType === 2) {
+                // Angle /
                 const totalW = count * spacing;
-                x = (startX - totalW / 2) + i * spacing;
+                x = startX - totalW / 2 + i * spacing;
                 targetY = 100 + (count - i) * 25;
-            } else { // Angle \
+            } else {
+                // Angle \
                 const totalW = count * spacing;
-                x = (startX - totalW / 2) + i * spacing;
+                x = startX - totalW / 2 + i * spacing;
                 targetY = 100 + i * 25;
             }
 
@@ -92,7 +94,7 @@ export class GameEngine {
 
     initBoss() {
         this.mode = "BOSS";
-        const bossHp = 30 + (this.wave * 2);
+        const bossHp = 30 + this.wave * 2;
         this.boss = {
             x: GAME_WIDTH / 2 - 50,
             y: -150,
@@ -104,7 +106,7 @@ export class GameEngine {
             laserActive: false,
             laserX: 0,
             laserTimer: 0,
-            lastTrackTime: Date.now()
+            lastTrackTime: Date.now(),
         };
     }
 
@@ -115,7 +117,10 @@ export class GameEngine {
         if ((keys["ArrowLeft"] || keys["a"]) && this.player.x > 0) {
             this.player.x -= PLAYER_SPEED;
         }
-        if ((keys["ArrowRight"] || keys["d"]) && this.player.x < GAME_WIDTH - this.player.width) {
+        if (
+            (keys["ArrowRight"] || keys["d"]) &&
+            this.player.x < GAME_WIDTH - this.player.width
+        ) {
             this.player.x += PLAYER_SPEED;
         }
 
@@ -128,20 +133,31 @@ export class GameEngine {
         this.bullets.forEach((bullet) => {
             if (bullet.isEnemy) {
                 // Diagonal or vertical movement
-                bullet.y += (bullet.vy ?? BULLET_SPEED * 0.6);
+                bullet.y += bullet.vy ?? BULLET_SPEED * 0.6;
                 if (bullet.vx) bullet.x += bullet.vx;
 
                 // Hit player?
                 if (this.checkCollision(bullet, this.player)) {
                     bullet.active = false;
                     this.player.hp -= 1;
-                    this.createExplosion(this.player.x + this.player.width/2, this.player.y, COLORS.player, 3);
+                    this.createExplosion(
+                        this.player.x + this.player.width / 2,
+                        this.player.y,
+                        COLORS.player,
+                        3,
+                    );
                 }
             } else {
-                bullet.y -= (bullet.vy ?? BULLET_SPEED);
+                bullet.y -= bullet.vy ?? BULLET_SPEED;
                 if (bullet.vx) bullet.x += bullet.vx;
             }
-            if (bullet.y < -50 || bullet.y > GAME_HEIGHT + 50 || bullet.x < -50 || bullet.x > GAME_WIDTH + 50) bullet.active = false;
+            if (
+                bullet.y < -50 ||
+                bullet.y > GAME_HEIGHT + 50 ||
+                bullet.x < -50 ||
+                bullet.x > GAME_WIDTH + 50
+            )
+                bullet.active = false;
         });
         this.bullets = this.bullets.filter((b) => b.active);
 
@@ -166,20 +182,19 @@ export class GameEngine {
     }
 
     updateMinions() {
-        let allInPosition = true;
         let shouldStepDown = false;
 
         // Group entry
         if (this.isEntering) {
             this.groupY += 4;
-            this.enemies.forEach(e => {
+            this.enemies.forEach((e) => {
                 const targetYForEnemy = e.targetY;
                 if (e.y < targetYForEnemy) {
                     e.y += 4;
                     if (e.y > targetYForEnemy) e.y = targetYForEnemy;
                 }
             });
-            if (this.enemies.every(e => e.y >= e.targetY)) {
+            if (this.enemies.every((e) => e.y >= e.targetY)) {
                 this.isEntering = false;
             }
         } else {
@@ -195,7 +210,7 @@ export class GameEngine {
             });
 
             // Enemy Shooting logic: Reduced base rate from 0.08 to 0.03
-            const shootProbability = 0.03 + (this.wave * 0.005);
+            const shootProbability = 0.03 + this.wave * 0.005;
             if (Math.random() < shootProbability) {
                 this.enemyShoot();
             }
@@ -217,7 +232,11 @@ export class GameEngine {
                     bullet.active = false;
                     enemy.alive = false;
                     this.score += 10;
-                    this.createExplosion(enemy.x + enemy.width / 2, enemy.y + enemy.height / 2, COLORS.enemy);
+                    this.createExplosion(
+                        enemy.x + enemy.width / 2,
+                        enemy.y + enemy.height / 2,
+                        COLORS.enemy,
+                    );
                 }
             });
         });
@@ -230,7 +249,7 @@ export class GameEngine {
     enemyShoot() {
         // Find bottom enemies
         const columns: Record<number, Enemy> = {};
-        this.enemies.forEach(e => {
+        this.enemies.forEach((e) => {
             if (e.alive) {
                 if (!columns[e.col] || columns[e.col].y < e.y) {
                     columns[e.col] = e;
@@ -241,7 +260,8 @@ export class GameEngine {
         const bottomEnemies = Object.values(columns);
         if (bottomEnemies.length === 0) return;
 
-        const shooter = bottomEnemies[Math.floor(Math.random() * bottomEnemies.length)];
+        const shooter =
+            bottomEnemies[Math.floor(Math.random() * bottomEnemies.length)];
         this.bullets.push({
             x: shooter.x + shooter.width / 2 - BULLET_SIZE / 2,
             y: shooter.y + shooter.height,
@@ -249,7 +269,7 @@ export class GameEngine {
             height: BULLET_SIZE,
             active: true,
             timestamp: Date.now(),
-            isEnemy: true
+            isEnemy: true,
         });
     }
 
@@ -263,20 +283,22 @@ export class GameEngine {
         }
 
         // 1. Follow Player with more delay/inertia
-        const targetX = this.player.x + this.player.width / 2 - this.boss.width / 2;
+        const targetX =
+            this.player.x + this.player.width / 2 - this.boss.width / 2;
         const dx = targetX - this.boss.x;
         // Use a smaller factor for more "lag" feel
-        const followFactor = 0.02 + (this.wave * 0.005); 
+        const followFactor = 0.02 + this.wave * 0.005;
         this.boss.x += dx * followFactor;
 
         // 2. Laser Logic: Charge and Fire continuous while in range
         const bossCenterX = this.boss.x + this.boss.width / 2;
         const playerCenterX = this.player.x + this.player.width / 2;
-        const inRange = Math.abs(bossCenterX - playerCenterX) < this.boss.width / 2;
+        const inRange =
+            Math.abs(bossCenterX - playerCenterX) < this.boss.width / 2;
 
         if (inRange) {
-            this.boss.laserTimer += 16.67; 
-            if (this.boss.laserTimer >= 100) { 
+            this.boss.laserTimer += 16.67;
+            if (this.boss.laserTimer >= 100) {
                 this.boss.laserActive = true;
             }
         } else {
@@ -300,14 +322,23 @@ export class GameEngine {
         // Boss collisions
         this.bullets.forEach((bullet) => {
             if (bullet.isEnemy) return;
-            if (this.boss && this.boss.alive && this.checkCollision(bullet, this.boss)) {
+            if (
+                this.boss &&
+                this.boss.alive &&
+                this.checkCollision(bullet, this.boss)
+            ) {
                 bullet.active = false;
                 this.boss.hp -= 1;
                 this.createExplosion(bullet.x, bullet.y, COLORS.player);
                 if (this.boss.hp <= 0) {
                     this.boss.alive = false;
                     this.score += 500;
-                    this.createExplosion(this.boss.x + this.boss.width / 2, this.boss.y + this.boss.height / 2, COLORS.enemy, 30);
+                    this.createExplosion(
+                        this.boss.x + this.boss.width / 2,
+                        this.boss.y + this.boss.height / 2,
+                        COLORS.enemy,
+                        30,
+                    );
                     this.wave++;
                     this.enemySpeed = ENEMY_SPEED_INITIAL + this.wave * 0.1;
                     this.mode = "MINIONS";
@@ -327,10 +358,10 @@ export class GameEngine {
         const directions = [
             { vx: 0, vy: BULLET_SPEED * 0.7 },
             { vx: -2, vy: BULLET_SPEED * 0.7 },
-            { vx: 2, vy: BULLET_SPEED * 0.7 }
+            { vx: 2, vy: BULLET_SPEED * 0.7 },
         ];
 
-        directions.forEach(dir => {
+        directions.forEach((dir) => {
             this.bullets.push({
                 x: centerX - BULLET_SIZE / 2,
                 y: centerY,
@@ -340,7 +371,7 @@ export class GameEngine {
                 timestamp: Date.now(),
                 isEnemy: true,
                 vx: dir.vx,
-                vy: dir.vy
+                vy: dir.vy,
             });
         });
     }
@@ -351,7 +382,7 @@ export class GameEngine {
         if (this.mode === "BOSS" && this.boss && this.boss.y < 80) return;
 
         const now = Date.now();
-        const lastPlayerBullet = this.bullets.filter(b => !b.isEnemy).pop();
+        const lastPlayerBullet = this.bullets.filter((b) => !b.isEnemy).pop();
         if (lastPlayerBullet && now - lastPlayerBullet.timestamp < 200) return;
 
         this.bullets.push({
@@ -361,7 +392,7 @@ export class GameEngine {
             height: BULLET_SIZE,
             active: true,
             timestamp: now,
-            isEnemy: false
+            isEnemy: false,
         });
     }
 
@@ -369,19 +400,32 @@ export class GameEngine {
         // If 'b' is the player, use a smaller hurtbox (padding of 4px)
         if (b === this.player) {
             const hurtboxPadding = 6;
-            return a.x < b.x + b.width - hurtboxPadding &&
-                   a.x + a.width > b.x + hurtboxPadding &&
-                   a.y < b.y + b.height - hurtboxPadding &&
-                   a.y + a.height > b.y + hurtboxPadding;
+            return (
+                a.x < b.x + b.width - hurtboxPadding &&
+                a.x + a.width > b.x + hurtboxPadding &&
+                a.y < b.y + b.height - hurtboxPadding &&
+                a.y + a.height > b.y + hurtboxPadding
+            );
         }
 
-        return a.x < b.x + b.width && a.x + a.width > b.x && a.y < b.y + b.height && a.y + a.height > b.y;
+        return (
+            a.x < b.x + b.width &&
+            a.x + a.width > b.x &&
+            a.y < b.y + b.height &&
+            a.y + a.height > b.y
+        );
     }
 
-    createExplosion(x: number, y: number, color: string, count: number = PARTICLE_COUNT) {
+    createExplosion(
+        x: number,
+        y: number,
+        color: string,
+        count: number = PARTICLE_COUNT,
+    ) {
         for (let i = 0; i < count; i++) {
             this.particles.push({
-                x, y,
+                x,
+                y,
                 vx: (Math.random() - 0.5) * 8,
                 vy: (Math.random() - 0.5) * 8,
                 life: PARTICLE_LIFESPAN + Math.random() * 20,
@@ -395,14 +439,30 @@ export class GameEngine {
 
         // Player
         ctx.fillStyle = COLORS.player;
-        ctx.fillRect(this.player.x, this.player.y, this.player.width, this.player.height);
+        ctx.fillRect(
+            this.player.x,
+            this.player.y,
+            this.player.width,
+            this.player.height,
+        );
 
         // Player HP Bar
-        const p_hpWidth = (this.player.hp / this.player.maxHp) * this.player.width;
+        const p_hpWidth =
+            (this.player.hp / this.player.maxHp) * this.player.width;
         ctx.fillStyle = COLORS.player;
-        ctx.fillRect(this.player.x, this.player.y + this.player.height + 10, this.player.width, 4);
+        ctx.fillRect(
+            this.player.x,
+            this.player.y + this.player.height + 10,
+            this.player.width,
+            4,
+        );
         ctx.fillStyle = "#22c55e"; // Green health
-        ctx.fillRect(this.player.x, this.player.y + this.player.height + 10, p_hpWidth, 4);
+        ctx.fillRect(
+            this.player.x,
+            this.player.y + this.player.height + 10,
+            p_hpWidth,
+            4,
+        );
 
         // Enemies
         ctx.fillStyle = COLORS.enemy;
@@ -415,19 +475,34 @@ export class GameEngine {
         // Boss
         if (this.boss && this.boss.alive) {
             ctx.fillStyle = COLORS.enemy;
-            ctx.fillRect(this.boss.x, this.boss.y, this.boss.width, this.boss.height);
-            
+            ctx.fillRect(
+                this.boss.x,
+                this.boss.y,
+                this.boss.width,
+                this.boss.height,
+            );
+
             const hpWidth = (this.boss.hp / this.boss.maxHp) * this.boss.width;
             ctx.fillStyle = COLORS.particle;
             ctx.fillRect(this.boss.x, this.boss.y - 15, hpWidth, 5);
 
             if (this.boss.laserActive) {
-                const gradient = ctx.createLinearGradient(this.boss.laserX - 15, 0, this.boss.laserX + 15, 0);
+                const gradient = ctx.createLinearGradient(
+                    this.boss.laserX - 15,
+                    0,
+                    this.boss.laserX + 15,
+                    0,
+                );
                 gradient.addColorStop(0, "transparent");
                 gradient.addColorStop(0.5, COLORS.enemy);
                 gradient.addColorStop(1, "transparent");
                 ctx.fillStyle = gradient;
-                ctx.fillRect(this.boss.laserX - 15, this.boss.y + this.boss.height, 30, GAME_HEIGHT);
+                ctx.fillRect(
+                    this.boss.laserX - 15,
+                    this.boss.y + this.boss.height,
+                    30,
+                    GAME_HEIGHT,
+                );
             }
         }
 

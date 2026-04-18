@@ -12,7 +12,32 @@ export default function GameContainer() {
     const [score, setScore] = useState(0);
     const keys = useRef<Record<string, boolean>>({});
 
-    const startStarfield = useRef<{ x: number; y: number; speed: number }[]>([]);
+    const startStarfield = useRef<{ x: number; y: number; speed: number }[]>(
+        [],
+    );
+
+    const startGame = () => {
+        engineRef.current = new GameEngine();
+        setGameState("PLAYING");
+    };
+
+    const drawOverlay = (
+        ctx: CanvasRenderingContext2D,
+        title: string,
+        subtitle: string,
+    ) => {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
+        ctx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+
+        ctx.fillStyle = COLORS.player;
+        ctx.font = "bold 40px var(--font-geist-mono)";
+        ctx.textAlign = "center";
+        ctx.fillText(title, GAME_WIDTH / 2, GAME_HEIGHT / 2 - 20);
+
+        ctx.fillStyle = COLORS.text;
+        ctx.font = "20px var(--font-geist-mono)";
+        ctx.fillText(subtitle, GAME_WIDTH / 2, GAME_HEIGHT / 2 + 30);
+    };
 
     useEffect(() => {
         // Initialize starfield
@@ -23,7 +48,15 @@ export default function GameContainer() {
         }));
 
         const handleKeyDown = (e: KeyboardEvent) => {
-            if ([" ", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
+            if (
+                [
+                    " ",
+                    "ArrowUp",
+                    "ArrowDown",
+                    "ArrowLeft",
+                    "ArrowRight",
+                ].includes(e.key)
+            ) {
                 e.preventDefault();
             }
             keys.current[e.key] = true;
@@ -71,12 +104,16 @@ export default function GameContainer() {
                         setScore(engineRef.current.score);
                     }
                 } else if (gameState === "START") {
-                    drawOverlay(ctx, "PIXEL SPACE INVADERS", "PRESS SPACE TO START");
+                    drawOverlay(
+                        ctx,
+                        "PIXEL SPACE INVADERS",
+                        "PRESS SPACE TO START",
+                    );
                 } else if (gameState === "GAMEOVER") {
                     drawOverlay(
                         ctx,
                         "GAME OVER",
-                        `SCORE: ${score} - PRESS R TO RESTART`
+                        `SCORE: ${score} - PRESS R TO RESTART`,
                     );
                 }
             }
@@ -93,34 +130,9 @@ export default function GameContainer() {
         };
     }, [gameState, score]);
 
-    const startGame = () => {
-        engineRef.current = new GameEngine();
-        setGameState("PLAYING");
-    };
-
-    const drawOverlay = (
-        ctx: CanvasRenderingContext2D,
-        title: string,
-        subtitle: string
-    ) => {
-        ctx.fillStyle = "rgba(0, 0, 0, 0.7)";
-        ctx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-
-        ctx.fillStyle = COLORS.player;
-        ctx.font = "bold 40px var(--font-geist-mono)";
-        ctx.textAlign = "center";
-        ctx.fillText(title, GAME_WIDTH / 2, GAME_HEIGHT / 2 - 20);
-
-        ctx.fillStyle = COLORS.text;
-        ctx.font = "20px var(--font-geist-mono)";
-        ctx.fillText(subtitle, GAME_WIDTH / 2, GAME_HEIGHT / 2 + 30);
-    };
-
     return (
         <div className="flex flex-col items-center justify-center gap-4 w-full max-w-[800px]">
-            <div
-                className="relative border-4 border-foreground/20 rounded-lg overflow-hidden shadow-2xl aspect-[4/3] w-full"
-            >
+            <div className="relative border-4 border-foreground/20 rounded-lg overflow-hidden shadow-2xl aspect-4/3 w-full">
                 <canvas
                     ref={canvasRef}
                     width={GAME_WIDTH}
@@ -130,7 +142,9 @@ export default function GameContainer() {
             </div>
             <div className="text-muted-foreground font-mono text-sm text-center">
                 <p>Move: WASD / ARROWS | Shoot: SPACE</p>
-                <p className="mt-2 opacity-50">Hint: Hidden in your portfolio, just for you.</p>
+                <p className="mt-2 opacity-50">
+                    Hint: Hidden in your portfolio, just for you.
+                </p>
             </div>
         </div>
     );
