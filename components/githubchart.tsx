@@ -8,6 +8,7 @@ import {
     ContributionWeek,
 } from "@/types/contributions";
 import { useState } from "react";
+import { createPortal } from "react-dom";
 
 const LEVEL_COLORS = [
     "bg-foreground/5",
@@ -22,7 +23,7 @@ export function DefaultCellRenderer({ day, size }: CellRendererProps) {
     return (
         <div
             style={{ width: size, height: size }}
-            className={`transition-all duration-150 hover:ring-1 hover:ring-emerald-400/60 hover:scale-110 ${LEVEL_COLORS[day.level]}`}
+            className={`transition-all duration-150 hover:ring-1 hover:ring-foreground hover:scale-110 ${LEVEL_COLORS[day.level]}`}
         />
     );
 }
@@ -130,7 +131,7 @@ function DayLabels({ cellSize, gap }: { cellSize: number; gap: number }) {
 function Tooltip({ day }: { day: ContributionDay | null }) {
     if (!day || !day.date) return null;
     return (
-        <div className="fixed z-50 pointer-events-none px-2 py-1 rounded-md bg-popover border border-border text-xs text-popover-foreground shadow-lg">
+        <div className="fixed z-50 pointer-events-none px-2 py-1 rounded-md bg-popover/5 backdrop-blur-sm border border-border text-xs text-popover-foreground shadow-lg">
             <span className="font-semibold">{day.count}</span> contributions on{" "}
             {new Date(day.date + "T00:00:00").toLocaleDateString("default", {
                 weekday: "short",
@@ -162,8 +163,35 @@ export function ContributionChart({
         day: ContributionDay;
         x: number;
         y: number;
-        showLeft: boolean;
     } | null>(null);
+
+    const TOOLTIP_WIDTH = 220;
+    const TOOLTIP_HEIGHT = 50;
+    const OFFSET = 12;
+
+    const getTooltipStyle = (x: number, y: number) => {
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+
+        const left =
+            x + OFFSET + TOOLTIP_WIDTH > vw
+                ? x - TOOLTIP_WIDTH - OFFSET
+                : x + OFFSET;
+
+        const top =
+            y + OFFSET + TOOLTIP_HEIGHT > vh
+                ? y - TOOLTIP_HEIGHT - OFFSET
+                : y + OFFSET;
+
+        return { left, top };
+    };
+
+    const handleMouseEvent = (e: React.MouseEvent, day: ContributionDay) => {
+        if (!day.date) return;
+        // Use clientX/Y — these are always viewport-relative
+        // If tooltip still appears wrong, your parent has a CSS transform breaking fixed positioning
+        setTooltip({ day, x: e.clientX, y: e.clientY });
+    };
 
     if (error) {
         return (
@@ -177,12 +205,9 @@ export function ContributionChart({
 
     return (
         <div className={`select-none ${className}`}>
-            {/* Stats */}
             {showStats && <Stats loading={loading} data={data} />}
 
-            {/* Grid */}
-            <div className="flex w-full ">
-                {/*{showLabels && <DayLabels cellSize={cellSize} gap={gap} />}*/}
+            <div className="flex w-full">
                 <div className="flex flex-col overflow-x-auto">
                     {showLabels && <MonthLabels weeks={data.weeks} />}
 
@@ -190,7 +215,7 @@ export function ContributionChart({
                         <div
                             className="h-[102px] w-full animate-pulse bg-foreground/10 rounded"
                             style={{ gap }}
-                        ></div>
+                        />
                     ) : error ? (
                         <div
                             className="h-[102px] w-full bg-foreground/10 rounded flex items-center justify-center"
@@ -209,30 +234,12 @@ export function ContributionChart({
                                     {week.days.map((day, di) => (
                                         <div
                                             key={di}
-                                            onMouseEnter={(e) => {
-                                                if (day.date)
-                                                    setTooltip({
-                                                        day,
-                                                        x: e.clientX,
-                                                        y: e.clientY,
-                                                        showLeft:
-                                                            e.clientX >
-                                                            window.innerWidth /
-                                                                2,
-                                                    });
-                                            }}
-                                            onMouseMove={(e) => {
-                                                if (day.date)
-                                                    setTooltip({
-                                                        day,
-                                                        x: e.clientX,
-                                                        y: e.clientY,
-                                                        showLeft:
-                                                            e.clientX >
-                                                            window.innerWidth /
-                                                                2,
-                                                    });
-                                            }}
+                                            onMouseEnter={(e) =>
+                                                handleMouseEvent(e, day)
+                                            }
+                                            onMouseMove={(e) =>
+                                                handleMouseEvent(e, day)
+                                            }
                                             onMouseLeave={() =>
                                                 setTooltip(null)
                                             }
@@ -257,28 +264,27 @@ export function ContributionChart({
                     <div
                         key={i}
                         style={{ width: cellSize, height: cellSize }}
-                        className={`${c}`}
+                        className={c}
                     />
                 ))}
                 <span>More</span>
             </div>
 
-            {/* Tooltip */}
-            {tooltip && (
-                <div
-                    style={{
-                        position: "fixed",
-                        left: tooltip.showLeft
-                            ? tooltip.x - 230
-                            : tooltip.x + 10,
-                        top: tooltip.y - 30,
-                        pointerEvents: "none",
-                        zIndex: 50,
-                    }}
-                >
-                    <Tooltip day={tooltip.day} />
-                </div>
-            )}
+            {/* Tooltip — rendered via portal to escape any transform context */}
+            {tooltip &&
+                createPortal(
+                    <div
+                        style={{
+                            position: "fixed",
+                            ...getTooltipStyle(tooltip.x, tooltip.y),
+                            pointerEvents: "none",
+                            zIndex: 9999,
+                        }}
+                    >
+                        <Tooltip day={tooltip.day} />
+                    </div>,
+                    document.body,
+                )}
         </div>
     );
 }
