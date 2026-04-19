@@ -12,7 +12,13 @@ export function Footer({ asNav }: { asNav?: boolean }) {
                 <span className="text-muted-foreground text-[10px] font-mono absolute top-full left-6 hidden sm:block mt-1.5">
                     flex items-center justify-between gap-4
                 </span>
-                <div className={asNav ? "w-full sm:w-fit" : "w-fit"}>
+                <div
+                    className={
+                        asNav
+                            ? "w-full sm:w-fit"
+                            : "w-fit text-center sm:text-left"
+                    }
+                >
                     <h2 className="text-2xl font-bold">
                         prabhatlabs
                         {asNav && (

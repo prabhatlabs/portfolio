@@ -12,7 +12,7 @@ export default function GamesLayout({
 }) {
     const pathname = usePathname();
     const isMainArcade = pathname === "/games";
-    
+
     // Determine header title based on path
     let headerTitle = "GAMES.exe";
     if (pathname.includes("pixel-space-invaders")) {
@@ -20,7 +20,7 @@ export default function GamesLayout({
     }
 
     return (
-        <main className="min-h-screen bg-background flex flex-col items-center relative overflow-hidden">
+        <main className="min-h-screen bg-background flex flex-col items-center relative overflow-hidden px-4">
             {/* Consistent Background elements */}
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
                 <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary rounded-full blur-[120px]" />
@@ -31,9 +31,15 @@ export default function GamesLayout({
             <div className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between w-full p-4 md:p-8 pointer-events-none">
                 <div className="pointer-events-auto">
                     <Link href={isMainArcade ? "/" : "/games"}>
-                        <Button variant="ghost" size="sm" className="gap-2 font-mono group">
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            className="gap-2 font-mono group"
+                        >
                             <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                            {isMainArcade ? "EXIT_TO_PORTFOLIO" : "EXIT_TO_ARCADE"}
+                            {isMainArcade
+                                ? "EXIT_TO_PORTFOLIO"
+                                : "EXIT_TO_ARCADE"}
                         </Button>
                     </Link>
                 </div>
@@ -41,9 +47,6 @@ export default function GamesLayout({
                     <h1 className="text-xl md:text-2xl font-bold font-mono tracking-tighter uppercase">
                         {headerTitle}
                     </h1>
-                    <p className="text-[10px] text-muted-foreground font-mono uppercase tracking-[0.2em] opacity-50">
-                        {isMainArcade ? "Library Root" : "Module Active"}
-                    </p>
                 </div>
             </div>
 

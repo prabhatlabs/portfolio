@@ -80,9 +80,9 @@ export function About() {
                             <Link
                                 key={contact.name}
                                 href={contact.url}
-                                className={`p-2 text-foreground transition-colors duration-300 ${index !== 0 ? "border-l" : ""}`}
+                                className={`p-2 text-foreground duration-300 group ${index !== 0 ? "border-l" : ""}`}
                             >
-                                <Icon className="size-5" />
+                                <Icon className="size-5 transition-transform group-hover:rotate-3 group-hover:-translate-y-1" />
                             </Link>
                         );
                     })}
