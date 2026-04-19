@@ -3,6 +3,7 @@ import RenderText from "@/components/ui/render-text";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { myInfo } from "@/data/pages";
 import { getIcon } from "@/lib/icon";
+import { Gamepad2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -86,9 +87,18 @@ export function About() {
                         );
                     })}
                 </div>
-                <span className="absolute top-1/2 transform -translate-y-1/2 right-4 md:right-6 px-2 py-1 h-full border-x flex items-center font-mono text-xs text-muted-foreground">
-                    Hire me!
-                </span>
+                <div className="absolute top-0 bottom-0 right-4 md:right-6 flex items-center">
+                    <Link
+                        href="/games"
+                        className="hidden md:flex items-center gap-1.5 px-3 h-full border-l font-mono text-xs text-muted-foreground hover:text-primary transition-all duration-300 hover:bg-primary/5 group"
+                    >
+                        <Gamepad2 className="size-3.5 group-hover:rotate-12 transition-transform" />
+                        <span className="whitespace-nowrap">Arcade</span>
+                    </Link>
+                    <span className="px-3 h-full border-x flex items-center font-mono text-xs text-muted-foreground whitespace-nowrap">
+                        Hire me!
+                    </span>
+                </div>
             </div>
         </div>
     );

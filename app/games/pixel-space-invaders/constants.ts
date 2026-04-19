@@ -22,7 +22,7 @@ export const ENEMY_SPEED_STEP = 0.05;
 export const ENEMY_DESCEND_STEP = 30;
 
 export const BULLET_SIZE = 6;
-export const BULLET_SPEED = 8;
+export const BULLET_SPEED = 12;
 
-export const PARTICLE_COUNT = 8;
+export const PARTICLE_COUNT = 10;
 export const PARTICLE_LIFESPAN = 30;
