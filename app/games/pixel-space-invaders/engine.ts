@@ -314,8 +314,8 @@ export class GameEngine {
             }
         }
 
-        // 4. Continuous Boss Bullets (independent of laser): Reduced from 0.05 to 0.02
-        if (Math.random() < 0.02) {
+        // 4. Continuous Boss Bullets (independent of laser)
+        if (Math.random() < 0.028) {
             this.bossShootDiagonal();
         }
 
@@ -446,24 +446,6 @@ export class GameEngine {
             this.player.height,
         );
 
-        // Player HP Bar
-        const p_hpWidth =
-            (this.player.hp / this.player.maxHp) * this.player.width;
-        ctx.fillStyle = COLORS.player;
-        ctx.fillRect(
-            this.player.x,
-            this.player.y + this.player.height + 10,
-            this.player.width,
-            4,
-        );
-        ctx.fillStyle = "#22c55e"; // Green health
-        ctx.fillRect(
-            this.player.x,
-            this.player.y + this.player.height + 10,
-            p_hpWidth,
-            4,
-        );
-
         // Enemies
         ctx.fillStyle = COLORS.enemy;
         this.enemies.forEach((enemy) => {
@@ -481,10 +463,6 @@ export class GameEngine {
                 this.boss.width,
                 this.boss.height,
             );
-
-            const hpWidth = (this.boss.hp / this.boss.maxHp) * this.boss.width;
-            ctx.fillStyle = COLORS.particle;
-            ctx.fillRect(this.boss.x, this.boss.y - 15, hpWidth, 5);
 
             if (this.boss.laserActive) {
                 const gradient = ctx.createLinearGradient(
@@ -520,16 +498,80 @@ export class GameEngine {
         });
         ctx.globalAlpha = 1;
 
-        // UI
-        ctx.fillStyle = COLORS.text;
-        ctx.font = "bold 20px var(--font-geist-mono)";
-        ctx.fillText(`SCORE: ${this.score}`, 40, 40);
-        ctx.fillText(`WAVE: ${this.wave}`, 40, 70);
-        ctx.fillText(`HEALTH: ${Math.ceil(this.player.hp)}%`, 40, 100);
+        // UI - Bottom Bar
+        const uiY = GAME_HEIGHT - 20;
 
-        if (this.mode === "BOSS") {
+        // Health Bar (Left Side)
+        const barWidth = 200;
+        const barHeight = 12;
+        const hpPercent = this.player.hp / this.player.maxHp;
+
+        // Bar Background
+        ctx.fillStyle = "rgba(255, 255, 255, 0.1)";
+        ctx.fillRect(20, uiY, barWidth, barHeight);
+
+        // Bar Fill
+        ctx.fillStyle = hpPercent > 0.3 ? "#22c55e" : "#ef4444";
+        ctx.fillRect(20, uiY, barWidth * hpPercent, barHeight);
+
+        // Health Text
+        ctx.fillStyle = COLORS.text;
+        ctx.font = "bold 14px monospace";
+        ctx.textAlign = "left";
+        ctx.fillText("SYSTEM_INTEGRITY", 20, uiY - 12);
+
+        // Score & Wave (Right Side)
+        ctx.textAlign = "right";
+        ctx.font = "bold 14px";
+        ctx.fillText(
+            `WAVE_${this.wave.toString().padStart(2, "0")}`,
+            GAME_WIDTH - 20,
+            uiY - 20,
+        );
+        ctx.font = "bold 32px monospace";
+        ctx.fillText(
+            `${this.score.toString().padStart(6, "0")}`,
+            GAME_WIDTH - 20,
+            uiY + barHeight,
+        );
+
+        // Wave Change Flash
+        if (
+            this.isEntering &&
+            (this.mode === "MINIONS" || this.mode === "BOSS")
+        ) {
+            ctx.textAlign = "center";
+            ctx.fillStyle = COLORS.player;
+            ctx.font = "bold 72px monospace";
+            const text =
+                this.mode === "MINIONS"
+                    ? `WAVE ${this.wave}`
+                    : `BOSS ${this.wave}`;
+            ctx.fillText(text, GAME_WIDTH / 2, GAME_HEIGHT / 2 + 40);
+        }
+
+        if (this.mode === "BOSS" && this.boss) {
+            // Boss HP Bar (Top Left - moved down to avoid header)
+            const bossBarWidth = 300;
+            const bossBarHeight = 8;
+            const bossHpPercent = this.boss.hp / this.boss.maxHp;
+            const bossUiY = 60;
+
+            ctx.fillStyle = "rgba(255, 255, 255, 0.1)";
+            ctx.fillRect(40, bossUiY, bossBarWidth, bossBarHeight);
+
             ctx.fillStyle = COLORS.enemy;
-            ctx.fillText("BOSS ENCOUNTER", GAME_WIDTH - 200, 40);
+            ctx.fillRect(
+                20,
+                bossUiY,
+                bossBarWidth * bossHpPercent,
+                bossBarHeight,
+            );
+
+            ctx.fillStyle = COLORS.enemy;
+            ctx.font = "bold 14px monospace";
+            ctx.textAlign = "left";
+            ctx.fillText("BOSS_INTEGRITY", 20, bossUiY - 8);
         }
     }
 }

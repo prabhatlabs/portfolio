@@ -30,12 +30,12 @@ export default function GameContainer() {
         ctx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 
         ctx.fillStyle = COLORS.player;
-        ctx.font = "bold 40px var(--font-geist-mono)";
+        ctx.font = "bold 40px monospace";
         ctx.textAlign = "center";
         ctx.fillText(title, GAME_WIDTH / 2, GAME_HEIGHT / 2 - 20);
 
         ctx.fillStyle = COLORS.text;
-        ctx.font = "20px var(--font-geist-mono)";
+        ctx.font = "20px monospace";
         ctx.fillText(subtitle, GAME_WIDTH / 2, GAME_HEIGHT / 2 + 30);
     };
 
@@ -66,6 +66,13 @@ export default function GameContainer() {
             if (gameState === "GAMEOVER" && (e.key === "r" || e.key === "R")) {
                 startGame();
             }
+            if (e.key === "p" || e.key === "P") {
+                setGameState((prev) => {
+                    if (prev === "PLAYING") return "PAUSED";
+                    if (prev === "PAUSED") return "PLAYING";
+                    return prev;
+                });
+            }
         };
 
         const handleKeyUp = (e: KeyboardEvent) => {
@@ -89,10 +96,12 @@ export default function GameContainer() {
                 ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
                 startStarfield.current.forEach((star) => {
                     ctx.fillRect(star.x, star.y, 2, 2);
-                    star.y += star.speed;
-                    if (star.y > GAME_HEIGHT) {
-                        star.y = 0;
-                        star.x = Math.random() * GAME_WIDTH;
+                    if (gameState !== "PAUSED") {
+                        star.y += star.speed;
+                        if (star.y > GAME_HEIGHT) {
+                            star.y = 0;
+                            star.x = Math.random() * GAME_WIDTH;
+                        }
                     }
                 });
 
@@ -103,6 +112,9 @@ export default function GameContainer() {
                         setGameState("GAMEOVER");
                         setScore(engineRef.current.score);
                     }
+                } else if (gameState === "PAUSED" && engineRef.current) {
+                    engineRef.current.draw(ctx);
+                    drawOverlay(ctx, "PAUSED", "PRESS P TO RESUME");
                 } else if (gameState === "START") {
                     drawOverlay(
                         ctx,
@@ -131,21 +143,23 @@ export default function GameContainer() {
     }, [gameState, score]);
 
     return (
-        <div className="flex flex-col items-center justify-center gap-4 w-full max-w-[800px]">
-            <div className="relative border-4 border-foreground/20 rounded-lg overflow-hidden shadow-2xl aspect-4/3 w-full">
+        <div className="flex flex-col items-center justify-center w-full h-full relative">
+            <div className="relative w-full h-full overflow-hidden shadow-2xl">
                 <canvas
                     ref={canvasRef}
                     width={GAME_WIDTH}
                     height={GAME_HEIGHT}
-                    className="w-full h-full cursor-none block"
+                    className="w-full h-full cursor-none block object-contain bg-black"
                 />
             </div>
-            <div className="text-muted-foreground font-mono text-sm text-center">
-                <p>Move: WASD / ARROWS | Shoot: SPACE</p>
-                <p className="mt-2 opacity-50">
-                    Hint: Hidden in your portfolio, just for you.
-                </p>
-            </div>
+            {gameState === "START" && (
+                <div className="absolute bottom-12 left-0 right-0 text-muted-foreground font-mono text-sm text-center animate-pulse">
+                    <p>Move: WASD / ARROWS | Shoot: SPACE | Pause: P</p>
+                    <p className="mt-2 opacity-50">
+                        Hint: Hidden in your portfolio, just for you.
+                    </p>
+                </div>
+            )}
         </div>
     );
 }

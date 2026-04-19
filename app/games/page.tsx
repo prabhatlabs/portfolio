@@ -14,7 +14,7 @@ const GAMES = [
 
 export default function GamesPage() {
     return (
-        <div className="z-10 flex flex-col items-center gap-12 w-full pt-12">
+        <div className="z-10 flex flex-col items-center justify-center gap-12 w-full flex-1 py-12">
             <div className="flex flex-col items-center gap-4 text-center">
                 <h1 className="text-4xl md:text-6xl font-bold font-mono tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/50">
                     ARCADE_MODE.exe

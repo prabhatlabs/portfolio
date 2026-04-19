@@ -1,4 +1,4 @@
-export type GameState = "START" | "PLAYING" | "BOSS" | "GAMEOVER";
+export type GameState = "START" | "PLAYING" | "BOSS" | "GAMEOVER" | "PAUSED";
 
 export interface Entity {
     x: number;
