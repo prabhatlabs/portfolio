@@ -10,6 +10,8 @@ export interface Entity {
 export interface Player extends Entity {
     hp: number;
     maxHp: number;
+    laserPower: number;
+    isLaserActive: boolean;
 }
 
 export interface Enemy extends Entity {

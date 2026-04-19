@@ -38,6 +38,8 @@ export class GameEngine {
             height: PLAYER_SIZE,
             hp: 100,
             maxHp: 100,
+            laserPower: 100,
+            isLaserActive: false,
         };
         this.initEnemies();
     }
@@ -124,8 +126,26 @@ export class GameEngine {
             this.player.x += PLAYER_SPEED;
         }
 
-        // Shooting
-        if (keys[" "] || keys["Enter"]) {
+        // Laser logic
+        const canUseLaser =
+            (keys["ArrowUp"] || keys["w"]) && this.player.laserPower > 0;
+
+        if (canUseLaser) {
+            this.player.isLaserActive = true;
+            this.player.laserPower = Math.max(0, this.player.laserPower - 0.25); // Slightly faster drain
+            if (this.player.laserPower === 0) {
+                this.player.isLaserActive = false;
+            }
+        } else {
+            this.player.isLaserActive = false;
+            this.player.laserPower = Math.min(
+                100,
+                this.player.laserPower + 0.1,
+            ); // Slightly faster recharge
+        }
+
+        // Shooting (disable while laser is active for balance)
+        if (!this.player.isLaserActive && (keys[" "] || keys["Enter"])) {
             this.shoot();
         }
 
@@ -165,6 +185,49 @@ export class GameEngine {
             this.updateMinions();
         } else {
             this.updateBoss();
+        }
+
+        // Laser damage logic
+        if (this.player.isLaserActive) {
+            const lx = this.player.x + this.player.width / 2;
+            const laserWidth = 10;
+
+            if (this.mode === "MINIONS") {
+                this.enemies.forEach((enemy) => {
+                    if (enemy.alive) {
+                        const ex1 = enemy.x;
+                        const ex2 = enemy.x + enemy.width;
+                        if (
+                            lx + laserWidth / 2 > ex1 &&
+                            lx - laserWidth / 2 < ex2
+                        ) {
+                            enemy.alive = false;
+                            this.score += 10;
+                            this.createExplosion(
+                                enemy.x + enemy.width / 2,
+                                enemy.y + enemy.height / 2,
+                                COLORS.enemy,
+                            );
+                        }
+                    }
+                });
+            } else if (this.boss && this.boss.alive) {
+                const bx1 = this.boss.x;
+                const bx2 = this.boss.x + this.boss.width;
+                if (lx + laserWidth / 2 > bx1 && lx - laserWidth / 2 < bx2) {
+                    this.boss.hp -= 0.1; // Laser deals continuous small damage
+                    if (Math.random() < 0.1)
+                        this.createExplosion(
+                            lx,
+                            this.boss.y + this.boss.height,
+                            COLORS.player,
+                            1,
+                        );
+                    if (this.boss.hp <= 0) {
+                        this.boss.hp = 0;
+                    }
+                }
+            }
         }
 
         // Particles
@@ -446,6 +509,17 @@ export class GameEngine {
             this.player.height,
         );
 
+        // Player Laser
+        if (this.player.isLaserActive && this.player.laserPower > 0) {
+            const lx = this.player.x + this.player.width / 2;
+            const gradient = ctx.createLinearGradient(lx - 10, 0, lx + 10, 0);
+            gradient.addColorStop(0, "transparent");
+            gradient.addColorStop(0.5, COLORS.particle); // Yellow/Accent for player laser
+            gradient.addColorStop(1, "transparent");
+            ctx.fillStyle = gradient;
+            ctx.fillRect(lx - 10, 0, 20, this.player.y);
+        }
+
         // Enemies
         ctx.fillStyle = COLORS.enemy;
         this.enemies.forEach((enemy) => {
@@ -513,6 +587,17 @@ export class GameEngine {
         // Bar Fill
         ctx.fillStyle = hpPercent > 0.3 ? "#22c55e" : "#ef4444";
         ctx.fillRect(20, uiY, barWidth * hpPercent, barHeight);
+
+        // Laser Power Bar (Yellow)
+        ctx.fillStyle = "rgba(255, 255, 255, 0.1)";
+        ctx.fillRect(20, uiY + 18, barWidth, 6);
+        ctx.fillStyle = COLORS.particle; // Yellow
+        ctx.fillRect(
+            20,
+            uiY + 18,
+            barWidth * (this.player.laserPower / 100),
+            6,
+        );
 
         // Health Text
         ctx.fillStyle = COLORS.text;

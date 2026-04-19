@@ -154,7 +154,7 @@ export default function GameContainer() {
             </div>
             {gameState === "START" && (
                 <div className="absolute bottom-12 left-0 right-0 text-muted-foreground font-mono text-sm text-center animate-pulse">
-                    <p>Move: WASD / ARROWS | Shoot: SPACE | Pause: P</p>
+                    <p>Move: WASD / ARROWS | Shoot: SPACE | Pause: P | Laser: UP/W</p>
                     <p className="mt-2 opacity-50">
                         Hint: Hidden in your portfolio, just for you.
                     </p>
