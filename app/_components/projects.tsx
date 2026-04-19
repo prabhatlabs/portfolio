@@ -22,7 +22,7 @@ function ProjectCard({
                     alt={project.title}
                     width={300}
                     height={160}
-                    className="w-full h-fit aspect-video rounded border"
+                    className="w-full h-fit aspect-video border"
                 />
                 <div className="flex items-center gap-2">
                     <Image
@@ -39,21 +39,34 @@ function ProjectCard({
                 </p>
             </div>
 
-            <div className="flex gap-px items-center">
-                {project.links.map((link) => {
-                    const IconComp = getIcon(link.iconName);
-                    return (
-                        <Link
-                            key={link.name}
-                            href={link.url}
-                            target={link.target}
-                            className="text-sm bg-foreground/10 px-1.5 py-0.5 flex items-center gap-2 justify-center"
-                        >
-                            <IconComp className="size-4" />
-                            {link.name}
-                        </Link>
-                    );
-                })}
+            <div className="space-y-2">
+                {project.skills && (
+                    <div className="flex gap-2 items-center">
+                        {project.skills.map((skill) => {
+                            const IconComp = getIcon(skill.iconName);
+                            return (
+                                <IconComp key={skill.name} title={skill.name} />
+                            );
+                        })}
+                    </div>
+                )}
+
+                <div className="flex gap-px items-center">
+                    {project.links.map((link) => {
+                        const IconComp = getIcon(link.iconName);
+                        return (
+                            <Link
+                                key={link.name}
+                                href={link.url}
+                                target={link.target}
+                                className="text-sm bg-foreground/10 px-1.5 py-0.5 flex items-center gap-2 justify-center"
+                            >
+                                <IconComp className="size-4" />
+                                {link.name}
+                            </Link>
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );

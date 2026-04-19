@@ -1,14 +1,26 @@
 import { LineShadowText } from "@/components/ui/line-shadow-text";
 import { skillsArray } from "@/data/pages";
 import { getIcon } from "@/lib/icon";
+import { Fragment } from "react/jsx-runtime";
 
-function Skill({ skill }: { skill: { name: string; iconName: string } }) {
+function Skill({
+    skill,
+    type,
+}: {
+    skill: { name: string; iconName: string };
+    type?: string;
+}) {
     const IconComp = getIcon(skill.iconName);
     return (
         <div
             key={skill.name}
-            className="flex items-center gap-1.5 p-1.5 bg-foreground/10"
+            className="relative flex items-center gap-1.5 p-1.5 bg-foreground/10"
         >
+            {type && (
+                <span className="text-foreground/60 text-[8px] capitalize absolute -top-[11px] left-0">
+                    {type}
+                </span>
+            )}
             <IconComp className="size-4" />
             <span className="text-xs">{skill.name}</span>
         </div>
@@ -35,27 +47,22 @@ export function Skills() {
                     Skills
                 </LineShadowText>
             </h2>
-            <div className="space-y-2 pb-2 relative border-y">
+            <div className="space-y-2 py-2.5 px-6.5 relative border-y">
                 <div className="absolute h-full w-px border-l top-0 left-4"></div>
                 <div className="absolute h-full w-px border-l top-0 right-4"></div>
-                <span className="absolute top-0 left-0 -translate-x-[50%] translate-y-[100px] rotate-270 my-2 mx-2 font-mono text-[10px] text-muted-foreground">
-                    flex flex-wrap gap-px p-px
-                </span>
-                {Object.entries(grps).map(([type, skills]) => (
-                    <div key={type} className="space-y-1 md:space-y-2">
-                        <h3 className="px-6 capitalize font-mono text-[10px] text-muted-foreground w-full border-b">
-                            {type}
-                        </h3>
-                        <div
-                            key={type}
-                            className="px-6 flex flex-wrap gap-px p-px"
-                        >
-                            {skills.map((skill) => (
-                                <Skill key={skill.name} skill={skill} />
+                <div className="flex flex-wrap gap-2.5">
+                    {Object.entries(grps).map(([type, skills]) => (
+                        <Fragment key={type}>
+                            {skills.map((skill, index) => (
+                                <Skill
+                                    key={skill.name}
+                                    skill={skill}
+                                    type={index === 0 ? type : undefined}
+                                />
                             ))}
-                        </div>
-                    </div>
-                ))}
+                        </Fragment>
+                    ))}
+                </div>
             </div>
         </div>
     );

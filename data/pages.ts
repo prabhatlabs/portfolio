@@ -117,6 +117,17 @@ export const projects = [
             "Full-stack RUM SaaS capturing Core Web Vitals and API timing via a lightweight browser script. Built on a pre-aggregation pipeline across 34 Turso/SQLite tables with a Bun/Elysia + Cloudflare Workers backend and Next.js dashboard.",
         imageUrl: "/projectThumbnails/rum-core.webp",
         iconUrl: "/projectLogos/rum-core.ico",
+        skills: [
+            skills.typescript,
+            skills.elysia,
+            skills.hono,
+            skills.nextjs,
+            skills.postgresql,
+            skills.redis,
+            skills.drizzle,
+            skills.cloudflare,
+            skills.docker,
+        ],
         links: [
             {
                 name: "Live",
@@ -139,6 +150,13 @@ export const projects = [
             "Suite of 20+ privacy-first, browser-based tools for PDF, image, and video processing. Leverages FFmpeg WASM for client-side media transcoding — zero uploads, zero server costs.",
         imageUrl: "/projectThumbnails/bladetools.webp",
         iconUrl: "/projectLogos/bladetools.ico",
+        skills: [
+            skills.typescript,
+            skills.nextjs,
+            skills.tailwind,
+            skills.shadcn,
+            skills.ffmpeg,
+        ],
         links: [
             {
                 name: "Live",
@@ -161,6 +179,15 @@ export const projects = [
             "Real-time IP threat intelligence platform that fetches and geo-enriches 10,000+ abusive IPs from AbuseIPDB on a 6-hour refresh cycle. Visualized via a 3D OpenStreetMap heatmap with Redis-cached coordinates.",
         imageUrl: "/projectThumbnails/mapware.webp",
         iconUrl: "/projectLogos/mapware.ico",
+        skills: [
+            skills.typescript,
+            skills.express,
+            skills.nextjs,
+            skills.redis,
+            skills.mongodb,
+            skills.tailwind,
+            skills.ffmpeg,
+        ],
         links: [
             {
                 name: "Live",
@@ -183,6 +210,16 @@ export const projects = [
             "Multi-tenant link management SaaS with custom aliases, branded QR codes, password protection, and click analytics. Built with React/Redux, Express.js, MongoDB aggregation pipelines, and Redis caching.",
         iconUrl: "/projectLogos/ref.svg",
         imageUrl: "/projectThumbnails/ref.webp",
+        skills: [
+            skills.typescript,
+            skills.express,
+            skills.mongodb,
+            skills.redis,
+            skills.react,
+            skills.tailwind,
+            skills.shadcn,
+            skills.docker,
+        ],
         links: [
             {
                 name: "Live",
