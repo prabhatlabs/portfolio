@@ -34,6 +34,12 @@ const COMMANDS_HELP: Record<string, string> = {
     skills: "List my technical skills",
     projects: "Show my featured projects",
     contact: "Show contact links",
+    ...Object.fromEntries(
+        contactLinksArray.map((c) => [
+            c.name.toLowerCase(),
+            `Open my ${c.name} profile`,
+        ]),
+    ),
     clear: "Clear the terminal screen",
     date: "Display current date",
     echo: "Print text to terminal",
@@ -95,12 +101,26 @@ export default function RandomShit({ onClose }: { onClose?: () => void }) {
         setCommandHistory((prev) => [trimmedCmd, ...prev]);
         setHistoryIndex(-1);
 
+        // Check for social commands
+        const socialLink = contactLinksArray.find(
+            (c) => c.name.toLowerCase() === cmd,
+        );
+        if (socialLink) {
+            newLines.push({
+                type: "info",
+                content: `Opening ${socialLink.name}...`,
+            });
+            window.open(socialLink.url, socialLink.target || "_blank");
+            setHistory((prev) => [...prev, ...newLines]);
+            return;
+        }
+
         switch (cmd) {
             case "help":
                 newLines.push({
                     type: "output",
                     content: Object.entries(COMMANDS_HELP)
-                        .map(([name, desc]) => `${name.padEnd(10)} - ${desc}`)
+                        .map(([name, desc]) => `${name.padEnd(12)} - ${desc}`)
                         .join("\n"),
                 });
                 break;
