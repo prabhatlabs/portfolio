@@ -46,6 +46,13 @@ const COMMANDS_HELP: Record<string, string> = {
     history: "Show command history",
     exit: "End current session",
     calc: "Evaluate arithmetic expressions (e.g., calc 2 + 2)",
+    uname: "Display system information",
+    uptime: "Show how long the session has been active",
+    neofetch: "Display system info with ASCII art",
+    theme: "Toggle theme (theme dark/light)",
+    pwd: "Print working directory",
+    sudo: "Try to gain root privileges",
+    search: "Search Google (e.g., search nextjs)",
 };
 
 export default function RandomShit({ onClose }: { onClose?: () => void }) {
@@ -57,6 +64,7 @@ export default function RandomShit({ onClose }: { onClose?: () => void }) {
     const [commandHistory, setCommandHistory] = useState<string[]>([]);
     const [historyIndex, setHistoryIndex] = useState(-1);
     const [currentDir, setCurrentDir] = useState("~");
+    const [startTime] = useState(Date.now());
 
     const scrollRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -103,30 +111,41 @@ export default function RandomShit({ onClose }: { onClose?: () => void }) {
         setHistoryIndex(-1);
 
         // Check for arithmetic expressions (simple calculator)
-        const isMathExpr = /^[\d\s+\-*/%().]+$/.test(trimmedCmd) && 
-                          /[\d]/.test(trimmedCmd) && 
-                          /[+\-*/%]/.test(trimmedCmd);
-        
+        const isMathExpr =
+            /^[\d\s+\-*/%().]+$/.test(trimmedCmd) &&
+            /[\d]/.test(trimmedCmd) &&
+            /[+\-*/%]/.test(trimmedCmd);
+
         if (isMathExpr || cmd === "calc") {
-            const expression = cmd === "calc" ? args.slice(1).join(" ") : trimmedCmd;
+            const expression =
+                cmd === "calc" ? args.slice(1).join(" ") : trimmedCmd;
             if (expression.trim()) {
                 try {
                     // Safe-ish evaluation of simple math
                     const result = new Function(`return ${expression}`)();
-                    if (typeof result === 'number') {
-                        newLines.push({ type: "output", content: result.toString() });
+                    if (typeof result === "number") {
+                        newLines.push({
+                            type: "output",
+                            content: result.toString(),
+                        });
                         setHistory((prev) => [...prev, ...newLines]);
                         return;
                     }
                 } catch (e) {
                     if (cmd === "calc") {
-                        newLines.push({ type: "error", content: "calc: invalid expression" });
+                        newLines.push({
+                            type: "error",
+                            content: "calc: invalid expression",
+                        });
                         setHistory((prev) => [...prev, ...newLines]);
                         return;
                     }
                 }
             } else if (cmd === "calc") {
-                newLines.push({ type: "error", content: "calc: missing expression" });
+                newLines.push({
+                    type: "error",
+                    content: "calc: missing expression",
+                });
                 setHistory((prev) => [...prev, ...newLines]);
                 return;
             }
@@ -240,6 +259,89 @@ export default function RandomShit({ onClose }: { onClose?: () => void }) {
                 newLines.push({ type: "info", content: "Session closed." });
                 if (onClose) setTimeout(onClose, 500);
                 break;
+            case "uname":
+                newLines.push({
+                    type: "output",
+                    content: `PrabhatLabs 1.0.0-generic x86_64 WebKit`,
+                });
+                break;
+            case "uptime":
+                const diff = Math.floor((Date.now() - startTime) / 1000);
+                const mins = Math.floor(diff / 60);
+                const secs = diff % 60;
+                newLines.push({
+                    type: "output",
+                    content: `up ${mins} minutes, ${secs} seconds`,
+                });
+                break;
+            case "pwd":
+                newLines.push({
+                    type: "output",
+                    content:
+                        currentDir === "~"
+                            ? "/home/guest"
+                            : "/home/guest/" + currentDir,
+                });
+                break;
+            case "sudo":
+                newLines.push({
+                    type: "error",
+                    content:
+                        "Permission denied: You are not in the sudoers file. This incident will be reported.",
+                });
+                break;
+            case "search":
+                const query = args.slice(1).join(" ");
+                if (!query) {
+                    newLines.push({
+                        type: "error",
+                        content: "search: missing query",
+                    });
+                } else {
+                    newLines.push({
+                        type: "info",
+                        content: `Searching Google for: ${query}...`,
+                    });
+                    window.open(
+                        `https://www.google.com/search?q=${encodeURIComponent(query)}`,
+                        "_blank",
+                    );
+                }
+                break;
+            case "theme":
+                const targetTheme = args[1];
+                if (targetTheme === "dark" || targetTheme === "light") {
+                    document.documentElement.classList.toggle(
+                        "dark",
+                        targetTheme === "dark",
+                    );
+                    newLines.push({
+                        type: "info",
+                        content: `Theme set to ${targetTheme}`,
+                    });
+                } else {
+                    newLines.push({
+                        type: "error",
+                        content: "Usage: theme <dark|light>",
+                    });
+                }
+                break;
+            case "neofetch":
+                newLines.push({
+                    type: "output",
+                    content: `      .---.       guest@portfolio
+     /     \\      ---------------
+    | () () |     OS: PrabhatOS 1.0.0
+     \\  ^  /      Kernel: Browser/WebKit
+      |||||       Shell: zsh 5.8
+      |||||       Uptime: ${Math.floor((Date.now() - startTime) / 60000)} mins
+                  Packages: 24 (npm)
+                  Resolution: ${window.innerWidth}x${window.innerHeight}
+                  Theme: Default
+                  CPU: Virtualized Browser
+                  Memory: High Performance`,
+                });
+                break;
             default:
                 newLines.push({
                     type: "error",
@@ -287,9 +389,9 @@ export default function RandomShit({ onClose }: { onClose?: () => void }) {
     };
 
     return (
-        <div className="fixed top-0 left-0 h-dvh w-screen z-500 flex items-center justify-center p-20">
+        <div className="fixed top-0 left-0 h-dvh w-screen z-500 flex items-center justify-center px-6 sm:px-10 md:px-20 lg:px-25 py-40 md:py-30 lg:py-20 bg-background/20 backdrop-blur-xs">
             <div
-                className="h-100 sm:h-120 lg:h-full w-full flex flex-col bg-background/80 border border-border rounded-lg overflow-hidden shadow-2xl font-mono text-xs sm:text-sm group backdrop-blur-md"
+                className="h-full w-full flex flex-col bg-background/50 border border-border rounded-lg overflow-hidden shadow-2xl font-mono text-xs sm:text-sm group relative z-10"
                 onClick={handleTerminalClick}
             >
                 {/* Header */}
