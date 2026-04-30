@@ -45,6 +45,7 @@ const COMMANDS_HELP: Record<string, string> = {
     echo: "Print text to terminal",
     history: "Show command history",
     exit: "End current session",
+    calc: "Evaluate arithmetic expressions (e.g., calc 2 + 2)",
 };
 
 export default function RandomShit({ onClose }: { onClose?: () => void }) {
@@ -100,6 +101,36 @@ export default function RandomShit({ onClose }: { onClose?: () => void }) {
 
         setCommandHistory((prev) => [trimmedCmd, ...prev]);
         setHistoryIndex(-1);
+
+        // Check for arithmetic expressions (simple calculator)
+        const isMathExpr = /^[\d\s+\-*/%().]+$/.test(trimmedCmd) && 
+                          /[\d]/.test(trimmedCmd) && 
+                          /[+\-*/%]/.test(trimmedCmd);
+        
+        if (isMathExpr || cmd === "calc") {
+            const expression = cmd === "calc" ? args.slice(1).join(" ") : trimmedCmd;
+            if (expression.trim()) {
+                try {
+                    // Safe-ish evaluation of simple math
+                    const result = new Function(`return ${expression}`)();
+                    if (typeof result === 'number') {
+                        newLines.push({ type: "output", content: result.toString() });
+                        setHistory((prev) => [...prev, ...newLines]);
+                        return;
+                    }
+                } catch (e) {
+                    if (cmd === "calc") {
+                        newLines.push({ type: "error", content: "calc: invalid expression" });
+                        setHistory((prev) => [...prev, ...newLines]);
+                        return;
+                    }
+                }
+            } else if (cmd === "calc") {
+                newLines.push({ type: "error", content: "calc: missing expression" });
+                setHistory((prev) => [...prev, ...newLines]);
+                return;
+            }
+        }
 
         // Check for social commands
         const socialLink = contactLinksArray.find(
