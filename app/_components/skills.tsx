@@ -47,7 +47,7 @@ export function Skills() {
                     Skills
                 </LineShadowText>
             </h2>
-            <div className="space-y-2 py-2.5 px-6.5 relative border-y">
+            <div className="space-y-2 py-2.5 px-6.5 relative border-t">
                 <div className="absolute h-full w-px border-l top-0 left-4"></div>
                 <div className="absolute h-full w-px border-l top-0 right-4"></div>
                 <div className="flex flex-wrap gap-2.5">

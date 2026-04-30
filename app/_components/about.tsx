@@ -1,13 +1,18 @@
 import { LineShadowText } from "@/components/ui/line-shadow-text";
 import RenderText from "@/components/ui/render-text";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { myInfo } from "@/data/pages";
 import { getIcon } from "@/lib/icon";
 import { Gamepad2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export function About() {
+export function About({
+    isTerminalOpen,
+    setIsTerminalOpen,
+}: {
+    isTerminalOpen: boolean;
+    setIsTerminalOpen: (value: boolean) => void;
+}) {
     return (
         <div className="py-4 sm:py-6 relative mt-6 sm:mt-8 md:mt-10">
             {/* image */}
@@ -27,9 +32,7 @@ export function About() {
                         />
                     </div>
                     <div className="animate-line-shadow w-full h-[54px] bg-[repeating-linear-gradient(315deg,color-mix(in_oklab,var(--border)60%,transparent)_0,color-mix(in_oklab,var(--border)60%,transparent)_2px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed"></div>
-                    {/*<ThemeToggle className="hover:bg-muted dark:hover:bg-muted w-[54px] h-[54px] rounded-none border-x" />*/}
                 </div>
-                {/*<div className="animate-line-shadow w-4 md:w-6 shrink-0 h-[54px] bg-[repeating-linear-gradient(315deg,color-mix(in_oklab,var(--border)60%,transparent)_0,color-mix(in_oklab,var(--border)60%,transparent)_2px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed"></div>*/}
             </div>
 
             {/* about */}
@@ -95,9 +98,12 @@ export function About() {
                         <Gamepad2 className="size-3.5 group-hover:rotate-12 transition-transform" />
                         <span className="whitespace-nowrap">Arcade</span>
                     </Link>
-                    <span className="px-3 h-full border-x flex items-center font-mono text-xs text-muted-foreground whitespace-nowrap">
-                        Hire me!
-                    </span>
+                    <button
+                        onClick={() => setIsTerminalOpen(true)}
+                        className="px-3 h-full border-x flex items-center font-mono text-xs text-muted-foreground hover:text-primary hover:bg-primary/5 transition-all duration-300 cursor-pointer whitespace-nowrap outline-none"
+                    >
+                        {"> cli"}
+                    </button>
                 </div>
             </div>
         </div>
