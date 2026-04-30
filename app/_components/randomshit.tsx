@@ -64,10 +64,14 @@ export default function RandomShit({ onClose }: { onClose?: () => void }) {
     const [commandHistory, setCommandHistory] = useState<string[]>([]);
     const [historyIndex, setHistoryIndex] = useState(-1);
     const [currentDir, setCurrentDir] = useState("~");
-    const [startTime] = useState(Date.now());
+    const [startTime, setStartTime] = useState<number>(0);
 
     const scrollRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        setStartTime(Date.now());
+    }, []);
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -407,7 +411,7 @@ export default function RandomShit({ onClose }: { onClose?: () => void }) {
                         <div className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-yellow-500" />
                         <div
                             className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-destructive"
-                            onClick={() => onClose()}
+                            onClick={handleTerminalClick}
                         />
                     </div>
                 </div>
