@@ -1,6 +1,6 @@
 "use client";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const orbs = [
     {
@@ -31,6 +31,15 @@ const orbs = [
         color: "radial-gradient(circle, hsl(213 97% 77% / 0.3), transparent 70%)",
         duration: 20,
     },
+];
+
+const bgGradients = [
+    "linear-gradient(135deg, hsl(210 85% 18%) 0%, hsl(190 90% 26%) 100%)",
+    "linear-gradient(140deg, hsl(6 85% 20%) 0%, hsl(28 95% 28%) 100%)",
+    "linear-gradient(145deg, hsl(330 78% 24%) 0%, hsl(270 78% 28%) 100%)",
+    "linear-gradient(130deg, hsl(24 92% 24%) 0%, hsl(48 96% 32%) 100%)",
+    "linear-gradient(125deg, hsl(210 12% 78%) 0%, hsl(220 10% 40%) 100%)",
+    "linear-gradient(150deg, hsl(145 62% 20%) 0%, hsl(175 70% 26%) 100%)",
 ];
 
 function Orb({ orb, mouseX, mouseY, i }: any) {
@@ -92,9 +101,13 @@ function MouseOrb({ mouseX, mouseY }: any) {
 export default function Bg() {
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
+    const [activeGradient, setActiveGradient] = useState(bgGradients[0]);
 
     useEffect(() => {
         let raf: number;
+        const randomGradient =
+            bgGradients[Math.floor(Math.random() * bgGradients.length)];
+        setActiveGradient(randomGradient);
 
         const handleMove = (e: MouseEvent) => {
             cancelAnimationFrame(raf);
@@ -110,6 +123,11 @@ export default function Bg() {
 
     return (
         <div className="fixed inset-0 -z-10 overflow-hidden bg-background">
+            <div
+                className="absolute inset-0 opacity-90"
+                style={{ background: activeGradient }}
+            />
+
             {orbs.map((orb, i) => (
                 <Orb key={i} orb={orb} i={i} mouseX={mouseX} mouseY={mouseY} />
             ))}
