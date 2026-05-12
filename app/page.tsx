@@ -1,7 +1,6 @@
-import Bg from "@/components/bg";
+import { BgThemeProvider } from "@/components/bg-theme-provider";
 import { themes } from "@/lib/themes";
 import { MyPageContent } from "./_components/MyPageContent";
-import { BgThemeProvider } from "@/components/bg-theme-provider";
 
 // Force dynamic rendering to ensure a random theme on each request
 export const dynamic = "force-dynamic";
@@ -16,7 +15,6 @@ export default function MyPage() {
     return (
         <BgThemeProvider initialThemeIndex={initialThemeIndex}>
             <div className="min-h-dvh h-full overflow-auto relative">
-                <Bg />
                 <MyPageContent />
             </div>
         </BgThemeProvider>
