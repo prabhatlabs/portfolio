@@ -1,17 +1,30 @@
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { myInfo } from "@/data/pages";
 import { getIcon } from "@/lib/icon";
 import Link from "next/link";
 
 export function Footer({ asNav }: { asNav?: boolean }) {
     return (
-        <div className={`py-4 sm:py-6 ${asNav ? "border-b" : "border-t"}`}>
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-1 sm:gap-4 sm:border-y px-4 sm:px-6 relative">
-                <span className="text-muted-foreground text-[10px] font-mono absolute bottom-full left-2 hidden sm:block mb-1.5">
-                    max-w-3xl mx-auto
-                </span>
-                <span className="text-muted-foreground text-[10px] font-mono absolute top-full left-6 hidden sm:block mt-1.5">
-                    flex items-center justify-between gap-4
-                </span>
+        <div
+            className={`${asNav ? "border-b sm:py-6 " : "border-t py-4 sm:py-6 "}`}
+        >
+            <div
+                className={`flex ${asNav ? "" : "flex-col sm:flex-row"} items-center justify-between gap-1 sm:gap-4 sm:border-y px-4 sm:px-6 relative`}
+            >
+                {asNav ? (
+                    <>
+                        <span className="text-muted-foreground text-[10px] font-mono absolute bottom-full left-2 hidden sm:block mb-7">
+                            max-w-3xl mx-auto
+                        </span>
+                        <span className="text-muted-foreground text-[10px] font-mono absolute bottom-full right-6 hidden sm:block mb-1.5">
+                            flex items-center justify-between gap-4
+                        </span>
+                    </>
+                ) : (
+                    <span className="text-muted-foreground text-[10px] font-mono absolute bottom-full right-6 hidden sm:block mb-1.5">
+                        flex gap-2 items-center
+                    </span>
+                )}
                 <div
                     className={
                         asNav
@@ -31,7 +44,7 @@ export function Footer({ asNav }: { asNav?: boolean }) {
                         </p>
                     )}
                 </div>
-                {!asNav && (
+                {!asNav ? (
                     <div className="flex gap-2 items-center">
                         {myInfo.contacts.map((contact) => {
                             const Icon = getIcon(contact.iconName);
@@ -46,6 +59,8 @@ export function Footer({ asNav }: { asNav?: boolean }) {
                             );
                         })}
                     </div>
+                ) : (
+                    <ThemeToggle className="border-x rounded-none" />
                 )}
             </div>
         </div>

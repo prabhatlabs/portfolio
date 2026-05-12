@@ -16,11 +16,11 @@ function Skill({
             key={skill.name}
             className="relative flex items-center gap-1.5 p-1.5 bg-foreground/10"
         >
-            {type && (
+            {/*{type && (
                 <span className="text-foreground/60 text-[8px] capitalize absolute -top-[11px] left-0">
                     {type}
                 </span>
-            )}
+            )}*/}
             <IconComp className="size-4" />
             <span className="text-xs">{skill.name}</span>
         </div>
@@ -47,10 +47,10 @@ export function Skills() {
                     Skills
                 </LineShadowText>
             </h2>
-            <div className="space-y-2 py-2.5 px-6.5 relative border-t">
+            <div className="space-y-2 py-1 px-5.5 relative border-t">
                 <div className="absolute h-full w-px border-l top-0 left-4"></div>
                 <div className="absolute h-full w-px border-l top-0 right-4"></div>
-                <div className="flex flex-wrap gap-2.5">
+                <div className="flex flex-wrap gap-1">
                     {Object.entries(grps).map(([type, skills]) => (
                         <Fragment key={type}>
                             {skills.map((skill, index) => (

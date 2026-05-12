@@ -1,22 +1,37 @@
-import { BgThemeProvider } from "@/components/bg-theme-provider";
-import { themes } from "@/lib/themes";
-import { MyPageContent } from "./_components/MyPageContent";
+import { About } from "./_components/about";
+import { Contributions } from "./_components/contributions";
+import { Experiance } from "./_components/experiance";
+import { Footer } from "./_components/footer";
+import { Projects } from "./_components/projects";
+import { Skills } from "./_components/skills";
 
-// Force dynamic rendering to ensure a random theme on each request
-export const dynamic = "force-dynamic";
-
-// Calculate it outside to satisfy React's purity rules during the render phase.
-// In a "force-dynamic" server component, this will still be executed on the server.
-const getRandomIndex = () => Math.floor(Math.random() * themes.length);
-
-export default function MyPage() {
-    const initialThemeIndex = getRandomIndex();
-
+export default function PageContent() {
     return (
-        <BgThemeProvider initialThemeIndex={initialThemeIndex}>
-            <div className="min-h-dvh h-full overflow-auto relative">
-                <MyPageContent />
+        <div className="min-h-dvh h-full overflow-auto relative">
+            <div className="h-6 md:h-20 w-full border-b">
+                <div className="max-w-3xl mx-auto border-x h-full relative">
+                    <span className="text-muted-foreground text-[10px] font-mono absolute bottom-1 left-2"></span>
+                </div>
             </div>
-        </BgThemeProvider>
+
+            {/* main content */}
+            <div className="z-10 max-w-3xl mx-auto relative">
+                <div className="-z-10 absolute top-0 left-0 w-4 h-full border-l"></div>
+                <div className="space-y-4 md:space-y-6">
+                    <Footer asNav />
+                    <About />
+                    <Experiance />
+                    <Projects />
+                    <Contributions />
+                </div>
+                <Skills />
+                <Footer />
+                <div className="-z-10 absolute top-0 right-0 w-4 h-full border-r"></div>
+            </div>
+
+            <div className="h-4 md:h-20 w-full border-t">
+                <div className="max-w-3xl mx-auto border-x h-full relative"></div>
+            </div>
+        </div>
     );
 }

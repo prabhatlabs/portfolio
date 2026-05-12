@@ -10,16 +10,17 @@ export function About({
     isTerminalOpen,
     setIsTerminalOpen,
 }: {
-    isTerminalOpen: boolean;
-    setIsTerminalOpen: (value: boolean) => void;
+    isTerminalOpen?: boolean;
+    setIsTerminalOpen?: (value: boolean) => void;
 }) {
     return (
         <div className="py-4 sm:py-6 relative mt-6 sm:mt-8 md:mt-10">
             {/* image */}
             <div className="flex items-center w-full border border-x-border/10 relative">
-                <span className="absolute bottom-full left-0 my-1 mx-4 sm:mx-6 font-mono text-[10px] text-muted-foreground">
-                    me.webp
-                </span>
+                <div className="absolute bottom-full left-0 my-1 mx-4 sm:mx-6 font-mono text-[10px]">
+                    <span className="p-1 h-px w-px animate-pulse absolute top-1/2 -translate-y-1/2 rounded-full bg-green-500"></span>
+                    <span className="ml-3.5">Open to work</span>
+                </div>
                 <div className="animate-line-shadow w-4 md:w-6 shrink-0 h-[54px] bg-[repeating-linear-gradient(315deg,color-mix(in_oklab,var(--border)60%,transparent)_0,color-mix(in_oklab,var(--border)60%,transparent)_2px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed"></div>
                 <div className="flex items-center w-full">
                     <div className="p-0.5 w-fit h-fit shrink-0 border-x">
@@ -93,17 +94,17 @@ export function About({
                 <div className="absolute top-0 bottom-0 right-4 md:right-6 flex items-center">
                     <Link
                         href="/games"
-                        className="hidden md:flex items-center gap-1.5 px-3 h-full border-l font-mono text-xs text-muted-foreground hover:text-primary transition-all duration-300 hover:bg-primary/5 group"
+                        className="hidden md:flex items-center gap-1.5 px-3 h-full border-x font-mono text-xs text-muted-foreground hover:text-primary transition-all duration-300 hover:bg-primary/5 group"
                     >
                         <Gamepad2 className="size-3.5 group-hover:rotate-12 transition-transform" />
                         <span className="whitespace-nowrap">Arcade</span>
                     </Link>
-                    <button
-                        onClick={() => setIsTerminalOpen(true)}
+                    {/*<button
+                        onClick={() => setIsTerminalOpen?.(true)}
                         className="px-3 h-full border-x flex items-center font-mono text-xs text-muted-foreground hover:text-primary hover:bg-primary/5 transition-all duration-300 cursor-pointer whitespace-nowrap outline-none"
                     >
                         {"> cli"}
-                    </button>
+                    </button>*/}
                 </div>
             </div>
         </div>

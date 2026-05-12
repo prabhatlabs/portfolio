@@ -106,6 +106,7 @@
     --bg-bg-circle: oklch(0% 0 0 / 0.12);
     --terminal-user: oklch(0.52 0.19 154);
     --terminal-prompt: oklch(0.52 0.19 154);
+    --foreground-rgb: 10, 10, 10;
 }
 
 .dark {
@@ -144,6 +145,7 @@
     --bg-bg-circle: oklch(100% 0.00011 271.152 / 0.12);
     --terminal-user: oklch(0.769 0.188 152.03);
     --terminal-prompt: oklch(0.769 0.188 152.03);
+    --foreground-rgb: 251, 251, 251;
 }
 
 /* hide scrollbar */
