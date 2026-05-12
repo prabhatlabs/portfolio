@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     metadataBase: new URL("https://prabhatlabs.dev"),
     title: {
         default: "Prabhat Mishra | Software Developer",
-        template: "%s | Prabhat Mishra",
+        template: "%s | prabhatlabs",
     },
     description:
         "Prabhat Mishra is a software developer from India specializing in TypeScript, React, Next.js, Node.js, Python, and Go. Available for freelance projects and full-time roles.",
@@ -179,13 +179,9 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning suppressContentEditableWarning>
             <body
-                className={`antialiased no-scrollbar ${dmsans.className} ${geist_mono.variable}`}
+                className={`antialiased no-scrollbar transition-all duration-500 ${dmsans.className} ${geist_mono.variable}`}
             >
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="dark"
-                    forcedTheme="dark"
-                >
+                <ThemeProvider attribute="class" defaultTheme="dark">
                     {children}
                 </ThemeProvider>
                 <Analytics />

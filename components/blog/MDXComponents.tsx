@@ -79,10 +79,7 @@ export const MDXComponents = {
         </blockquote>
     ),
     code: ({ children, ...props }: React.HTMLAttributes<HTMLElement>) => (
-        <code
-            className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono"
-            {...props}
-        >
+        <code className="px-1.5 py-0.5 rounded text-sm font-mono" {...props}>
             {children}
         </code>
     ),
@@ -94,10 +91,7 @@ export const MDXComponents = {
             {children}
         </pre>
     ),
-    img: ({
-        src,
-        alt,
-    }: React.ImgHTMLAttributes<HTMLImageElement>) => (
+    img: ({ src, alt }: React.ImgHTMLAttributes<HTMLImageElement>) => (
         <div className="relative w-full h-64 my-4">
             {src && typeof src === "string" && (
                 <Image

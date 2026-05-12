@@ -1,17 +1,22 @@
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { getAllPosts, getPostBySlug } from "@/lib/github";
 import { BlogPost } from "@/components/blog/BlogPost";
 import { MDXComponents } from "@/components/blog/MDXComponents";
+import { getAllPosts, getPostBySlug } from "@/lib/github";
+import { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import { notFound } from "next/navigation";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import remarkGfm from "remark-gfm";
 
 const rehypePlugins = [
     rehypeSlug,
-    [rehypeAutolinkHeadings, { behavior: "wrap" } satisfies Parameters<typeof rehypeAutolinkHeadings>[0]],
+    [
+        rehypeAutolinkHeadings,
+        { behavior: "wrap" } satisfies Parameters<
+            typeof rehypeAutolinkHeadings
+        >[0],
+    ],
     [rehypePrettyCode, { theme: "github-dark", keepBackground: true }],
 ];
 
@@ -72,19 +77,17 @@ export default async function BlogPostPage({ params }: Props) {
     };
 
     return (
-        <div className="py-12">
-            <BlogPost
-                title={post.title}
-                date={post.date}
-                description={post.description}
-                tags={post.tags}
-            >
-                <MDXRemote
-                    source={post.content}
-                    components={MDXComponents}
-                    options={options}
-                />
-            </BlogPost>
-        </div>
+        <BlogPost
+            title={post.title}
+            date={post.date}
+            description={post.description}
+            tags={post.tags}
+        >
+            <MDXRemote
+                source={post.content}
+                components={MDXComponents}
+                options={options}
+            />
+        </BlogPost>
     );
 }

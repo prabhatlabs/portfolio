@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { Fragment, ReactNode } from "react";
 
 interface BlogPostProps {
     title: string;
@@ -16,9 +16,9 @@ export function BlogPost({
     children,
 }: BlogPostProps) {
     return (
-        <article className="max-w-3xl mx-auto">
+        <article className="py-26 md:py-32">
             <header className="mb-8">
-                <div className="flex items-center gap-3 text-sm text-muted-foreground mb-4">
+                <div className="flex items-center flex-wrap gap-x-2 text-sm text-muted-foreground mb-4">
                     <time dateTime={date}>
                         {new Date(date).toLocaleDateString("en-US", {
                             year: "numeric",
@@ -28,17 +28,14 @@ export function BlogPost({
                     </time>
                     {tags.length > 0 && (
                         <>
-                            <span>•</span>
-                            <div className="flex gap-2">
-                                {tags.map((tag) => (
-                                    <span
-                                        key={tag}
-                                        className="text-primary"
-                                    >
+                            {tags.map((tag) => (
+                                <Fragment key={tag}>
+                                    <span>•</span>
+                                    <span key={tag} className="text-primary">
                                         {tag}
                                     </span>
-                                ))}
-                            </div>
+                                </Fragment>
+                            ))}
                         </>
                     )}
                 </div>
