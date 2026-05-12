@@ -19,9 +19,9 @@ export function BlogCard({
     return (
         <Link
             href={`/blog/${slug}`}
-            className="group block p-4 md:p-6 space-y-1 rounded-lg border border-border bg-card hover:bg-muted hover:shadow-lg transition-all duration-500"
+            className="group block px-4 py-3 rounded-lg border border-border bg-card hover:bg-muted hover:shadow-lg transition-all duration-500"
         >
-            <div className="flex flex-wrap items-center gap-x-2 text-sm text-muted-foreground">
+            <div className="flex flex-wrap items-center gap-x-2 text-xs text-muted-foreground">
                 <time dateTime={date}>
                     {new Date(date).toLocaleDateString("en-US", {
                         year: "numeric",
@@ -36,7 +36,7 @@ export function BlogCard({
                     </Fragment>
                 ))}
             </div>
-            <h2 className="text-xl font-semibold group-hover:text-primary transition-colors">
+            <h2 className="group-hover:underline text-lg font-semibold group-hover:text-primary transition-colors">
                 {title}
             </h2>
             <p className="text-muted-foreground line-clamp-2 text-sm">

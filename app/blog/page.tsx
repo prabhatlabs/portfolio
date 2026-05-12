@@ -1,5 +1,6 @@
 import { BlogCard } from "@/components/blog/BlogCard";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { getAllPosts } from "@/lib/github";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -16,6 +17,17 @@ export default async function BlogPage() {
 
     return (
         <div>
+            <div className="max-w-3xl py-6 md:py-8 mx-auto flex justify-between items-center gap-6">
+                <div>
+                    <h1 className="text-2xl md:text-3xl font-bold">Blogs</h1>
+                    <p className="text-muted-foreground">
+                        I write stuff, sometimes...
+                    </p>
+                </div>
+                <div className="flex items-center gap-4">
+                    <ThemeToggle />
+                </div>
+            </div>
             {posts.length === 0 ? (
                 <div className="text-center space-y-6 py-20">
                     <div className="relative">

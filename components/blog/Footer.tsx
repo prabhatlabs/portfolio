@@ -7,11 +7,11 @@ export default function BlogFooter() {
         <footer className="w-full py-6 md:py-8">
             <div className="max-w-3xl px-6 mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
                 <div className="flex flex-col items-center md:items-start gap-1">
-                    <Link href={"/"} className="text-2xl md:text-3xl font-bold">
+                    <Link href={"/"} className="text-lg md:text-xl font-bold">
                         prabhatlabs
                         <span className="text-foreground/60">.dev</span>
                     </Link>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-xs text-muted-foreground">
                         prabhatlabs.dev © {new Date().getFullYear()}. All rights
                         reserved.
                     </p>

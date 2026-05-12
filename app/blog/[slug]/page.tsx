@@ -1,9 +1,11 @@
 import { BlogPost } from "@/components/blog/BlogPost";
 import { MDXComponents } from "@/components/blog/MDXComponents";
 import { RelatedPosts } from "@/components/blog/RelatedPosts";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { getAllPosts, getPostBySlug } from "@/lib/github";
 import { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
@@ -94,6 +96,19 @@ export default async function BlogPostPage({ params }: Props) {
 
     return (
         <div className="space-y-6 md:space-y-8">
+            <div className="max-w-3xl mt-6 md:mt-8 mx-auto flex justify-between items-center gap-6">
+                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                    <Link href={"/"} className="hover:underline">
+                        prabhatlabs.dev
+                    </Link>
+                    <span>•</span>
+                    <Link href={"/"} className="hover:underline">
+                        All Blogs
+                    </Link>
+                </div>
+                <ThemeToggle />
+            </div>
+
             <BlogPost
                 title={post.title}
                 date={post.date}
