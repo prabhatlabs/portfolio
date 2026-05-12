@@ -393,9 +393,9 @@ export default function RandomShit({ onClose }: { onClose?: () => void }) {
     };
 
     return (
-        <div className="fixed top-0 left-0 h-dvh w-screen z-500 flex items-center justify-center px-6 sm:px-10 md:px-20 lg:px-25 py-40 md:py-30 lg:py-20 bg-background/20 backdrop-blur-xs">
+        <div className="fixed top-0 left-0 h-dvh w-screen z-500 flex items-center justify-center bg-background/20 backdrop-blur-xs p-6">
             <div
-                className="h-full w-full flex flex-col bg-background/50 border border-border rounded-lg overflow-hidden shadow-2xl font-mono text-xs sm:text-sm group relative z-10"
+                className="h-[80dvh] w-full max-w-5xl mx-auto flex flex-col bg-background/50 border border-border rounded-lg overflow-hidden shadow-2xl font-mono text-xs sm:text-sm group relative z-10"
                 onClick={handleTerminalClick}
             >
                 {/* Header */}
@@ -411,7 +411,7 @@ export default function RandomShit({ onClose }: { onClose?: () => void }) {
                         <div className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-yellow-500" />
                         <div
                             className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-destructive"
-                            onClick={handleTerminalClick}
+                            onClick={onClose}
                         />
                     </div>
                 </div>
