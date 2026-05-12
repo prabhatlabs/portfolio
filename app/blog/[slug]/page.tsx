@@ -1,5 +1,6 @@
 import { BlogPost } from "@/components/blog/BlogPost";
 import { MDXComponents } from "@/components/blog/MDXComponents";
+import { RelatedPosts } from "@/components/blog/RelatedPosts";
 import { getAllPosts, getPostBySlug } from "@/lib/github";
 import { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -69,6 +70,21 @@ export default async function BlogPostPage({ params }: Props) {
         notFound();
     }
 
+    const allPosts = await getAllPosts();
+    const relatedPosts = allPosts
+        .filter((p) => p.slug !== slug)
+        .map((p) => ({
+            ...p,
+            overlap: p.tags.filter((tag) => post.tags.includes(tag)).length,
+        }))
+        .sort((a, b) => {
+            if (b.overlap !== a.overlap) {
+                return b.overlap - a.overlap;
+            }
+            return new Date(b.date).getTime() - new Date(a.date).getTime();
+        })
+        .slice(0, 5);
+
     const options = {
         mdxOptions: {
             remarkPlugins: [remarkGfm],
@@ -77,17 +93,21 @@ export default async function BlogPostPage({ params }: Props) {
     };
 
     return (
-        <BlogPost
-            title={post.title}
-            date={post.date}
-            description={post.description}
-            tags={post.tags}
-        >
-            <MDXRemote
-                source={post.content}
-                components={MDXComponents}
-                options={options}
-            />
-        </BlogPost>
+        <div className="space-y-6 md:space-y-8">
+            <BlogPost
+                title={post.title}
+                date={post.date}
+                description={post.description}
+                tags={post.tags}
+            >
+                <MDXRemote
+                    source={post.content}
+                    components={MDXComponents}
+                    options={options}
+                />
+            </BlogPost>
+
+            <RelatedPosts posts={relatedPosts} />
+        </div>
     );
 }

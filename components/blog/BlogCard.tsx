@@ -19,9 +19,9 @@ export function BlogCard({
     return (
         <Link
             href={`/blog/${slug}`}
-            className="group block p-6 space-y-1 rounded-lg border border-border bg-card hover:bg-muted hover:shadow-lg transition-all duration-500"
+            className="group block p-4 md:p-6 space-y-1 rounded-lg border border-border bg-card hover:bg-muted hover:shadow-lg transition-all duration-500"
         >
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <div className="flex flex-wrap items-center gap-x-2 text-sm text-muted-foreground">
                 <time dateTime={date}>
                     {new Date(date).toLocaleDateString("en-US", {
                         year: "numeric",

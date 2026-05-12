@@ -17,7 +17,7 @@ export function BlogPost({
 }: BlogPostProps) {
     return (
         <article>
-            <header className="mb-8">
+            <header className="mb-6">
                 <div className="flex items-center flex-wrap gap-x-2 text-sm text-muted-foreground mb-4">
                     <time dateTime={date}>
                         {new Date(date).toLocaleDateString("en-US", {

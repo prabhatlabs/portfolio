@@ -1,13 +1,15 @@
+import BlogFooter from "@/components/blog/Footer";
 import Navbar from "@/components/blog/Navbar";
 import { ReactNode } from "react";
 
 export default function BlogLayout({ children }: { children: ReactNode }) {
     return (
-        <div>
+        <div className="min-h-screen flex flex-col">
             <Navbar />
-            <div className="pt-26 md:pt-32 px-3 max-w-3xl mx-auto">
+            <main className="flex-grow py-2 px-6 max-w-3xl mx-auto w-full">
                 {children}
-            </div>
+            </main>
+            <BlogFooter />
         </div>
     );
 }

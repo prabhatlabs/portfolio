@@ -4,7 +4,7 @@ const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_REPO = process.env.GITHUB_REPO;
 const GITHUB_BRANCH = process.env.GITHUB_BRANCH || "main";
 
-interface PostMeta {
+export interface PostMeta {
     slug: string;
     title: string;
     date: string;
@@ -14,7 +14,7 @@ interface PostMeta {
     published: boolean;
 }
 
-interface Post extends PostMeta {
+export interface Post extends PostMeta {
     content: string;
 }
 
