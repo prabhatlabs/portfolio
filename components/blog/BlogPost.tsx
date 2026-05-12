@@ -16,7 +16,7 @@ export function BlogPost({
     children,
 }: BlogPostProps) {
     return (
-        <article className="py-26 md:py-32">
+        <article>
             <header className="mb-8">
                 <div className="flex items-center flex-wrap gap-x-2 text-sm text-muted-foreground mb-4">
                     <time dateTime={date}>
