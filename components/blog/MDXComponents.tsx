@@ -91,18 +91,28 @@ export const MDXComponents = {
             {children}
         </pre>
     ),
-    img: ({ src, alt }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-        <div className="relative w-full h-64 my-2">
-            {src && typeof src === "string" && (
-                <Image
-                    src={src}
-                    alt={alt || ""}
-                    fill
-                    className="object-cover rounded-lg"
-                />
-            )}
-        </div>
-    ),
+    img: ({ src, alt }: React.ImgHTMLAttributes<HTMLImageElement>) => {
+        const cloudinaryBaseUrl = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL;
+        const fullSrc =
+            typeof src === "string" &&
+            !src.startsWith("http") &&
+            cloudinaryBaseUrl
+                ? `${cloudinaryBaseUrl}${src}`
+                : src;
+
+        return (
+            <div className="relative w-full h-64 my-2">
+                {fullSrc && typeof fullSrc === "string" && (
+                    <Image
+                        src={fullSrc}
+                        alt={alt || ""}
+                        fill
+                        className="object-cover rounded-lg"
+                    />
+                )}
+            </div>
+        );
+    },
     hr: () => <hr className="my-6 border-border" />,
     table: ({ children, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
         <div className="overflow-x-auto my-2">

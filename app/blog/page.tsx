@@ -71,16 +71,19 @@ export default async function BlogPage() {
                 </div>
             ) : (
                 <div className="grid gap-6">
-                    {posts.map((post) => (
-                        <BlogCard
-                            key={post.slug}
-                            slug={post.slug}
-                            title={post.title}
-                            date={post.date}
-                            description={post.description}
-                            tags={post.tags}
-                        />
-                    ))}
+                    {posts.map((post) => {
+                        return (
+                            <BlogCard
+                                key={post.slug}
+                                slug={post.slug}
+                                title={post.title}
+                                date={post.date}
+                                description={post.description}
+                                tags={post.tags}
+                                coverImage={post.coverImage}
+                            />
+                        );
+                    })}
                 </div>
             )}
         </div>

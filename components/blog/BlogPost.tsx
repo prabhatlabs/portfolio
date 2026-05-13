@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Fragment, ReactNode } from "react";
 
 interface BlogPostProps {
@@ -6,6 +7,7 @@ interface BlogPostProps {
     description: string;
     tags: string[];
     children: ReactNode;
+    coverImage?: string;
 }
 
 export function BlogPost({
@@ -14,6 +16,7 @@ export function BlogPost({
     description,
     tags,
     children,
+    coverImage,
 }: BlogPostProps) {
     return (
         <article>
@@ -40,7 +43,18 @@ export function BlogPost({
                     )}
                 </div>
                 <h1 className="text-4xl font-bold mb-4">{title}</h1>
-                <p className="text-xl text-muted-foreground">{description}</p>
+                <p className="text-xl text-muted-foreground mb-6">{description}</p>
+                {coverImage && (
+                    <div className="relative w-full aspect-video mb-8 overflow-hidden rounded-xl border border-border">
+                        <Image
+                            src={coverImage}
+                            alt={title}
+                            fill
+                            className="object-cover"
+                            priority
+                        />
+                    </div>
+                )}
             </header>
             <div className="prose prose-neutral dark:prose-invert max-w-none">
                 {children}

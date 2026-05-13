@@ -2,7 +2,7 @@ import { BlogPost } from "@/components/blog/BlogPost";
 import { MDXComponents } from "@/components/blog/MDXComponents";
 import { RelatedPosts } from "@/components/blog/RelatedPosts";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { getAllPosts, getPostBySlug } from "@/lib/github";
+import { getAllPosts, getPostBySlug, getPostMetaBySlug } from "@/lib/github";
 import { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
@@ -46,6 +46,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         };
     }
 
+    const cloudinaryBaseUrl = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL;
+    const coverImageUrl =
+        post.coverImage &&
+        !post.coverImage.startsWith("http") &&
+        cloudinaryBaseUrl
+            ? `${cloudinaryBaseUrl}${post.coverImage}`
+            : post.coverImage;
+
     return {
         title: post.title,
         description: post.description,
@@ -55,11 +63,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             type: "article",
             publishedTime: post.date,
             tags: post.tags,
+            images: coverImageUrl ? [{ url: coverImageUrl }] : [],
         },
         twitter: {
-            card: "summary",
+            card: "summary_large_image",
             title: post.title,
             description: post.description,
+            images: coverImageUrl ? [coverImageUrl] : [],
         },
     };
 }
@@ -72,20 +82,21 @@ export default async function BlogPostPage({ params }: Props) {
         notFound();
     }
 
-    const allPosts = await getAllPosts();
-    const relatedPosts = allPosts
-        .filter((p) => p.slug !== slug)
-        .map((p) => ({
-            ...p,
-            overlap: p.tags.filter((tag) => post.tags.includes(tag)).length,
-        }))
-        .sort((a, b) => {
-            if (b.overlap !== a.overlap) {
-                return b.overlap - a.overlap;
-            }
-            return new Date(b.date).getTime() - new Date(a.date).getTime();
-        })
-        .slice(0, 5);
+    const cloudinaryBaseUrl = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL;
+    const coverImageUrl =
+        post.coverImage &&
+        !post.coverImage.startsWith("http") &&
+        cloudinaryBaseUrl
+            ? `${cloudinaryBaseUrl}${post.coverImage}`
+            : post.coverImage;
+
+    const relatedPosts = post.related
+        ? (
+              await Promise.all(
+                  post.related.map((slug) => getPostMetaBySlug(slug)),
+              )
+          ).filter((p): p is NonNullable<typeof p> => p !== null)
+        : [];
 
     const options = {
         mdxOptions: {
@@ -102,7 +113,7 @@ export default async function BlogPostPage({ params }: Props) {
                         prabhatlabs.dev
                     </Link>
                     <span>•</span>
-                    <Link href={"/"} className="hover:underline">
+                    <Link href={"/blog"} className="hover:underline">
                         All Blogs
                     </Link>
                 </div>
@@ -114,6 +125,7 @@ export default async function BlogPostPage({ params }: Props) {
                 date={post.date}
                 description={post.description}
                 tags={post.tags}
+                coverImage={coverImageUrl}
             >
                 <MDXRemote
                     source={post.content}
@@ -122,7 +134,7 @@ export default async function BlogPostPage({ params }: Props) {
                 />
             </BlogPost>
 
-            <RelatedPosts posts={relatedPosts} />
+            {relatedPosts.length > 0 && <RelatedPosts posts={relatedPosts} />}
         </div>
     );
 }

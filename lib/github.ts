@@ -12,6 +12,7 @@ export interface PostMeta {
     tags: string[];
     coverImage?: string;
     published: boolean;
+    related?: string[];
 }
 
 export interface Post extends PostMeta {
@@ -19,14 +20,18 @@ export interface Post extends PostMeta {
 }
 
 const GITHUB_API_BASE = `https://api.github.com/repos/${GITHUB_REPO}`;
+
 async function fetchFromGitHub(path: string) {
-    const response = await fetch(`${GITHUB_API_BASE}${path}`, {
-        headers: {
-            Authorization: `Bearer ${GITHUB_TOKEN}`,
-            Accept: "application/vnd.github.v3+json",
+    const response = await fetch(
+        `${GITHUB_API_BASE}${path}?ref=${GITHUB_BRANCH}`,
+        {
+            headers: {
+                Authorization: `Bearer ${GITHUB_TOKEN}`,
+                Accept: "application/vnd.github.v3+json",
+            },
+            next: { revalidate: 3600 },
         },
-        next: { revalidate: 3600 },
-    });
+    );
 
     if (!response.ok) {
         throw new Error(`GitHub API error: ${response.statusText}`);
@@ -36,67 +41,65 @@ async function fetchFromGitHub(path: string) {
 }
 
 export async function getAllPosts(): Promise<PostMeta[]> {
-    if (!GITHUB_TOKEN) {
-        console.warn("GITHUB_TOKEN not set, returning empty array");
+    if (!GITHUB_TOKEN || !GITHUB_REPO) {
+        console.warn(
+            "GITHUB_TOKEN or GITHUB_REPO not set, returning empty array",
+        );
         return [];
     }
 
     try {
-        const data = await fetchFromGitHub("/contents/blogs");
-        const posts = await Promise.all(
-            (data as Array<{ name: string }>)
-                // ---- trusting that the files are mdx only ----
-                // .filter((file) => file.name.endsWith(".mdx"))
-                .map(async (file) => {
-                    const slug = file.name.replace(".mdx", "");
-                    const fileData = await fetchFromGitHub(
-                        `/contents/blogs/${file.name}`,
-                    );
-                    const content = Buffer.from(
-                        fileData.content,
-                        "base64",
-                    ).toString("utf-8");
-                    const { data: frontmatter } = matter(content);
-
-                    if (!frontmatter.published) {
-                        return null;
-                    }
-
-                    return {
-                        slug,
-                        title: frontmatter.title || "",
-                        date: frontmatter.date || "",
-                        description: frontmatter.description || "",
-                        tags: frontmatter.tags || [],
-                        coverImage: frontmatter.coverImage,
-                        published: frontmatter.published ?? true,
-                    } as PostMeta;
-                }),
+        const fileData = await fetchFromGitHub(
+            "/contents/data/blog-index.json",
         );
+        const content = Buffer.from(fileData.content, "base64").toString(
+            "utf-8",
+        );
+        const data = JSON.parse(content);
 
-        return posts
-            .filter((p): p is PostMeta => p !== null)
-            .sort(
-                (a, b) =>
-                    new Date(b.date).getTime() - new Date(a.date).getTime(),
-            );
+        return (data.blogs || []) as PostMeta[];
     } catch (error) {
-        console.error("Error fetching posts:", error);
+        console.error("Error fetching blog-index.json:", error);
         return [];
     }
 }
 
-export async function getPostBySlug(slug: string): Promise<Post | null> {
-    if (!GITHUB_TOKEN) {
-        console.warn("GITHUB_TOKEN not set");
+export async function getPostMetaBySlug(
+    slug: string,
+): Promise<PostMeta | null> {
+    if (!GITHUB_TOKEN || !GITHUB_REPO) {
+        console.warn("GITHUB_TOKEN or GITHUB_REPO not set");
         return null;
     }
 
     try {
-        const fileData = await fetchFromGitHub(`/contents/blogs/${slug}.mdx`);
+        const fileData = await fetchFromGitHub(
+            `/contents/blogs/${slug}/meta.json`,
+        );
         const content = Buffer.from(fileData.content, "base64").toString(
             "utf-8",
         );
+        return JSON.parse(content) as PostMeta;
+    } catch (error) {
+        console.error(`Error fetching meta for ${slug}:`, error);
+        return null;
+    }
+}
+
+export async function getPostBySlug(slug: string): Promise<Post | null> {
+    if (!GITHUB_TOKEN || !GITHUB_REPO) {
+        console.warn("GITHUB_TOKEN or GITHUB_REPO not set");
+        return null;
+    }
+
+    try {
+        const fileData = await fetchFromGitHub(
+            `/contents/blogs/${slug}/blog.mdx`,
+        );
+        const content = Buffer.from(
+            fileData.content.replace(/\n/g, ""),
+            "base64",
+        ).toString("utf-8");
         const { data: frontmatter, content: mdxContent } = matter(content);
 
         if (frontmatter.published === false) {
@@ -112,6 +115,7 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
             tags: frontmatter.tags || [],
             coverImage: frontmatter.coverImage,
             published: frontmatter.published ?? true,
+            related: frontmatter.related || [],
         };
     } catch (error) {
         console.error(`Error fetching post ${slug}:`, error);
