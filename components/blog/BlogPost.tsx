@@ -1,3 +1,4 @@
+import { getFullImageUrl } from "@/lib/image-helper";
 import Image from "next/image";
 import { Fragment, ReactNode } from "react";
 
@@ -18,6 +19,7 @@ export function BlogPost({
     children,
     coverImage,
 }: BlogPostProps) {
+    const coverImageUrl = getFullImageUrl(coverImage);
     return (
         <article>
             <header className="mb-6">
@@ -43,11 +45,13 @@ export function BlogPost({
                     )}
                 </div>
                 <h1 className="text-4xl font-bold mb-4">{title}</h1>
-                <p className="text-xl text-muted-foreground mb-6">{description}</p>
-                {coverImage && (
+                <p className="text-xl text-muted-foreground mb-6">
+                    {description}
+                </p>
+                {coverImageUrl && (
                     <div className="relative w-full aspect-video mb-8 overflow-hidden rounded-xl border border-border">
                         <Image
-                            src={coverImage}
+                            src={coverImageUrl}
                             alt={title}
                             fill
                             className="object-cover"

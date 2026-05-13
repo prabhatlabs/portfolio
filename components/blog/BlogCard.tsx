@@ -1,3 +1,4 @@
+import { getFullImageUrl } from "@/lib/image-helper";
 import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
@@ -19,11 +20,7 @@ export function BlogCard({
     tags,
     coverImage,
 }: BlogCardProps) {
-    const cloudinaryBaseUrl = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL;
-    const coverImageUrl =
-        coverImage && !coverImage.startsWith("http") && cloudinaryBaseUrl
-            ? `${cloudinaryBaseUrl}${coverImage}`
-            : coverImage;
+    const coverImageUrl = getFullImageUrl(coverImage);
     return (
         <Link
             href={`/blog/${slug}`}

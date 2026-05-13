@@ -3,6 +3,7 @@ import { MDXComponents } from "@/components/blog/MDXComponents";
 import { RelatedPosts } from "@/components/blog/RelatedPosts";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { getAllPosts, getPostBySlug, getPostMetaBySlug } from "@/lib/github";
+import { getFullImageUrl } from "@/lib/image-helper";
 import { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
@@ -20,7 +21,7 @@ const rehypePlugins = [
             typeof rehypeAutolinkHeadings
         >[0],
     ],
-    [rehypePrettyCode, { theme: "github-dark", keepBackground: true }],
+    [rehypePrettyCode, { theme: "github-light", keepBackground: false }],
 ];
 
 export const revalidate = 3600;
@@ -46,13 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         };
     }
 
-    const cloudinaryBaseUrl = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL;
-    const coverImageUrl =
-        post.coverImage &&
-        !post.coverImage.startsWith("http") &&
-        cloudinaryBaseUrl
-            ? `${cloudinaryBaseUrl}${post.coverImage}`
-            : post.coverImage;
+    const coverImageUrl = getFullImageUrl(post.coverImage);
 
     return {
         title: post.title,
@@ -81,14 +76,6 @@ export default async function BlogPostPage({ params }: Props) {
     if (!post) {
         notFound();
     }
-
-    const cloudinaryBaseUrl = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL;
-    const coverImageUrl =
-        post.coverImage &&
-        !post.coverImage.startsWith("http") &&
-        cloudinaryBaseUrl
-            ? `${cloudinaryBaseUrl}${post.coverImage}`
-            : post.coverImage;
 
     const relatedPosts = post.related
         ? (
@@ -125,7 +112,7 @@ export default async function BlogPostPage({ params }: Props) {
                 date={post.date}
                 description={post.description}
                 tags={post.tags}
-                coverImage={coverImageUrl}
+                coverImage={post.coverImage}
             >
                 <MDXRemote
                     source={post.content}

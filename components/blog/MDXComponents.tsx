@@ -1,5 +1,6 @@
-import Link from "next/link";
+import { getFullImageUrl } from "@/lib/image-helper";
 import Image from "next/image";
+import Link from "next/link";
 
 export const MDXComponents = {
     h1: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
@@ -79,36 +80,36 @@ export const MDXComponents = {
         </blockquote>
     ),
     code: ({ children, ...props }: React.HTMLAttributes<HTMLElement>) => (
-        <code className="px-1.5 py-0.5 rounded text-sm font-mono" {...props}>
+        <code
+            className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono"
+            {...props}
+        >
             {children}
         </code>
     ),
     pre: ({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
         <pre
-            className="bg-muted p-4 rounded-lg overflow-x-auto mb-2 text-sm"
+            className="bg-muted! p-4 rounded-lg overflow-x-auto mb-2 text-sm"
             {...props}
         >
             {children}
         </pre>
     ),
     img: ({ src, alt }: React.ImgHTMLAttributes<HTMLImageElement>) => {
-        const cloudinaryBaseUrl = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL;
-        const fullSrc =
-            typeof src === "string" &&
-            !src.startsWith("http") &&
-            cloudinaryBaseUrl
-                ? `${cloudinaryBaseUrl}${src}`
-                : src;
-
+        const fullSrc = typeof src === "string" ? getFullImageUrl(src) : null;
         return (
-            <div className="relative w-full h-64 my-2">
-                {fullSrc && typeof fullSrc === "string" && (
+            <div className="relative w-full h-full aspect-video my-2">
+                {fullSrc ? (
                     <Image
                         src={fullSrc}
                         alt={alt || ""}
                         fill
                         className="object-cover rounded-lg"
                     />
+                ) : (
+                    <p className="text-muted-foreground text-xs md:text-sm">
+                        {alt}
+                    </p>
                 )}
             </div>
         );
