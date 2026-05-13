@@ -8,21 +8,21 @@ import { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypePrettyCode from "rehype-pretty-code";
-import rehypeSlug from "rehype-slug";
-import remarkGfm from "remark-gfm";
+// import rehypeAutolinkHeadings from "rehype-autolink-headings";
+// import rehypePrettyCode from "rehype-pretty-code";
+// import rehypeSlug from "rehype-slug";
+// import remarkGfm from "remark-gfm";
 
-const rehypePlugins = [
-    rehypeSlug,
-    [
-        rehypeAutolinkHeadings,
-        { behavior: "wrap" } satisfies Parameters<
-            typeof rehypeAutolinkHeadings
-        >[0],
-    ],
-    [rehypePrettyCode, { theme: "github-light", keepBackground: false }],
-];
+// const rehypePlugins = [
+//     rehypeSlug,
+//     [
+//         rehypeAutolinkHeadings,
+//         { behavior: "wrap" } satisfies Parameters<
+//             typeof rehypeAutolinkHeadings
+//         >[0],
+//     ],
+//     [rehypePrettyCode, { theme: "github-dark", keepBackground: false }],
+// ];
 
 export const revalidate = 3600;
 
@@ -85,12 +85,12 @@ export default async function BlogPostPage({ params }: Props) {
           ).filter((p): p is NonNullable<typeof p> => p !== null)
         : [];
 
-    const options = {
-        mdxOptions: {
-            remarkPlugins: [remarkGfm],
-            rehypePlugins: rehypePlugins as never[],
-        },
-    };
+    // const options = {
+    //     mdxOptions: {
+    //         remarkPlugins: [remarkGfm],
+    //         rehypePlugins: rehypePlugins as never[],
+    //     },
+    // };
 
     return (
         <div className="space-y-6 md:space-y-8">
@@ -117,7 +117,7 @@ export default async function BlogPostPage({ params }: Props) {
                 <MDXRemote
                     source={post.content}
                     components={MDXComponents}
-                    options={options}
+                    // options={options}
                 />
             </BlogPost>
 
