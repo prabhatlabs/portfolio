@@ -76,11 +76,14 @@ export function Projects() {
     return (
         <div>
             <h2 className="p-6 mt-16 sm:mt-20 md:mt-24 border-y text-3xl md:text-5xl font-bold">
+                <LineShadowText className="" shadowColor={"var(--foreground)"}>
+                    Pro
+                </LineShadowText>
                 <LineShadowText
-                    className="italic"
-                    shadowColor={"var(--foreground)"}
+                    className=" text-foreground/60"
+                    shadowColor={"var(--muted-foreground)"}
                 >
-                    Projects
+                    jects
                 </LineShadowText>
             </h2>
             <div className="relative w-full px-4 py-6 border-b overflow-hidden">

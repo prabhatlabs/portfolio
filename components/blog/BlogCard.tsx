@@ -24,24 +24,22 @@ export function BlogCard({
     return (
         <Link
             href={`/blog/${slug}`}
-            className="group grid grid-cols-1 md:grid-cols-[7.5rem_1fr] gap-4 p-4 rounded-xl border border-border bg-card hover:bg-muted hover:shadow-lg transition-all duration-500 overflow-hidden"
+            className="group grid grid-cols-1 md:grid-cols-[8rem_1fr] md:gap-4 rounded-lg border border-border bg-muted/50 hover:bg-muted hover:shadow-lg transition-all duration-500 overflow-hidden"
         >
-            {coverImageUrl ? (
-                <div className="relative w-full h-30 aspect-video md:aspect-square overflow-hidden rounded-lg border border-border/50">
+            <div className="relative w-full h-full aspect-video md:aspect-square overflow-hidden border-b md:border-b-0 md:border-r">
+                {coverImageUrl ? (
                     <Image
                         src={coverImageUrl}
                         alt={title}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                </div>
-            ) : (
-                <div className="hidden md:flex aspect-square rounded-lg bg-muted items-center justify-center border border-dashed border-border">
-                    <span className="text-4xl">📄</span>
-                </div>
-            )}
-            <div className="flex flex-col justify-center space-y-2">
-                <div className="flex flex-wrap items-center gap-x-2 text-xs text-muted-foreground">
+                ) : (
+                    <div className="bg-muted w-full h-full"></div>
+                )}
+            </div>
+            <div className="flex flex-col justify-center p-4">
+                <div className="flex flex-wrap items-center gap-x-2 text-xs text-muted-foreground mb-1">
                     <time dateTime={date}>
                         {new Date(date).toLocaleDateString("en-US", {
                             year: "numeric",
@@ -56,10 +54,10 @@ export function BlogCard({
                         </Fragment>
                     ))}
                 </div>
-                <h2 className="group-hover:underline text-xl font-bold group-hover:text-primary transition-colors leading-tight">
+                <h2 className="group-hover:underline text-xl font-bold group-hover:text-primary transition-colors leading-tight mb-2">
                     {title}
                 </h2>
-                <p className="text-muted-foreground line-clamp-2 text-sm leading-relaxed">
+                <p className="text-muted-foreground line-clamp-3 text-sm leading-tight">
                     {description}
                 </p>
             </div>

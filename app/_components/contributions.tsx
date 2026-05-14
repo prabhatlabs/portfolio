@@ -3,16 +3,19 @@ import { LineShadowText } from "@/components/ui/line-shadow-text";
 
 export function Contributions() {
     return (
-        <div className="space-y-4">
+        <div className="">
             <h2 className="p-6 mt-16 sm:mt-20 md:mt-24 border-y text-3xl md:text-5xl font-bold">
+                <LineShadowText className="" shadowColor={"var(--foreground)"}>
+                    Con
+                </LineShadowText>
                 <LineShadowText
-                    className="italic"
-                    shadowColor={"var(--foreground)"}
+                    className=" text-foreground/60"
+                    shadowColor={"var(--muted-foreground)"}
                 >
-                    Contributions
+                    tributions
                 </LineShadowText>
             </h2>
-            <div className="px-4">
+            <div className="p-4 border-b">
                 <ContributionChart username="prabhatlabs" />
             </div>
         </div>

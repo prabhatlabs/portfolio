@@ -6,11 +6,14 @@ export function Experiance() {
     return (
         <div className="">
             <h2 className="p-6 mt-6 sm:mt-8 md:mt-10 border-t text-3xl md:text-5xl font-bold">
+                <LineShadowText className="" shadowColor={"var(--foreground)"}>
+                    Ex
+                </LineShadowText>
                 <LineShadowText
-                    className="italic"
-                    shadowColor={"var(--foreground)"}
+                    className=" text-foreground/60"
+                    shadowColor={"var(--muted-foreground)"}
                 >
-                    Experience
+                    perience
                 </LineShadowText>
             </h2>
 

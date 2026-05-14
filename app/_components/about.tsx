@@ -6,6 +6,7 @@ import { getIcon } from "@/lib/icon";
 import { Gamepad2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { RiPagesLine } from "react-icons/ri";
 
 export function About({
     isTerminalOpen,
@@ -25,6 +26,13 @@ export function About({
                     </div>
                     <VisitorCounter />
                 </div>
+                <Image
+                    src="/arrow.png"
+                    width={100}
+                    height={100}
+                    alt="arrow"
+                    className="object-cover absolute top-0 left-0 -translate-y-3/5 translate-x-full"
+                />
                 <div className="animate-line-shadow w-4 md:w-6 shrink-0 h-[54px] bg-[repeating-linear-gradient(315deg,color-mix(in_oklab,var(--border)60%,transparent)_0,color-mix(in_oklab,var(--border)60%,transparent)_2px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed"></div>
                 <div className="flex items-center w-full">
                     <div className="p-0.5 w-fit h-fit shrink-0 border-x">
@@ -56,13 +64,13 @@ export function About({
                     </h1>
                     <h3 className="text-xl sm:text-2xl md:text-3xl">
                         <LineShadowText
-                            className="italic"
+                            className=""
                             shadowColor={"var(--foreground)"}
                         >
                             Software
                         </LineShadowText>
                         <LineShadowText
-                            className="italic ml-1 text-foreground/60"
+                            className=" ml-1 text-foreground/60"
                             shadowColor={"var(--foreground)"}
                         >
                             Developer
@@ -96,6 +104,13 @@ export function About({
                     })}
                 </div>
                 <div className="absolute top-0 bottom-0 right-4 md:right-6 flex items-center">
+                    <Link
+                        href={"/blog"}
+                        className="flex items-center gap-1.5 px-3 h-full border-x md:border-r-0 font-mono text-xs text-muted-foreground hover:text-primary transition-all duration-300 hover:bg-primary/5 group"
+                    >
+                        <RiPagesLine className="size-3.5 group-hover:rotate-12 transition-transform" />
+                        <span className="whitespace-nowrap">Blogs</span>
+                    </Link>
                     <Link
                         href="/games"
                         className="hidden md:flex items-center gap-1.5 px-3 h-full border-x font-mono text-xs text-muted-foreground hover:text-primary transition-all duration-300 hover:bg-primary/5 group"

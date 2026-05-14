@@ -38,16 +38,19 @@ export function Skills() {
         ),
     };
     return (
-        <div className="space-y-4">
-            <h2 className="p-6 mt-10 sm:mt-14 md:mt-16 border-y text-3xl md:text-5xl font-bold">
+        <div className="my-16 sm:my-20 md:my-24">
+            <h2 className="p-6 border-y text-3xl md:text-5xl font-bold">
+                <LineShadowText className="" shadowColor={"var(--foreground)"}>
+                    S
+                </LineShadowText>
                 <LineShadowText
-                    className="italic"
-                    shadowColor={"var(--foreground)"}
+                    className=" text-foreground/60"
+                    shadowColor={"var(--muted-foreground)"}
                 >
-                    Skills
+                    kills
                 </LineShadowText>
             </h2>
-            <div className="space-y-2 py-1 px-5.5 relative border-t">
+            <div className="space-y-2 py-1 px-5.5 relative border-b">
                 <div className="absolute h-full w-px border-l top-0 left-4"></div>
                 <div className="absolute h-full w-px border-l top-0 right-4"></div>
                 <div className="flex flex-wrap gap-1">

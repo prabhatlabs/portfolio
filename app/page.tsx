@@ -20,6 +20,34 @@ export default function PageContent() {
                 <div className="space-y-4 md:space-y-6">
                     <Footer asNav />
                     <About />
+                    <svg
+                        width="20"
+                        height="20"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <rect width="10" height="10" fill="rgba(0,0,0,0.01)" />
+                        <rect
+                            x="10"
+                            y="0"
+                            width="10"
+                            height="10"
+                            fill="transparent"
+                        />
+                        <rect
+                            x="0"
+                            y="10"
+                            width="10"
+                            height="10"
+                            fill="transparent"
+                        />
+                        <rect
+                            x="10"
+                            y="10"
+                            width="10"
+                            height="10"
+                            fill="rgba(0,0,0,0.01)"
+                        />
+                    </svg>
                     <Experiance />
                     <Projects />
                     <Contributions />

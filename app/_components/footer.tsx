@@ -16,12 +16,12 @@ export function Footer({ asNav }: { asNav?: boolean }) {
                         <span className="text-muted-foreground text-[10px] font-mono absolute bottom-full left-2 hidden sm:block mb-7">
                             max-w-3xl mx-auto
                         </span>
-                        <span className="text-muted-foreground text-[10px] font-mono absolute bottom-full right-6 hidden sm:block mb-1.5">
+                        <span className="text-muted-foreground text-[10px] font-mono absolute bottom-full right-6 hidden sm:block mb-1">
                             flex items-center justify-between gap-4
                         </span>
                     </>
                 ) : (
-                    <span className="text-muted-foreground text-[10px] font-mono absolute bottom-full right-6 hidden sm:block mb-1.5">
+                    <span className="text-muted-foreground text-[10px] font-mono absolute bottom-full right-6 hidden sm:block mb-1">
                         flex gap-2 items-center
                     </span>
                 )}
@@ -32,27 +32,33 @@ export function Footer({ asNav }: { asNav?: boolean }) {
                             : "w-fit text-center sm:text-left"
                     }
                 >
-                    <h2 className="text-2xl font-bold">
-                        prabhatlabs
-                        {asNav && (
+                    {asNav ? (
+                        <h2 className="text-2xl font-bold">
+                            prabhatlabs
                             <span className="text-foreground/60">.dev</span>
-                        )}
-                    </h2>
-                    {!asNav && (
-                        <p className="text-xs text-muted-foreground">
-                            prabhatlabs.dev &copy; {new Date().getFullYear()}
-                        </p>
+                        </h2>
+                    ) : (
+                        <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                            <Link href={"/"} className="hover:underline">
+                                prabhatlabs.dev &copy;{" "}
+                                {new Date().getFullYear()}
+                            </Link>
+                            <span>•</span>
+                            <Link href={"/blog"} className="hover:underline">
+                                All Blogs
+                            </Link>
+                        </div>
                     )}
                 </div>
                 {!asNav ? (
-                    <div className="flex gap-2 items-center">
+                    <div className="flex items-center md:border-r">
                         {myInfo.contacts.map((contact) => {
                             const Icon = getIcon(contact.iconName);
                             return (
                                 <Link
                                     key={contact.name}
                                     href={contact.url}
-                                    className="p-1 rounded hover:bg-muted text-muted-foreground hover:text-foreground transition-colors duration-300"
+                                    className="p-2 md:border-l hover:bg-muted text-muted-foreground hover:text-foreground transition-colors duration-300"
                                 >
                                     <Icon className="size-5" />
                                 </Link>
