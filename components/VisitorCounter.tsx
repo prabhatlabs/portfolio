@@ -43,7 +43,7 @@ export function VisitorCounter({ slug, className }: VisitorCounterProps) {
             }
         };
 
-        if (!lastVisit || now - parseInt(lastVisit) > 60000) {
+        if (!lastVisit || now - parseInt(lastVisit) > 120000) {
             incrementAndFetch();
         } else {
             fetchOnly();
