@@ -23,9 +23,7 @@ export function About({
                         <span className="p-1 h-px w-px animate-pulse absolute top-1/2 -translate-y-1/2 rounded-full bg-green-500"></span>
                         <span className="ml-3.5">Open to work</span>
                     </div>
-                    <div>
-                        <VisitorCounter /> Visitors
-                    </div>
+                    <VisitorCounter />
                 </div>
                 <div className="animate-line-shadow w-4 md:w-6 shrink-0 h-[54px] bg-[repeating-linear-gradient(315deg,color-mix(in_oklab,var(--border)60%,transparent)_0,color-mix(in_oklab,var(--border)60%,transparent)_2px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed"></div>
                 <div className="flex items-center w-full">

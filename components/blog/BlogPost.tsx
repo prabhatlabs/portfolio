@@ -27,9 +27,7 @@ export function BlogPost({
         <article>
             <header className="mb-6">
                 <div className="flex items-center flex-wrap gap-x-2 text-sm text-muted-foreground mb-4">
-                    <span>
-                        <VisitorCounter slug={slug} /> Visitors
-                    </span>
+                    <VisitorCounter slug={slug} />
                     <span>•</span>
                     <time dateTime={date}>
                         {new Date(date).toLocaleDateString("en-US", {

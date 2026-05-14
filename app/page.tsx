@@ -4,7 +4,6 @@ import { Experiance } from "./_components/experiance";
 import { Footer } from "./_components/footer";
 import { Projects } from "./_components/projects";
 import { Skills } from "./_components/skills";
-import { VisitorCounter } from "@/components/VisitorCounter";
 
 export default function PageContent() {
     return (
@@ -26,9 +25,6 @@ export default function PageContent() {
                     <Contributions />
                 </div>
                 <Skills />
-                <div className="p-4 flex justify-center">
-                    <VisitorCounter className="text-xs text-muted-foreground font-mono" />
-                </div>
                 <Footer />
                 <div className="-z-10 absolute top-0 right-0 w-4 h-full border-r"></div>
             </div>

@@ -106,7 +106,6 @@ export default async function BlogPostPage({ params }: Props) {
                     </Link>
                 </div>
                 <div className="flex items-center gap-4">
-                    <VisitorCounter slug={slug} className="text-xs text-muted-foreground font-mono" />
                     <ThemeToggle />
                 </div>
             </div>
