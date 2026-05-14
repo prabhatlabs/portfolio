@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model SiteVisitor {
+  id      Int @id @default(1)
+  counter Int @default(0)
+}
+
+model BlogVisitor {
+  slug    String @id
+  counter Int    @default(0)
+}

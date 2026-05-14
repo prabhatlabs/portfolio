@@ -1,8 +1,10 @@
 import { getFullImageUrl } from "@/lib/image-helper";
 import Image from "next/image";
 import { Fragment, ReactNode } from "react";
+import { VisitorCounter } from "../VisitorCounter";
 
 interface BlogPostProps {
+    slug: string;
     title: string;
     date: string;
     description: string;
@@ -12,6 +14,7 @@ interface BlogPostProps {
 }
 
 export function BlogPost({
+    slug,
     title,
     date,
     description,
@@ -24,6 +27,10 @@ export function BlogPost({
         <article>
             <header className="mb-6">
                 <div className="flex items-center flex-wrap gap-x-2 text-sm text-muted-foreground mb-4">
+                    <span>
+                        <VisitorCounter slug={slug} /> Visitors
+                    </span>
+                    <span>•</span>
                     <time dateTime={date}>
                         {new Date(date).toLocaleDateString("en-US", {
                             year: "numeric",

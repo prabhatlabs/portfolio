@@ -2,6 +2,7 @@ import { BlogPost } from "@/components/blog/BlogPost";
 import { MDXComponents } from "@/components/blog/MDXComponents";
 import { RelatedPosts } from "@/components/blog/RelatedPosts";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { VisitorCounter } from "@/components/VisitorCounter";
 import { getAllPosts, getPostBySlug, getPostMetaBySlug } from "@/lib/github";
 import { getFullImageUrl } from "@/lib/image-helper";
 import { Metadata } from "next";
@@ -104,10 +105,14 @@ export default async function BlogPostPage({ params }: Props) {
                         All Blogs
                     </Link>
                 </div>
-                <ThemeToggle />
+                <div className="flex items-center gap-4">
+                    <VisitorCounter slug={slug} className="text-xs text-muted-foreground font-mono" />
+                    <ThemeToggle />
+                </div>
             </div>
 
             <BlogPost
+                slug={post.slug}
                 title={post.title}
                 date={post.date}
                 description={post.description}

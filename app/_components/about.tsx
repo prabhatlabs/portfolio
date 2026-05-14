@@ -1,5 +1,6 @@
 import { LineShadowText } from "@/components/ui/line-shadow-text";
 import RenderText from "@/components/ui/render-text";
+import { VisitorCounter } from "@/components/VisitorCounter";
 import { myInfo } from "@/data/pages";
 import { getIcon } from "@/lib/icon";
 import { Gamepad2 } from "lucide-react";
@@ -17,9 +18,14 @@ export function About({
         <div className="py-4 sm:py-6 relative mt-6 sm:mt-8 md:mt-10">
             {/* image */}
             <div className="flex items-center w-full border border-x-border/10 relative">
-                <div className="absolute bottom-full left-0 my-1 mx-4 sm:mx-6 font-mono text-[10px]">
-                    <span className="p-1 h-px w-px animate-pulse absolute top-1/2 -translate-y-1/2 rounded-full bg-green-500"></span>
-                    <span className="ml-3.5">Open to work</span>
+                <div className="absolute bottom-full left-0 my-1 px-4 sm:px-6 w-full flex justify-between items-center font-mono text-[10px]">
+                    <div>
+                        <span className="p-1 h-px w-px animate-pulse absolute top-1/2 -translate-y-1/2 rounded-full bg-green-500"></span>
+                        <span className="ml-3.5">Open to work</span>
+                    </div>
+                    <div>
+                        <VisitorCounter /> Visitors
+                    </div>
                 </div>
                 <div className="animate-line-shadow w-4 md:w-6 shrink-0 h-[54px] bg-[repeating-linear-gradient(315deg,color-mix(in_oklab,var(--border)60%,transparent)_0,color-mix(in_oklab,var(--border)60%,transparent)_2px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed"></div>
                 <div className="flex items-center w-full">
