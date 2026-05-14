@@ -36,14 +36,17 @@ export function BlogPost({
                             day: "numeric",
                         })}
                     </time>
+                    {tags.length > 0 && <span>•</span>}
                     {tags.length > 0 && (
                         <>
-                            {tags.map((tag) => (
+                            {tags.map((tag, index) => (
                                 <Fragment key={tag}>
-                                    <span>•</span>
                                     <span key={tag} className="text-primary">
                                         {tag}
                                     </span>
+                                    {index !== tags.length - 1 && (
+                                        <span>•</span>
+                                    )}
                                 </Fragment>
                             ))}
                         </>
