@@ -104,6 +104,8 @@ export default async function BlogPostPage({ params }: Props) {
                     <Link href={"/blog"} className="hover:underline">
                         All Blogs
                     </Link>
+                    <span>•</span>
+                    <VisitorCounter slug={slug} />
                 </div>
                 <div className="flex items-center gap-4">
                     <ThemeToggle />
