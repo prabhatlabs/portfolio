@@ -57,7 +57,7 @@ export async function getAllPosts(): Promise<PostMeta[]> {
         );
         const data = JSON.parse(content);
 
-        return (data.blogs || []) as PostMeta[];
+        return ((data.blogs || []) as PostMeta[]).filter((b) => b.published);
     } catch (error) {
         console.error("Error fetching blog-index.json:", error);
         return [];
