@@ -9,7 +9,8 @@ export const revalidate = 3600;
 
 export const metadata: Metadata = {
     title: "Blog",
-    description: "Articles about development, programming, and tech.",
+    description:
+        "Thoughts, learnings, and things I found worth writing down — code, concepts, and the occasional rabbit hole. No newsletters, no SEO fluff. Just things I'm building, learning, and figuring out.",
 };
 
 export default async function BlogPage() {
@@ -21,7 +22,8 @@ export default async function BlogPage() {
                 <div>
                     <h1 className="text-2xl md:text-3xl font-bold">Blogs</h1>
                     <p className="text-muted-foreground">
-                        I write stuff, sometimes...
+                        Thoughts, learnings, and things I found worth writing
+                        down.
                     </p>
                 </div>
                 <div className="flex items-center gap-4">

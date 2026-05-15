@@ -123,6 +123,7 @@ export const projects = [
             skills.hono,
             skills.nextjs,
             skills.postgresql,
+            skills.sqlite,
             skills.redis,
             skills.drizzle,
             skills.cloudflare,
@@ -186,7 +187,6 @@ export const projects = [
             skills.redis,
             skills.mongodb,
             skills.tailwind,
-            skills.ffmpeg,
         ],
         links: [
             {

@@ -54,7 +54,7 @@ export function BlogCard({
                         </Fragment>
                     ))}
                 </div>
-                <h2 className="group-hover:underline text-xl font-bold group-hover:text-primary transition-colors leading-tight mb-2">
+                <h2 className="group-hover:underline text-xl font-bold leading-tight mb-2">
                     {title}
                 </h2>
                 <p className="text-muted-foreground line-clamp-3 text-sm leading-tight">
