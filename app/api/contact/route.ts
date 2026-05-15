@@ -1,7 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { withAuth } from "@/lib/proxy";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
+export const GET = withAuth(async (request: NextRequest) => {
     const { searchParams } = new URL(request.url);
     const page = parseInt(searchParams.get("page") || "1");
     const limit = 20;
@@ -25,13 +26,10 @@ export async function GET(request: NextRequest) {
                 totalPages: Math.ceil(total / limit),
             },
         });
-    } catch (error) {
-        return NextResponse.json(
-            { error: "Something went wrong" },
-            { status: 500 },
-        );
+    } catch (error: any) {
+        return NextResponse.json({ error: error.message }, { status: 500 });
     }
-}
+});
 
 export async function POST(request: NextRequest) {
     try {
@@ -66,7 +64,7 @@ export async function POST(request: NextRequest) {
     }
 }
 
-export async function DELETE() {
+export const DELETE = withAuth(async () => {
     try {
         await prisma.contactForm.deleteMany();
         return NextResponse.json({
@@ -75,9 +73,9 @@ export async function DELETE() {
     } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
-}
+});
 
-export async function PATCH() {
+export const PATCH = withAuth(async () => {
     try {
         await prisma.contactForm.updateMany({
             data: {
@@ -88,4 +86,4 @@ export async function PATCH() {
     } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 500 });
     }
-}
+});
