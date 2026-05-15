@@ -1,4 +1,5 @@
 import { About } from "./_components/about";
+import { Blogs } from "./_components/blogs";
 import { Contributions } from "./_components/contributions";
 import { Experiance } from "./_components/experiance";
 import { Footer } from "./_components/footer";
@@ -24,6 +25,7 @@ export default function PageContent() {
                     <Projects />
                     <Contributions />
                     <Skills />
+                    <Blogs />
                     <Footer />
                 </div>
                 <div className="-z-10 absolute top-0 right-0 w-4 h-full border-r"></div>

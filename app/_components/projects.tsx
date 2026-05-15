@@ -14,7 +14,7 @@ function ProjectCard({
     return (
         <div
             key={project.title}
-            className={`${idx === 0 || idx === projects.length - 1 ? "" : "border-l"} z-10 p-2 md:p-3 flex flex-col gap-2 justify-between min-w-[300px]`}
+            className={`${idx === 0 || idx === projects.length - 1 ? "" : "border-l"} z-10 p-2 md:p-3 flex flex-col gap-2 justify-between min-w-75`}
         >
             <div className="space-y-2">
                 <Image
@@ -52,16 +52,18 @@ function ProjectCard({
                 )}
 
                 <div className="flex gap-px items-center">
-                    {project.links.map((link) => {
+                    {project.links.map((link, idx) => {
                         const IconComp = getIcon(link.iconName);
                         return (
                             <Link
                                 key={link.name}
                                 href={link.url}
                                 target={link.target}
-                                className="text-sm bg-foreground/10 px-1.5 py-0.5 flex items-center gap-2 justify-center"
+                                className="group text-sm bg-foreground/10 px-1.5 py-0.5 flex items-center gap-2 justify-center"
                             >
-                                <IconComp className="size-4" />
+                                <IconComp
+                                    className={`size-4 ${idx === 0 ? "group-hover:-translate-y-1/4 group-hover:translate-x-1/4" : "group-hover:scale-125 group-hover:text-emerald-600"} transition-all duration-300`}
+                                />
                                 {link.name}
                             </Link>
                         );
