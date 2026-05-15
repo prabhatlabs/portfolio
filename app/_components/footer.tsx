@@ -22,7 +22,7 @@ export function Footer({ asNav }: { asNav?: boolean }) {
                     </>
                 ) : (
                     <span className="text-muted-foreground text-[10px] font-mono absolute bottom-full right-6 hidden sm:block mb-1">
-                        flex gap-2 items-center
+                        flex items-center
                     </span>
                 )}
                 <div

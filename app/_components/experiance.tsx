@@ -18,7 +18,7 @@ export function Experiance() {
             </h2>
 
             <div className="relative">
-                <span className="absolute top-0 left-0 -translate-x-[50%] translate-y-[100px] rotate-270 my-2 mx-2 font-mono text-[10px] text-muted-foreground">
+                <span className="absolute -top-5 left-1 my-1 mx-4 font-mono text-[10px] text-muted-foreground">
                     flex sm:gap-2 justify-between px-4
                 </span>
                 {experiences.map((experience, index) => (

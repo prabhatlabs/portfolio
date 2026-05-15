@@ -51,6 +51,9 @@ export function Skills() {
                 </LineShadowText>
             </h2>
             <div className="space-y-2 py-1 px-5.5 relative border-b">
+                <span className="absolute -top-5 left-1 my-1 mx-4 font-mono text-[10px] text-muted-foreground">
+                    flex flex-wrap gap-1
+                </span>
                 <div className="absolute h-full w-px border-l top-0 left-4"></div>
                 <div className="absolute h-full w-px border-l top-0 right-4"></div>
                 <div className="flex flex-wrap gap-1">

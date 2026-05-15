@@ -88,10 +88,10 @@ export function Projects() {
                     jects
                 </LineShadowText>
             </h2>
-            <div className="relative w-full px-4 py-6 border-b overflow-hidden">
+            <div className="relative w-full p-4 border-b overflow-hidden">
                 <div className="flex w-full overflow-auto border">
-                    <span className="absolute top-0 left-0 my-1 mx-4 font-mono text-[10px] text-muted-foreground">
-                        flex gap-4 w-full overflow-auto
+                    <span className="absolute -top-1 left-0 my-1 mx-4 font-mono text-[10px] text-muted-foreground">
+                        flex w-full overflow-auto
                     </span>
                     {projects.map((project, index) => {
                         return project?.show ? (

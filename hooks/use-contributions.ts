@@ -3,7 +3,7 @@ import {
     ContributionDay,
     ContributionWeek,
 } from "@/types/contributions";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 function computeLevel(count: number, max: number): 0 | 1 | 2 | 3 | 4 {
     if (count === 0) return 0;
@@ -69,6 +69,7 @@ export function useContributionData(username: string) {
     const [data, setData] = useState<ContributionData | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const isMounted = useRef(false);
 
     const fetch_ = useCallback(async () => {
         setLoading(true);
@@ -86,6 +87,8 @@ export function useContributionData(username: string) {
     }, [username]);
 
     useEffect(() => {
+        if (isMounted.current) return;
+        isMounted.current = true;
         fetch_();
     }, [fetch_]);
 
