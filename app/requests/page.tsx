@@ -4,9 +4,13 @@ import { useEffect, useState } from "react";
 import { apiFetcher } from "@/lib/api-fetcher";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { IoMdRefresh, IoMdTrash } from "react-icons/io";
+import {
+    IoMdRefresh,
+    IoMdTrash,
+    IoMdArrowBack,
+    IoMdArrowForward,
+} from "react-icons/io";
 import { RiCheckDoubleFill } from "react-icons/ri";
 
 interface IContactRequest {
@@ -20,13 +24,24 @@ interface IContactRequest {
 }
 
 interface IContactRequestsResponse {
-    data: Contact[];
+    data: IContactRequest[];
     pagination: {
+        page: number;
+        limit: number;
         total: number;
+        totalPages: number;
     };
 }
 
-function RequestCard({ contact }: { contact: IContactRequest }) {
+function RequestCard({
+    contact,
+    markAsRead,
+    deleteContact,
+}: {
+    contact: IContactRequest;
+    markAsRead: (id: number) => void;
+    deleteContact: (id: number) => void;
+}) {
     return (
         <div
             className={`${contact.status === "UNREAD" ? "bg-muted" : ""} border`}
@@ -81,6 +96,11 @@ export default function RequestsPage() {
     const [contactRequests, setContactRequests] = useState<IContactRequest[]>(
         [],
     );
+    const [pagination, setPagination] = useState({
+        page: 1,
+        totalPages: 1,
+        total: 0,
+    });
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
@@ -88,17 +108,23 @@ export default function RequestsPage() {
         const storedToken = sessionStorage.getItem("auth-token");
         if (storedToken) {
             setToken(storedToken);
-            fetchContactRequests();
+            fetchContactRequests(1);
         }
     }, []);
 
-    async function fetchContactRequests() {
+    async function fetchContactRequests(page: number = pagination.page) {
         setLoading(true);
         setError(null);
         try {
-            const res =
-                await apiFetcher<IContactRequestsResponse>("/api/contact");
+            const res = await apiFetcher<IContactRequestsResponse>(
+                `/api/contact?page=${page}`,
+            );
             setContactRequests(res.data);
+            setPagination({
+                page: res.pagination.page,
+                totalPages: res.pagination.totalPages,
+                total: res.pagination.total,
+            });
         } catch (err: any) {
             setError(err.message);
         } finally {
@@ -181,8 +207,8 @@ export default function RequestsPage() {
     }
 
     return (
-        <div className="max-w-4xl mx-auto p-4 space-y-6">
-            <div className="flex justify-between items-center gap-2 mt-4 md:mt-6 mb-8 md:mb-12">
+        <div className="h-dvh max-w-4xl mx-auto p-6 overflow-hidden grid grid-rows-[52px_1fr_52px]">
+            <div className="flex justify-between items-center gap-2 p-2 border">
                 <h1 className="text-xl md:text-2xl font-bold">
                     Contact Requests
                 </h1>
@@ -190,7 +216,7 @@ export default function RequestsPage() {
                     <Button
                         size={"icon"}
                         variant="outline"
-                        onClick={fetchContactRequests}
+                        onClick={() => fetchContactRequests()}
                         disabled={loading}
                     >
                         <IoMdRefresh />
@@ -218,15 +244,91 @@ export default function RequestsPage() {
                 </div>
             )}
 
-            <div className="grid gap-4">
+            <div className="space-y-4 h-full overflow-auto py-10 mask-y-from-90%">
                 {contactRequests.length === 0 && !loading && (
                     <p className="text-center py-10 text-muted-foreground">
                         No requests found.
                     </p>
                 )}
-                {contactRequests.map((contact, index) => (
-                    <RequestCard key={index} contact={contact} />
+                {contactRequests.map((contact) => (
+                    <RequestCard
+                        key={contact.id}
+                        contact={contact}
+                        markAsRead={markAsRead}
+                        deleteContact={deleteContact}
+                    />
                 ))}
+                {contactRequests.map((contact) => (
+                    <RequestCard
+                        key={contact.id}
+                        contact={contact}
+                        markAsRead={markAsRead}
+                        deleteContact={deleteContact}
+                    />
+                ))}
+                {contactRequests.map((contact) => (
+                    <RequestCard
+                        key={contact.id}
+                        contact={contact}
+                        markAsRead={markAsRead}
+                        deleteContact={deleteContact}
+                    />
+                ))}
+                {contactRequests.map((contact) => (
+                    <RequestCard
+                        key={contact.id}
+                        contact={contact}
+                        markAsRead={markAsRead}
+                        deleteContact={deleteContact}
+                    />
+                ))}
+                {contactRequests.map((contact) => (
+                    <RequestCard
+                        key={contact.id}
+                        contact={contact}
+                        markAsRead={markAsRead}
+                        deleteContact={deleteContact}
+                    />
+                ))}
+                {contactRequests.map((contact) => (
+                    <RequestCard
+                        key={contact.id}
+                        contact={contact}
+                        markAsRead={markAsRead}
+                        deleteContact={deleteContact}
+                    />
+                ))}
+            </div>
+
+            <div className="flex items-center justify-center gap-4 p-2 border">
+                <Button
+                    variant="outline"
+                    size="icon"
+                    disabled={
+                        pagination.page <= 1 ||
+                        loading ||
+                        pagination.totalPages <= 1
+                    }
+                    onClick={() => fetchContactRequests(pagination.page - 1)}
+                >
+                    <IoMdArrowBack />
+                </Button>
+                <span className="text-sm text-muted-foreground">
+                    Page {pagination.total > 0 ? pagination.page : 0} of{" "}
+                    {pagination.totalPages}
+                </span>
+                <Button
+                    variant="outline"
+                    size="icon"
+                    disabled={
+                        pagination.page >= pagination.totalPages ||
+                        loading ||
+                        pagination.totalPages <= 1
+                    }
+                    onClick={() => fetchContactRequests(pagination.page + 1)}
+                >
+                    <IoMdArrowForward />
+                </Button>
             </div>
         </div>
     );
