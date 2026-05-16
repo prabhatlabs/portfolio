@@ -1,6 +1,6 @@
 import { BlogPost } from "@/components/blog/BlogPost";
 import { MDXComponents } from "@/components/blog/MDXComponents";
-import { RelatedPosts } from "@/components/blog/RelatedPosts";
+import { SimilarPosts } from "@/components/blog/SimilarPosts";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { VisitorCounter } from "@/components/VisitorCounter";
 import { getAllPosts, getPostBySlug, getPostMetaBySlug } from "@/lib/github";
@@ -105,7 +105,7 @@ export default async function BlogPostPage({ params }: Props) {
                 />
             </BlogPost>
 
-            {relatedPosts.length > 0 && <RelatedPosts posts={relatedPosts} />}
+            {relatedPosts.length > 0 && <SimilarPosts posts={relatedPosts} />}
         </div>
     );
 }
