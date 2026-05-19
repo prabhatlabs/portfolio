@@ -24,14 +24,9 @@ export default function BlogFooter() {
                             <Link
                                 key={contact.name}
                                 href={contact.url}
-                                className="p-2 hover:bg-muted text-muted-foreground transition-colors duration-300 group"
-                                style={
-                                    {
-                                        "--hover-color": contact.color,
-                                    } as React.CSSProperties
-                                }
+                                className={`p-2 text-foreground duration-300 group`}
                             >
-                                <Icon className="size-5 group-hover:text-[var(--hover-color)]" />
+                                <Icon className="size-5 transition-transform group-hover:rotate-3 group-hover:-translate-y-1" />
                             </Link>
                         );
                     })}
