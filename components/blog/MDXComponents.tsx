@@ -8,14 +8,39 @@ export const MDXComponents = {
             {children}
         </h1>
     ),
-    h2: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-        <h2
-            className="text-2xl font-semibold mt-6 mb-2 scroll-mt-20"
-            {...props}
-        >
-            {children}
-        </h2>
-    ),
+    h2: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
+        const extractText = (node: any): string => {
+            if (typeof node === "string") return node;
+            if (Array.isArray(node)) return node.map(extractText).join("");
+            if (node?.props?.children) return extractText(node.props.children);
+            return "";
+        };
+
+        const text = extractText(children);
+        const id = text
+            .toLowerCase()
+            .trim()
+            .replace(/\s+/g, "-")
+            .replace(/[^\w-]+/g, "")
+            .replace(/--+/g, "-");
+
+        return (
+            <h2
+                id={id}
+                className="text-2xl font-semibold mt-6 mb-2 scroll-mt-20 group flex items-center gap-2"
+                {...props}
+            >
+                {children}
+                <a
+                    href={`#${id}`}
+                    className="opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-primary text-lg"
+                    aria-label="Link to this section"
+                >
+                    #
+                </a>
+            </h2>
+        );
+    },
     h3: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
         <h3 className="text-xl font-semibold mt-4 mb-1 scroll-mt-20" {...props}>
             {children}

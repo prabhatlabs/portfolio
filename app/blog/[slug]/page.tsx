@@ -73,7 +73,7 @@ export default async function BlogPostPage({ params }: Props) {
 
     return (
         <div className="space-y-6 md:space-y-8">
-            <div className="max-w-3xl mt-6 md:mt-8 mx-auto flex justify-between items-center gap-6">
+            <div className="mt-6 md:mt-8 mx-auto flex justify-between items-center gap-6">
                 <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                     <Link href={"/"} className="hover:underline">
                         prabhatlabs.dev
