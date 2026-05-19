@@ -14,7 +14,7 @@ function Skill({
     return (
         <div
             key={skill.name}
-            className="relative flex items-center gap-1.5 p-1.5 bg-foreground/10"
+            className="relative flex items-center gap-1.5 p-1.5 bg-foreground/10 border hover:border-foreground border-dashed rounded-md transition-all duration-300"
         >
             {/*{type && (
                 <span className="text-foreground/60 text-[8px] capitalize absolute -top-[11px] left-0">

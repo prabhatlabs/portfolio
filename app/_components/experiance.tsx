@@ -28,7 +28,7 @@ export function Experiance() {
                         className={`flex sm:gap-2 justify-between px-4 ${index !== 0 ? "border-b" : "border-y"}`}
                     >
                         <div
-                            className={`flex  gap-2 sm:gap-4 w-full sm:w-fit px-2 py-4 border-l border-r sm:border-r-0`}
+                            className={`flex gap-2 sm:gap-4 w-full sm:w-fit p-2 sm:p-4 border-l border-r sm:border-r-0`}
                         >
                             {experience.iconUrl ? (
                                 <Image
@@ -56,7 +56,7 @@ export function Experiance() {
                                 </p>
                             </div>
                         </div>
-                        <div className="hidden sm:flex items-end justify-end border-x w-42 px-2 py-4">
+                        <div className="hidden sm:flex items-end justify-center border-x w-42 px-2 py-4">
                             <p className="text-sm text-muted-foreground">
                                 {experience.period}
                             </p>

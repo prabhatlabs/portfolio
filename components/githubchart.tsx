@@ -382,7 +382,7 @@ export function ContributionChart({
                     <div
                         key={i}
                         style={{ width: cellSize, height: cellSize }}
-                        className={`rounded-sm ${c}`}
+                        className={`rounded-xs ${c}`}
                     />
                 ))}
                 <span>More</span>

@@ -58,9 +58,14 @@ export function Footer({ asNav }: { asNav?: boolean }) {
                                 <Link
                                     key={contact.name}
                                     href={contact.url}
-                                    className="p-2 md:border-l hover:bg-muted text-muted-foreground hover:text-foreground transition-colors duration-300"
+                                    className="p-2 md:border-l hover:bg-muted text-muted-foreground transition-colors duration-300 group"
+                                    style={
+                                        {
+                                            "--hover-color": contact.color,
+                                        } as React.CSSProperties
+                                    }
                                 >
-                                    <Icon className="size-5" />
+                                    <Icon className="size-5 group-hover:text-[var(--hover-color)]" />
                                 </Link>
                             );
                         })}
