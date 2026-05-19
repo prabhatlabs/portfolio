@@ -1,6 +1,7 @@
 import { LineShadowText } from "@/components/ui/line-shadow-text";
 import { experiences } from "@/data/pages";
 import Image from "next/image";
+import { PiBuildingsLight } from "react-icons/pi";
 
 export function Experiance() {
     return (
@@ -29,13 +30,19 @@ export function Experiance() {
                         <div
                             className={`flex  gap-2 sm:gap-4 w-full sm:w-fit px-2 py-4 border-l border-r sm:border-r-0`}
                         >
-                            <Image
-                                src={experience.iconUrl}
-                                alt={experience.company}
-                                width={50}
-                                height={50}
-                                className="size-10 sm:size-12 rounded border"
-                            />
+                            {experience.iconUrl ? (
+                                <Image
+                                    src={experience.iconUrl}
+                                    alt={experience.company}
+                                    width={50}
+                                    height={50}
+                                    className="size-10 sm:size-12 border"
+                                />
+                            ) : (
+                                <div className="size-10 sm:size-12 border flex items-center justify-center">
+                                    <PiBuildingsLight className="size-5 sm:size-7 text-foreground/60" />
+                                </div>
+                            )}
                             <div className="">
                                 <h3 className="sm:text-lg font-semibold">
                                     {experience.company}

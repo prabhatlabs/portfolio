@@ -299,6 +299,24 @@ export const projects = [
 
 export const experiences = [
     {
+        // iconUrl: "",
+        company: "Freelance",
+        position: "Full Stack Developer (Next.js)",
+        location: "Remote",
+        period: "Feb 2026 - Mar 2026",
+        pills: [
+            skills.typescript,
+            skills.bun,
+            skills.nextjs,
+            skills.elysia,
+            skills.postgresql,
+            skills.zustand,
+            skills.framer,
+            skills.shadcn,
+            skills.tailwind,
+        ],
+    },
+    {
         iconUrl: "/companyLogos/flexzistay_logo.png",
         company: "Flexzistay",
         position: "Software Developer Intern",
