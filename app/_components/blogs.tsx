@@ -17,7 +17,8 @@ function BlogCard({
 }) {
     const coverImageUrl = getFullImageUrl(blog.coverImage);
     return (
-        <div
+        <Link
+            href={`/blog/${blog.slug}`}
             key={blog.title}
             className={`${idx === 0 ? "" : "border-l"} z-10 p-2 md:p-3 flex flex-col gap-2 justify-between min-w-75`}
         >
@@ -51,16 +52,13 @@ function BlogCard({
             </div>
             <div className="space-y-2">
                 <div className="flex gap-px items-center">
-                    <Link
-                        href={`/blog/${blog.slug}`}
-                        className="group text-sm bg-foreground/10 px-1.5 py-0.5 flex items-center gap-2 justify-center"
-                    >
+                    <span className="group text-sm bg-foreground/10 px-1.5 py-0.5 flex items-center gap-2 justify-center">
                         <VscLinkExternal className="size-4 group-hover:-translate-y-1/4 group-hover:translate-x-1/4 transition-transform duration-300" />
                         Full Blog
-                    </Link>
+                    </span>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }
 
