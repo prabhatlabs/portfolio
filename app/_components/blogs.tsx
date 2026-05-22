@@ -92,8 +92,12 @@ export async function Blogs() {
                         />
                     ))}
                     <div
-                        className={`border-l z-10 p-2 md:p-3 flex items-center justify-center min-w-75`}
+                        className={`border-l z-10 p-2 md:p-3 flex flex-col gap-1 items-center justify-center min-w-75`}
                     >
+                        <span className="group text-sm bg-foreground/10 px-1.5 py-0.5 flex items-center gap-2 justify-center">
+                            <VscLinkExternal className="size-4 group-hover:-translate-y-1/4 group-hover:translate-x-1/4 transition-transform duration-300" />
+                            Blogs
+                        </span>
                         <p className="text-sm text-muted-foreground">
                             More coming soon...
                         </p>

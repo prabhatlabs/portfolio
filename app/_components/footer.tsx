@@ -58,7 +58,7 @@ export function Footer({ asNav }: { asNav?: boolean }) {
                                 <Link
                                     key={contact.name}
                                     href={contact.url}
-                                    className={`p-2 text-foreground duration-300 group border-l`}
+                                    className={`p-2 text-foreground duration-300 group md:border-l`}
                                 >
                                     <Icon className="size-5 transition-transform group-hover:rotate-3 group-hover:-translate-y-1" />
                                 </Link>
