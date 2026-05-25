@@ -95,7 +95,7 @@ export function ContactForm() {
                                 key={i}
                                 className="font-mono text-[10px] text-muted-foreground block h-[15px]"
                             >
-                                border-b grid sm:grid-cols-2
+                                ship! ship! ship! ship! ship! ship! ship! ship! ship! ship!
                             </span>
                         ))}
                 </motion.div>
