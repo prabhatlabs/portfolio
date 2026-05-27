@@ -120,12 +120,12 @@ export const metadata: Metadata = {
     },
 
     alternates: {
-        canonical: "https://prabhatlabs.dev/",
+        canonical: "/",
     },
 
     // Add your Google Search Console verification token here
     verification: {
-        google: "google-site-verification=7BjQe7yKCUwNzGtw7BjtwYD-nca1Mofz8H5n_GW92Ikyour-google-verification-token",
+        google: "7BjQe7yKCUwNzGtw7BjtwYD-nca1Mofz8H5n_GW92Ik",
     },
 
     openGraph: {

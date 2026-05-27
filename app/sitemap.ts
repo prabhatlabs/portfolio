@@ -5,7 +5,7 @@ export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const posts = await getAllPosts();
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://yourdomain.com";
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://prabhatlabs.dev";
 
     const blogPosts = posts.map((post) => ({
         url: `${baseUrl}/blog/${post.slug}`,

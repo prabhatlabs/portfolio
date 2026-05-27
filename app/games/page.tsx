@@ -1,5 +1,11 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import { Play, Gamepad2 } from "lucide-react";
+
+export const metadata: Metadata = {
+    title: "Arcade",
+    description: "Play experimental mini-games hidden in my portfolio.",
+};
 
 const GAMES = [
     {
