@@ -1,3 +1,8 @@
+// Architected a self-hosted live classroom platform using LiveKit to fully replace Zoom, featuring camera, mic, screen sharing, and class recording — capable of handling 10 concurrent classes with 200+ simultaneous students
+// Reduced student dashboard load time by 94% (52s → ~3s) through full-stack optimizations: replaced client-side pagination/filtering/sorting with server-driven MongoDB queries (cutting payload from ~52KB to ~4KB per request), converted 100+ $or clauses to a single $in index scan (~10s saved), parallelized 5 cross-collection queries via Promise.all (~4× latency reduction), and eliminated a 23s BSON deserialization bottleneck by removing a 3,000+ entry attendance array from projection and recomputing it via aggregation
+// Conducted a full backend performance audit across 100+ models and 20+ route files — added compound MongoDB indexes to 16 previously unindexed models and applied .lean() to 70+ read-only Mongoose queries, reducing per-request memory usage by ~60–80% and cutting read-heavy endpoint latency by ~40–60%
+// Further optimized backend with a 2-phase user fetch (6-field query for all 600+ students + 13-field query only for the 50 visible in parallel), O(n²) → O(1) student lookup via hash map, and client-side caching to minimize redundant network calls
+
 export const skills = {
     // Languages
     typescript: {
