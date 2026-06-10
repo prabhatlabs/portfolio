@@ -1,4 +1,3 @@
-import { LineShadowText } from "@/components/ui/line-shadow-text";
 import { projects } from "@/data/pages";
 import { getIcon } from "@/lib/icon";
 import Image from "next/image";
@@ -78,15 +77,14 @@ export function Projects() {
     return (
         <div>
             <h2 className="p-6 mt-16 sm:mt-20 md:mt-24 border-y text-3xl md:text-5xl font-bold">
-                <LineShadowText className="" shadowColor={"var(--foreground)"}>
+                <span>
                     Pro
-                </LineShadowText>
-                <LineShadowText
-                    className=" text-foreground/60"
-                    shadowColor={"var(--muted-foreground)"}
+                </span>
+                <span
+                    className=" text-muted-foreground"
                 >
                     jects
-                </LineShadowText>
+                </span>
             </h2>
             <div className="relative w-full p-4 border-b overflow-hidden">
                 <div className="flex w-full overflow-auto border">

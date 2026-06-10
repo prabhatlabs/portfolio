@@ -1,4 +1,3 @@
-import { LineShadowText } from "@/components/ui/line-shadow-text";
 import { skillsArray } from "@/data/pages";
 import { getIcon } from "@/lib/icon";
 import { Fragment } from "react/jsx-runtime";
@@ -40,15 +39,14 @@ export function Skills() {
     return (
         <div className="my-16 sm:my-20 md:my-24">
             <h2 className="p-6 border-y text-3xl md:text-5xl font-bold">
-                <LineShadowText className="" shadowColor={"var(--foreground)"}>
+                <span>
                     S
-                </LineShadowText>
-                <LineShadowText
-                    className=" text-foreground/60"
-                    shadowColor={"var(--muted-foreground)"}
+                </span>
+                <span
+                    className=" text-muted-foreground"
                 >
                     kills
-                </LineShadowText>
+                </span>
             </h2>
             <div className="space-y-2 py-1 px-5.5 relative border-b">
                 <span className="absolute -top-5 left-1 my-1 mx-4 font-mono text-[10px] text-muted-foreground">

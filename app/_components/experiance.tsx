@@ -1,4 +1,3 @@
-import { LineShadowText } from "@/components/ui/line-shadow-text";
 import { experiences } from "@/data/pages";
 import Image from "next/image";
 import { PiBuildingsLight } from "react-icons/pi";
@@ -7,15 +6,14 @@ export function Experiance() {
     return (
         <div className="">
             <h2 className="p-6 mt-6 sm:mt-8 md:mt-10 border-t text-3xl md:text-5xl font-bold">
-                <LineShadowText className="" shadowColor={"var(--foreground)"}>
+                <span>
                     Ex
-                </LineShadowText>
-                <LineShadowText
-                    className=" text-foreground/60"
-                    shadowColor={"var(--muted-foreground)"}
+                </span>
+                <span
+                    className=" text-muted-foreground"
                 >
                     perience
-                </LineShadowText>
+                </span>
             </h2>
 
             <div className="relative">

@@ -1,4 +1,3 @@
-import { LineShadowText } from "@/components/ui/line-shadow-text";
 import { getAllPosts, PostMeta } from "@/lib/github";
 import { getFullImageUrl } from "@/lib/image-helper";
 import Image from "next/image";
@@ -68,15 +67,14 @@ export async function Blogs() {
     return (
         <div>
             <h2 className="p-6 mt-16 sm:mt-20 md:mt-24 border-y text-3xl md:text-5xl font-bold">
-                <LineShadowText shadowColor={"var(--foreground)"}>
+                <span>
                     B
-                </LineShadowText>
-                <LineShadowText
-                    className="text-foreground/60"
-                    shadowColor={"var(--muted-foreground)"}
+                </span>
+                <span
+                    className="text-muted-foreground"
                 >
                     logs
-                </LineShadowText>
+                </span>
             </h2>
             <div className="relative w-full p-4 border-b overflow-hidden">
                 <div className="flex w-full overflow-auto border">

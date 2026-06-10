@@ -1,4 +1,3 @@
-import { LineShadowText } from "@/components/ui/line-shadow-text";
 import RenderText from "@/components/ui/render-text";
 import { VisitorCounter } from "@/components/VisitorCounter";
 import { myInfo } from "@/data/pages";
@@ -63,18 +62,8 @@ export function About({
                         ))}
                     </h1>
                     <h3 className="text-xl sm:text-2xl md:text-3xl">
-                        <LineShadowText
-                            className=""
-                            shadowColor={"var(--foreground)"}
-                        >
-                            Software
-                        </LineShadowText>
-                        <LineShadowText
-                            className=" ml-1 text-foreground/60"
-                            shadowColor={"var(--foreground)"}
-                        >
-                            Developer
-                        </LineShadowText>
+                        <span>Software</span>
+                        <span className="text-muted-foreground ml-2">Developer</span>
                     </h3>
                     <p className="text-sm text-muted-foreground mt-2 mb-1.5">
                         <RenderText>{myInfo.description}</RenderText>
