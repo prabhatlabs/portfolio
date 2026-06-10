@@ -531,7 +531,7 @@ export function HeroDitheringVisual({
   return (
     <div
       className={cn(
-        "relative hidden h-[350px] lg:block lg:h-[400px] xl:h-[500px]",
+        "relative",
         className
       )}
       data-slot="hero-dithering-visual"
@@ -539,10 +539,10 @@ export function HeroDitheringVisual({
     >
       <div
         className={cn(
-          "absolute inset-0 flex items-center justify-center overflow-hidden rounded-full",
+          "absolute inset-0 flex items-center justify-center overflow-hidden",
           desktopClassName
         )}
-        data-slot="hero-dithering-desktop"
+        // data-slot="hero-dithering-desktop"
       >
         <MemoizedDithering {...resolvedDesktopShaderProps} />
       </div>

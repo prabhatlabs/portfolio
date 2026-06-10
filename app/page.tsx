@@ -3,9 +3,10 @@ import { Blogs } from "./_components/blogs";
 import { Contacts } from "./_components/contacts";
 import { Contributions } from "./_components/contributions";
 import { Experiance } from "./_components/experiance";
-import { Footer } from "./_components/footer";
+import { Topbar } from "./_components/topbar";
 import { Projects } from "./_components/projects";
 import { Skills } from "./_components/skills";
+import { Footer } from "./_components/footer";
 
 export default function PageContent() {
     return (
@@ -20,7 +21,7 @@ export default function PageContent() {
             <div className="z-10 max-w-3xl mx-auto relative">
                 <div className="-z-10 absolute top-0 left-0 w-4 h-full border-l"></div>
                 <div className="space-y-4 md:space-y-6">
-                    <Footer asNav />
+                    <Topbar />
                     <About />
                     <Experiance />
                     <Projects />
