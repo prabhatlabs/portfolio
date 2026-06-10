@@ -11,45 +11,43 @@ interface VisitorCounterProps {
 
 export function VisitorCounter({ slug, className }: VisitorCounterProps) {
     const [count, setCount] = useState<number | null>(null);
-    const [loading, setloading] = useState<boolean>(false);
     const isMounted = useRef(false);
 
     useEffect(() => {
         if (isMounted.current) return;
         isMounted.current = true;
 
-        const endpoint = slug ? `/api/visitor?slug=${slug}` : "/api/visitor";
-        const storageKey = slug
-            ? `visitor_last_visit_${slug}`
-            : "visitor_last_visit_home";
-        const countKey = slug
-            ? `visitor_count_${slug}`
-            : "visitor_count_home";
-        
-        const lastVisit = localStorage.getItem(storageKey);
-        const cachedCount = localStorage.getItem(countKey);
-        const now = Date.now();
-
-        const incrementAndFetch = async () => {
+        const incrementAndFetch = async (): Promise<number> => {
             try {
+                const endpoint = slug
+                    ? `/api/visitor?slug=${slug}`
+                    : "/api/visitor";
                 const response = await fetch(endpoint, { method: "POST" });
                 const data = await response.json();
-                setCount(data.count);
-                localStorage.setItem(storageKey, now.toString());
-                localStorage.setItem(countKey, data.count.toString());
+                return data.count || 0;
             } catch (error) {
                 console.error("Failed to update visitor count:", error);
+                return 0;
             }
         };
 
+        const lastVisitKey = slug
+            ? `visitor_last_visit_${slug}`
+            : "visitor_last_visit_home";
+        const countKey = slug ? `visitor_count_${slug}` : "visitor_count_home";
+        const lastVisit = localStorage.getItem(lastVisitKey);
+        const cachedCount = localStorage.getItem(countKey);
+        const now = Date.now();
+
         const handleOps = async () => {
-            setloading(true);
-            if (!lastVisit || !cachedCount || now - parseInt(lastVisit) > 120000) {
-                await incrementAndFetch();
-            } else {
-                setCount(parseInt(cachedCount));
+            if (cachedCount) setCount(parseInt(cachedCount));
+
+            if (!lastVisit || now - parseInt(lastVisit) > 120_000) {
+                const c = await incrementAndFetch();
+                setCount(c);
+                localStorage.setItem(lastVisitKey, now.toString());
+                localStorage.setItem(countKey, c.toString());
             }
-            setloading(false);
         };
 
         handleOps();
@@ -57,7 +55,7 @@ export function VisitorCounter({ slug, className }: VisitorCounterProps) {
 
     return (
         <span className={cn("flex items-center gap-1", className)}>
-            {loading && <TbLoader2 className="size-2.5 animate-spin" />}
+            {!count && <TbLoader2 className="size-2.5 animate-spin" />}
             {count !== null && count} visitors
         </span>
     );

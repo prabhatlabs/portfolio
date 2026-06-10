@@ -9,8 +9,9 @@ export function Footer({ asNav }: { asNav?: boolean }) {
             className={`${asNav ? "border-b sm:py-6 " : "border-t py-4 sm:py-6 "}`}
         >
             <div
-                className={`flex ${asNav ? "" : "flex-col sm:flex-row"} items-center justify-between gap-1 sm:gap-4 sm:border-y px-4 sm:px-6 relative`}
+                className={`flex ${asNav ? "" : "flex-col sm:flex-row"} items-center justify-between gap-1 sm:gap-4 sm:border-y px-4 sm:px-6 relative h-9`}
             >
+                {/* top right tailwind text */}
                 {asNav ? (
                     <>
                         <span className="text-muted-foreground text-[10px] font-mono absolute bottom-full left-2 hidden sm:block mb-7">
@@ -25,6 +26,8 @@ export function Footer({ asNav }: { asNav?: boolean }) {
                         flex items-center
                     </span>
                 )}
+
+                {/* main text left side */}
                 <div
                     className={
                         asNav
@@ -50,6 +53,8 @@ export function Footer({ asNav }: { asNav?: boolean }) {
                         </div>
                     )}
                 </div>
+
+                {/* main action buttons right side */}
                 {!asNav ? (
                     <div className="flex items-center md:border-r">
                         {myInfo.contacts.map((contact) => {
