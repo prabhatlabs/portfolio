@@ -7,14 +7,14 @@ import { renderToStaticMarkup } from "react-dom/server";
 const S = 30, COLS = 12, ROWS = 10;
 
 const PALETTE = [
-    { bg: 'var(--background)', color: 'var(--foreground)' },
-    { bg: 'var(--background)', color: 'var(--foreground)' },
-    { bg: 'var(--background)', color: 'var(--foreground)' },
-    { bg: 'var(--background)', color: 'var(--foreground)' },
-    { bg: 'var(--background)', color: 'var(--foreground)' },
-    { bg: 'var(--background)', color: 'var(--foreground)' },
-    { bg: 'var(--background)', color: 'var(--foreground)' },
-    { bg: 'var(--background)', color: 'var(--foreground)' },
+    { color: 'var(--background)', bg: 'var(--foreground)' },
+    { color: 'var(--background)', bg: 'var(--foreground)' },
+    { color: 'var(--background)', bg: 'var(--foreground)' },
+    { color: 'var(--background)', bg: 'var(--foreground)' },
+    { color: 'var(--background)', bg: 'var(--foreground)' },
+    { color: 'var(--background)', bg: 'var(--foreground)' },
+    { color: 'var(--background)', bg: 'var(--foreground)' },
+    { color: 'var(--background)', bg: 'var(--foreground)' },
 ];
 
 const SHAPES = [
