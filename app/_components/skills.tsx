@@ -1,5 +1,6 @@
 import { skillsArray } from "@/data/pages";
 import { getIcon } from "@/lib/icon";
+import { GeistPixelSquare } from "geist/font/pixel";
 import { Fragment } from "react/jsx-runtime";
 
 export function Skills() {
@@ -13,8 +14,8 @@ export function Skills() {
         ),
     };
     return (
-        <div className="my-16 sm:my-20 md:my-24">
-            <h2 className="p-6 border-y text-3xl md:text-5xl font-bold">
+        <div>
+            <h2 className={`p-6 mt-16 sm:mt-20 md:mt-24 border-y text-3xl md:text-5xl ${GeistPixelSquare.className}`}>
                 <span>S</span>
                 <span className=" text-muted-foreground">kills</span>
             </h2>

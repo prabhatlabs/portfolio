@@ -20,7 +20,7 @@ export default function PageContent() {
             {/* main content */}
             <div className="z-10 max-w-3xl mx-auto relative">
                 <div className="-z-10 absolute top-0 left-0 w-4 h-full border-l"></div>
-                <div className="space-y-4 md:space-y-6">
+                <div className="">
                     <Topbar />
                     <About />
                     <Experiance />

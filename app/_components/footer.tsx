@@ -4,6 +4,7 @@ import {
     HeroDitheringRoot,
     HeroDitheringVisual,
 } from "@/components/ui/hero-dithering";
+import { GeistPixelSquare } from "geist/font/pixel";
 import { useTheme } from "next-themes";
 
 export function Footer() {
@@ -28,7 +29,7 @@ export function Footer() {
                     }}
                 />
                 <div className="z-10 absolute bottom-6 h-fit w-full flex flex-col items-center justify-center">
-                    <h3 className="text-3xl md:text-5xl font-bold">
+                    <h3 className={`text-3xl md:text-5xl ${GeistPixelSquare.className}`}>
                         <span>prabhatlabs</span>
                         <span className="text-muted-foreground">.dev</span>
                     </h3>

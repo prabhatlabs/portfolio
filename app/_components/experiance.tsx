@@ -1,23 +1,20 @@
 import { experiences } from "@/data/pages";
+import { GeistPixelSquare } from "geist/font/pixel";
 import Image from "next/image";
 import { PiBuildingsLight } from "react-icons/pi";
 
 export function Experiance() {
     return (
-        <div className="">
-            <h2 className="p-6 mt-6 sm:mt-8 md:mt-10 border-t text-3xl md:text-5xl font-bold">
-                <span>
-                    Ex
-                </span>
-                <span
-                    className=" text-muted-foreground"
-                >
-                    perience
-                </span>
+        <div>
+            <h2
+                className={`p-6 mt-16 sm:mt-20 md:mt-24 border-y text-3xl md:text-5xl ${GeistPixelSquare.className}`}
+            >
+                <span>Ex</span>
+                <span className=" text-muted-foreground">perience</span>
             </h2>
 
-            <div className="relative">
-                <span className="absolute -top-5 left-1 my-1 mx-4 font-mono text-[10px] text-muted-foreground">
+            <div className="relative mt-4">
+                <span className="absolute -top-5 left-0 my-1 mx-4 font-mono text-[10px] text-muted-foreground">
                     flex sm:gap-2 justify-between px-4
                 </span>
                 {experiences.map((experience, index) => (

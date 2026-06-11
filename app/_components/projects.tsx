@@ -1,5 +1,6 @@
 import { projects } from "@/data/pages";
 import { getIcon } from "@/lib/icon";
+import { GeistPixelSquare } from "geist/font/pixel";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -76,7 +77,7 @@ function ProjectCard({
 export function Projects() {
     return (
         <div>
-            <h2 className="p-6 mt-16 sm:mt-20 md:mt-24 border-y text-3xl md:text-5xl font-bold">
+            <h2 className={`p-6 mt-16 sm:mt-20 md:mt-24 border-y text-3xl md:text-5xl ${GeistPixelSquare.className}`}>
                 <span>
                     Pro
                 </span>

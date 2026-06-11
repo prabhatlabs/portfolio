@@ -5,6 +5,9 @@ import type { Metadata } from "next";
 import { DM_Sans, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
+import {
+  GeistPixelSquare
+} from "geist/font/pixel"
 
 const dmsans = DM_Sans({
     subsets: ["latin"],
@@ -16,6 +19,7 @@ const geist_mono = Geist_Mono({
     variable: "--font-geist-mono",
     weight: "500",
 });
+
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://prabhatlabs.dev"),
@@ -179,7 +183,7 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning suppressContentEditableWarning>
             <body
-                className={`antialiased no-scrollbar transition-all duration-500 ${dmsans.className} ${geist_mono.variable}`}
+                className={`antialiased no-scrollbar transition-all duration-500 ${dmsans.className} ${geist_mono.variable} ${GeistPixelSquare.variable}`}
             >
                 <ThemeProvider attribute="class" defaultTheme="dark">
                     {children}

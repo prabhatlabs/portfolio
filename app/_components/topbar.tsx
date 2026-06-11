@@ -1,8 +1,9 @@
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { GeistPixelSquare } from "geist/font/pixel";
 
 export function Topbar() {
     return (
-        <div className="border-b sm:py-6">
+        <div className="sm:py-6">
             <div className="flex items-center justify-between gap-1 sm:gap-4 sm:border-y px-4 sm:px-6 relative h-9">
                 {/* top right tailwind text */}
                 <>
@@ -16,7 +17,7 @@ export function Topbar() {
 
                 {/* main text left side */}
                 <div className="w-full sm:w-fit">
-                    <h2 className="text-2xl font-bold">
+                    <h2 className={`text-2xl ${GeistPixelSquare.className}`}>
                         prabhatlabs
                         <span className="text-foreground/60">.dev</span>
                     </h2>
