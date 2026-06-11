@@ -13,7 +13,6 @@ export default function PageContent() {
         <div className="min-h-dvh h-full overflow-auto relative">
             <div className="h-6 md:h-20 w-full border-b">
                 <div className="max-w-3xl mx-auto border-x h-full relative">
-                    <span className="text-muted-foreground text-[10px] font-mono absolute bottom-1 left-2"></span>
                 </div>
             </div>
 
@@ -34,7 +33,7 @@ export default function PageContent() {
                 <div className="-z-10 absolute top-0 right-0 w-4 h-full border-r"></div>
             </div>
 
-            <div className="h-4 md:h-20 w-full border-t">
+            <div className="h-fit md:h-20 w-full border-t">
                 <div className="max-w-3xl mx-auto border-x h-full relative">
                     <p className="text-muted-foreground text-center text-xs py-1">
                         prabhatlabs.dev &copy; 2026
