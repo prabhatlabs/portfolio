@@ -41,15 +41,14 @@ export function Experiance() {
                                     <PiBuildingsLight className="size-5 sm:size-7 text-foreground/60" />
                                 </div>
                             )}
-                            <div className="">
-                                <h3 className="sm:text-lg font-semibold">
+                            <div className="space-y-0.5 sm:space-y-1.5">
+                                <h3 className="sm:text-lg font-semibold leading-4">
                                     {experience.company}
                                 </h3>
-                                <p className="text-sm sm:text-base text-muted-foreground">
-                                    {experience.position} •{" "}
-                                    <i>{experience.location}</i>
+                                <p className="text-sm sm:text-base text-muted-foreground leading-4">
+                                    {`${experience.position} • ${experience.location}`}
                                 </p>
-                                <p className="block sm:hidden text-sm text-muted-foreground">
+                                <p className="block sm:hidden text-sm text-muted-foreground leading-4">
                                     {experience.period}
                                 </p>
                             </div>

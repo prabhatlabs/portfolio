@@ -1,18 +1,16 @@
 "use client";
 
-import {
-    HeroDitheringRoot,
-    HeroDitheringVisual,
-} from "@/components/ui/hero-dithering";
 import { useTheme } from "next-themes";
+import { HeroDitheringRoot, HeroDitheringVisual } from "./ui/hero-dithering";
 
-export function Footer() {
+export default function AboveAboutBanner() {
     const { resolvedTheme } = useTheme();
+
     return (
-        <HeroDitheringRoot className="relative mt-16 sm:mt-20 md:mt-24 border-t">
-            <div className="p-1 mask-r-from-80% mask-l-from-80% mask-t-from-80% mask-b-from-0%">
+        <HeroDitheringRoot className="absolute top-0 flex items-center w-full">
+            <div className="w-full mask-r-from-70% mask-l-from-70% mask-t-from-70% mask-b-to-80%">
                 <HeroDitheringVisual
-                    className="h-20 sm:h-40 w-full"
+                    className="h-123.5 sm:h-104.5 md:h-94.5 w-full"
                     desktopShaderProps={{
                         width: "100%",
                         height: "100%",
@@ -27,12 +25,6 @@ export function Footer() {
                         scale: 0.6,
                     }}
                 />
-                <div className="z-10 absolute bottom-6 h-fit w-full flex flex-col items-center justify-center">
-                    <h3 className="text-3xl md:text-5xl font-bold">
-                        <span>prabhatlabs</span>
-                        <span className="text-muted-foreground">.dev</span>
-                    </h3>
-                </div>
             </div>
         </HeroDitheringRoot>
     );

@@ -1,9 +1,8 @@
+import AboveAboutBanner from "@/components/AboveAboutBanner";
 import RenderText from "@/components/ui/render-text";
-import { VisitorCounter } from "@/components/VisitorCounter";
 import { myInfo } from "@/data/pages";
 import { getIcon } from "@/lib/icon";
 import { Gamepad2 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { RiPagesLine } from "react-icons/ri";
 
@@ -16,41 +15,10 @@ export function About({
 }) {
     return (
         <div className="py-4 sm:py-6 relative mt-6 sm:mt-8 md:mt-10">
-            {/* image */}
-            <div className="flex items-center w-full border border-x-border/10 relative">
-                <div className="absolute bottom-full left-0 my-1 px-4 sm:px-6 w-full flex justify-between items-center font-mono text-[10px]">
-                    <div>
-                        <span className="p-1 h-px w-px animate-pulse absolute top-1/2 -translate-y-1/2 rounded-full bg-green-500"></span>
-                        <span className="ml-3.5">Open to work</span>
-                    </div>
-                    <VisitorCounter />
-                </div>
-                <Image
-                    src="/arrow.png"
-                    width={100}
-                    height={100}
-                    alt="arrow"
-                    className="dark:invert object-cover absolute top-0 left-0 -translate-y-3/5 translate-x-full"
-                />
-                <div className="animate-line-shadow w-4 md:w-6 shrink-0 h-[54px] bg-[repeating-linear-gradient(315deg,color-mix(in_oklab,var(--border)60%,transparent)_0,color-mix(in_oklab,var(--border)60%,transparent)_2px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed"></div>
-                <div className="flex items-center w-full">
-                    <div className="p-0.5 w-fit h-fit shrink-0 border-x">
-                        <Image
-                            src={myInfo.imageUrl}
-                            alt="Prabhat Mishra"
-                            width={100}
-                            height={100}
-                            className="object-cover size-[50px] border grayscale-50"
-                        />
-                    </div>
-                    <div className="animate-line-shadow w-full h-[54px] bg-[repeating-linear-gradient(315deg,color-mix(in_oklab,var(--border)60%,transparent)_0,color-mix(in_oklab,var(--border)60%,transparent)_2px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed"></div>
-                </div>
-            </div>
-
             {/* about */}
-            <div className="my-4 flex items-center w-full h-full border-y relative">
-                <div className="w-4 md:w-6 shrink-0 h-80 sm:h-60 md:h-55 border-r"></div>
-                <div className="px-2 h-80 sm:h-60 md:h-55 flex flex-col justify-center">
+            <div className="flex items-center w-full border-y relative pt-50 sm:pt-40 md:pt-30">
+                <AboveAboutBanner />
+                <div className="p-4 md:px-6 flex flex-col justify-center z-10">
                     <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold flex gap-2 sm:gap-3 md:gap-4 items-center">
                         {myInfo.name.split(" ").map((char, index) => (
                             <span
@@ -61,15 +29,16 @@ export function About({
                             </span>
                         ))}
                     </h1>
-                    <h3 className="text-xl sm:text-2xl md:text-3xl">
+                    <h3 className="text-2xl md:text-3xl">
                         <span>Software</span>
-                        <span className="text-muted-foreground ml-2">Developer</span>
+                        <span className="text-muted-foreground ml-2">
+                            Developer
+                        </span>
                     </h3>
                     <p className="text-sm text-muted-foreground mt-2 mb-1.5">
                         <RenderText>{myInfo.description}</RenderText>
                     </p>
                 </div>
-                <div className="w-4 md:w-6 shrink-0 h-80 sm:h-60 md:h-55 border-l"></div>
             </div>
 
             {/* contacts */}

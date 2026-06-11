@@ -35,7 +35,11 @@ export default function PageContent() {
             </div>
 
             <div className="h-4 md:h-20 w-full border-t">
-                <div className="max-w-3xl mx-auto border-x h-full relative"></div>
+                <div className="max-w-3xl mx-auto border-x h-full relative">
+                    <p className="text-muted-foreground text-center text-xs py-1">
+                        prabhatlabs.dev &copy; 2026
+                    </p>
+                </div>
             </div>
         </div>
     );

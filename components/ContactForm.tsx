@@ -74,7 +74,7 @@ export function ContactForm() {
             case "error":
                 return message || "Failed to send";
             default:
-                return "Submit";
+                return "Send";
         }
     };
 
@@ -106,6 +106,7 @@ export function ContactForm() {
                 required
             />
             <Textarea
+                className="h-36.5"
                 placeholder="Body"
                 name="body"
                 value={formData["body"]}
