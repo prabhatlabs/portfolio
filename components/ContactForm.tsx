@@ -117,9 +117,8 @@ export function ContactForm() {
                 type="submit"
                 variant={"outline"}
                 disabled={status === "loading"}
-                className="rounded-none h-9 w-full relative"
+                className="rounded-none h-9 w-full relative shadow-[2px_2px_0px_0px_var(--border)] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] transition-all duration-100"
             >
-                <div className="animate-line-shadow absolute w-full h-full bg-[repeating-linear-gradient(315deg,var(--border)_0,var(--border)_2px,transparent_0,transparent_50%)] bg-size-[10px_10px] bg-fixed"></div>
                 {getButtonText()}
             </Button>
         </form>
