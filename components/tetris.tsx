@@ -195,7 +195,7 @@ export function TetrisContacts() {
     return (
         <div
             ref={containerRef}
-            style={{ width: 390, height: 300, position: 'relative', overflow: 'hidden' }}
+            style={{ width: 367, height: 300, position: 'relative', overflow: 'hidden' }}
             className="border"
         />
     );

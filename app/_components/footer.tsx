@@ -11,7 +11,7 @@ export function Footer() {
     const { resolvedTheme } = useTheme();
     return (
         <HeroDitheringRoot className="relative mt-16 sm:mt-20 md:mt-24 border-t">
-            <div className="p-1 mask-r-from-80% mask-l-from-80% mask-t-from-80% mask-b-from-0%">
+            <div className="mask-r-from-80% mask-l-from-80% mask-t-from-80% mask-b-from-0%">
                 <HeroDitheringVisual
                     className="h-20 sm:h-40 w-full"
                     desktopShaderProps={{

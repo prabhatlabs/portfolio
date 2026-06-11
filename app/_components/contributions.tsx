@@ -10,7 +10,10 @@ export function Contributions() {
                 <span>Con</span>
                 <span className=" text-muted-foreground">tributions</span>
             </h2>
-            <div className="p-4 border-b">
+            <div className="relative p-4 border-y mt-4">
+                <span className="absolute -top-5 left-0 my-1 mx-4 font-mono text-[10px] text-muted-foreground/50">
+                    space-y-3
+                </span>
                 <ContributionChart username="prabhatlabs" />
             </div>
         </div>

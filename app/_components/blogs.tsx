@@ -52,7 +52,7 @@ function BlogCard({
             </div>
             <div className="space-y-2">
                 <div className="flex gap-px items-center">
-                    <span className="group text-sm bg-foreground/10 px-1.5 py-0.5 flex items-center gap-2 justify-center">
+                    <span className="border group text-sm bg-foreground/10 px-1.5 py-0.5 flex items-center gap-2 justify-center">
                         <VscLinkExternal className="size-4 group-hover:-translate-y-1/4 group-hover:translate-x-1/4 transition-transform duration-300" />
                         Full Blog
                     </span>
@@ -79,7 +79,7 @@ export async function Blogs() {
             </h2>
             <div className="relative w-full p-4 border-b overflow-hidden">
                 <div className="flex w-full overflow-auto border">
-                    <span className="absolute -top-1 left-0 my-1 mx-4 font-mono text-[10px] text-muted-foreground">
+                    <span className="absolute -top-1 left-0 my-1 mx-4 font-mono text-[10px] text-muted-foreground/50">
                         flex w-full overflow-auto
                     </span>
                     {posts.slice(0, 5).map((blog, index) => (
@@ -93,7 +93,7 @@ export async function Blogs() {
                     <div
                         className={`border-l z-10 p-2 md:p-3 flex flex-col gap-1 items-center justify-center min-w-75`}
                     >
-                        <span className="group text-sm bg-foreground/10 px-1.5 py-0.5 flex items-center gap-2 justify-center">
+                        <span className="border group text-sm bg-foreground/10 px-1.5 py-0.5 flex items-center gap-2 justify-center">
                             <VscLinkExternal className="size-4 group-hover:-translate-y-1/4 group-hover:translate-x-1/4 transition-transform duration-300" />
                             Blogs
                         </span>

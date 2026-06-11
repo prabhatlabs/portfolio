@@ -82,7 +82,7 @@ function RequestCard({
                     {contact.body}
                 </p>
                 <Separator />
-                <p className="px-2 text-[10px] text-muted-foreground font-mono">
+                <p className="px-2 text-[10px] text-muted-foreground/50 font-mono">
                     {new Date(contact.timestamp).toLocaleString()}
                 </p>
             </div>

@@ -28,9 +28,6 @@ export async function Contacts() {
             <div className="relative w-full border-y">
                 <div className="grid sm:grid-cols-2">
                     <div className="p-2 relative sm:border-r hidden sm:flex items-center justify-center w-full h-full">
-                        {/*<div className="flex items-center justify-center border">
-                            {contactsCompArray}
-                        </div>*/}
                         <TetrisContacts />
                     </div>
                     <ContactForm />

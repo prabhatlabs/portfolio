@@ -49,7 +49,7 @@ export function Stats({
     data: ContributionData;
 }) {
     return (
-        <div className="flex gap-3 md:gap-5 mb-4 text-muted-foreground text-xs">
+        <div className="flex gap-3 md:gap-5 text-muted-foreground text-xs">
             {loading ? (
                 <>
                     <span className="w-[110px] h-4 rounded-sm bg-foreground/10 animate-pulse"></span>
@@ -336,7 +336,7 @@ export function ContributionChart({
     const canvasHeight = 7 * totalCellHeight;
 
     return (
-        <div className={`select-none ${className}`} ref={containerRef}>
+        <div className={`select-none space-y-3 ${className}`} ref={containerRef}>
             {showStats && <Stats loading={loading} data={data} />}
 
             <div className="flex w-full overflow-x-auto">
@@ -376,7 +376,7 @@ export function ContributionChart({
                 </div>
             </div>
 
-            <div className="flex justify-end items-center gap-1 mt-3 text-[10px] text-muted-foreground/60">
+            <div className="flex justify-end items-center gap-1 text-[10px] text-muted-foreground/60">
                 <span>Less</span>
                 {LEVEL_BG_COLORS.map((c, i) => (
                     <div

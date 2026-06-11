@@ -106,7 +106,7 @@ export function ContactForm() {
                 required
             />
             <Textarea
-                className="h-36.5"
+                className="min-h-26 h-26 sm:h-30 md:h-36.5"
                 placeholder="Body"
                 name="body"
                 value={formData["body"]}

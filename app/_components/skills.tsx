@@ -15,12 +15,14 @@ export function Skills() {
     };
     return (
         <div>
-            <h2 className={`p-6 mt-16 sm:mt-20 md:mt-24 border-y text-3xl md:text-5xl ${GeistPixelSquare.className}`}>
+            <h2
+                className={`p-6 mt-16 sm:mt-20 md:mt-24 border-y text-3xl md:text-5xl ${GeistPixelSquare.className}`}
+            >
                 <span>S</span>
                 <span className=" text-muted-foreground">kills</span>
             </h2>
-            <div className="space-y-2 py-1 px-5.5 relative border-b">
-                <span className="absolute -top-5 left-1 my-1 mx-4 font-mono text-[10px] text-muted-foreground">
+            <div className="space-y-2 py-1 px-5.5 mt-4 relative border-y">
+                <span className="absolute -top-5 left-0 my-1 mx-4 font-mono text-[10px] text-muted-foreground/50">
                     flex flex-wrap gap-1
                 </span>
                 <div className="absolute h-full w-px border-l top-0 left-4"></div>

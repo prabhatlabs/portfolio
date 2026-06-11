@@ -59,7 +59,7 @@ function ProjectCard({
                                 key={link.name}
                                 href={link.url}
                                 target={link.target}
-                                className="group text-sm bg-foreground/10 px-1.5 py-0.5 flex items-center gap-2 justify-center"
+                                className="border group text-sm bg-foreground/10 px-1.5 py-0.5 flex items-center gap-2 justify-center"
                             >
                                 <IconComp
                                     className={`size-4 ${idx === 0 ? "group-hover:-translate-y-1/4 group-hover:translate-x-1/4" : "group-hover:scale-125 group-hover:text-emerald-600"} transition-all duration-300`}
@@ -89,7 +89,7 @@ export function Projects() {
             </h2>
             <div className="relative w-full p-4 border-b overflow-hidden">
                 <div className="flex w-full overflow-auto border">
-                    <span className="absolute -top-1 left-0 my-1 mx-4 font-mono text-[10px] text-muted-foreground">
+                    <span className="absolute -top-1 left-0 my-1 mx-4 font-mono text-[10px] text-muted-foreground/50">
                         flex w-full overflow-auto
                     </span>
                     {projects.map((project, index) => {
