@@ -16,7 +16,7 @@ export function Skills() {
     return (
         <div>
             <h2
-                className={`p-6 mt-16 sm:mt-20 md:mt-24 border-y text-3xl md:text-5xl ${GeistPixelSquare.className}`}
+                className={`p-4 sm:p-6 mt-16 sm:mt-20 md:mt-24 border-y text-3xl md:text-5xl ${GeistPixelSquare.className}`}
             >
                 <span>S</span>
                 <span className=" text-muted-foreground">kills</span>

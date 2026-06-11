@@ -21,7 +21,7 @@ export async function Contacts() {
 
     return (
         <div>
-            <h2 className={`p-6 mt-16 sm:mt-20 md:mt-24 border-t text-3xl md:text-5xl ${GeistPixelSquare.className}`}>
+            <h2 className={`p-4 sm:p-6 mt-16 sm:mt-20 md:mt-24 border-t text-3xl md:text-5xl ${GeistPixelSquare.className}`}>
                 <span>Contact</span>
                 <span className="text-muted-foreground ml-2">Form</span>
             </h2>
