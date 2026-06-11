@@ -17,9 +17,13 @@ export function About({
     return (
         <div className="relative">
             {/* about */}
-            <div className="flex items-center w-full border-y relative pt-50 sm:pt-40 md:pt-30">
+            <div className="flex items-center w-full border-y relative pt-65 sm:pt-55 md:pt-45">
                 <AboveAboutBanner />
                 <div className="p-4 md:px-6 flex flex-col justify-center z-10">
+                    <div className="flex items-center gap-2">
+                        <span className="p-1 h-1 w-1 animate-pulse rounded-full bg-green-500"></span>
+                        <span className="">Open to work</span>
+                    </div>
                     <h1 className={`text-4xl sm:text-5xl md:text-6xl flex gap-2 sm:gap-3 md:gap-4 items-center ${GeistPixelSquare.className}`}>
                         {myInfo.name.split(" ").map((char, index) => (
                             <span

@@ -10,7 +10,7 @@ export default function AboveAboutBanner() {
         <HeroDitheringRoot className="absolute top-0 flex items-center w-full">
             <div className="w-full mask-r-from-70% mask-l-from-70% mask-t-from-70% mask-b-to-80%">
                 <HeroDitheringVisual
-                    className="h-123.5 sm:h-104.5 md:h-94.5 w-full"
+                    className="h-144 sm:h-117 md:h-110 w-full"
                     desktopShaderProps={{
                         width: "100%",
                         height: "100%",
