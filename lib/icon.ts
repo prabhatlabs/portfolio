@@ -26,6 +26,8 @@ import {
     SiGmail,
     SiBuymeacoffee,
     SiInstagram,
+    SiSocketdotio,
+    SiAngular,
 } from "react-icons/si";
 import { IoLogoGithub } from "react-icons/io5";
 import {
@@ -56,10 +58,12 @@ export const icons = {
     SiHono,
     SiFastapi,
     SiFlask,
+    SiSocketdotio,
 
     // Frontend
     SiReact,
     SiNextdotjs,
+    SiAngular,
     SiRedux,
     SiShadcnui,
     SiMui,
