@@ -34,8 +34,8 @@ export function Experiance() {
                                     className="size-10 sm:size-12 border"
                                 />
                             ) : (
-                                <div className="size-10 sm:size-12 border flex items-center justify-center">
-                                    <PiBuildingsLight className="size-5 sm:size-7 text-foreground/60" />
+                                <div className="size-10 sm:size-12 border flex items-center justify-center bg-muted">
+                                    <PiBuildingsLight className="size-5 sm:size-7 text-foreground/70" />
                                 </div>
                             )}
                             <div className="space-y-0.5 sm:space-y-1.5">
