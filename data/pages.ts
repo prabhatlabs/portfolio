@@ -29,19 +29,17 @@ export const skills = {
     angular: { type: "Frontend", name: "Angular", iconName: "SiAngular" },
     redux: { type: "Frontend", name: "Redux", iconName: "SiRedux" },
     zustand: { type: "Frontend", name: "Zustand", iconName: "SiReact" },
-    shadcn: { type: "Frontend", name: "Shadcn UI", iconName: "SiShadcnui" },
-    mui: { type: "Frontend", name: "MUI", iconName: "SiMui" },
+    shadcn: { type: "Frontend", name: "ShadcnUI", iconName: "SiShadcnui" },
     tailwind: {
         type: "Frontend",
         name: "TailwindCSS",
         iconName: "SiTailwindcss",
     },
-    framer: { type: "Frontend", name: "Framer Motion", iconName: "SiFramer" },
-    ffmpeg: { type: "Frontend", name: "Ffmpeg wasm", iconName: "SiFfmpeg" },
+    framer: { type: "Frontend", name: "FramerMotion", iconName: "SiFramer" },
+    ffmpeg: { type: "Frontend", name: "FfmpegWASM", iconName: "SiFfmpeg" },
 
     // Databases
     mongodb: { type: "Databases", name: "MongoDB", iconName: "SiMongodb" },
-    mysql: { type: "Databases", name: "MySQL", iconName: "GrMysql" },
     postgresql: {
         type: "Databases",
         name: "PostgreSQL",
