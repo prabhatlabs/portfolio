@@ -27,7 +27,7 @@ export function Skills() {
                 </span>
                 <div className="absolute h-full w-px border-l top-0 left-4"></div>
                 <div className="absolute h-full w-px border-l top-0 right-4"></div>
-                <div className="flex flex-wrap gap-1">
+                <div className="grid grid-cols-6 gap-1">
                     {Object.entries(grps).map(([type, skills]) => (
                         <Fragment key={type}>
                             {skills.map((skill, index) => {
@@ -35,7 +35,7 @@ export function Skills() {
                                 return (
                                     <div
                                         key={index}
-                                        className="relative flex items-center gap-1.5 p-1.5 bg-foreground/5 border hover:border-foreground border-dashed transition-all duration-300"
+                                        className="relative flex justify-between items-center gap-1.5 p-1.5 bg-foreground/5 border hover:border-foreground border-dashed transition-all duration-300"
                                     >
                                         <IconComp className="size-4" />
                                         <span className="text-xs">

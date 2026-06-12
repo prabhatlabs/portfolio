@@ -1,5 +1,5 @@
 import { ContactForm } from "@/components/ContactForm";
-import { TetrisContacts } from "@/components/tetris";
+import { TetrisAnimation } from "@/components/TetrisAnimation";
 import { myInfo } from "@/data/pages";
 import { getIcon } from "@/lib/icon";
 import { GeistPixelSquare } from "geist/font/pixel";
@@ -28,7 +28,7 @@ export async function Contacts() {
             <div className="relative w-full border-y">
                 <div className="grid sm:grid-cols-2">
                     <div className="p-2 relative sm:border-r hidden sm:flex items-center justify-center w-full h-full">
-                        <TetrisContacts />
+                        <TetrisAnimation />
                     </div>
                     <ContactForm />
                 </div>

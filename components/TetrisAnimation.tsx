@@ -7,14 +7,12 @@ import { renderToStaticMarkup } from "react-dom/server";
 const S = 30, COLS = 12, ROWS = 10;
 
 const PALETTE = [
-    { color: 'var(--background)', bg: 'var(--foreground)' },
-    { color: 'var(--background)', bg: 'var(--foreground)' },
-    { color: 'var(--background)', bg: 'var(--foreground)' },
-    { color: 'var(--background)', bg: 'var(--foreground)' },
-    { color: 'var(--background)', bg: 'var(--foreground)' },
-    { color: 'var(--background)', bg: 'var(--foreground)' },
-    { color: 'var(--background)', bg: 'var(--foreground)' },
-    { color: 'var(--background)', bg: 'var(--foreground)' },
+    { color: '#fff', bg: '#000000' },
+    { color: '#fff', bg: '#2ea043' },
+    { color: '#fff', bg: '#0077B5' },
+    { color: '#fff', bg: '#EA4335' },
+    { color: '#fff', bg: '#FFDD00' },
+    { color: '#fff', bg: '#E4405F' },
 ];
 
 const SHAPES = [
@@ -98,7 +96,7 @@ function bestMove(b: Cell[][], shape: number[][], contact: ContactData): { targe
     return { targetCol, rotsLeft };
 }
 
-export function TetrisContacts() {
+export function TetrisAnimation() {
     const contacts: ContactData[] = myInfo.contacts.map((c, i) => ({
         ...c, ...PALETTE[i % PALETTE.length],
     }));
@@ -118,9 +116,14 @@ export function TetrisContacts() {
             if (!cell) return;
             const a = document.createElement('a');
             a.href = cell.url;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
             a.style.cssText = `position:absolute;left:${c*S+1}px;top:${r*S+1}px;width:${S-2}px;height:${S-2}px;background:${cell.bg};border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:${cell.color};text-decoration:none;font-size:15px;`;
             const CellIcon = getIcon(cell.iconName);
-            a.innerHTML = CellIcon ? renderToStaticMarkup(<CellIcon />) : '';
+            if (CellIcon) {
+                a.innerHTML = renderToStaticMarkup(<CellIcon />);
+                a.querySelector('svg')?.style.setProperty('pointer-events', 'none');
+            }
             el.appendChild(a);
         }));
 
@@ -131,9 +134,14 @@ export function TetrisContacts() {
                 if (nr < 0 || nc < 0 || nc >= COLS) return;
                 const a = document.createElement('a');
                 a.href = piece.contact.url;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
                 a.style.cssText = `position:absolute;left:${nc*S+1}px;top:${nr*S+1}px;width:${S-2}px;height:${S-2}px;background:${piece.contact.bg};border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:${piece.contact.color};text-decoration:none;font-size:15px;`;
                 const PieceIcon = getIcon(piece.contact.iconName);
-                a.innerHTML = PieceIcon ? renderToStaticMarkup(<PieceIcon />) : '';
+                if (PieceIcon) {
+                    a.innerHTML = renderToStaticMarkup(<PieceIcon />);
+                    a.querySelector('svg')?.style.setProperty('pointer-events', 'none');
+                }
                 el.appendChild(a);
             }));
         }

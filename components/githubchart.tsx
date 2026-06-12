@@ -249,7 +249,7 @@ export function ContributionChart({
 
                 ctx.fillStyle = levelColors[day.level];
                 ctx.beginPath();
-                ctx.roundRect(x, y, cellSize, cellSize, 2);
+                ctx.roundRect(x, y, cellSize, cellSize, 0);
                 ctx.fill();
             });
         });
