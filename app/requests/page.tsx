@@ -258,46 +258,6 @@ export default function RequestsPage() {
                         deleteContact={deleteContact}
                     />
                 ))}
-                {contactRequests.map((contact) => (
-                    <RequestCard
-                        key={contact.id}
-                        contact={contact}
-                        markAsRead={markAsRead}
-                        deleteContact={deleteContact}
-                    />
-                ))}
-                {contactRequests.map((contact) => (
-                    <RequestCard
-                        key={contact.id}
-                        contact={contact}
-                        markAsRead={markAsRead}
-                        deleteContact={deleteContact}
-                    />
-                ))}
-                {contactRequests.map((contact) => (
-                    <RequestCard
-                        key={contact.id}
-                        contact={contact}
-                        markAsRead={markAsRead}
-                        deleteContact={deleteContact}
-                    />
-                ))}
-                {contactRequests.map((contact) => (
-                    <RequestCard
-                        key={contact.id}
-                        contact={contact}
-                        markAsRead={markAsRead}
-                        deleteContact={deleteContact}
-                    />
-                ))}
-                {contactRequests.map((contact) => (
-                    <RequestCard
-                        key={contact.id}
-                        contact={contact}
-                        markAsRead={markAsRead}
-                        deleteContact={deleteContact}
-                    />
-                ))}
             </div>
 
             <div className="flex items-center justify-center gap-4 p-2 border">
