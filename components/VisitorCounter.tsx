@@ -69,7 +69,7 @@ export function VisitorCounter({ slug, className, onIpGeoData }: VisitorCounterP
             if (cachedCount) setCount(renderNumber(parseInt(cachedCount)));
 
             if (!lastVisit || now - parseInt(lastVisit) > 120_000) {
-                const res = await incrementAndFetch();
+                const res = await incrementAndFetch(slug);
                 setCount(renderNumber(res.count));
                 localStorage.setItem(lastVisitKey, now.toString());
                 localStorage.setItem(countKey, res.count.toString());
