@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { IncrementAndFetchResult, VisitorCounter } from "./VisitorCounter";
 
 function DateTime({ className }: { className?: string }) {
-    // const [time, setTime] = useState<string>("--/--/----, --:--:-- --");
     const [time, setTime] = useState<string>(
         formatDateTime(new Date().getTime()),
     );
@@ -24,7 +23,7 @@ function DateTime({ className }: { className?: string }) {
     return (
         <span
             suppressHydrationWarning={true}
-            className={cn(className, "w-34 text-center")}
+            className={cn(className, "w-36 text-center")}
         >
             {time}
         </span>
@@ -32,32 +31,37 @@ function DateTime({ className }: { className?: string }) {
 }
 
 export function StatusBar({ className }: { className?: string }) {
-    const [ipGeoData, setIpGeoData] = useState<null | Exclude<
+    const [ipGeoData] = useState<null | Exclude<
         IncrementAndFetchResult,
         "count"
-    >>(null);
-
-    useEffect(() => {
-        const ipGeoStr = localStorage?.getItem("visitor_ip_geo");
-        if (ipGeoStr) {
-            const ipGeo = JSON.parse(ipGeoStr);
-            setIpGeoData(ipGeo as Exclude<IncrementAndFetchResult, "count">);
-        }
-    }, []);
+    >>(() => {
+        if (typeof window === "undefined") return null;
+        const ipGeoStr = localStorage.getItem("visitor_ip_geo");
+        return ipGeoStr ? JSON.parse(ipGeoStr) : null;
+    });
 
     return (
-        <div className={cn(className, "flex items-center border-b")}>
+        <div
+            className={cn(className, "flex justify-end flex-wrap items-center")}
+        >
             {ipGeoData?.ip && (
-                <span className="px-1 border-l">{ipGeoData.ip}</span>
+                <span className="px-1 border-l border-b">{ipGeoData.ip}</span>
+            )}
+            {ipGeoData?.ping && (
+                <span className="px-1 border-l border-b">
+                    {ipGeoData.ping}ms
+                </span>
             )}
             {ipGeoData?.country && (
-                <span className="px-1 border-l">{ipGeoData.country}</span>
+                <span className="px-1 border-l border-b">
+                    {ipGeoData.country}
+                </span>
             )}
             {ipGeoData?.os && (
-                <span className="px-1 border-l">{ipGeoData?.os}</span>
+                <span className="px-1 border-l border-b">{ipGeoData?.os}</span>
             )}
-            <DateTime className="px-1 border-l" />
-            <VisitorCounter className="px-1 border-l" />
+            <DateTime className="px-1 border-l border-b" />
+            <VisitorCounter className="px-1 border-l border-b" />
         </div>
     );
 }

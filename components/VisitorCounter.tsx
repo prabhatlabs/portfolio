@@ -14,19 +14,23 @@ export type IncrementAndFetchResult = {
     ip: string;
     os: string;
     country: string;
+    ping: number | null;
 };
 
 async function incrementAndFetch(slug?: string): Promise<IncrementAndFetchResult> {
     try {
         const endpoint = slug ? `/api/visitor?slug=${slug}` : "/api/visitor";
+        const t0 = performance.now();
         const response = await fetch(endpoint, { method: "POST" });
+        const ping = Math.round(performance.now() - t0);
         const data = await response.json();
         return {
             count: data.count || 0,
             ip: data.ip || "",
             os: data.os || "",
             country: data.country || "",
-        }
+            ping,
+        };
     } catch (error) {
         console.error("Failed to update visitor count:", error);
         return {
@@ -34,6 +38,7 @@ async function incrementAndFetch(slug?: string): Promise<IncrementAndFetchResult
             ip: "",
             os: "",
             country: "",
+            ping: null,
         };
     }
 }
@@ -67,6 +72,7 @@ export function VisitorCounter({ slug, className }: VisitorCounterProps) {
                     ip: res.ip,
                     os: res.os,
                     country: res.country,
+                    ping: res.ping,
                 }));
             }
         };
