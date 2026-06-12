@@ -3,7 +3,7 @@
 import { formatDateTime } from "@/lib/time";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
-import { IncrementAndFetchResult, VisitorCounter } from "./VisitorCounter";
+import { IncrementAndFetchResult, IpGeo, VisitorCounter } from "./VisitorCounter";
 
 function DateTime({ className }: { className?: string }) {
     const [time, setTime] = useState<string>(
@@ -31,10 +31,16 @@ function DateTime({ className }: { className?: string }) {
 }
 
 export function StatusBar({ className }: { className?: string }) {
-    const [ipGeoData] = useState<null | Exclude<
-        IncrementAndFetchResult,
-        "count"
-    >>(() => {
+    // const [ipGeoData] = useState<null | Exclude<
+    //     IncrementAndFetchResult,
+    //     "count"
+    // >>(() => {
+    //     if (typeof window === "undefined") return null;
+    //     const ipGeoStr = localStorage.getItem("visitor_ip_geo");
+    //     return ipGeoStr ? JSON.parse(ipGeoStr) : null;
+    // });
+
+    const [ipGeoData, setIpGeoData] = useState<null | IpGeo>(() => {
         if (typeof window === "undefined") return null;
         const ipGeoStr = localStorage.getItem("visitor_ip_geo");
         return ipGeoStr ? JSON.parse(ipGeoStr) : null;
@@ -61,7 +67,7 @@ export function StatusBar({ className }: { className?: string }) {
                 <span className="px-1 border-l border-b">{ipGeoData?.os}</span>
             )}
             <DateTime className="px-1 border-l border-b" />
-            <VisitorCounter className="w-20 px-1 border-l border-b" />
+            <VisitorCounter onIpGeoData={setIpGeoData} className="w-20 px-1 border-l border-b" />
         </div>
     );
 }

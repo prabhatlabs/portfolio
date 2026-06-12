@@ -5,11 +5,6 @@ import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 import { TbLoader2 } from "react-icons/tb";
 
-interface VisitorCounterProps {
-    slug?: string;
-    className?: string;
-}
-
 export type IncrementAndFetchResult = {
     count: number;
     ip: string;
@@ -17,6 +12,15 @@ export type IncrementAndFetchResult = {
     country: string;
     ping: number | null;
 };
+
+export type IpGeo = Exclude<IncrementAndFetchResult, "count">
+
+interface VisitorCounterProps {
+    slug?: string;
+    className?: string;
+    onIpGeoData?: (data: IpGeo) => void;
+}
+
 
 async function incrementAndFetch(slug?: string): Promise<IncrementAndFetchResult> {
     try {
@@ -44,7 +48,7 @@ async function incrementAndFetch(slug?: string): Promise<IncrementAndFetchResult
     }
 }
 
-export function VisitorCounter({ slug, className }: VisitorCounterProps) {
+export function VisitorCounter({ slug, className, onIpGeoData }: VisitorCounterProps) {
     const [count, setCount] = useState<string | null>(null);
     const isMounted = useRef(false);
 
@@ -69,12 +73,15 @@ export function VisitorCounter({ slug, className }: VisitorCounterProps) {
                 setCount(renderNumber(res.count));
                 localStorage.setItem(lastVisitKey, now.toString());
                 localStorage.setItem(countKey, res.count.toString());
-                localStorage.setItem(ipGeoKey, JSON.stringify({
+
+                const ipgeodata = {
                     ip: res.ip,
                     os: res.os,
                     country: res.country,
                     ping: res.ping,
-                }));
+                } as IpGeo;
+                onIpGeoData?.(ipgeodata);
+                localStorage.setItem(ipGeoKey, JSON.stringify(ipgeodata));
             }
         };
 
