@@ -1,9 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
-import { upseartVisitor } from "./service";
+import { getClientIp, getCountry, getOs, upseartVisitor } from "./service";
 
 export async function POST(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const slug = searchParams.get("slug");
-    const visitor = await upseartVisitor(slug);
-    return NextResponse.json({ count: visitor });
+
+    let ip = getClientIp(request);
+    if (ip === "::1") {
+        ip = "127.0.0.1"
+    }
+
+    const os = getOs(request.headers.get("user-agent"));
+    const country = getCountry(request);
+    const count = await upseartVisitor(slug);
+
+    return NextResponse.json({ count, ip, os, country });
 }

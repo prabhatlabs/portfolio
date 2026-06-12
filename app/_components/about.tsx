@@ -1,11 +1,12 @@
 import AboveAboutBanner from "@/components/AboveAboutBanner";
+import { StatusBar } from "@/components/StatusBar";
 import RenderText from "@/components/ui/render-text";
 import { myInfo } from "@/data/pages";
 import { getIcon } from "@/lib/icon";
+import { GeistPixelSquare } from "geist/font/pixel";
 import { Gamepad2 } from "lucide-react";
 import Link from "next/link";
 import { RiPagesLine } from "react-icons/ri";
-import { GeistPixelSquare } from "geist/font/pixel";
 
 export function About({
     isTerminalOpen,
@@ -19,12 +20,15 @@ export function About({
             {/* about */}
             <div className="flex items-center w-full border-y relative pt-65 sm:pt-55 md:pt-45">
                 <AboveAboutBanner />
+                <StatusBar className="absolute top-0 right-0 text-xs text-muted-foreground" />
                 <div className="p-4 md:px-6 flex flex-col justify-center z-10">
                     <div className="flex items-center gap-2">
                         <span className="p-1 h-1 w-1 animate-pulse rounded-full bg-green-500"></span>
                         <span className="">Open to work</span>
                     </div>
-                    <h1 className={`text-4xl sm:text-5xl md:text-6xl flex gap-2 sm:gap-3 md:gap-4 items-center ${GeistPixelSquare.className}`}>
+                    <h1
+                        className={`text-4xl sm:text-5xl md:text-6xl flex gap-2 sm:gap-3 md:gap-4 items-center ${GeistPixelSquare.className}`}
+                    >
                         {myInfo.name.split(" ").map((char, index) => (
                             <span
                                 key={index}
@@ -34,7 +38,9 @@ export function About({
                             </span>
                         ))}
                     </h1>
-                    <h3 className={`text-2xl md:text-3xl ${GeistPixelSquare.className}`}>
+                    <h3
+                        className={`text-2xl md:text-3xl ${GeistPixelSquare.className}`}
+                    >
                         <span>Software</span>
                         <span className="text-muted-foreground ml-2">
                             Developer
