@@ -7,6 +7,8 @@ import { Topbar } from "./_components/topbar";
 import { Projects } from "./_components/projects";
 import { Skills } from "./_components/skills";
 import { Footer } from "./_components/footer";
+import Link from "next/link";
+import { myInfo } from "@/data/pages";
 
 export default function PageContent() {
     return (
@@ -35,9 +37,22 @@ export default function PageContent() {
 
             <div className="h-fit md:h-20 w-full border-t">
                 <div className="max-w-3xl mx-auto border-x h-full relative">
-                    <p className="text-muted-foreground text-center text-xs py-1">
-                        prabhatlabs.dev &copy; 2026
-                    </p>
+                    <div className="text-muted-foreground flex items-center justify-between text-xs py-1 px-2">
+                        <p>prabhatlabs.dev &copy; 2026</p>
+                        <div className="flex gap-2 items-center">
+                            {myInfo.contacts.slice(0, 3).map((contact) => {
+                                return (
+                                    <Link
+                                        key={contact.name}
+                                        href={contact.url}
+                                        className={`hover:underline transition-all duration-300`}
+                                    >
+                                        {contact.name}.com
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
