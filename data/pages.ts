@@ -366,7 +366,6 @@ export const experiences = [
             skills.postgresql,
             skills.react,
             skills.redux,
-            skills.mui,
             skills.git,
         ],
     },
