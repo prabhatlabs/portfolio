@@ -61,7 +61,7 @@ export function StatusBar({ className }: { className?: string }) {
                 <span className="px-1 border-l border-b">{ipGeoData?.os}</span>
             )}
             <DateTime className="px-1 border-l border-b" />
-            <VisitorCounter className="px-1 border-l border-b" />
+            <VisitorCounter className="w-20 px-1 border-l border-b" />
         </div>
     );
 }

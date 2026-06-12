@@ -1,5 +1,6 @@
 "use client";
 
+import { renderNumber } from "@/lib/render-numbers";
 import { cn } from "@/lib/utils";
 import { useEffect, useRef, useState } from "react";
 import { TbLoader2 } from "react-icons/tb";
@@ -44,7 +45,7 @@ async function incrementAndFetch(slug?: string): Promise<IncrementAndFetchResult
 }
 
 export function VisitorCounter({ slug, className }: VisitorCounterProps) {
-    const [count, setCount] = useState<number | null>(null);
+    const [count, setCount] = useState<string | null>(null);
     const isMounted = useRef(false);
 
     useEffect(() => {
@@ -61,11 +62,11 @@ export function VisitorCounter({ slug, className }: VisitorCounterProps) {
         const now = Date.now();
 
         const handleOps = async () => {
-            if (cachedCount) setCount(parseInt(cachedCount));
+            if (cachedCount) setCount(renderNumber(parseInt(cachedCount)));
 
             if (!lastVisit || now - parseInt(lastVisit) > 120_000) {
                 const res = await incrementAndFetch();
-                setCount(res.count);
+                setCount(renderNumber(res.count));
                 localStorage.setItem(lastVisitKey, now.toString());
                 localStorage.setItem(countKey, res.count.toString());
                 localStorage.setItem(ipGeoKey, JSON.stringify({
@@ -81,7 +82,7 @@ export function VisitorCounter({ slug, className }: VisitorCounterProps) {
     }, [slug]);
 
     return (
-        <span className={cn("flex items-center gap-1", className)}>
+        <span className={cn("flex items-center justify-center gap-1", className)}>
             {!count && <TbLoader2 className="size-2.5 animate-spin" />}
             {count !== null && count} visitors
         </span>
