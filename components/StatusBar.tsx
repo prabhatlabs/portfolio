@@ -2,7 +2,7 @@
 
 import { formatDateTime } from "@/lib/time";
 import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoMdPlay } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
 import { IpGeo, VisitorCounter } from "./VisitorCounter";
@@ -55,8 +55,11 @@ const FONTS: { family: string; weight?: string; style?: string; spacing?: string
     { family: '"Rockwell Extra Bold", serif', weight: "400", spacing: "0.12em", transform: "uppercase" },
 ];
 
-const TEXT_DURATION = 100;
-const DISPLAY_DURATION = 2000;
+const FADE_IN = 1000;
+const CYCLE_1_START = 1680;
+const CYCLE_1_END = 2700;
+const CYCLE_2_START = 3600;
+const CYCLE_2_END = 4829;
 
 function FullScreenPlay({ isOpen, onClose }: {
     isOpen: boolean;
@@ -64,44 +67,74 @@ function FullScreenPlay({ isOpen, onClose }: {
 }) {
     const [phase, setPhase] = useState<0 | 1 | null>(null);
     const [fontIndex, setFontIndex] = useState(0);
+    const audioRef = useRef<HTMLAudioElement | null>(null);
+    const onCloseRef = useRef(onClose);
+    onCloseRef.current = onClose;
 
     useEffect(() => {
         if (!isOpen) return;
 
-        let currentPhase: 0 | 1 = 0;
-        let idx = 0;
-        let interval: ReturnType<typeof setInterval>;
-        let timeout: ReturnType<typeof setTimeout>;
+        const audio = new Audio("/audio/font_cycle.mp3");
+        audioRef.current = audio;
+        audio.play().catch(() => {});
 
-        function startFontCycle() {
-            idx = 0;
-            setPhase(currentPhase);
+        const idx1 = { current: 0 };
+        const idx2 = { current: 0 };
+        const int1 = (CYCLE_1_END - CYCLE_1_START) / FONTS.length;
+        const int2 = (CYCLE_2_END - CYCLE_2_START) / FONTS.length;
+
+        const timeouts: ReturnType<typeof setTimeout>[] = [];
+        const intervals: ReturnType<typeof setInterval>[] = [];
+
+        timeouts.push(setTimeout(() => {
+            setPhase(0);
             setFontIndex(0);
+        }, FADE_IN));
 
-            interval = setInterval(() => {
-                idx++;
-                if (idx >= FONTS.length) {
-                    clearInterval(interval);
-                    if (currentPhase === 0) {
-                        currentPhase = 1;
-                        timeout = setTimeout(startFontCycle, TEXT_DURATION);
-                    } else {
-                        setPhase(null);
-                        timeout = setTimeout(onClose, 300);
-                    }
+        timeouts.push(setTimeout(() => {
+            const i1 = setInterval(() => {
+                idx1.current++;
+                if (idx1.current >= FONTS.length) {
+                    clearInterval(i1);
                     return;
                 }
-                setFontIndex(idx);
-            }, TEXT_DURATION);
-        }
+                setFontIndex(idx1.current);
+            }, int1);
+            intervals.push(i1);
+        }, CYCLE_1_START));
 
-        timeout = setTimeout(startFontCycle, 600);
+        timeouts.push(setTimeout(() => {
+            clearInterval(intervals[0]);
+        }, CYCLE_1_END));
+
+        timeouts.push(setTimeout(() => {
+            setPhase(1);
+            setFontIndex(0);
+
+            const i2 = setInterval(() => {
+                idx2.current++;
+                if (idx2.current >= FONTS.length) {
+                    clearInterval(i2);
+                    return;
+                }
+                setFontIndex(idx2.current);
+            }, int2);
+            intervals.push(i2);
+        }, CYCLE_2_START));
+
+        timeouts.push(setTimeout(() => {
+            clearInterval(intervals[1]);
+            setPhase(null);
+            setTimeout(() => onCloseRef.current(), 500);
+        }, CYCLE_2_END));
 
         return () => {
-            clearInterval(interval);
-            clearTimeout(timeout);
+            intervals.forEach(clearInterval);
+            timeouts.forEach(clearTimeout);
+            audio.pause();
+            audio.currentTime = 0;
         };
-    }, [isOpen, onClose]);
+    }, [isOpen]);
 
     return (
         <AnimatePresence>
@@ -110,7 +143,7 @@ function FullScreenPlay({ isOpen, onClose }: {
                     initial={{ scaleY: 0, opacity: 0 }}
                     animate={{ scaleY: 1, opacity: 1 }}
                     exit={{ scaleY: 0, opacity: 0 }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: FADE_IN / 1000, ease: [0.22, 1, 0.36, 1] }}
                     style={{ originY: 0.5 }}
                     className="fixed top-0 left-0 w-dvw h-dvh bg-background z-50 flex items-center justify-center"
                 >
