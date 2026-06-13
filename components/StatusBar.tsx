@@ -172,11 +172,14 @@ function FullScreenPlay({ isOpen, onClose }: {
 }
 
 export function StatusBar({ className }: { className?: string }) {
-    const [ipGeoData, setIpGeoData] = useState<null | IpGeo>(() => {
-        if (typeof window === "undefined") return null;
+    const [ipGeoData, setIpGeoData] = useState<null | IpGeo>(null);
+
+    useEffect(() => {
         const ipGeoStr = localStorage.getItem("visitor_ip_geo");
-        return ipGeoStr ? JSON.parse(ipGeoStr) : null;
-    });
+        if (ipGeoStr) {
+            setIpGeoData(JSON.parse(ipGeoStr));
+        }
+    }, []);
 
     const [isFullScreen, setIsFullScreen] = useState(false);
 
