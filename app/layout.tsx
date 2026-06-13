@@ -1,3 +1,4 @@
+import { CustomCursor } from "@/components/CustomCursor";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -188,6 +189,7 @@ export default function RootLayout({
                 <ThemeProvider attribute="class" defaultTheme="dark">
                     {children}
                 </ThemeProvider>
+                <CustomCursor />
                 <Analytics />
                 <SpeedInsights />
                 <Script
