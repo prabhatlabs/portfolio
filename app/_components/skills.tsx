@@ -22,9 +22,9 @@ function TwinklingSkill({
             className="relative flex flex-1 w-fit h-fit justify-center items-center gap-1.5 p-1.5 bg-foreground/5 border border-dashed transition-colors duration-300"
             animate={{
                 borderColor: [
-                    "color-mix(in oklab, var(--foreground) 5%, transparent)",
+                    "color-mix(in oklab, var(--foreground) 30%, transparent)",
                     "color-mix(in oklab, var(--foreground) 100%, transparent)",
-                    "color-mix(in oklab, var(--foreground) 5%, transparent)",
+                    "color-mix(in oklab, var(--foreground) 30%, transparent)",
                 ],
             }}
             transition={{
