@@ -7,14 +7,9 @@ import { GeistPixelSquare } from "geist/font/pixel";
 import { Gamepad2 } from "lucide-react";
 import Link from "next/link";
 import { RiPagesLine } from "react-icons/ri";
+import Cli from "./cli";
 
-export function About({
-    isTerminalOpen,
-    setIsTerminalOpen,
-}: {
-    isTerminalOpen?: boolean;
-    setIsTerminalOpen?: (value: boolean) => void;
-}) {
+export function About() {
     return (
         <div className="relative">
             {/* about */}
@@ -87,13 +82,17 @@ export function About({
                         <Gamepad2 className="size-3.5 group-hover:rotate-12 transition-transform" />
                         <span className="whitespace-nowrap">Arcade</span>
                     </Link>
-                    {/*<button
-                        onClick={() => setIsTerminalOpen?.(true)}
-                        className="px-3 h-full border-x flex items-center font-mono text-xs text-muted-foreground hover:text-primary hover:bg-primary/5 transition-all duration-300 cursor-pointer whitespace-nowrap outline-none"
-                    >
-                        {"> cli"}
-                    </button>*/}
                 </div>
+            </div>
+
+            {/* cli */}
+            <div className="my-4 flex items-center w-full ml-px border-y relative">
+                {/*<span className="absolute bottom-full my-0.5 left-4 md:left-6 font-mono text-[10px] text-muted-foreground/50">
+                    flex items-center w-fit
+                </span>*/}
+                <div className="w-4 md:w-6 shrink-0"></div>
+                <Cli />
+                <div className="w-4 md:w-6 shrink-0"></div>
             </div>
         </div>
     );
