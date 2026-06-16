@@ -1,8 +1,12 @@
 import { prisma } from "@/lib/prisma";
 import { NextRequest } from "next/server";
 
-export async function upseartVisitor(slug: string | null) {
+export async function upseartVisitor(slug: string | null, readOnly = false) {
     if (slug) {
+        if (readOnly) {
+            const visitor = await prisma.blogVisitor.findUnique({ where: { slug } });
+            return visitor?.counter ?? 0;
+        }
         const visitor = await prisma.blogVisitor.upsert({
             where: { slug },
             update: { counter: { increment: 1 } },
@@ -11,6 +15,10 @@ export async function upseartVisitor(slug: string | null) {
         return visitor.counter;
     }
 
+    if (readOnly) {
+        const visitor = await prisma.siteVisitor.findUnique({ where: { id: 1 } });
+        return visitor?.counter ?? 0;
+    }
     const visitor = await prisma.siteVisitor.upsert({
         where: { id: 1 },
         update: { counter: { increment: 1 } },

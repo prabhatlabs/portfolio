@@ -12,7 +12,8 @@ export async function POST(request: NextRequest) {
 
     const os = getOs(request.headers.get("user-agent"));
     const country = getCountry(request);
-    const count = await upseartVisitor(slug);
+    const isDev = process.env.NODE_ENV === "development";
+    const count = await upseartVisitor(slug, isDev);
 
     return NextResponse.json({ count, ip, os, country });
 }
