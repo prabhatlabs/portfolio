@@ -36,7 +36,7 @@ export default function Cli() {
             </p>
             <Button
                 onClick={handleCopyBtnClick}
-                disable={isCopied ? isCopied : undefined}
+                disabled={isCopied}
                 size={"icon"}
                 variant={"outline"}
                 className="border-y-0"
