@@ -30,7 +30,7 @@ export default function Cli() {
     return (
         <div className="w-full flex justify-between items-center gap-4">
             <p
-                className={`px-4 py-1 h-9 flex items-center border-x text-muted-foreground bg-muted/50 font-mono ${GeistPixelSquare.className}`}
+                className={`px-2 py-1 h-9 flex items-center border-x text-muted-foreground bg-muted/10 font-mono ${GeistPixelSquare.className}`}
             >
                 {text}
             </p>
@@ -38,8 +38,8 @@ export default function Cli() {
                 onClick={handleCopyBtnClick}
                 disabled={isCopied}
                 size={"icon"}
-                variant={"outline"}
-                className="border-y-0"
+                variant={"ghost"}
+                className="border-x"
             >
                 {
                     isCopied 
