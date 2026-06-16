@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 
 export default function Cli() {
     const [isCopied, setIsCopied] = useState(false);
-    const text = "curl prabhatlabs.dev/cli | bash";
+    const text = "curl https://prabhatlabs.dev/cli | bash";
 
     async function handleCopyBtnClick() {
         await copyToClipboard(text);
