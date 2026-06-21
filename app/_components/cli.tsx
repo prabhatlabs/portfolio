@@ -3,8 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { copyToClipboard } from "@/lib/clipboard";
 import { GeistPixelSquare } from "geist/font/pixel";
+import { useEffect, useState } from "react";
 import { IoCopyOutline, IoCheckmark } from "react-icons/io5";
-import { useState, useEffect } from "react";
 
 export default function Cli() {
     const [isCopied, setIsCopied] = useState(false);
@@ -24,8 +24,8 @@ export default function Cli() {
 
         return () => {
             clearTimeout(timeout);
-        }
-    }, [isCopied])
+        };
+    }, [isCopied]);
 
     return (
         <div className="w-full flex justify-between items-center gap-4">
@@ -41,11 +41,7 @@ export default function Cli() {
                 variant={"ghost"}
                 className="border-x"
             >
-                {
-                    isCopied 
-                    ? <IoCheckmark className="text-green-500" />
-                    : <IoCopyOutline />
-                }
+                {isCopied ? <IoCheckmark className="text-green-500" /> : <IoCopyOutline />}
             </Button>
         </div>
     );

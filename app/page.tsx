@@ -1,6 +1,5 @@
 import { About } from "./_components/about";
 import { Blogs } from "./_components/blogs";
-import { Contacts } from "./_components/contacts";
 import { Contributions } from "./_components/contributions";
 import { Experiance } from "./_components/experiance";
 import { Topbar } from "./_components/topbar";
@@ -29,7 +28,6 @@ export default function PageContent() {
                     <Contributions />
                     <Skills />
                     <Blogs />
-                    <Contacts />
                     <Footer />
                 </div>
                 <div className="-z-10 absolute top-0 right-0 w-4 h-full border-r"></div>
