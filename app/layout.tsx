@@ -8,6 +8,7 @@ import "./globals.css";
 import {
   GeistPixelSquare
 } from "geist/font/pixel"
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const dmsans = DM_Sans({
     subsets: ["latin"],
@@ -195,6 +196,7 @@ export default function RootLayout({
                     data-worker="https://rum-core-worker.rumcore.workers.dev"
                     data-key="X74ymKYEqzFKWeVV7HxY7cqI"
                 />
+                <GoogleAnalytics gaId="G-6CD27EJQ0E" />
             </body>
         </html>
     );
