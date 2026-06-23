@@ -11,7 +11,7 @@ import { myInfo } from "@/data/pages";
 
 export default function PageContent() {
     return (
-        <div className="lg:h-[calc(100dvh-48px)] h-full overflow-auto relative border">
+        <div className="lg:h-[calc(100dvh-48px)] h-dvh overflow-auto relative border">
             <div className="h-6 md:h-20 w-full border-b">
                 <div className="max-w-3xl mx-auto border-x h-full relative">
                 </div>
