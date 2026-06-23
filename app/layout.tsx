@@ -184,7 +184,7 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning suppressContentEditableWarning>
             <body
-                className={`antialiased no-scrollbar transition-all duration-500 ${dmsans.className} ${geist_mono.variable} ${GeistPixelSquare.variable}`}
+                className={`antialiased no-scrollbar transition-all duration-500 lg:p-6 overflow-hidden ${dmsans.className} ${geist_mono.variable} ${GeistPixelSquare.variable}`}
             >
                 <ThemeProvider attribute="class" defaultTheme="dark">
                     {children}
