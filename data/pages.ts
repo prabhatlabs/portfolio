@@ -223,7 +223,7 @@ export const projects = [
         links: [
             {
                 name: "Live",
-                url: "https://zippy-kacey-prabhats-c81a00cc.koyeb.app",
+                url: "https://ref.prabhatlabs.dev",
                 iconName: "VscLinkExternal",
                 target: "_blank",
             },
