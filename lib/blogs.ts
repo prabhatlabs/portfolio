@@ -1,4 +1,4 @@
-import { readdir, readFile, stat, writeFile } from "fs/promises";
+import { readdir, readFile, writeFile } from "fs/promises";
 import matter from "gray-matter";
 import path from "path/posix";
 
@@ -18,15 +18,21 @@ export interface Post extends PostMeta {
 }
 
 /*
+ * <--- Note there's a script that automatically runs this function on build. --->
+ * <--- as deployed in vercel, build time generate files are not included in all the edge environments. --->
+ * <--- So, generate before pushing to the repository. --->
  * Reads all the mdx present in `./contents/blogs/*` and generates a `registary.json` file in the root of the blogs folder.
  * And `blog-meta.json` files in each blog folder.
  */
-
 export async function generateBlogJson(): Promise<void> {
     const blogsDirPath = path.join(process.cwd(), "contents", "blogs");
-    const blogsDirs = (await readdir(blogsDirPath, {
-        withFileTypes: true
-    })).filter(file => file.isDirectory()).map(file => file.name);
+    const blogsDirs = (
+        await readdir(blogsDirPath, {
+            withFileTypes: true,
+        })
+    )
+        .filter((file) => file.isDirectory())
+        .map((file) => file.name);
     const blogMetas: PostMeta[] = [];
 
     for (const blogDir of blogsDirs) {
@@ -38,7 +44,11 @@ export async function generateBlogJson(): Promise<void> {
             const { data: blogMeta } = matter(blogMdxContent);
 
             const blogMetaJsonPath = path.join(blogDirPath, "blog-meta.json");
-            await writeFile(blogMetaJsonPath, JSON.stringify(blogMeta, null, 2), "utf-8");
+            await writeFile(
+                blogMetaJsonPath,
+                JSON.stringify(blogMeta, null, 2),
+                "utf-8",
+            );
 
             blogMetas.push(blogMeta as PostMeta);
         } catch (err) {
@@ -56,8 +66,6 @@ export async function generateBlogJson(): Promise<void> {
         "utf-8",
     );
 }
-
-generateBlogJson();
 
 export async function getAllPosts(): Promise<PostMeta[]> {
     try {

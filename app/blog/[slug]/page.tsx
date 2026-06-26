@@ -10,8 +10,6 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-export const revalidate = 3600;
-
 interface Props {
     params: Promise<{ slug: string }>;
 }
