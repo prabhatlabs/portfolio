@@ -4,7 +4,9 @@ import { NextRequest } from "next/server";
 export async function upseartVisitor(slug: string | null, readOnly = false) {
     if (slug) {
         if (readOnly) {
-            const visitor = await prisma.blogVisitor.findUnique({ where: { slug } });
+            const visitor = await prisma.blogVisitor.findUnique({
+                where: { slug },
+            });
             return visitor?.counter ?? 0;
         }
         const visitor = await prisma.blogVisitor.upsert({
@@ -16,7 +18,9 @@ export async function upseartVisitor(slug: string | null, readOnly = false) {
     }
 
     if (readOnly) {
-        const visitor = await prisma.siteVisitor.findUnique({ where: { id: 1 } });
+        const visitor = await prisma.siteVisitor.findUnique({
+            where: { id: 1 },
+        });
         return visitor?.counter ?? 0;
     }
     const visitor = await prisma.siteVisitor.upsert({
@@ -51,9 +55,23 @@ export function getOs(userAgent: string | null): string {
 export function getCountry(request: NextRequest): string {
     const cfCountry = request.headers.get("cf-ipcountry");
     if (cfCountry && cfCountry !== "XX") return cfCountry;
-
     const vercelCountry = request.headers.get("x-vercel-ip-country");
     if (vercelCountry) return vercelCountry;
+    return "Unknown";
+}
 
+export function getCity(request: NextRequest): string {
+    const cfCity = request.headers.get("cf-ipcity");
+    if (cfCity) return cfCity;
+    const vercelCity = request.headers.get("x-vercel-ip-city");
+    if (vercelCity) return decodeURIComponent(vercelCity);
+    return "Unknown";
+}
+
+export function getRegion(request: NextRequest): string {
+    const cfRegion = request.headers.get("cf-region");
+    if (cfRegion) return cfRegion;
+    const vercelRegion = request.headers.get("x-vercel-ip-country-region");
+    if (vercelRegion) return vercelRegion;
     return "Unknown";
 }
