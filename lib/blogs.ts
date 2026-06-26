@@ -1,8 +1,6 @@
+import { readdir, readFile, stat, writeFile } from "fs/promises";
 import matter from "gray-matter";
-
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-const GITHUB_REPO = process.env.GITHUB_REPO;
-const GITHUB_BRANCH = process.env.GITHUB_BRANCH || "main";
+import path from "path/posix";
 
 export interface PostMeta {
     slug: string;
@@ -19,44 +17,58 @@ export interface Post extends PostMeta {
     content: string;
 }
 
-const GITHUB_API_BASE = `https://api.github.com/repos/${GITHUB_REPO}`;
+/*
+ * Reads all the mdx present in `./contents/blogs/*` and generates a `registary.json` file in the root of the blogs folder.
+ * And `blog-meta.json` files in each blog folder.
+ */
 
-async function fetchFromGitHub(path: string) {
-    const response = await fetch(
-        `${GITHUB_API_BASE}${path}?ref=${GITHUB_BRANCH}`,
-        {
-            headers: {
-                Authorization: `Bearer ${GITHUB_TOKEN}`,
-                Accept: "application/vnd.github.v3+json",
-            },
-            next: { revalidate: 3600 },
-        },
-    );
+export async function generateBlogJson(): Promise<void> {
+    const blogsDirPath = path.join(process.cwd(), "contents", "blogs");
+    const blogsDirs = (await readdir(blogsDirPath, {
+        withFileTypes: true
+    })).filter(file => file.isDirectory()).map(file => file.name);
+    const blogMetas: PostMeta[] = [];
 
-    if (!response.ok) {
-        throw new Error(`GitHub API error: ${response.statusText}`);
+    for (const blogDir of blogsDirs) {
+        const blogDirPath = path.join(blogsDirPath, blogDir);
+
+        try {
+            const contentMdxPath = path.join(blogDirPath, "content.mdx");
+            const blogMdxContent = await readFile(contentMdxPath, "utf-8");
+            const { data: blogMeta } = matter(blogMdxContent);
+
+            const blogMetaJsonPath = path.join(blogDirPath, "blog-meta.json");
+            await writeFile(blogMetaJsonPath, JSON.stringify(blogMeta, null, 2), "utf-8");
+
+            blogMetas.push(blogMeta as PostMeta);
+        } catch (err) {
+            console.warn(
+                `Skipping folder "${blogDir}": blog-meta.json missing or invalid.`,
+            );
+            continue;
+        }
     }
 
-    return response.json();
+    const registaryPath = path.join(blogsDirPath, "registary.json");
+    await writeFile(
+        registaryPath,
+        JSON.stringify({ blogs: blogMetas }, null, 2),
+        "utf-8",
+    );
 }
 
+generateBlogJson();
+
 export async function getAllPosts(): Promise<PostMeta[]> {
-    if (!GITHUB_TOKEN || !GITHUB_REPO) {
-        console.warn(
-            "GITHUB_TOKEN or GITHUB_REPO not set, returning empty array",
-        );
-        return [];
-    }
-
     try {
-        const fileData = await fetchFromGitHub(
-            "/contents/data/blog-index.json",
+        const filePath = path.join(
+            process.cwd(),
+            "contents",
+            "blogs",
+            "registary.json",
         );
-        const content = Buffer.from(fileData.content, "base64").toString(
-            "utf-8",
-        );
+        const content = await readFile(filePath, "utf-8");
         const data = JSON.parse(content);
-
         return ((data.blogs || []) as PostMeta[]).filter((b) => b.published);
     } catch (error) {
         console.error("Error fetching blog-index.json:", error);
@@ -67,18 +79,15 @@ export async function getAllPosts(): Promise<PostMeta[]> {
 export async function getPostMetaBySlug(
     slug: string,
 ): Promise<PostMeta | null> {
-    if (!GITHUB_TOKEN || !GITHUB_REPO) {
-        console.warn("GITHUB_TOKEN or GITHUB_REPO not set");
-        return null;
-    }
-
     try {
-        const fileData = await fetchFromGitHub(
-            `/contents/blogs/${slug}/meta.json`,
+        const filePath = path.join(
+            process.cwd(),
+            "contents",
+            "blogs",
+            slug,
+            "blog-meta.json",
         );
-        const content = Buffer.from(fileData.content, "base64").toString(
-            "utf-8",
-        );
+        const content = await readFile(filePath, "utf-8");
         return JSON.parse(content) as PostMeta;
     } catch (error) {
         console.error(`Error fetching meta for ${slug}:`, error);
@@ -87,19 +96,11 @@ export async function getPostMetaBySlug(
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
-    if (!GITHUB_TOKEN || !GITHUB_REPO) {
-        console.warn("GITHUB_TOKEN or GITHUB_REPO not set");
-        return null;
-    }
-
     try {
-        const fileData = await fetchFromGitHub(
-            `/contents/blogs/${slug}/blog.mdx`,
+        const content = await readFile(
+            path.join(process.cwd(), "contents", "blogs", slug, "content.mdx"),
+            "utf-8",
         );
-        const content = Buffer.from(
-            fileData.content.replace(/\n/g, ""),
-            "base64",
-        ).toString("utf-8");
         const { data: frontmatter, content: mdxContent } = matter(content);
 
         if (frontmatter.published === false) {
