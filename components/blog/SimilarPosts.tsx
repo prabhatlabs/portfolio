@@ -1,4 +1,4 @@
-import { PostMeta } from "@/lib/github";
+import { PostMeta } from "@/lib/blogs";
 import Link from "next/link";
 import { BlogCard } from "./BlogCard";
 

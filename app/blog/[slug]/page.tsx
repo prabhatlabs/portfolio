@@ -3,7 +3,7 @@ import { MDXComponents } from "@/components/blog/MDXComponents";
 import { SimilarPosts } from "@/components/blog/SimilarPosts";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { VisitorCounter } from "@/components/VisitorCounter";
-import { getAllPosts, getPostBySlug, getPostMetaBySlug } from "@/lib/github";
+import { getAllPosts, getPostBySlug, getPostMetaBySlug } from "@/lib/blogs";
 import { getFullImageUrl } from "@/lib/image-helper";
 import { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";

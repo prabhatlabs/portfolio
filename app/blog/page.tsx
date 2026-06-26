@@ -1,7 +1,7 @@
 import { BlogCard } from "@/components/blog/BlogCard";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { getAllPosts } from "@/lib/github";
+import { getAllPosts } from "@/lib/blogs";
 import { Metadata } from "next";
 import Link from "next/link";
 

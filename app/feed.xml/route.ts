@@ -1,4 +1,4 @@
-import { getAllPosts } from "@/lib/github";
+import { getAllPosts } from "@/lib/blogs";
 
 export const revalidate = 3600;
 

@@ -1,4 +1,4 @@
-import { getAllPosts, PostMeta } from "@/lib/github";
+import { getAllPosts, PostMeta } from "@/lib/blogs";
 import { getFullImageUrl } from "@/lib/image-helper";
 import { GeistPixelSquare } from "geist/font/pixel";
 import Image from "next/image";
