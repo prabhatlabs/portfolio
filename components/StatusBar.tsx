@@ -195,6 +195,16 @@ export function StatusBar({ className }: { className?: string }) {
                     {ipGeoData.ping}ms
                 </span>
             )}
+            {ipGeoData?.region && (
+                <span className="px-1 border-l border-b">
+                    {ipGeoData.region}
+                </span>
+            )}
+            {ipGeoData?.city && (
+                <span className="px-1 border-l border-b">
+                    {ipGeoData.city}
+                </span>
+            )}
             {ipGeoData?.country && (
                 <span className="px-1 border-l border-b">
                     {ipGeoData.country}

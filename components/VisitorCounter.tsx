@@ -9,6 +9,8 @@ export type IncrementAndFetchResult = {
     count: number;
     ip: string;
     os: string;
+    region: string;
+    city: string;
     country: string;
     ping: number | null;
 };
@@ -33,6 +35,8 @@ async function incrementAndFetch(slug?: string): Promise<IncrementAndFetchResult
             count: data.count || 0,
             ip: data.ip || "",
             os: data.os || "",
+            region: data.region || "",
+            city: data.city || "",
             country: data.country || "",
             ping,
         };
@@ -42,6 +46,8 @@ async function incrementAndFetch(slug?: string): Promise<IncrementAndFetchResult
             count: 0,
             ip: "",
             os: "",
+            region: "",
+            city: "",
             country: "",
             ping: null,
         };
@@ -79,6 +85,8 @@ export function VisitorCounter({ slug, className, onIpGeoData }: VisitorCounterP
                     os: res.os,
                     country: res.country,
                     ping: res.ping,
+                    region: res.region,
+                    city: res.city,
                 } as IpGeo;
                 onIpGeoData?.(ipgeodata);
                 localStorage.setItem(ipGeoKey, JSON.stringify(ipgeodata));
