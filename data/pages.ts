@@ -21,7 +21,11 @@ export const skills = {
     hono: { type: "Backend", name: "Hono", iconName: "SiHono" },
     fastapi: { type: "Backend", name: "FastAPI", iconName: "SiFastapi" },
     flask: { type: "Backend", name: "Flask", iconName: "SiFlask" },
-    socketdotio: { type: "Backend", name: "Socket.io", iconName: "SiSocketdotio" },
+    socketdotio: {
+        type: "Backend",
+        name: "Socket.io",
+        iconName: "SiSocketdotio",
+    },
 
     // Frontend
     react: { type: "Frontend", name: "React", iconName: "SiReact" },
@@ -312,6 +316,13 @@ export const experiences = [
             skills.angular,
             skills.socketdotio,
         ],
+        points: [
+            "Architected a self-hosted live classroom platform using LiveKit to fully replace Zoom, featuring camera, mic, screen sharing, and class recording, capable of handling 10 concurrent classes with 200+ simultaneous students.",
+            "Reduced student dashboard load time by 94% (52s → ~3s) through full-stack optimizations: replaced client-side pagination/filtering/sorting with server-driven MongoDB queries (cutting payload from ~52KB to ~4KB per request), converted 100+ $or clauses to a single $in index scan (~10s saved), parallelized 5 cross-collection queries via Promise.all (~4× latency reduction), and eliminated a 23s BSON deserialization bottleneck by removing a 3,000+ entry attendance array from projection and recomputing it via aggregation.",
+            "Conducted a full backend performance audit across 100+ models and 20+ route files: added compound MongoDB indexes to 16 previously unindexed models and applied .lean() to 70+ read-only Mongoose queries, reducing per-request memory usage by ~60 - 80% and cutting read-heavy endpoint latency by ~40 - 60%.",
+            "Further optimized backend with a 2-phase user fetch (6-field query for all 600+ students + 13-field query only for the 50 visible in parallel), O(n²) → O(1) student lookup via hash map, and client-side caching to minimize redundant network calls.",
+            "Build dynamic exercise renderer; 2D Interactive games; Dashboards for student performance; Daily streak.",
+        ],
     },
     {
         // iconUrl: "",
@@ -330,6 +341,10 @@ export const experiences = [
             skills.shadcn,
             skills.tailwind,
         ],
+        points: [
+            "Architected a high-performance frontend using Next.js and Shadcn UI, leveraging Static Site Generation (SSG) and Server-Side Rendering (SSR) to optimize Core Web Vitals and enhance SEO.",
+            "Streamlined development workflows by implementing modern TypeScript patterns, ensuring end-to-end type safety and reducing runtime errors across the application stack.",
+        ],
     },
     {
         iconUrl: "/companyLogos/flexzistay_logo.png",
@@ -347,6 +362,11 @@ export const experiences = [
             skills.cloudinary,
             skills.tailwind,
             skills.git,
+        ],
+        points: [
+            "Built end-to-end price and availability management system with Node.js APIs and responsive React interfaces for manager and admin portals; integrated Cashfree payout gateway with automated invoice generation using event-driven Pub/Sub architecture",
+            "Led Cloudinary asset migration, Next.js v15→v16 upgrade, and Tailwind v3→v4 migration with zero downtime while revamping UI across three portals",
+            "Integrated Google Maps and MapTiler APIs with Redis caching (2-week TTL), eliminating redundant location requests and cutting API costs",
         ],
     },
     {
@@ -368,6 +388,11 @@ export const experiences = [
             skills.redux,
             skills.git,
         ],
+        points: [
+            "Engineered a RAG microservice (FastAPI + Gemma-3 + ChromaDB) with a responsive chat interface supporting contextual document Q&A with persistent conversation history",
+            "Built a dynamic form builder with JSON schema validation and drag-and-drop interface, and implemented end-to-end appointment scheduling with calendar APIs, conflict detection, and cross-device responsive UI",
+            "Architected a JWT-based RBAC system, reduced database load by 25% via MongoDB aggregation pipeline optimization, and cut redundant API calls by 40% through Redux state management across a multi-module dashboard",
+        ],
     },
     {
         iconUrl: "/companyLogos/teconicopvtltd_logo.jpeg",
@@ -381,6 +406,13 @@ export const experiences = [
             skills.express,
             skills.mongodb,
             skills.git,
+        ],
+        points: [
+            "Developed API workflow to auto-create follow-up appointments when submitting prescriptions with next visit details.",
+            "Built feature to generate prescription PDFs from doctor-submitted forms and invoice PDFs for reception workflows.",
+            "Integrated WhatsApp bot via 3rd-party provider for sending notifications and prescriptions.",
+            "Documented all API endpoints, which reduced development time by 20%, streamlining backend and frontend workflows.",
+            "Improved backend efficiency and reduced database/API response times by 20-30% via aggregation pipeline optimization, indexing, and fixing unexpected lookup errors.",
         ],
     },
 ];
