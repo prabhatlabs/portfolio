@@ -2,7 +2,7 @@
 slug: "building-a-minimal-self-hosted-port-forwarding-tool-in-go"
 title: "Building a Minimal, Self-Hosted Port-Forwarding Tool in Go"
 date: "2026-07-03"
-description: "Learn how to build a minimal, self-hosted HTTP tunneling and reverse port-forwarding tool in Go. A step-by-step breakdown of multiplexing with WebSockets, handling data streaming via Go channels, and routing traffic from a public VPS to localhost."
+description: "Build a self-hosted reverse port-forwarding tool in Go. Learn to handle WebSocket multiplexing, channel-based data streaming, and public-to-local traffic routing."
 tags: ["go", "golang", "http", "port-forwarding", "self-hosted"]
 published: true
 related: []
@@ -31,7 +31,7 @@ So to bypass this without messing with your router's dangerous port-forwarding s
 
 Instead of making the internet try to connect to your machine, your machine will connect out to a public server, since firewalls will (generally) allow this outbound traffic.
 
-![cover image](/blog-images/building-a-minimal-self-hosted-port-forwarding-tool-in-go/diagram.png)
+![cover image](/blog-images/building-a-minimal-self-hosted-port-forwarding-tool-in-go/diagram.webp)
 
 ### Here's how traffic flows through the tool:
 

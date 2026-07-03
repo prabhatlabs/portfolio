@@ -1,6 +1,22 @@
 {
   "blogs": [
     {
+      "slug": "building-a-minimal-self-hosted-port-forwarding-tool-in-go",
+      "title": "Building a Minimal, Self-Hosted Port-Forwarding Tool in Go",
+      "date": "2026-07-03",
+      "description": "Build a self-hosted reverse port-forwarding tool in Go. Learn to handle WebSocket multiplexing, channel-based data streaming, and public-to-local traffic routing.",
+      "tags": [
+        "go",
+        "golang",
+        "http",
+        "port-forwarding",
+        "self-hosted"
+      ],
+      "published": true,
+      "related": [],
+      "coverImage": "/blog-images/building-a-minimal-self-hosted-port-forwarding-tool-in-go/cover.webp"
+    },
+    {
       "slug": "how-to-create-your-own-blog-site",
       "title": "How to Create Your Own Blog Site Without It Sucking",
       "date": "2026-05-16",
