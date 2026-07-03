@@ -24,9 +24,9 @@ export function BlogCard({
     return (
         <Link
             href={`/blog/${slug}`}
-            className="group grid grid-cols-1 md:grid-cols-[8rem_1fr] md:gap-4 rounded-lg border border-border bg-muted/50 hover:bg-muted hover:shadow-lg transition-all duration-500 overflow-hidden"
+            className="group grid grid-cols-1 md:grid-cols-[200px_1fr] rounded-lg border border-border bg-muted/50 hover:bg-muted hover:shadow-lg transition-all duration-500 overflow-hidden"
         >
-            <div className="relative w-full h-full aspect-video md:aspect-square overflow-hidden border-b md:border-b-0 md:border-r">
+            <div className="relative w-full h-full aspect-video md:aspect-auto overflow-hidden border-b md:border-b-0 md:border-r">
                 {coverImageUrl ? (
                     <Image
                         src={coverImageUrl}
