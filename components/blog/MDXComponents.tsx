@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export const MDXComponents = {
     h1: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-        <h1 className="text-3xl font-bold mt-6 mb-2 scroll-mt-20" {...props}>
+        <h1 className="text-4xl font-bold mt-6 mb-2 scroll-mt-20" {...props}>
             {children}
         </h1>
     ),
@@ -27,7 +27,7 @@ export const MDXComponents = {
         return (
             <h2
                 id={id}
-                className="text-2xl font-semibold mt-6 mb-2 scroll-mt-20 group flex items-center gap-2"
+                className="text-3xl font-semibold mt-6 mb-2 scroll-mt-20 group flex items-center gap-2"
                 {...props}
             >
                 {children}
@@ -42,12 +42,12 @@ export const MDXComponents = {
         );
     },
     h3: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-        <h3 className="text-xl font-semibold mt-4 mb-1 scroll-mt-20" {...props}>
+        <h3 className="text-xl font-semibold mt-4 mb-1 scroll-mt-20 text-foreground/90" {...props}>
             {children}
         </h3>
     ),
     p: ({ children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
-        <p className="leading-7 mb-2" {...props}>
+        <p className="leading-6 text-sm mb-2 text-foreground/80" {...props}>
             {children}
         </p>
     ),
@@ -81,12 +81,12 @@ export const MDXComponents = {
         );
     },
     ul: ({ children, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
-        <ul className="list-disc list-inside mb-2 space-y-1" {...props}>
+        <ul className="list-disc pl-4 mb-2 space-y-1" {...props}>
             {children}
         </ul>
     ),
     ol: ({ children, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
-        <ol className="list-decimal list-inside mb-2 space-y-1" {...props}>
+        <ol className="list-decimal pl-4 mb-2 space-y-1" {...props}>
             {children}
         </ol>
     ),
@@ -123,13 +123,13 @@ export const MDXComponents = {
     img: ({ src, alt }: React.ImgHTMLAttributes<HTMLImageElement>) => {
         const fullSrc = typeof src === "string" ? getFullImageUrl(src) : null;
         return (
-            <div className="relative w-full h-full aspect-video my-2">
+            <div className="relative w-full h-full aspect-video my-2 bg-muted/50 border rounded-lg">
                 {fullSrc ? (
                     <Image
                         src={fullSrc}
                         alt={alt || ""}
                         fill
-                        className="object-cover rounded-lg"
+                        className="object-contain rounded-lg w-full"
                     />
                 ) : (
                     <p className="text-muted-foreground text-xs md:text-sm">

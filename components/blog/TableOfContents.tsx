@@ -1,21 +1,29 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
+
+type Heading = { id: string; text: string; level: number };
 
 export function TableOfContents() {
-    const [headings, setHeadings] = useState<{ id: string; text: string }[]>(
-        [],
-    );
+    const [headings, setHeadings] = useState<Heading[]>([]);
     const [activeId, setActiveId] = useState<string>("");
 
     useEffect(() => {
-        const h2Elements = Array.from(document.querySelectorAll("article h2"));
-        const extractedHeadings = h2Elements.map((el) => ({
-            id: el.id,
-            text: el.textContent?.replace("#", "").trim() || "",
-        }));
-        setHeadings(extractedHeadings);
+        const elements = Array.from(
+            document.querySelectorAll("article h2, article h3"),
+        );
+
+        function ops() {
+            const extracted = elements.map((el) => ({
+                id: el.id,
+                text: el.textContent?.replace("#", "").trim() || "",
+                level: parseInt(el.tagName[1], 10),
+            }));
+            setHeadings(extracted);
+        }
+
+        ops();
 
         const observer = new IntersectionObserver(
             (entries) => {
@@ -28,7 +36,7 @@ export function TableOfContents() {
             { rootMargin: "-100px 0% -80% 0%" },
         );
 
-        h2Elements.forEach((el) => observer.observe(el));
+        elements.forEach((el) => observer.observe(el));
 
         return () => observer.disconnect();
     }, []);
@@ -42,13 +50,15 @@ export function TableOfContents() {
                     On this page
                 </h3>
                 <nav>
-                    <ul className="space-y-2 text-sm">
-                        {headings.map((heading) => (
+                    <ul className="space-y-1 text-sm">
+                        {headings.map((heading, index) => (
                             <li key={heading.id}>
                                 <a
+                                    id={`toc-${index}`}
                                     href={`#${heading.id}`}
                                     className={cn(
                                         "block transition-colors hover:text-primary line-clamp-2",
+                                        heading.level === 3 && "pl-4",
                                         activeId === heading.id
                                             ? "text-primary font-medium"
                                             : "text-muted-foreground",
