@@ -41,11 +41,32 @@ export const MDXComponents = {
             </h2>
         );
     },
-    h3: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-        <h3 className="text-xl font-semibold mt-4 mb-1 scroll-mt-20 text-foreground/90" {...props}>
-            {children}
-        </h3>
-    ),
+    h3: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
+        const extractText = (node: any): string => {
+            if (typeof node === "string") return node;
+            if (Array.isArray(node)) return node.map(extractText).join("");
+            if (node?.props?.children) return extractText(node.props.children);
+            return "";
+        };
+
+        const text = extractText(children);
+        const id = text
+            .toLowerCase()
+            .trim()
+            .replace(/\s+/g, "-")
+            .replace(/[^\w-]+/g, "")
+            .replace(/--+/g, "-");
+
+        return (
+            <h3
+                id={id}
+                className="text-xl font-semibold mt-4 mb-1 scroll-mt-20 text-foreground/90"
+                {...props}
+            >
+                {children}
+            </h3>
+        );
+    },
     p: ({ children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
         <p className="leading-6 text-sm mb-2 text-foreground/80" {...props}>
             {children}
@@ -130,6 +151,7 @@ export const MDXComponents = {
                         alt={alt || ""}
                         fill
                         className="object-contain rounded-lg w-full"
+                        loading="eager"
                     />
                 ) : (
                     <p className="text-muted-foreground text-xs md:text-sm">

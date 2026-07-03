@@ -14,16 +14,14 @@ export function TableOfContents() {
             document.querySelectorAll("article h2, article h3"),
         );
 
-        function ops() {
-            const extracted = elements.map((el) => ({
+        const extracted = elements
+            .filter((el) => el.id)
+            .map((el) => ({
                 id: el.id,
-                text: el.textContent?.replace("#", "").trim() || "",
+                text: el.textContent?.trim() || "",
                 level: parseInt(el.tagName[1], 10),
             }));
-            setHeadings(extracted);
-        }
-
-        ops();
+        setHeadings(extracted);
 
         const observer = new IntersectionObserver(
             (entries) => {
@@ -51,10 +49,9 @@ export function TableOfContents() {
                 </h3>
                 <nav>
                     <ul className="space-y-1 text-sm">
-                        {headings.map((heading, index) => (
+                        {headings.map((heading) => (
                             <li key={heading.id}>
                                 <a
-                                    id={`toc-${index}`}
                                     href={`#${heading.id}`}
                                     className={cn(
                                         "block transition-colors hover:text-primary line-clamp-2",
