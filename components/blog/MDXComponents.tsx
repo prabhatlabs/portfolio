@@ -127,7 +127,7 @@ export const MDXComponents = {
     ),
     code: ({ children, ...props }: React.HTMLAttributes<HTMLElement>) => (
         <code
-            className="bg-foreground/5 px-1.5 py-0.5 rounded text-sm font-mono"
+            className="bg-foreground/5 px-1.5 py-0.5 rounded text-xs! font-mono"
             {...props}
         >
             {children}
@@ -135,7 +135,7 @@ export const MDXComponents = {
     ),
     pre: ({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
         <pre
-            className="bg-foreground/5! p-4 border rounded-lg overflow-x-auto mb-2 text-sm"
+            className="bg-foreground/5! p-4 border rounded-lg overflow-x-auto mb-2 text-xs!"
             {...props}
         >
             {children}
