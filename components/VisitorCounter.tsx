@@ -15,14 +15,13 @@ export type IncrementAndFetchResult = {
     ping: number | null;
 };
 
-export type IpGeo = Exclude<IncrementAndFetchResult, "count">
+export type IpGeo = Exclude<IncrementAndFetchResult, "count">;
 
 interface VisitorCounterProps {
     slug?: string;
     className?: string;
     onIpGeoData?: (data: IpGeo) => void;
 }
-
 
 async function incrementAndFetch(slug?: string): Promise<IncrementAndFetchResult> {
     try {
@@ -62,9 +61,7 @@ export function VisitorCounter({ slug, className, onIpGeoData }: VisitorCounterP
         if (isMounted.current) return;
         isMounted.current = true;
 
-        const lastVisitKey = slug
-            ? `visitor_last_visit_${slug}`
-            : "visitor_last_visit_home";
+        const lastVisitKey = slug ? `visitor_last_visit_${slug}` : "visitor_last_visit_home";
         const countKey = slug ? `visitor_count_${slug}` : "visitor_count_home";
         const ipGeoKey = "visitor_ip_geo";
         const lastVisit = localStorage.getItem(lastVisitKey);

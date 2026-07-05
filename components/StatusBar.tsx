@@ -8,9 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { IpGeo, VisitorCounter } from "./VisitorCounter";
 
 function DateTime({ className }: { className?: string }) {
-    const [time, setTime] = useState<string>(
-        formatDateTime(new Date().getTime()),
-    );
+    const [time, setTime] = useState<string>(formatDateTime(new Date().getTime()));
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -23,16 +21,19 @@ function DateTime({ className }: { className?: string }) {
     }, []);
 
     return (
-        <span
-            suppressHydrationWarning={true}
-            className={cn(className, "w-36 text-center")}
-        >
+        <span suppressHydrationWarning={true} className={cn(className, "w-36 text-center")}>
             {time}
         </span>
     );
 }
 
-const FONTS: { family: string; weight?: string; style?: string; spacing?: string; transform?: string }[] = [
+const FONTS: {
+    family: string;
+    weight?: string;
+    style?: string;
+    spacing?: string;
+    transform?: string;
+}[] = [
     { family: "serif" },
     { family: "sans-serif", weight: "900", spacing: "0.15em", transform: "uppercase" },
     { family: "monospace", style: "italic", weight: "100" },
@@ -52,7 +53,12 @@ const FONTS: { family: string; weight?: string; style?: string; spacing?: string
     { family: '"Copperplate Gothic Bold", fantasy', weight: "400", spacing: "0.3em" },
     { family: '"Garamond", serif', weight: "300", style: "italic" },
     { family: '"Century Gothic", sans-serif', weight: "900" },
-    { family: '"Rockwell Extra Bold", serif', weight: "400", spacing: "0.12em", transform: "uppercase" },
+    {
+        family: '"Rockwell Extra Bold", serif',
+        weight: "400",
+        spacing: "0.12em",
+        transform: "uppercase",
+    },
 ];
 
 const FADE_IN = 1000;
@@ -61,10 +67,7 @@ const CYCLE_1_END = 2700;
 const CYCLE_2_START = 3600;
 const CYCLE_2_END = 4829;
 
-function FullScreenPlay({ isOpen, onClose }: {
-    isOpen: boolean;
-    onClose: () => void;
-}) {
+function FullScreenPlay({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
     const [phase, setPhase] = useState<0 | 1 | null>(null);
     const [fontIndex, setFontIndex] = useState(0);
     const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -86,47 +89,57 @@ function FullScreenPlay({ isOpen, onClose }: {
         const timeouts: ReturnType<typeof setTimeout>[] = [];
         const intervals: ReturnType<typeof setInterval>[] = [];
 
-        timeouts.push(setTimeout(() => {
-            setPhase(0);
-            setFontIndex(0);
-        }, FADE_IN));
+        timeouts.push(
+            setTimeout(() => {
+                setPhase(0);
+                setFontIndex(0);
+            }, FADE_IN),
+        );
 
-        timeouts.push(setTimeout(() => {
-            const i1 = setInterval(() => {
-                idx1.current++;
-                if (idx1.current >= FONTS.length) {
-                    clearInterval(i1);
-                    return;
-                }
-                setFontIndex(idx1.current);
-            }, int1);
-            intervals.push(i1);
-        }, CYCLE_1_START));
+        timeouts.push(
+            setTimeout(() => {
+                const i1 = setInterval(() => {
+                    idx1.current++;
+                    if (idx1.current >= FONTS.length) {
+                        clearInterval(i1);
+                        return;
+                    }
+                    setFontIndex(idx1.current);
+                }, int1);
+                intervals.push(i1);
+            }, CYCLE_1_START),
+        );
 
-        timeouts.push(setTimeout(() => {
-            clearInterval(intervals[0]);
-        }, CYCLE_1_END));
+        timeouts.push(
+            setTimeout(() => {
+                clearInterval(intervals[0]);
+            }, CYCLE_1_END),
+        );
 
-        timeouts.push(setTimeout(() => {
-            setPhase(1);
-            setFontIndex(0);
+        timeouts.push(
+            setTimeout(() => {
+                setPhase(1);
+                setFontIndex(0);
 
-            const i2 = setInterval(() => {
-                idx2.current++;
-                if (idx2.current >= FONTS.length) {
-                    clearInterval(i2);
-                    return;
-                }
-                setFontIndex(idx2.current);
-            }, int2);
-            intervals.push(i2);
-        }, CYCLE_2_START));
+                const i2 = setInterval(() => {
+                    idx2.current++;
+                    if (idx2.current >= FONTS.length) {
+                        clearInterval(i2);
+                        return;
+                    }
+                    setFontIndex(idx2.current);
+                }, int2);
+                intervals.push(i2);
+            }, CYCLE_2_START),
+        );
 
-        timeouts.push(setTimeout(() => {
-            clearInterval(intervals[1]);
-            setPhase(null);
-            setTimeout(() => onCloseRef.current(), 500);
-        }, CYCLE_2_END));
+        timeouts.push(
+            setTimeout(() => {
+                clearInterval(intervals[1]);
+                setPhase(null);
+                setTimeout(() => onCloseRef.current(), 500);
+            }, CYCLE_2_END),
+        );
 
         return () => {
             intervals.forEach(clearInterval);
@@ -152,7 +165,9 @@ function FullScreenPlay({ isOpen, onClose }: {
                             key={`${phase}-${fontIndex}`}
                             className={cn(
                                 "text-foreground",
-                                phase === 0 ? "text-3xl sm:text-4xl md:text-6xl" : "text-xl sm:text-2xl md:text-3xl",
+                                phase === 0
+                                    ? "text-3xl sm:text-4xl md:text-6xl"
+                                    : "text-xl sm:text-2xl md:text-3xl",
                             )}
                             style={{
                                 fontFamily: FONTS[fontIndex].family,
@@ -168,7 +183,7 @@ function FullScreenPlay({ isOpen, onClose }: {
                 </motion.div>
             )}
         </AnimatePresence>
-    )
+    );
 }
 
 export function StatusBar({ className }: { className?: string }) {
@@ -184,40 +199,19 @@ export function StatusBar({ className }: { className?: string }) {
     const [isFullScreen, setIsFullScreen] = useState(false);
 
     return (
-        <div
-            className={cn(className, "flex justify-end flex-wrap items-center")}
-        >
-            {ipGeoData?.ip && (
-                <span className="px-1 border-l border-b">{ipGeoData.ip}</span>
-            )}
-            {ipGeoData?.ping && (
-                <span className="px-1 border-l border-b">
-                    {ipGeoData.ping}ms
-                </span>
-            )}
-            {ipGeoData?.city && (
-                <span className="px-1 border-l border-b">
-                    {ipGeoData.city}
-                </span>
-            )}
+        <div className={cn(className, "flex justify-end flex-wrap items-center")}>
+            {ipGeoData?.ip && <span className="px-1 border-l border-b">{ipGeoData.ip}</span>}
+            {ipGeoData?.ping && <span className="px-1 border-l border-b">{ipGeoData.ping}ms</span>}
+            {ipGeoData?.city && <span className="px-1 border-l border-b">{ipGeoData.city}</span>}
             {ipGeoData?.region && (
-                <span className="px-1 border-l border-b">
-                    {ipGeoData.region}
-                </span>
+                <span className="px-1 border-l border-b">{ipGeoData.region}</span>
             )}
             {ipGeoData?.country && (
-                <span className="px-1 border-l border-b">
-                    {ipGeoData.country}
-                </span>
+                <span className="px-1 border-l border-b">{ipGeoData.country}</span>
             )}
-            {ipGeoData?.os && (
-                <span className="px-1 border-l border-b">{ipGeoData?.os}</span>
-            )}
+            {ipGeoData?.os && <span className="px-1 border-l border-b">{ipGeoData?.os}</span>}
             <DateTime className="px-1 border-l border-b" />
-            <VisitorCounter
-                onIpGeoData={setIpGeoData}
-                className="w-20 px-1 border-l border-b"
-            />
+            <VisitorCounter onIpGeoData={setIpGeoData} className="w-fit px-1 border-l border-b" />
             <button
                 onClick={() => setIsFullScreen(true)}
                 className="px-2 border-l border-b flex items-center justify-center gap-0.5"
