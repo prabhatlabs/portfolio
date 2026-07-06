@@ -1,6 +1,9 @@
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import JsonLd from "@/components/JsonLd";
+import { myInfo } from "@/data/pages";
+import { buildOrganizationJsonLd } from "@/lib/json-ld";
 import type { Metadata } from "next";
 import { DM_Sans, Geist_Mono } from "next/font/google";
 import Script from "next/script";
@@ -181,12 +184,21 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const orgJsonLd = buildOrganizationJsonLd(
+        "prabhatlabs",
+        "Prabhat Mishra is a software developer from India specializing in TypeScript, React, Next.js, Node.js, Python, and Go. Available for freelance projects and full-time roles.",
+        "https://prabhatlabs.dev",
+        "https://prabhatlabs.dev/logo.webp",
+        myInfo.contacts.map((c) => c.url),
+    );
+
     return (
         <html lang="en" suppressHydrationWarning suppressContentEditableWarning>
             <body
                 className={`antialiased no-scrollbar transition-all duration-500 ${dmsans.className} ${geist_mono.variable} ${GeistPixelSquare.variable}`}
             >
                 <ThemeProvider attribute="class" defaultTheme="dark">
+                    <JsonLd jsonLd={orgJsonLd} />
                     {children}
                 </ThemeProvider>
                 <Analytics />

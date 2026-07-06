@@ -96,6 +96,52 @@ export function buildWebSiteJsonLd(
 }
 
 /**
+ * Build JSON-LD BreadcrumbList schema.
+ */
+export function buildBreadcrumbListJsonLd(
+    items: Array<{ name: string; url: string }>,
+): string {
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: items.map((item, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: item.name,
+            item: item.url,
+        })),
+    };
+
+    return JSON.stringify(schema, null, 2);
+}
+
+/**
+ * Build JSON-LD Organization schema for the portfolio site.
+ */
+export function buildOrganizationJsonLd(
+    name: string,
+    description: string,
+    url: string,
+    logoUrl: string,
+    sameAs: string[],
+): string {
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name,
+        description,
+        url,
+        logo: {
+            "@type": "ImageObject",
+            url: logoUrl,
+        },
+        sameAs,
+    };
+
+    return JSON.stringify(schema, null, 2);
+}
+
+/**
  * Build JSON-LD for the blog list page (CollectionPage / ItemList).
  */
 export function buildBlogListJsonLd(

@@ -6,7 +6,7 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { VisitorCounter } from "@/components/VisitorCounter";
 import { getAllPosts, getPostBySlug, getPostMetaBySlug } from "@/lib/blogs";
 import { getFullImageUrl } from "@/lib/image-helper";
-import { buildBlogPostJsonLd } from "@/lib/json-ld";
+import { buildBlogPostJsonLd, buildBreadcrumbListJsonLd } from "@/lib/json-ld";
 import { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
@@ -78,6 +78,11 @@ export default async function BlogPostPage({ params }: Props) {
         : [];
 
     const jsonLd = buildBlogPostJsonLd(post, BASE_URL);
+    const breadcrumbLd = buildBreadcrumbListJsonLd([
+        { name: "Home", url: BASE_URL },
+        { name: "Blog", url: `${BASE_URL}/blog` },
+        { name: post.title, url: `${BASE_URL}/blog/${slug}` },
+    ]);
 
     return (
         <div className="space-y-6 md:space-y-8">
@@ -99,6 +104,7 @@ export default async function BlogPostPage({ params }: Props) {
             </div>
 
             <JsonLd jsonLd={jsonLd} />
+            <JsonLd jsonLd={breadcrumbLd} />
             <BlogPost
                 slug={post.slug}
                 title={post.title}

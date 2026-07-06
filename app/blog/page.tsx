@@ -3,7 +3,7 @@ import JsonLd from "@/components/JsonLd";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { getAllPosts } from "@/lib/blogs";
-import { buildBlogListJsonLd } from "@/lib/json-ld";
+import { buildBlogListJsonLd, buildBreadcrumbListJsonLd } from "@/lib/json-ld";
 import { Metadata } from "next";
 import Link from "next/link";
 
@@ -27,10 +27,15 @@ export default async function BlogPage() {
     const posts = await getAllPosts();
 
     const jsonLd = buildBlogListJsonLd(posts, BASE_URL);
+    const breadcrumbLd = buildBreadcrumbListJsonLd([
+        { name: "Home", url: BASE_URL },
+        { name: "Blog", url: `${BASE_URL}/blog` },
+    ]);
 
     return (
         <>
             <JsonLd jsonLd={jsonLd} />
+            <JsonLd jsonLd={breadcrumbLd} />
             <div>
                 <div className="max-w-3xl py-6 md:py-8 mx-auto flex justify-between items-center gap-6">
                     <div>
