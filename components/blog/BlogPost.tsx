@@ -11,6 +11,7 @@ interface BlogPostProps {
     tags: string[];
     children: ReactNode;
     coverImage?: string;
+    readingTime?: string;
 }
 
 export function BlogPost({
@@ -21,26 +22,45 @@ export function BlogPost({
     tags,
     children,
     coverImage,
+    readingTime,
 }: BlogPostProps) {
     const coverImageUrl = getFullImageUrl(coverImage);
     return (
-        <article className="relative">
+        <article
+            className="relative"
+            role="article"
+            aria-labelledby="blog-title"
+        >
             <TableOfContents />
             <header className="mb-6">
                 <div className="flex items-center flex-wrap gap-x-2 text-sm text-muted-foreground mb-4">
-                    <time dateTime={date}>
+                    <time
+                        dateTime={date}
+                        itemProp="datePublished"
+                        content={date}
+                    >
                         {new Date(date).toLocaleDateString("en-US", {
                             year: "numeric",
                             month: "long",
                             day: "numeric",
                         })}
                     </time>
+                    {readingTime && (
+                        <>
+                            <span>•</span>
+                            <span itemProp="timeRequired">{readingTime}</span>
+                        </>
+                    )}
                     {tags.length > 0 && <span>•</span>}
                     {tags.length > 0 && (
                         <>
                             {tags.map((tag, index) => (
                                 <Fragment key={tag}>
-                                    <span key={tag} className="text-primary">
+                                    <span
+                                        key={tag}
+                                        className="text-primary"
+                                        itemProp="articleSection"
+                                    >
                                         {tag}
                                     </span>
                                     {index !== tags.length - 1 && (
@@ -51,8 +71,17 @@ export function BlogPost({
                         </>
                     )}
                 </div>
-                <h1 className="text-4xl font-bold mb-4">{title}</h1>
-                <p className="text-xl text-muted-foreground mb-6">
+                <h1
+                    id="blog-title"
+                    className="text-4xl font-bold mb-4"
+                    itemProp="headline"
+                >
+                    {title}
+                </h1>
+                <p
+                    className="text-xl text-muted-foreground mb-6"
+                    itemProp="description"
+                >
                     {description}
                 </p>
                 {coverImageUrl && (
@@ -63,11 +92,15 @@ export function BlogPost({
                             fill
                             className="object-cover"
                             priority
+                            itemProp="image"
                         />
                     </div>
                 )}
             </header>
-            <div className="prose prose-neutral dark:prose-invert max-w-none">
+            <div
+                className="prose prose-neutral dark:proinvert max-w-none"
+                itemProp="articleBody"
+            >
                 {children}
             </div>
         </article>

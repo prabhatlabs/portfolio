@@ -1,14 +1,18 @@
 import { BlogPost } from "@/components/blog/BlogPost";
 import { MDXComponents } from "@/components/blog/MDXComponents";
 import { SimilarPosts } from "@/components/blog/SimilarPosts";
+import JsonLd from "@/components/JsonLd";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { VisitorCounter } from "@/components/VisitorCounter";
 import { getAllPosts, getPostBySlug, getPostMetaBySlug } from "@/lib/blogs";
 import { getFullImageUrl } from "@/lib/image-helper";
+import { buildBlogPostJsonLd } from "@/lib/json-ld";
 import { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://prabhatlabs.dev";
 
 interface Props {
     params: Promise<{ slug: string }>;
@@ -36,6 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
         title: post.title,
         description: post.description,
+        keywords: post.tags,
         openGraph: {
             title: post.title,
             description: post.description,
@@ -49,6 +54,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             title: post.title,
             description: post.description,
             images: coverImageUrl ? [coverImageUrl] : [],
+        },
+        alternates: {
+            canonical: `${BASE_URL}/blog/${slug}`,
         },
     };
 }
@@ -69,6 +77,8 @@ export default async function BlogPostPage({ params }: Props) {
           ).filter((p): p is NonNullable<typeof p> => p !== null)
         : [];
 
+    const jsonLd = buildBlogPostJsonLd(post, BASE_URL);
+
     return (
         <div className="space-y-6 md:space-y-8">
             <div className="mt-6 md:mt-8 mx-auto flex justify-between items-center gap-6">
@@ -88,6 +98,7 @@ export default async function BlogPostPage({ params }: Props) {
                 </div>
             </div>
 
+            <JsonLd jsonLd={jsonLd} />
             <BlogPost
                 slug={post.slug}
                 title={post.title}
@@ -95,12 +106,9 @@ export default async function BlogPostPage({ params }: Props) {
                 description={post.description}
                 tags={post.tags}
                 coverImage={post.coverImage}
+                readingTime={post.readingTime}
             >
-                <MDXRemote
-                    source={post.content}
-                    components={MDXComponents}
-                    // options={options}
-                />
+                <MDXRemote source={post.content} components={MDXComponents} />
             </BlogPost>
 
             {relatedPosts.length > 0 && <SimilarPosts posts={relatedPosts} />}

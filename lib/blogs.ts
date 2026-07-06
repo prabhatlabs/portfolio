@@ -2,6 +2,27 @@ import { readdir, readFile, writeFile } from "fs/promises";
 import matter from "gray-matter";
 import path from "path/posix";
 
+/**
+ * Calculate approximate reading time from a markdown string.
+ * Assumes ~200 words per minute and strips markdown syntax for counting.
+ */
+export function calculateReadingTime(markdownContent: string): string {
+    // Strip markdown — remove headings markers, bold, italic, code blocks, links, images
+    const cleaned = markdownContent
+        .replace(/```[\s\S]*?```/g, "")
+        .replace(/`[^`]+`/g, "")
+        .replace(/!\[.*?\]\(.*?\)/g, "")
+        .replace(/\[(.*?)\]\(.*?\)/g, "$1")
+        .replace(/[#*_~>|\-\+\=]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    const wordCount = cleaned.split(/\s+/).filter(Boolean).length;
+    const minutes = Math.max(1, Math.ceil(wordCount / 200));
+
+    return `${minutes} min read`;
+}
+
 export interface PostMeta {
     slug: string;
     title: string;
@@ -11,6 +32,7 @@ export interface PostMeta {
     coverImage?: string;
     published: boolean;
     related?: string[];
+    readingTime?: string;
 }
 
 export interface Post extends PostMeta {
@@ -41,16 +63,20 @@ export async function generateBlogJson(): Promise<void> {
         try {
             const contentMdxPath = path.join(blogDirPath, "content.mdx");
             const blogMdxContent = await readFile(contentMdxPath, "utf-8");
-            const { data: blogMeta } = matter(blogMdxContent);
+            const { data: blogMeta, content: mdxBody } = matter(blogMdxContent);
+
+            // Add reading time from the markdown content (excluding frontmatter)
+            const readingTime = calculateReadingTime(mdxBody);
+            const enriched = { ...blogMeta, readingTime };
 
             const blogMetaJsonPath = path.join(blogDirPath, "blog-meta.json");
             await writeFile(
                 blogMetaJsonPath,
-                JSON.stringify(blogMeta, null, 2),
+                JSON.stringify(enriched, null, 2),
                 "utf-8",
             );
 
-            blogMetas.push(blogMeta as PostMeta);
+            blogMetas.push(enriched as PostMeta);
         } catch (err) {
             console.warn(
                 `Skipping folder "${blogDir}": blog-meta.json missing or invalid.`,
@@ -105,26 +131,18 @@ export async function getPostMetaBySlug(
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
     try {
+        const postMetaJson = await getPostMetaBySlug(slug);
+        if (!postMetaJson || postMetaJson.published === false) return null;
+
         const content = await readFile(
             path.join(process.cwd(), "contents", "blogs", slug, "content.mdx"),
             "utf-8",
         );
-        const { data: frontmatter, content: mdxContent } = matter(content);
-
-        if (frontmatter.published === false) {
-            return null;
-        }
+        const { content: mdxContent } = matter(content);
 
         return {
-            slug,
             content: mdxContent,
-            title: frontmatter.title || "",
-            date: frontmatter.date || "",
-            description: frontmatter.description || "",
-            tags: frontmatter.tags || [],
-            coverImage: frontmatter.coverImage,
-            published: frontmatter.published ?? true,
-            related: frontmatter.related || [],
+            ...postMetaJson,
         };
     } catch (error) {
         console.error(`Error fetching post ${slug}:`, error);
