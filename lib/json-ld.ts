@@ -52,6 +52,50 @@ export function buildBlogPostJsonLd(
 }
 
 /**
+ * Build JSON-LD Person schema for the portfolio home page.
+ */
+export function buildPersonJsonLd(
+    name: string,
+    description: string,
+    baseUrl: string,
+    imageUrl: string,
+    sameAs: string[],
+): string {
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name,
+        description: description.replace(/[*#_[\]()\\]/g, ""),
+        url: baseUrl,
+        image: imageUrl.startsWith("http")
+            ? imageUrl
+            : `${baseUrl}${imageUrl}`,
+        sameAs,
+    };
+
+    return JSON.stringify(schema, null, 2);
+}
+
+/**
+ * Build JSON-LD WebSite schema for the portfolio site.
+ */
+export function buildWebSiteJsonLd(
+    name: string,
+    description: string,
+    baseUrl: string,
+): string {
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name,
+        description,
+        url: baseUrl,
+    };
+
+    return JSON.stringify(schema, null, 2);
+}
+
+/**
  * Build JSON-LD for the blog list page (CollectionPage / ItemList).
  */
 export function buildBlogListJsonLd(
