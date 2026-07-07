@@ -1,3 +1,4 @@
+import envvars from "@/lib/envvars";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
@@ -23,7 +24,7 @@ export async function GET(req: NextRequest) {
     const res = await fetch("https://api.github.com/graphql", {
         method: "POST",
         headers: {
-            Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+            Authorization: `Bearer ${envvars.GITHUB_TOKEN}`,
             "Content-Type": "application/json",
         },
         body: JSON.stringify({ query, variables: { username } }),

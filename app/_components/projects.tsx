@@ -1,4 +1,4 @@
-import { projects } from "@/data/pages";
+import { projects } from "@/data/root";
 import { getIcon } from "@/lib/icon";
 import { GeistPixelSquare } from "geist/font/pixel";
 import Image from "next/image";

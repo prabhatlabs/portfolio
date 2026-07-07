@@ -1,5 +1,5 @@
 "use client";
-import { myInfo } from "@/data/pages";
+import { myInfo } from "@/data/root";
 import { getIcon } from "@/lib/icon";
 import { useEffect, useRef } from "react";
 import { renderToStaticMarkup } from "react-dom/server";

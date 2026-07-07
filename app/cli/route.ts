@@ -1,4 +1,5 @@
-import { experiences, myInfo, projects, skills } from "../../data/pages";
+import envvars from "@/lib/envvars";
+import { experiences, myInfo, projects, skills } from "@/data/root";
 
 const visibleProjects = projects.filter((p) => p.show).slice(0, 2);
 
@@ -99,7 +100,7 @@ function render(): string {
             `echo "  \${GREEN}${link.name.padEnd(14)}\${RESET} ${link.url}"`,
         );
     out.push('echo ""');
-    out.push('echo "${DIM}curl prabhatlabs.dev/cli | bash${RESET}"');
+    out.push(`echo "\${DIM}curl ${envvars.BASE_URL}/cli | bash\${RESET}"`);
     return out.join("\n");
 }
 

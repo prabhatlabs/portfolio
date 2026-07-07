@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { myInfo, skillsArray, projects, contactLinksArray } from "@/data/pages";
+import { myInfo, skillsArray, projects, contactLinksArray } from "@/data/root";
 import { Terminal } from "lucide-react";
 
 type Line = {

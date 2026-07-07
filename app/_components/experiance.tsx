@@ -1,6 +1,6 @@
 "use client";
 
-import { experiences } from "@/data/pages";
+import { experiences } from "@/data/root";
 import { GeistPixelSquare } from "geist/font/pixel";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";

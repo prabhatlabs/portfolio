@@ -1,7 +1,7 @@
 import AboveAboutBanner from "@/components/AboveAboutBanner";
 import { StatusBar } from "@/components/StatusBar";
 import RenderText from "@/components/ui/render-text";
-import { myInfo } from "@/data/pages";
+import { myInfo } from "@/data/root";
 import { getIcon } from "@/lib/icon";
 import { GeistPixelSquare } from "geist/font/pixel";
 import { Gamepad2 } from "lucide-react";

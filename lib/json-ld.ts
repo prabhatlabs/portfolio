@@ -1,4 +1,40 @@
 import type { PostMeta } from "./blogs";
+import { contactLinksArray, myInfo } from "@/data/root";
+import envvars from "@/lib/envvars";
+const cleanedPersonDescription = myInfo.description.replace(
+    /[*#_[\]()\\]/g,
+    "",
+);
+
+export const personJsonLd = JSON.stringify(
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        name: myInfo.name,
+        description: cleanedPersonDescription,
+        url: envvars.BASE_URL,
+        image: `${envvars.BASE_URL}${myInfo.imageUrl}`,
+        sameAs: contactLinksArray.map((c) => c.url),
+    },
+    null,
+    2,
+);
+
+const webSiteName = "Prabhat Mishra | Software Developer";
+const webSiteDescription =
+    "Software developer from India building fast, scalable web apps with TypeScript, React, Next.js, Node.js, Python & Go.";
+
+export const webSiteJsonLd = JSON.stringify(
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: webSiteName,
+        description: webSiteDescription,
+        url: envvars.BASE_URL,
+    },
+    null,
+    2,
+);
 
 /**
  * Build JSON-LD structured data for a blog post page.
@@ -25,14 +61,14 @@ export function buildBlogPostJsonLd(
         author: {
             "@type": "Person",
             name: "Prabhat Mishra",
-            url: "https://prabhatlabs.dev",
+            url: baseUrl,
         },
         publisher: {
             "@type": "Organization",
             name: "prabhatlabs",
             logo: {
                 "@type": "ImageObject",
-                url: "https://prabhatlabs.dev/logo.webp",
+                url: `${baseUrl}/logo.webp`,
             },
         },
         image: {
@@ -46,50 +82,6 @@ export function buildBlogPostJsonLd(
         articleSection: post.tags?.join(", ") || "",
         keywords: post.tags?.join(", ") || "",
         wordCount: post.tags?.length || 0,
-    };
-
-    return JSON.stringify(schema, null, 2);
-}
-
-/**
- * Build JSON-LD Person schema for the portfolio home page.
- */
-export function buildPersonJsonLd(
-    name: string,
-    description: string,
-    baseUrl: string,
-    imageUrl: string,
-    sameAs: string[],
-): string {
-    const schema = {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        name,
-        description: description.replace(/[*#_[\]()\\]/g, ""),
-        url: baseUrl,
-        image: imageUrl.startsWith("http")
-            ? imageUrl
-            : `${baseUrl}${imageUrl}`,
-        sameAs,
-    };
-
-    return JSON.stringify(schema, null, 2);
-}
-
-/**
- * Build JSON-LD WebSite schema for the portfolio site.
- */
-export function buildWebSiteJsonLd(
-    name: string,
-    description: string,
-    baseUrl: string,
-): string {
-    const schema = {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        name,
-        description,
-        url: baseUrl,
     };
 
     return JSON.stringify(schema, null, 2);

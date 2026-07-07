@@ -2,7 +2,8 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import JsonLd from "@/components/JsonLd";
-import { myInfo } from "@/data/pages";
+import envvars from "@/lib/envvars";
+import { myInfo } from "@/data/root";
 import { buildOrganizationJsonLd } from "@/lib/json-ld";
 import type { Metadata } from "next";
 import { DM_Sans, Geist_Mono } from "next/font/google";
@@ -26,7 +27,7 @@ const geist_mono = Geist_Mono({
 
 
 export const metadata: Metadata = {
-    metadataBase: new URL("https://prabhatlabs.dev"),
+    metadataBase: new URL(envvars.BASE_URL),
     title: {
         default: "Prabhat Mishra | Software Developer",
         template: "%s | prabhatlabs",
@@ -115,7 +116,7 @@ export const metadata: Metadata = {
         "self-taught programmer India",
     ],
 
-    authors: [{ name: "Prabhat Mishra", url: "https://prabhatlabs.dev" }],
+    authors: [{ name: "Prabhat Mishra", url: envvars.BASE_URL }],
     creator: "Prabhat Mishra",
     publisher: "Prabhat Mishra",
     category: "Technology",
@@ -140,11 +141,11 @@ export const metadata: Metadata = {
         title: "Prabhat Mishra | Software Developer",
         description:
             "Software developer from India building fast, scalable web apps with TypeScript, React, Next.js, Node.js, Python & Go. Open to freelance and full-time opportunities.",
-        url: "https://prabhatlabs.dev/",
+        url: `${envvars.BASE_URL}/`,
         siteName: "Prabhat Mishra — Software Developer",
         images: [
             {
-                url: "https://prabhatlabs.dev/preview.webp",
+                url: `${envvars.BASE_URL}/preview.webp`,
                 width: 1200,
                 height: 630,
                 alt: "Prabhat Mishra — Software Developer",
@@ -159,7 +160,7 @@ export const metadata: Metadata = {
         title: "Prabhat Mishra | Software Developer",
         description:
             "Software dev from India. TypeScript · React · Next.js · Node.js · Python · Go. Open to freelance & full-time roles.",
-        images: ["https://prabhatlabs.dev/preview.webp"],
+        images: [`${envvars.BASE_URL}/preview.webp`],
         creator: "@prabhatlabs",
         site: "@prabhatlabs",
     },
@@ -187,8 +188,8 @@ export default function RootLayout({
     const orgJsonLd = buildOrganizationJsonLd(
         "prabhatlabs",
         "Prabhat Mishra is a software developer from India specializing in TypeScript, React, Next.js, Node.js, Python, and Go. Available for freelance projects and full-time roles.",
-        "https://prabhatlabs.dev",
-        "https://prabhatlabs.dev/logo.webp",
+        envvars.BASE_URL,
+        `${envvars.BASE_URL}/logo.webp`,
         myInfo.contacts.map((c) => c.url),
     );
 

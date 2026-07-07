@@ -1,6 +1,6 @@
 import JsonLd from "@/components/JsonLd";
-import { myInfo } from "@/data/pages";
-import { buildPersonJsonLd, buildWebSiteJsonLd } from "@/lib/json-ld";
+import { myInfo } from "@/data/root";
+import { personJsonLd, webSiteJsonLd } from "@/lib/json-ld";
 import Link from "next/link";
 import { About } from "./_components/about";
 import { Blogs } from "./_components/blogs";
@@ -11,28 +11,11 @@ import { Projects } from "./_components/projects";
 import { Skills } from "./_components/skills";
 import { Topbar } from "./_components/topbar";
 
-const BASE_URL = "https://prabhatlabs.dev";
-
-const sameAsLinks = myInfo.contacts.map((c) => c.url);
-
 export default function PageContent() {
-    const personJsonLd = buildPersonJsonLd(
-        myInfo.name,
-        myInfo.description,
-        BASE_URL,
-        myInfo.imageUrl,
-        sameAsLinks,
-    );
-    const siteJsonLd = buildWebSiteJsonLd(
-        "Prabhat Mishra | Software Developer",
-        "Software developer from India building fast, scalable web apps with TypeScript, React, Next.js, Node.js, Python & Go.",
-        BASE_URL,
-    );
-
     return (
         <>
             <JsonLd jsonLd={personJsonLd} />
-            <JsonLd jsonLd={siteJsonLd} />
+            <JsonLd jsonLd={webSiteJsonLd} />
             <div className="overflow-hidden lg:p-6">
                 <div className="lg:h-[calc(100dvh-48px)] h-dvh overflow-auto relative border">
                     <div className="h-6 md:h-20 w-full border-b">

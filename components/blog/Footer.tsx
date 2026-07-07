@@ -1,4 +1,4 @@
-import { myInfo } from "@/data/pages";
+import { myInfo } from "@/data/root";
 import { getIcon } from "@/lib/icon";
 import Link from "next/link";
 

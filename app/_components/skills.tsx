@@ -1,6 +1,6 @@
 "use client";
 
-import { skillsArray } from "@/data/pages";
+import { skillsArray } from "@/data/root";
 import { getIcon } from "@/lib/icon";
 import { motion } from "framer-motion";
 import { GeistPixelSquare } from "geist/font/pixel";

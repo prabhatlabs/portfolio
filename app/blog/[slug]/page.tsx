@@ -7,12 +7,11 @@ import { VisitorCounter } from "@/components/VisitorCounter";
 import { getAllPosts, getPostBySlug, getPostMetaBySlug } from "@/lib/blogs";
 import { getFullImageUrl } from "@/lib/image-helper";
 import { buildBlogPostJsonLd, buildBreadcrumbListJsonLd } from "@/lib/json-ld";
+import envvars from "@/lib/envvars";
 import { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://prabhatlabs.dev";
 
 interface Props {
     params: Promise<{ slug: string }>;
@@ -56,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             images: coverImageUrl ? [coverImageUrl] : [],
         },
         alternates: {
-            canonical: `${BASE_URL}/blog/${slug}`,
+            canonical: `${envvars.BASE_URL}/blog/${slug}`,
         },
     };
 }
@@ -77,11 +76,11 @@ export default async function BlogPostPage({ params }: Props) {
           ).filter((p): p is NonNullable<typeof p> => p !== null)
         : [];
 
-    const jsonLd = buildBlogPostJsonLd(post, BASE_URL);
+    const jsonLd = buildBlogPostJsonLd(post, envvars.BASE_URL);
     const breadcrumbLd = buildBreadcrumbListJsonLd([
-        { name: "Home", url: BASE_URL },
-        { name: "Blog", url: `${BASE_URL}/blog` },
-        { name: post.title, url: `${BASE_URL}/blog/${slug}` },
+        { name: "Home", url: envvars.BASE_URL },
+        { name: "Blog", url: `${envvars.BASE_URL}/blog` },
+        { name: post.title, url: `${envvars.BASE_URL}/blog/${slug}` },
     ]);
 
     return (

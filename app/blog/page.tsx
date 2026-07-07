@@ -4,10 +4,9 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { getAllPosts } from "@/lib/blogs";
 import { buildBlogListJsonLd, buildBreadcrumbListJsonLd } from "@/lib/json-ld";
+import envvars from "@/lib/envvars";
 import { Metadata } from "next";
 import Link from "next/link";
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://prabhatlabs.dev";
 
 export const metadata: Metadata = {
     title: "Blog",
@@ -17,19 +16,19 @@ export const metadata: Metadata = {
         title: "Blog — Prabhat Mishra",
         description:
             "Thoughts, learnings, and things I found worth writing down — code, concepts, and the occasional rabbit hole.",
-        url: `${BASE_URL}/blog`,
+        url: `${envvars.BASE_URL}/blog`,
         type: "website",
-        images: [{ url: `${BASE_URL}/preview.webp` }],
+        images: [{ url: `${envvars.BASE_URL}/preview.webp` }],
     },
 };
 
 export default async function BlogPage() {
     const posts = await getAllPosts();
 
-    const jsonLd = buildBlogListJsonLd(posts, BASE_URL);
+    const jsonLd = buildBlogListJsonLd(posts, envvars.BASE_URL);
     const breadcrumbLd = buildBreadcrumbListJsonLd([
-        { name: "Home", url: BASE_URL },
-        { name: "Blog", url: `${BASE_URL}/blog` },
+        { name: "Home", url: envvars.BASE_URL },
+        { name: "Blog", url: `${envvars.BASE_URL}/blog` },
     ]);
 
     return (
