@@ -85,13 +85,14 @@ export function BlogPost({
                     {description}
                 </p>
                 {coverImageUrl && (
-                    <div className="relative w-full aspect-video mb-8 overflow-hidden rounded-xl border border-border">
+                    <div className="relative w-full my-2 bg-muted/50 border rounded-lg">
                         <Image
                             src={coverImageUrl}
                             alt={title}
-                            fill
-                            className="object-cover"
-                            priority
+                            width={720}
+                            height={400}
+                            className="object-contain rounded-lg w-full"
+                            loading="eager"
                             itemProp="image"
                         />
                     </div>

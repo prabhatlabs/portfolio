@@ -8,8 +8,9 @@ import { getAllPosts, getPostBySlug, getPostMetaBySlug } from "@/lib/blogs";
 import { getFullImageUrl } from "@/lib/image-helper";
 import { buildBlogPostJsonLd, buildBreadcrumbListJsonLd } from "@/lib/json-ld";
 import envvars from "@/lib/envvars";
+import rehypeShiki from "@shikijs/rehype";
 import { Metadata } from "next";
-import { MDXRemote } from "next-mdx-remote/rsc";
+import { compileMDX } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -83,6 +84,26 @@ export default async function BlogPostPage({ params }: Props) {
         { name: post.title, url: `${envvars.BASE_URL}/blog/${slug}` },
     ]);
 
+    const { content } = await compileMDX({
+        source: post.content,
+        components: MDXComponents,
+        options: {
+            mdxOptions: {
+                rehypePlugins: [
+                    [
+                        rehypeShiki,
+                        {
+                            themes: {
+                                light: "github-light",
+                                dark: "github-dark",
+                            },
+                        },
+                    ],
+                ],
+            },
+        },
+    });
+
     return (
         <div className="space-y-6 md:space-y-8">
             <div className="mt-6 md:mt-8 mx-auto flex justify-between items-center gap-6">
@@ -113,7 +134,7 @@ export default async function BlogPostPage({ params }: Props) {
                 coverImage={post.coverImage}
                 readingTime={post.readingTime}
             >
-                <MDXRemote source={post.content} components={MDXComponents} />
+                {content}
             </BlogPost>
 
             {relatedPosts.length > 0 && <SimilarPosts posts={relatedPosts} />}

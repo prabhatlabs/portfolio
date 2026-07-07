@@ -182,3 +182,26 @@
         background-color: var(--color-border);
     }
 }
+
+/* @shikijs/rehype dual theme */
+@layer base {
+    pre.shiki {
+        background-color: var(--muted) !important;
+    }
+
+    .dark pre.shiki {
+        color: var(--shiki-dark) !important;
+    }
+
+    .dark pre.shiki span,
+    .dark pre.shiki code {
+        color: var(--shiki-dark) !important;
+    }
+
+    /* Reset inline-code styling inside Shiki code blocks */
+    pre.shiki code {
+        background-color: transparent !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+    }
+}

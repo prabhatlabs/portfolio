@@ -1,4 +1,5 @@
 import { getFullImageUrl } from "@/lib/image-helper";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -125,17 +126,31 @@ export const MDXComponents = {
             {children}
         </blockquote>
     ),
-    code: ({ children, ...props }: React.HTMLAttributes<HTMLElement>) => (
+    code: ({
+        children,
+        className,
+        ...props
+    }: React.HTMLAttributes<HTMLElement>) => (
         <code
-            className="bg-foreground/5 px-1.5 py-0.5 rounded text-xs! font-mono"
+            className={cn(
+                "bg-foreground/5 px-1.5 py-0.5 rounded text-xs! font-mono",
+                className,
+            )}
             {...props}
         >
             {children}
         </code>
     ),
-    pre: ({ children, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
+    pre: ({
+        children,
+        className,
+        ...props
+    }: React.HTMLAttributes<HTMLPreElement>) => (
         <pre
-            className="bg-foreground/5! p-4 border rounded-lg overflow-x-auto mb-2 text-xs!"
+            className={cn(
+                "p-4 border rounded-lg overflow-x-auto mb-2 text-xs! font-mono",
+                className,
+            )}
             {...props}
         >
             {children}
@@ -144,15 +159,21 @@ export const MDXComponents = {
     img: ({ src, alt }: React.ImgHTMLAttributes<HTMLImageElement>) => {
         const fullSrc = typeof src === "string" ? getFullImageUrl(src) : null;
         return (
-            <div className="relative w-full h-full aspect-video my-2 bg-muted/50 border rounded-lg">
+            <div className="relative w-full my-2 bg-muted/50 rounded-lg p-4 md:p-6">
                 {fullSrc ? (
-                    <Image
-                        src={fullSrc}
-                        alt={alt || ""}
-                        fill
-                        className="object-contain rounded-lg w-full"
-                        loading="eager"
-                    />
+                    <a href={fullSrc} target="_blank" rel="noopener noreferrer">
+                        <Image
+                            src={fullSrc}
+                            alt={alt || ""}
+                            width={720}
+                            height={400}
+                            className="object-contain w-full"
+                            loading="eager"
+                        />
+                        <span className="absolute -bottom-1 md:bottom-1 left-1/2 -translate-x-1/2 text-muted-foreground text-[10px] md:text-xs">
+                            {alt}
+                        </span>
+                    </a>
                 ) : (
                     <p className="text-muted-foreground text-xs md:text-sm">
                         {alt}
