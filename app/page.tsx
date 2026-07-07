@@ -9,6 +9,7 @@ import { Experiance } from "./_components/experiance";
 import { Footer } from "./_components/footer";
 import { Projects } from "./_components/projects";
 import { Skills } from "./_components/skills";
+import { Tools } from "./_components/tools";
 import { Topbar } from "./_components/topbar";
 
 export default function PageContent() {
@@ -30,6 +31,7 @@ export default function PageContent() {
                             <About />
                             <Experiance />
                             <Projects />
+                            <Tools />
                             <Contributions />
                             <Skills />
                             <Blogs />

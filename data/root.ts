@@ -301,6 +301,31 @@ export const projects = [
     },
 ];
 
+// need to change the card renderer for this at @app/_components/tools.tsx if items are >= 3
+export const tools = [
+    {
+        show: true,
+        title: "Go Tunnel",
+        description:
+            "A minimal, self-hosted reverse port-forwarding CLI built in Go. Uses a single WebSocket connection to multiplex public HTTP traffic from a VPS down to your local machine — no Ngrok or Cloudflare Tunnel required.",
+        skills: [skills.go],
+        links: [
+            {
+                name: "GitHub",
+                url: "https://github.com/prabhatlabs/go-tunnel",
+                iconName: "IoLogoGithub",
+                target: "_blank",
+            },
+            {
+                name: "Blog",
+                url: "/blog/building-a-minimal-self-hosted-port-forwarding-tool-in-go",
+                iconName: "VscLinkExternal",
+                target: "_blank",
+            },
+        ],
+    },
+];
+
 export const experiences = [
     {
         iconUrl: "/companyLogos/gluckglobal_logo.jpeg",
