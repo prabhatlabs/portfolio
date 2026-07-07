@@ -5,7 +5,8 @@ import { copyToClipboard } from "@/lib/clipboard";
 import envvars from "@/lib/envvars";
 import { GeistPixelSquare } from "geist/font/pixel";
 import { useEffect, useState } from "react";
-import { IoCopyOutline, IoCheckmark, IoOpenOutline } from "react-icons/io5";
+import { IoCheckmark, IoCopyOutline } from "react-icons/io5";
+import { VscLinkExternal } from "react-icons/vsc";
 
 export default function Cli() {
     const [isCopied, setIsCopied] = useState(false);
@@ -15,6 +16,10 @@ export default function Cli() {
     async function handleCopyBtnClick() {
         await copyToClipboard(text);
         setIsCopied(true);
+    }
+
+    function handleOpenScript() {
+        window.open(scriptUrl, "_blank");
     }
 
     useEffect(() => {
@@ -32,7 +37,8 @@ export default function Cli() {
     return (
         <div className="w-full flex justify-between items-center gap-4">
             <p
-                className={`px-2 py-1 h-9 flex items-center border-x text-muted-foreground bg-muted/10 font-mono ${GeistPixelSquare.className}`}
+                onClick={handleOpenScript}
+                className={`px-2 py-1 h-9 flex items-center border-x text-muted-foreground bg-muted/10 text-sm sm:text-base font-mono ${GeistPixelSquare.className}`}
             >
                 {text}
             </p>
@@ -42,19 +48,21 @@ export default function Cli() {
                     disabled={isCopied}
                     size={"icon"}
                     variant={"ghost"}
-                    className="border-x"
+                    className="border-x text-muted-foreground [&_svg:not([class*='size-'])]:size-3.5"
                 >
-                    {isCopied ? <IoCheckmark className="text-green-500" /> : <IoCopyOutline />}
+                    {isCopied ? (
+                        <IoCheckmark className="text-green-500" />
+                    ) : (
+                        <IoCopyOutline />
+                    )}
                 </Button>
                 <Button
-                    asChild
+                    onClick={handleOpenScript}
                     size={"icon"}
                     variant={"ghost"}
-                    className="border-x"
+                    className="border-x text-muted-foreground [&_svg:not([class*='size-'])]:size-3.5 hidden sm:flex"
                 >
-                    <a href={scriptUrl} target="_blank" rel="noopener noreferrer">
-                        <IoOpenOutline />
-                    </a>
+                    <VscLinkExternal />
                 </Button>
             </div>
         </div>
