@@ -8,6 +8,7 @@
         "start": "next start",
         "lint": "next lint",
         "blogs:generate": "bun -e 'import(\"./lib/blogs.ts\").then(({ generateBlogJson }) => generateBlogJson())'",
+        "cli:generate": "bun -e 'import(\"./lib/generate-cli.ts\").then(({ generateCliScript }) => generateCliScript())'",
         "postinstall": "prisma generate",
         "prisma:generate": "prisma generate",
         "prisma:migrate": "prisma migrate dev",

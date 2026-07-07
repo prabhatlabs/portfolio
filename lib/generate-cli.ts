@@ -1,5 +1,7 @@
-import envvars from "@/lib/envvars";
+import { writeFile } from "fs/promises";
+import path from "path/posix";
 import { experiences, myInfo, projects, skills } from "@/data/root";
+import envvars from "@/lib/envvars";
 
 const visibleProjects = projects.filter((p) => p.show).slice(0, 2);
 
@@ -15,7 +17,7 @@ function cleanDescription(desc: string): string {
         .replace(/\\\\/g, "\n");
 }
 
-function render(): string {
+export function render(): string {
     const out: string[] = [];
     out.push("#!/usr/bin/env bash");
     out.push("set -e");
@@ -100,12 +102,11 @@ function render(): string {
             `echo "  \${GREEN}${link.name.padEnd(14)}\${RESET} ${link.url}"`,
         );
     out.push('echo ""');
-    out.push(`echo "\${DIM}curl ${envvars.BASE_URL}/cli | bash\${RESET}"`);
+    out.push(`echo "\${DIM}curl ${envvars.BASE_URL}/cli.sh | bash\${RESET}"`);
     return out.join("\n");
 }
 
-export async function GET() {
-    return new Response(render(), {
-        headers: { "Content-Type": "text/plain" },
-    });
+export async function generateCliScript(): Promise<void> {
+    const filePath = path.join(process.cwd(), "public", "cli.sh");
+    await writeFile(filePath, render(), "utf-8");
 }

@@ -2,13 +2,15 @@
 
 import { Button } from "@/components/ui/button";
 import { copyToClipboard } from "@/lib/clipboard";
+import envvars from "@/lib/envvars";
 import { GeistPixelSquare } from "geist/font/pixel";
 import { useEffect, useState } from "react";
-import { IoCopyOutline, IoCheckmark } from "react-icons/io5";
+import { IoCopyOutline, IoCheckmark, IoOpenOutline } from "react-icons/io5";
 
 export default function Cli() {
     const [isCopied, setIsCopied] = useState(false);
-    const text = "curl https://prabhatlabs.dev/cli | bash";
+    const text = `curl ${envvars.BASE_URL}/cli.sh | bash`;
+    const scriptUrl = `${envvars.BASE_URL}/cli.sh`;
 
     async function handleCopyBtnClick() {
         await copyToClipboard(text);
@@ -34,15 +36,27 @@ export default function Cli() {
             >
                 {text}
             </p>
-            <Button
-                onClick={handleCopyBtnClick}
-                disabled={isCopied}
-                size={"icon"}
-                variant={"ghost"}
-                className="border-x"
-            >
-                {isCopied ? <IoCheckmark className="text-green-500" /> : <IoCopyOutline />}
-            </Button>
+            <div className="flex items-center gap-2">
+                <Button
+                    onClick={handleCopyBtnClick}
+                    disabled={isCopied}
+                    size={"icon"}
+                    variant={"ghost"}
+                    className="border-x"
+                >
+                    {isCopied ? <IoCheckmark className="text-green-500" /> : <IoCopyOutline />}
+                </Button>
+                <Button
+                    asChild
+                    size={"icon"}
+                    variant={"ghost"}
+                    className="border-x"
+                >
+                    <a href={scriptUrl} target="_blank" rel="noopener noreferrer">
+                        <IoOpenOutline />
+                    </a>
+                </Button>
+            </div>
         </div>
     );
 }
