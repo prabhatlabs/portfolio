@@ -1,5 +1,6 @@
 "use client";
 
+import RenderText from "@/components/ui/render-text";
 import { experiences } from "@/data/root";
 import { GeistPixelSquare } from "geist/font/pixel";
 import { AnimatePresence, motion } from "framer-motion";
@@ -84,7 +85,9 @@ export function Experiance() {
                                                     className="flex gap-2"
                                                 >
                                                     <TbPointFilled className="size-2.5 shrink-0 mt-1" />
-                                                    <span>{point}</span>
+                                                    <p>
+                                                        <RenderText>{point}</RenderText>
+                                                    </p>
                                                 </motion.li>
                                             ))}
                                         </motion.ul>
