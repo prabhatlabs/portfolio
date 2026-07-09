@@ -93,6 +93,7 @@ export function BlogPost({
                             height={400}
                             className="object-contain rounded-lg w-full"
                             loading="eager"
+                            fetchPriority="high"
                             itemProp="image"
                         />
                     </div>
