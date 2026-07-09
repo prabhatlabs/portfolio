@@ -171,7 +171,7 @@ export const projects = [
             },
             {
                 name: "GitHub",
-                url: "https://github.com/prabhatlabs",
+                url: "https://github.com/prabhatlabs/utility-tools",
                 iconName: "IoLogoGithub",
                 target: "_blank",
             },

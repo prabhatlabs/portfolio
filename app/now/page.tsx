@@ -46,7 +46,7 @@ export default function NowPage() {
                         {nowEntries.map((entry) => (
                             <section
                                 key={entry.title}
-                                className="border-t py-4 px-4 md:px-6"
+                                className="border-t p-4"
                             >
                                 <h2 className="text-xl font-semibold">
                                     {entry.title}
