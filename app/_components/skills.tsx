@@ -5,7 +5,7 @@ import { getIcon } from "@/lib/icon";
 import { motion } from "framer-motion";
 import { GeistPixelSquare } from "geist/font/pixel";
 
-function TwinklingSkill({
+export function TwinklingSkill({
     skill,
     index,
 }: {
