@@ -1,7 +1,7 @@
 {
   "slug": "how-to-create-your-own-blog-site",
   "title": "How to Create Your Own Blog Site Without It Sucking",
-  "date": "2026-05-16",
+  "date": "2026-05-16T00:00:00.000Z",
   "description": "A practical, no-database approach to building your own MDX-powered blog with GitHub, Bun, and a CDN — automated with GitHub Actions.",
   "tags": [
     "blogging",
@@ -12,5 +12,6 @@
   ],
   "published": true,
   "related": [],
-  "coverImage": "/blog-images/how-to-create-your-own-blog-site/cover.webp"
+  "coverImage": "/blog-images/how-to-create-your-own-blog-site/cover.webp",
+  "readingTime": "3 min read"
 }
