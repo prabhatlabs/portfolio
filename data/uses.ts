@@ -16,4 +16,4 @@ export const usesEntries: UsesEntry[] = Object.entries(grouped).map(
     ([category, items]) => ({ category, items }),
 );
 
-export const lastUpdated = "July 2026";
+export const lastUpdated = "2026-07-10";

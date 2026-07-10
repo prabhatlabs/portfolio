@@ -26,4 +26,4 @@ export const nowEntries: NowEntry[] = [
     },
 ];
 
-export const lastUpdated = "July 2026";
+export const lastUpdated = "2026-07-10";
