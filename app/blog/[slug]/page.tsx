@@ -117,11 +117,11 @@ export default async function BlogPostPage({ params }: Props) {
             additionalHeaderComponent={
                 <>
                     <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                        <Link href={"/"} className="hover:underline">
+                        <Link href={"/"} className="underline">
                             prabhatlabs.dev
                         </Link>
                         <span>•</span>
-                        <Link href={"/blog"} className="hover:underline">
+                        <Link href={"/blog"} className="underline">
                             All Blogs
                         </Link>
                         <span>•</span>

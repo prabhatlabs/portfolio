@@ -22,13 +22,13 @@ export default function BorderLayoutForStaticPages({
             <div className="lg:h-[calc(100dvh-48px)] h-dvh overflow-auto relative border">
                 <div className="z-10 max-w-3xl mx-auto relative sm:border-x min-h-full">
                     <div className="border-b ">
-                        <div className="p-4 md:px-6">
+                        <div className="p-4 md:p-6">
                             <h1
                                 className={`text-3xl sm:text-4xl ${GeistPixelSquare.className}`}
                             >
                                 {title}
                             </h1>
-                            <p className="text-muted-foreground/70 text-xs font-mono mt-1.5">
+                            <p className="text-muted-foreground/70 text-sm font-mono mt-1.5">
                                 {desc}
                             </p>
                             {additionalHeaderComponent && <div className="mt-2">{additionalHeaderComponent}</div>}

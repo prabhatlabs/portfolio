@@ -8,7 +8,7 @@ interface BlogPostProps {
 export function BlogPost({ children }: BlogPostProps) {
     return (
         <article
-            className="relative p-4 md:p-6"
+            className="relative"
             role="article"
             aria-labelledby="blog-title"
         >

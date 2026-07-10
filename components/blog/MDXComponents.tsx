@@ -5,7 +5,10 @@ import Link from "next/link";
 
 export const MDXComponents = {
     h1: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-        <h1 className="text-4xl font-bold mt-6 mb-2 scroll-mt-20" {...props}>
+        <h1
+            className="text-4xl font-bold mt-6 mb-2 scroll-mt-20 px-4 md:px-6"
+            {...props}
+        >
             {children}
         </h1>
     ),
@@ -28,7 +31,7 @@ export const MDXComponents = {
         return (
             <h2
                 id={id}
-                className="text-3xl font-semibold mt-6 mb-2 scroll-mt-20 group flex items-center gap-2"
+                className="text-3xl font-semibold mt-6 mb-2 scroll-mt-20 group flex items-center gap-2 px-4 md:px-6"
                 {...props}
             >
                 {children}
@@ -61,7 +64,7 @@ export const MDXComponents = {
         return (
             <h3
                 id={id}
-                className="text-xl font-semibold mt-4 mb-1 scroll-mt-20 text-foreground/90"
+                className="text-xl font-semibold mt-4 mb-1 scroll-mt-20 text-foreground/90 px-4 md:px-6"
                 {...props}
             >
                 {children}
@@ -69,7 +72,10 @@ export const MDXComponents = {
         );
     },
     p: ({ children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
-        <p className="leading-6 text-sm mb-2 text-foreground/80" {...props}>
+        <p
+            className="leading-6 my-2 text-foreground/80 px-4 md:px-6"
+            {...props}
+        >
             {children}
         </p>
     ),
@@ -103,24 +109,27 @@ export const MDXComponents = {
         );
     },
     ul: ({ children, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
-        <ul className="list-disc pl-4 mb-2 space-y-1" {...props}>
+        <ul className="list-disc pl-7 md:pl-10 [&_p:not([class*='pl-'])]:pl-0 mb-2 space-y-1" {...props}>
             {children}
         </ul>
     ),
     ol: ({ children, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
-        <ol className="list-decimal pl-4 mb-2 space-y-1" {...props}>
+        <ol
+            className="list-decimal pl-7 md:pl-10 [&_p:not([class*='pl-'])]:pl-0 mb-2 space-y-1"
+            {...props}
+        >
             {children}
         </ol>
     ),
     li: ({ children, ...props }: React.HTMLAttributes<HTMLLIElement>) => (
-        <li {...props}>{children}</li>
+        <li className="" {...props}>{children}</li>
     ),
     blockquote: ({
         children,
         ...props
     }: React.HTMLAttributes<HTMLQuoteElement>) => (
         <blockquote
-            className="border-l-4 border-primary pl-4 italic my-2 text-muted-foreground"
+            className="border-l-4 border-primary pl-4 italic my-2 text-muted-foreground px-4 md:px-6"
             {...props}
         >
             {children}
@@ -146,20 +155,22 @@ export const MDXComponents = {
         className,
         ...props
     }: React.HTMLAttributes<HTMLPreElement>) => (
-        <pre
-            className={cn(
-                "p-4 border rounded-lg overflow-x-auto mb-2 text-xs! font-mono",
-                className,
-            )}
-            {...props}
-        >
-            {children}
-        </pre>
+        <div className="px-4 md:px-6">
+            <pre
+                className={cn(
+                    "p-4 border overflow-x-auto mb-2 text-xs! font-mono",
+                    className,
+                )}
+                {...props}
+            >
+                {children}
+            </pre>
+        </div>
     ),
     img: ({ src, alt }: React.ImgHTMLAttributes<HTMLImageElement>) => {
         const fullSrc = typeof src === "string" ? getFullImageUrl(src) : null;
         return (
-            <div className="relative w-full my-2 bg-muted/50 rounded-lg p-4 md:p-6">
+            <div className="relative w-full my-2 bg-muted/50 p-4 md:p-6">
                 {fullSrc ? (
                     <a href={fullSrc} target="_blank" rel="noopener noreferrer">
                         <Image
@@ -182,9 +193,9 @@ export const MDXComponents = {
             </div>
         );
     },
-    hr: () => <hr className="my-6 border-border" />,
+    hr: () => <hr className="my-4 md:my-6 border-border" />,
     table: ({ children, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
-        <div className="overflow-x-auto my-2">
+        <div className="overflow-x-auto my-2 px-4 md:px-6">
             <table className="w-full border-collapse" {...props}>
                 {children}
             </table>
