@@ -1,18 +1,21 @@
 import { BlogPost } from "@/components/blog/BlogPost";
 import { MDXComponents } from "@/components/blog/MDXComponents";
 import { SimilarPosts } from "@/components/blog/SimilarPosts";
+import BorderLayoutForStaticPages from "@/components/BorderLayoutForStaticPages";
 import JsonLd from "@/components/JsonLd";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { VisitorCounter } from "@/components/VisitorCounter";
 import { getAllPosts, getPostBySlug, getPostMetaBySlug } from "@/lib/blogs";
+import envvars from "@/lib/envvars";
 import { getFullImageUrl } from "@/lib/image-helper";
 import { buildBlogPostJsonLd, buildBreadcrumbListJsonLd } from "@/lib/json-ld";
-import envvars from "@/lib/envvars";
+import { formatDateMMMMDDYYYY } from "@/lib/time";
 import rehypeShiki from "@shikijs/rehype";
 import { Metadata } from "next";
 import { compileMDX } from "next-mdx-remote/rsc";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Fragment } from "react/jsx-runtime";
 
 interface Props {
     params: Promise<{ slug: string }>;
@@ -58,6 +61,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         alternates: {
             canonical: `${envvars.BASE_URL}/blog/${slug}`,
         },
+        authors: [{ name: "Prabhat Mishra", url: envvars.BASE_URL }],
+        category: post.tags?.[0] || "Technology",
     };
 }
 
@@ -105,39 +110,87 @@ export default async function BlogPostPage({ params }: Props) {
     });
 
     return (
-        <div className="space-y-6 md:space-y-8">
-            <div className="mt-6 md:mt-8 mx-auto flex justify-between items-center gap-6">
-                <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                    <Link href={"/"} className="hover:underline">
-                        prabhatlabs.dev
-                    </Link>
-                    <span>•</span>
-                    <Link href={"/blog"} className="hover:underline">
-                        All Blogs
-                    </Link>
-                    <span>•</span>
-                    <VisitorCounter slug={slug} />
-                </div>
-                <div className="flex items-center gap-4">
-                    <ThemeToggle />
-                </div>
+        <BorderLayoutForStaticPages
+            title={post.title}
+            desc={post.description}
+            lastUpdated={post.date}
+            additionalHeaderComponent={
+                <>
+                    <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                        <Link href={"/"} className="hover:underline">
+                            prabhatlabs.dev
+                        </Link>
+                        <span>•</span>
+                        <Link href={"/blog"} className="hover:underline">
+                            All Blogs
+                        </Link>
+                        <span>•</span>
+                        <VisitorCounter slug={slug} />
+                    </div>
+                    <header className="">
+                        <div className="flex items-center flex-wrap gap-x-2 text-sm text-muted-foreground mb-4">
+                            <time
+                                dateTime={post.date}
+                                itemProp="datePublished"
+                                content={post.date}
+                            >
+                                {formatDateMMMMDDYYYY(post.date)}
+                            </time>
+                            {post.readingTime && (
+                                <>
+                                    <span>•</span>
+                                    <span itemProp="timeRequired">
+                                        {post.readingTime}
+                                    </span>
+                                </>
+                            )}
+                            {post.tags.length > 0 && <span>•</span>}
+                            {post.tags.length > 0 && (
+                                <>
+                                    {post.tags.map((tag, index) => (
+                                        <Fragment key={tag}>
+                                            <span
+                                                key={tag}
+                                                className="italic"
+                                                itemProp="articleSection"
+                                            >
+                                                {tag}
+                                            </span>
+                                            {index !== post.tags.length - 1 && (
+                                                <span>•</span>
+                                            )}
+                                        </Fragment>
+                                    ))}
+                                </>
+                            )}
+                        </div>
+                        {post.coverImage && (
+                            <div className="relative w-full mt-2 bg-muted/50 border">
+                                <Image
+                                    src={post.coverImage}
+                                    alt={post.title}
+                                    width={720}
+                                    height={400}
+                                    className="object-contain w-full"
+                                    loading="eager"
+                                    fetchPriority="high"
+                                    itemProp="image"
+                                />
+                            </div>
+                        )}
+                    </header>
+                </>
+            }
+        >
+            <div className="space-y-6 md:space-y-8">
+                <JsonLd jsonLd={jsonLd} />
+                <JsonLd jsonLd={breadcrumbLd} />
+                <BlogPost>{content}</BlogPost>
+
+                {relatedPosts.length > 0 && (
+                    <SimilarPosts posts={relatedPosts} />
+                )}
             </div>
-
-            <JsonLd jsonLd={jsonLd} />
-            <JsonLd jsonLd={breadcrumbLd} />
-            <BlogPost
-                slug={post.slug}
-                title={post.title}
-                date={post.date}
-                description={post.description}
-                tags={post.tags}
-                coverImage={post.coverImage}
-                readingTime={post.readingTime}
-            >
-                {content}
-            </BlogPost>
-
-            {relatedPosts.length > 0 && <SimilarPosts posts={relatedPosts} />}
-        </div>
+        </BorderLayoutForStaticPages>
     );
 }

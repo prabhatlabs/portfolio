@@ -41,13 +41,13 @@ export default function LocationsPage() {
                 lastUpdated={lastUpdated}
             >
                 <div className="pt-4">
-                    <p className="text-muted-foreground text-sm px-6 ">
+                    <p className="text-muted-foreground text-sm px-4 md:px-6">
                         I&apos;m a software developer from{" "}
                         <strong>Chhattisgarh, India</strong>. I&apos;ve worked
                         remotely with companies in Noida, Pune, Jaipur,
                         Bengaluru, and Sri Lanka.
                     </p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 p-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 p-4 md:p-6">
                         {cities.map((city) => (
                             <Link
                                 key={city.slug}

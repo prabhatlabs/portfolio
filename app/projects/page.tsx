@@ -50,7 +50,7 @@ export default function ProjectsPage() {
                         {visibleProjects.map((p) => (
                             <article
                                 key={p.title}
-                                className="border-t p-4 flex gap-4 items-start"
+                                className="border-t p-4 flex flex-col sm:flex-row gap-4 items-start"
                             >
                                 <div className="flex-1 min-w-0">
                                     <div className="flex items-center gap-2 mb-1">
@@ -96,7 +96,7 @@ export default function ProjectsPage() {
                                         alt={p.title}
                                         width={180}
                                         height={96}
-                                        className="w-36 sm:w-44 aspect-video border shrink-0 object-cover"
+                                        className="w-full sm:w-50 aspect-video border shrink-0 object-cover"
                                     />
                                 )}
                             </article>

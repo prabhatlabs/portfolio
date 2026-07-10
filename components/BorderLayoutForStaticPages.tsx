@@ -1,5 +1,6 @@
 import { myInfo } from "@/data/root";
 import envvars from "@/lib/envvars";
+import { formatDateMMMMDDYYYY } from "@/lib/time";
 import { GeistPixelSquare } from "geist/font/pixel";
 import Link from "next/link";
 
@@ -7,18 +8,20 @@ export default function BorderLayoutForStaticPages({
     title,
     desc,
     lastUpdated,
+    additionalHeaderComponent,
     children,
 }: {
     title: string;
     desc: string;
-    lastUpdated: string;
+    lastUpdated: string | Date;
+    additionalHeaderComponent?: React.ReactNode;
     children: React.ReactNode;
 }) {
     return (
         <div className="overflow-hidden lg:p-6">
             <div className="lg:h-[calc(100dvh-48px)] h-dvh overflow-auto relative border">
-                <div className="z-10 max-w-3xl mx-auto relative">
-                    <div className="border-b border-x">
+                <div className="z-10 max-w-3xl mx-auto relative sm:border-x min-h-full">
+                    <div className="border-b ">
                         <div className="p-4 md:px-6">
                             <h1
                                 className={`text-3xl sm:text-4xl ${GeistPixelSquare.className}`}
@@ -28,14 +31,15 @@ export default function BorderLayoutForStaticPages({
                             <p className="text-muted-foreground/70 text-xs font-mono mt-1.5">
                                 {desc}
                             </p>
+                            {additionalHeaderComponent && <div className="mt-2">{additionalHeaderComponent}</div>}
                         </div>
                     </div>
 
-                    <div className="border-x h-full">{children}</div>
+                    <div className="h-full">{children}</div>
 
-                    <div className="border-t border-x text-muted-foreground flex items-center justify-between text-xs py-1 px-2">
+                    <div className="border-t  text-muted-foreground flex items-center justify-between text-xs py-1 px-2">
                         <p>
-                            Last updated: {lastUpdated}.{" "}
+                            Last updated: {formatDateMMMMDDYYYY(lastUpdated)}.{" "}
                             <Link
                                 href={envvars.BASE_URL}
                                 className="hover:underline transition-all duration-300"

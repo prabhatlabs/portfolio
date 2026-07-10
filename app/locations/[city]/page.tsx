@@ -97,7 +97,7 @@ export default async function CityPage({ params }: Props) {
                         </p>
                     </div>
 
-                    <div className="border-t px-4 md:px-6 py-4">
+                    <div className="border-t p-4 md:p-6">
                         <h2
                             className={`text-lg sm:text-xl ${GeistPixelSquare.className}`}
                         >

@@ -9,22 +9,21 @@ import type { Metadata } from "next";
 import { DM_Sans, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import {
-  GeistPixelSquare
-} from "geist/font/pixel"
-import { GoogleAnalytics } from '@next/third-parties/google'
+import { GeistPixelSquare } from "geist/font/pixel";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const dmsans = DM_Sans({
     subsets: ["latin"],
     variable: "--font-dmsans",
+    display: "swap",
 });
 
 const geist_mono = Geist_Mono({
     subsets: ["latin"],
     variable: "--font-geist-mono",
     weight: "500",
+    display: "swap",
 });
-
 
 export const metadata: Metadata = {
     metadataBase: new URL(envvars.BASE_URL),
@@ -35,7 +34,6 @@ export const metadata: Metadata = {
     description:
         "Portfolio of Prabhat Mishra, a full stack software developer from India specializing in TypeScript, React, Next.js, Node.js, Python, and Go. I build fast, scalable SaaS products and am available for freelance projects and full-time roles. Explore my work, blog, and terminal portfolio.",
     keywords: [
-        // ── Name + brand ──
         "Prabhat Mishra",
         "Prabhat Mishra developer",
         "Prabhat Mishra portfolio",
@@ -43,8 +41,6 @@ export const metadata: Metadata = {
         "Prabhat Mishra full stack developer",
         "prabhatlabs",
         "prabhatlabs.dev",
-
-        // ── Role variants ──
         "software developer",
         "software engineer",
         "full stack developer",
@@ -74,8 +70,6 @@ export const metadata: Metadata = {
         "hire full stack developer India",
         "remote software developer India",
         "remote full stack developer India",
-
-        // ── Tech stack — specific (high intent) ──
         "React developer",
         "Next.js developer",
         "Node.js developer",
@@ -101,8 +95,6 @@ export const metadata: Metadata = {
         "Framer Motion developer",
         "Zustand developer",
         "Redux developer",
-
-        // ── Databases & ORMs ──
         "PostgreSQL developer",
         "MongoDB developer",
         "SQLite developer",
@@ -114,8 +106,6 @@ export const metadata: Metadata = {
         "SQL developer",
         "NoSQL developer",
         "database optimization",
-
-        // ── Stacks / patterns ──
         "MERN stack developer",
         "PERN stack developer",
         "T3 stack developer",
@@ -129,8 +119,6 @@ export const metadata: Metadata = {
         "real-time applications",
         "RAG developer",
         "AI application developer",
-
-        // ── Tools & DevOps ──
         "Docker developer",
         "DevOps engineer",
         "DevOps engineer India",
@@ -142,16 +130,12 @@ export const metadata: Metadata = {
         "Cloudinary developer",
         "Vercel developer",
         "Postman developer",
-
-        // ── State management & ecosystem ──
         "React Query",
         "TanStack Query",
         "Redux developer",
         "Zustand developer",
         "Framer Motion",
         "Tailwind CSS",
-
-        // ── Intent-based long-tail ──
         "scalable web application developer",
         "full stack developer for startups",
         "open to work software developer",
@@ -169,8 +153,6 @@ export const metadata: Metadata = {
         "affordable software developer India",
         "senior full stack developer India",
         "experienced software developer India",
-
-        // ── Geo — city + state + country ──
         "Chhattisgarh developer",
         "Raipur developer",
         "Madhya Pradesh developer",
@@ -181,16 +163,12 @@ export const metadata: Metadata = {
         "best developer India",
         "top software developer India",
         "software developer Chhattisgarh",
-
-        // ── Self-taught angle ──
         "self-taught software developer",
         "self-taught full stack developer",
         "self-taught programmer India",
         "self-taught developer success story",
         "no CS degree developer",
         "self taught developer portfolio",
-
-        // ── Service / niche ──
         "SaaS developer",
         "B2B SaaS developer India",
         "privacy-first developer",
@@ -206,8 +184,6 @@ export const metadata: Metadata = {
         "RAG pipeline developer",
         "chat application developer",
         "classroom platform developer",
-
-        // ── Action intent ──
         "developers for hire India",
         "top software developers India",
         "freelance programmers India",
@@ -234,9 +210,11 @@ export const metadata: Metadata = {
 
     alternates: {
         canonical: "/",
+        languages: {
+            "en": envvars.BASE_URL,
+        },
     },
 
-    // Add your Google Search Console verification token here
     verification: {
         google: "7BjQe7yKCUwNzGtw7BjtwYD-nca1Mofz8H5n_GW92Ik",
     },
@@ -272,7 +250,7 @@ export const metadata: Metadata = {
     robots: {
         index: true,
         follow: true,
-        nocache: false, // nocache: true was preventing Google from caching your pages — bad for SEO
+        nocache: false,
         googleBot: {
             index: true,
             follow: true,
@@ -281,6 +259,13 @@ export const metadata: Metadata = {
             "max-image-preview": "large",
             "max-snippet": -1,
         },
+    },
+
+    other: {
+        "profile:first_name": "Prabhat",
+        "profile:last_name": "Mishra",
+        "profile:username": "prabhatlabs",
+        "profile:gender": "male",
     },
 };
 
@@ -299,6 +284,41 @@ export default function RootLayout({
 
     return (
         <html lang="en" suppressHydrationWarning suppressContentEditableWarning>
+            <head>
+                <link
+                    rel="preconnect"
+                    href="https://fonts.googleapis.com"
+                    crossOrigin="anonymous"
+                />
+                <link
+                    rel="preconnect"
+                    href="https://fonts.gstatic.com"
+                    crossOrigin="anonymous"
+                />
+                <link
+                    rel="preconnect"
+                    href="https://cdn.jsdelivr.net"
+                    crossOrigin="anonymous"
+                />
+                <link
+                    rel="preconnect"
+                    href="https://rum-core-worker.rumcore.workers.dev"
+                    crossOrigin="anonymous"
+                />
+                <link
+                    rel="preconnect"
+                    href="https://www.googletagmanager.com"
+                    crossOrigin="anonymous"
+                />
+                <link
+                    rel="dns-prefetch"
+                    href="https://fonts.googleapis.com"
+                />
+                <link
+                    rel="dns-prefetch"
+                    href="https://cdn.jsdelivr.net"
+                />
+            </head>
             <body
                 className={`antialiased no-scrollbar transition-all duration-500 ${dmsans.className} ${geist_mono.variable} ${GeistPixelSquare.variable}`}
             >
@@ -312,6 +332,7 @@ export default function RootLayout({
                     src="https://cdn.jsdelivr.net/gh/prabhatlabs/rum-core-client-script@1.0.9/dist/rum-core.js"
                     data-worker="https://rum-core-worker.rumcore.workers.dev"
                     data-key="X74ymKYEqzFKWeVV7HxY7cqI"
+                    strategy="lazyOnload"
                 />
                 <GoogleAnalytics gaId="G-6CD27EJQ0E" />
             </body>

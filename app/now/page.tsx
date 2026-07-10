@@ -39,7 +39,7 @@ export default function NowPage() {
                 lastUpdated={lastUpdated}
             >
                 <div className="relative">
-                    <span className="text-muted-foreground/50 text-[10px] font-mono absolute top-0 left-6 mb-1">
+                    <span className="text-muted-foreground/50 text-[10px] font-mono absolute top-0 left-4 md:left-6 mb-1">
                         relative pt-4
                     </span>
                     <div className="pt-4">

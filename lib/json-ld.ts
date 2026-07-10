@@ -11,10 +11,23 @@ export const personJsonLd = JSON.stringify(
         "@context": "https://schema.org",
         "@type": "Person",
         name: myInfo.name,
+        alternateName: "prabhatlabs",
         description: cleanedPersonDescription,
         url: envvars.BASE_URL,
         image: `${envvars.BASE_URL}${myInfo.imageUrl}`,
         sameAs: contactLinksArray.map((c) => c.url),
+        jobTitle: "Software Developer",
+        knowsAbout: [
+            "TypeScript",
+            "React",
+            "Next.js",
+            "Node.js",
+            "Python",
+            "Go",
+            "PostgreSQL",
+            "MongoDB",
+            "Docker",
+        ],
     },
     null,
     2,
@@ -31,15 +44,15 @@ export const webSiteJsonLd = JSON.stringify(
         name: webSiteName,
         description: webSiteDescription,
         url: envvars.BASE_URL,
+        author: {
+            "@type": "Person",
+            "@id": `${envvars.BASE_URL}/#person`,
+        },
     },
     null,
     2,
 );
 
-/**
- * Build JSON-LD structured data for a blog post page.
- * Used for Google Rich Results — Article / BlogPosting schema.
- */
 export function buildBlogPostJsonLd(
     post: PostMeta & { content?: string },
     baseUrl: string,
@@ -82,14 +95,12 @@ export function buildBlogPostJsonLd(
         articleSection: post.tags?.join(", ") || "",
         keywords: post.tags?.join(", ") || "",
         wordCount: post.tags?.length || 0,
+        timeRequired: post.readingTime || undefined,
     };
 
     return JSON.stringify(schema, null, 2);
 }
 
-/**
- * Build JSON-LD BreadcrumbList schema.
- */
 export function buildBreadcrumbListJsonLd(
     items: Array<{ name: string; url: string }>,
 ): string {
@@ -107,9 +118,6 @@ export function buildBreadcrumbListJsonLd(
     return JSON.stringify(schema, null, 2);
 }
 
-/**
- * Build JSON-LD Organization schema for the portfolio site.
- */
 export function buildOrganizationJsonLd(
     name: string,
     description: string,
@@ -133,9 +141,6 @@ export function buildOrganizationJsonLd(
     return JSON.stringify(schema, null, 2);
 }
 
-/**
- * Build JSON-LD for the blog list page (CollectionPage / ItemList).
- */
 export function buildBlogListJsonLd(
     posts: PostMeta[],
     baseUrl: string,
@@ -155,6 +160,116 @@ export function buildBlogListJsonLd(
             datePublished: post.date,
             url: `${baseUrl}/blog/${post.slug}`,
         })),
+    };
+
+    return JSON.stringify(schema, null, 2);
+}
+
+interface QA {
+    question: string;
+    answer: string;
+}
+
+export function buildFAQJsonLd(qaList: QA[]): string {
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: qaList.map((qa) => ({
+            "@type": "Question",
+            name: qa.question,
+            acceptedAnswer: {
+                "@type": "Answer",
+                text: qa.answer,
+            },
+        })),
+    };
+
+    return JSON.stringify(schema, null, 2);
+}
+
+interface Item {
+    name: string;
+    url?: string;
+    description?: string;
+    image?: string;
+}
+
+export function buildItemListJsonLd(
+    items: Item[],
+    listName: string,
+): string {
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: listName,
+        numberOfItems: items.length,
+        itemListElement: items.map((item, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            item: {
+                "@type": "SoftwareApplication",
+                name: item.name,
+                url: item.url,
+                description: item.description,
+                ...(item.image ? { image: item.image } : {}),
+                applicationCategory: "DeveloperApplication",
+                operatingSystem: "Web",
+            },
+        })),
+    };
+
+    return JSON.stringify(schema, null, 2);
+}
+
+interface SoftwareApp {
+    name: string;
+    description: string;
+    url?: string;
+    imageUrl?: string;
+    language?: string[];
+    operatingSystem?: string;
+}
+
+export function buildSoftwareApplicationJsonLd(
+    apps: SoftwareApp[],
+): string {
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "Software & Tools by Prabhat Mishra",
+        itemListElement: apps.map((app, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            item: {
+                "@type": "SoftwareApplication",
+                name: app.name,
+                description: app.description,
+                url: app.url,
+                image: app.imageUrl,
+                applicationCategory: "DeveloperApplication",
+                operatingSystem: app.operatingSystem || "Web",
+                ...(app.language ? { programmingLanguage: app.language } : {}),
+            },
+        })),
+    };
+
+    return JSON.stringify(schema, null, 2);
+}
+
+export function buildWebPageJsonLd(
+    title: string,
+    description: string,
+    url: string,
+    about?: string,
+): string {
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": url,
+        name: title,
+        description,
+        url,
+        ...(about ? { about: { "@type": "Thing", name: about } } : {}),
     };
 
     return JSON.stringify(schema, null, 2);
