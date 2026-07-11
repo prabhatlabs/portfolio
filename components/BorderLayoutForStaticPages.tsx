@@ -3,6 +3,7 @@ import envvars from "@/lib/envvars";
 import { formatDateMMMMDDYYYY } from "@/lib/time";
 import { GeistPixelSquare } from "geist/font/pixel";
 import Link from "next/link";
+import { ThemeToggle } from "./ui/ThemeToggle";
 
 export default function BorderLayoutForStaticPages({
     title,
@@ -19,6 +20,7 @@ export default function BorderLayoutForStaticPages({
 }) {
     return (
         <div className="overflow-hidden lg:p-6">
+            <ThemeToggle className="fixed z-10 top-0 right-0 md:m-6 border-l border-b hover:border" />
             <div className="lg:h-[calc(100dvh-48px)] h-dvh overflow-auto relative border">
                 <div className="z-10 max-w-3xl mx-auto relative sm:border-x min-h-full">
                     <div className="border-b ">
