@@ -44,7 +44,7 @@ echo "    Suite of 20+ privacy-first, browser-based tools for PDF, image, and vi
 echo "    processing. Leverages FFmpeg WASM for client-side media transcoding — zero"
 echo "    uploads, zero server costs."
 echo "  ${DIM}Stack:${RESET} ${YELLOW}TypeScript${RESET} ${YELLOW}Next.js${RESET} ${YELLOW}TailwindCSS${RESET} ${YELLOW}ShadcnUI${RESET} ${YELLOW}FfmpegWASM${RESET}"
-echo "  ${DIM}Links:${RESET} ${BLUE}Live${RESET}: https://bladetools.prabhatlabs.dev  ${BLUE}GitHub${RESET}: https://github.com/prabhatlabs"
+echo "  ${DIM}Links:${RESET} ${BLUE}Live${RESET}: https://bladetools.prabhatlabs.dev  ${BLUE}GitHub${RESET}: https://github.com/prabhatlabs/utility-tools"
 echo ""
 echo "${CYAN}  Experience${RESET}"
 echo "  ${BOLD}Glück Global Pvt Ltd      ${RESET}${DIM}May 2026 - Present${RESET}"

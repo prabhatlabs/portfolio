@@ -32,7 +32,7 @@ Full-stack RUM SaaS capturing Core Web Vitals and API timing via a lightweight b
 Suite of 20+ privacy-first, browser-based tools for PDF, image, and video processing. Leverages FFmpeg WASM for client-side media transcoding — zero uploads, zero server costs.
 
 **Stack:** TypeScript, Next.js, TailwindCSS, ShadcnUI, FfmpegWASM
-**Links:** [Live](https://bladetools.prabhatlabs.dev) · [GitHub](https://github.com/prabhatlabs)
+**Links:** [Live](https://bladetools.prabhatlabs.dev) · [GitHub](https://github.com/prabhatlabs/utility-tools)
 
 ### [Mapware](https://mapware.prabhatlabs.dev)
 
@@ -80,7 +80,7 @@ Highlights:
 
 Highlights:
 - Architected a high-performance frontend using Next.js and Shadcn UI, leveraging Static Site Generation (SSG) and Server-Side Rendering (SSR) to optimize Core Web Vitals and enhance SEO.
-- Streamlined development workflows by implementing modern TypeScript paVtterns, ensuring end-to-end type safety and reducing runtime errors across the application stack.
+- Streamlined development workflows by implementing modern TypeScript patterns, ensuring end-to-end type safety and reducing runtime errors across the application stack.
 
 ### Software Developer Intern @ Flexzistay (Oct 2025 - Dec 2025) — Remote
 
@@ -110,3 +110,4 @@ Highlights:
 - Integrated WhatsApp bot via 3rd-party provider for sending notifications and prescriptions.
 - Documented all API endpoints, which reduced development time by 20%, streamlining backend and frontend workflows.
 - Improved backend efficiency and reduced database/API response times by 20-30% via aggregation pipeline optimization, indexing, and fixing unexpected lookup errors.
+
