@@ -3,10 +3,10 @@ import JsonLd from "@/components/JsonLd";
 import { getAllPosts } from "@/lib/blogs";
 import envvars from "@/lib/envvars";
 import { buildBlogListJsonLd, buildBreadcrumbListJsonLd } from "@/lib/json-ld";
-import { GeistPixelSquare } from "geist/font/pixel";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { VscLinkExternal } from "react-icons/vsc";
 
 export const metadata: Metadata = {
     title: "Blog",
@@ -91,7 +91,7 @@ export default async function BlogPage() {
                                     <article className="flex-1 min-w-0">
                                         <div className="flex items-center gap-2 mb-1">
                                             <h2
-                                                className={`text-lg sm:text-xl ${GeistPixelSquare.className}`}
+                                                className={`text-lg sm:text-xl`}
                                             >
                                                 {post.title}
                                             </h2>
@@ -140,6 +140,10 @@ export default async function BlogPage() {
                                             className="w-full sm:w-50 aspect-video border shrink-0 object-cover"
                                         />
                                     )}
+                                    <span className="border group text-sm bg-foreground/10 px-1.5 py-0.5 w-fit flex items-center gap-2 justify-center">
+                                        <VscLinkExternal className="size-4 group-hover:-translate-y-1/4 group-hover:translate-x-1/4 transition-transform duration-300" />
+                                        Read More
+                                    </span>
                                 </Link>
                             ))}
                         </div>

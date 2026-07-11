@@ -20,7 +20,7 @@ export default function BorderLayoutForStaticPages({
 }) {
     return (
         <div className="overflow-hidden lg:p-6">
-            <ThemeToggle className="fixed z-50 top-0 right-0 md:m-6 border-l border-b hover:border" />
+            <ThemeToggle className="fixed z-50 top-0 right-0 md:m-6 border-l border-b bg-background" />
             <div className="lg:h-[calc(100dvh-48px)] h-dvh overflow-auto relative border">
                 <div className="z-10 max-w-3xl mx-auto relative sm:border-x min-h-full">
                     <div className="border-b ">
@@ -37,9 +37,9 @@ export default function BorderLayoutForStaticPages({
                         </div>
                     </div>
 
-                    <div className="h-full">{children}</div>
+                    <div className="h-full pb-20">{children}</div>
 
-                    <div className="border-t  text-muted-foreground flex items-center justify-between text-xs py-1 px-2">
+                    <div className="border-t text-muted-foreground flex flex-col sm:flex-row items-center justify-between text-xs py-1 px-2">
                         <p>
                             Last updated: {formatDateMMMMDDYYYY(lastUpdated)}.{" "}
                             <Link
