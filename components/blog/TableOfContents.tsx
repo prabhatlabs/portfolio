@@ -49,7 +49,7 @@ export function TableOfContents() {
     if (headings.length === 0) return null;
 
     return (
-        <aside className="hidden lg:block absolute left-[calc(100%+1.5rem)] top-0 w-48 h-full">
+        <aside className="hidden xl:block absolute left-[calc(100%+1.5rem)] top-0 w-48 h-full">
             <div className="sticky top-24">
                 <h3 className="text-sm font-semibold mb-3 uppercase tracking-wider text-muted-foreground">
                     On this page
