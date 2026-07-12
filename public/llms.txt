@@ -59,7 +59,7 @@ A minimal, self-hosted reverse port-forwarding CLI built in Go. Uses a single We
 ## Blog Posts
 - [Building a Minimal, Self-Hosted Port-Forwarding Tool in Go](http://localhost:3000/blog/building-a-minimal-self-hosted-port-forwarding-tool-in-go) — 2026-07-03 [go, golang, http, port-forwarding, self-hosted]
   Build a self-hosted reverse port-forwarding tool in Go. Learn to handle WebSocket multiplexing, channel-based data streaming, and public-to-local traffic routing.
-- [How to Create Your Own Blog Site Without It Sucking](http://localhost:3000/blog/how-to-create-your-own-blog-site) — 2026-05-16 [blogging, nextjs, bun, github-actions, cloudinary]
+- [Building a Database-Free MDX Blog Pipeline with GitHub Actions](http://localhost:3000/blog/building_a_database_free_mdx_blog_pipeline_with_gitHub_actions) — 2026-05-16 [blogging, nextjs, bun, github-actions, cloudinary]
   A practical, no-database approach to building your own MDX-powered blog with GitHub, Bun, and a CDN — automated with GitHub Actions.
 
 ## Experience
