@@ -10,6 +10,7 @@
         "blogs:generate": "bun -e 'import(\"./scripts/generate-blog.ts\").then(({ generateBlogJson }) => generateBlogJson())'",
         "cli:generate": "bun -e 'import(\"./scripts/generate-cli.ts\").then(({ generateCliScript }) => generateCliScript())'",
         "llms:generate": "bun -e 'import(\"./scripts/generate-llms.ts\").then(({ generateLlmsFiles }) => generateLlmsFiles())'",
+        "all:generate": "bun run blogs:generate && bun run cli:generate && bun run llms:generate",
         "postinstall": "prisma generate",
         "prisma:generate": "prisma generate",
         "prisma:migrate": "prisma migrate dev",

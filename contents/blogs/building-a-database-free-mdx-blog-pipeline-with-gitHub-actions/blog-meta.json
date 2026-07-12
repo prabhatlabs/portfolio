@@ -1,5 +1,5 @@
 {
-  "slug": "building_a_database_free_mdx_blog_pipeline_with_gitHub_actions",
+  "slug": "building-a-database-free-mdx-blog-pipeline-with-gitHub-actions",
   "title": "Building a Database-Free MDX Blog Pipeline with GitHub Actions",
   "date": "2026-05-16T00:00:00.000Z",
   "description": "A practical, no-database approach to building your own MDX-powered blog with GitHub, Bun, and a CDN — automated with GitHub Actions.",
@@ -12,6 +12,6 @@
   ],
   "published": true,
   "related": [],
-  "coverImage": "/blog-images/how-to-create-your-own-blog-site/cover.webp",
+  "coverImage": "/blog-images/building-a-database-free-mdx-blog-pipeline-with-gitHub-actions/diagram.webp",
   "readingTime": "3 min read"
 }
