@@ -8,6 +8,7 @@ import { Gamepad2 } from "lucide-react";
 import Link from "next/link";
 import { RiPagesLine } from "react-icons/ri";
 import Cli from "./cli";
+import OpenToWork from "@/components/OpenToWork";
 
 export function About() {
     return (
@@ -17,10 +18,7 @@ export function About() {
                 <AboveAboutBanner />
                 <StatusBar className="absolute top-0 right-0 text-xs text-muted-foreground" />
                 <div className="p-4 md:px-6 flex flex-col justify-center z-10">
-                    <div className="flex items-center gap-2">
-                        <span className="p-1 h-1 w-1 animate-pulse rounded-full bg-green-500"></span>
-                        <span className="">Open to work</span>
-                    </div>
+                    <OpenToWork />
                     <h1
                         className={`text-4xl sm:text-5xl md:text-6xl flex gap-2 sm:gap-3 md:gap-4 items-center ${GeistPixelSquare.className}`}
                     >
