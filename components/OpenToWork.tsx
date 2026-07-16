@@ -1,19 +1,28 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
 export default function OpenToWork() {
     const [showOverlay, setShowOverlay] = useState(true);
 
     return (
-        <div className="flex items-center gap-2">
+        <div className="flex items-center relative w-fit">
             <AnimatePresence>
                 {showOverlay ? (
                     <motion.div
                         key="dot"
                         layoutId="dot"
-                        initial={{ width: "200dvw", height: "200dvw", backgroundColor: "var(--background)" }}
-                        animate={{ width: "4px", height: "4px", padding: "4px", backgroundColor: "var(--color-green-500)"  }}
+                        initial={{
+                            width: "200dvw",
+                            height: "200dvw",
+                            backgroundColor: "var(--background)",
+                        }}
+                        animate={{
+                            width: "4px",
+                            height: "4px",
+                            padding: "4px",
+                            backgroundColor: "var(--color-green-500)",
+                        }}
                         transition={{
                             duration: 1.5,
                             delay: 0.25,
@@ -31,11 +40,24 @@ export default function OpenToWork() {
                     <motion.div
                         key="dot"
                         layoutId="dot"
-                        className="w-1 h-1 p-1 animate-pulse rounded-full bg-green-500"
+                        className="absolute w-1 h-1 p-1 animate-pulse rounded-full bg-green-500"
                     />
                 )}
             </AnimatePresence>
-            <span className="">Open to work</span>
+            <motion.span
+                initial={{
+                    marginLeft: "0px"
+                }}
+                animate={{
+                    marginLeft: "16px"
+                }}
+                transition={{
+                    duration: 0.5,
+                    delay: 2,
+                }}
+            >
+                Open to work
+            </motion.span>
         </div>
     );
 }

@@ -10,7 +10,7 @@ export function renderNumber(n: number): string {
 
     const k = n / 1000;
 
-    if (k < 10) return `${parseFloat(k.toFixed(3))}k`;
-    if (k < 100) return `${parseFloat(k.toFixed(2))}k`;
-    return `${parseFloat(k.toFixed(1))}k`;
+    if (k < 10) return `${parseFloat(k.toFixed(2))}k`;
+    if (k < 100) return `${parseFloat(k.toFixed(1))}k`;
+    return `${parseFloat(k.toFixed(0))}k`;
 }
