@@ -1,9 +1,11 @@
+import Corners from "@/components/Corners";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { GeistPixelSquare } from "geist/font/pixel";
 
 export function Topbar() {
     return (
-        <div className="py-6">
+        <div className="relative py-6">
+            <Corners />
             <div className="flex items-center justify-between gap-1 sm:gap-4 border-y px-4 sm:px-6 relative h-9">
                 {/* top right tailwind text */}
                 <>

@@ -1,9 +1,10 @@
 "use client";
 
+import Corners from "@/components/Corners";
 import RenderText from "@/components/ui/render-text";
 import { experiences } from "@/data/root";
-import { GeistPixelSquare } from "geist/font/pixel";
 import { AnimatePresence, motion } from "framer-motion";
+import { GeistPixelSquare } from "geist/font/pixel";
 import Image from "next/image";
 import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
@@ -16,7 +17,8 @@ export function Experiance() {
         setExpanded((p) => (p === index ? -1 : index));
     }
     return (
-        <div>
+        <div className="relative">
+            <Corners />
             <h2
                 className={`p-4 sm:p-6 mt-16 sm:mt-20 md:mt-24 border-y text-3xl md:text-5xl ${GeistPixelSquare.className}`}
             >
@@ -71,25 +73,44 @@ export function Experiance() {
                                     {expanded === index && (
                                         <motion.ul
                                             initial={{ height: 0, opacity: 0 }}
-                                            animate={{ height: "auto", opacity: 1 }}
+                                            animate={{
+                                                height: "auto",
+                                                opacity: 1,
+                                            }}
                                             exit={{ height: 0, opacity: 0 }}
-                                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                                            transition={{
+                                                duration: 0.3,
+                                                ease: "easeInOut",
+                                            }}
                                             className="overflow-hidden mt-1.5 text-xs sm:text-sm text-muted-foreground leading-4 space-y-2"
                                         >
-                                            {experience.points.map((point, i) => (
-                                                <motion.li
-                                                    key={i}
-                                                    initial={{ opacity: 0, x: -8 }}
-                                                    animate={{ opacity: 1, x: 0 }}
-                                                    transition={{ delay: i * 0.06, duration: 0.25 }}
-                                                    className="flex gap-2"
-                                                >
-                                                    <TbPointFilled className="size-2.5 shrink-0 mt-1" />
-                                                    <p>
-                                                        <RenderText>{point}</RenderText>
-                                                    </p>
-                                                </motion.li>
-                                            ))}
+                                            {experience.points.map(
+                                                (point, i) => (
+                                                    <motion.li
+                                                        key={i}
+                                                        initial={{
+                                                            opacity: 0,
+                                                            x: -8,
+                                                        }}
+                                                        animate={{
+                                                            opacity: 1,
+                                                            x: 0,
+                                                        }}
+                                                        transition={{
+                                                            delay: i * 0.06,
+                                                            duration: 0.25,
+                                                        }}
+                                                        className="flex gap-2"
+                                                    >
+                                                        <TbPointFilled className="size-2.5 shrink-0 mt-1" />
+                                                        <p>
+                                                            <RenderText>
+                                                                {point}
+                                                            </RenderText>
+                                                        </p>
+                                                    </motion.li>
+                                                ),
+                                            )}
                                         </motion.ul>
                                     )}
                                 </AnimatePresence>

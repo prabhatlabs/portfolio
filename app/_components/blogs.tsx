@@ -1,3 +1,4 @@
+import Corners from "@/components/Corners";
 import { getAllPosts, PostMeta } from "@/lib/blogs";
 import { getFullImageUrl } from "@/lib/image-helper";
 import { GeistPixelSquare } from "geist/font/pixel";
@@ -66,7 +67,8 @@ export async function Blogs() {
     const posts = await getAllPosts();
     if (posts.length === 0) return null;
     return (
-        <div>
+        <div className="relative">
+            <Corners />
             <h2 className={`p-4 sm:p-6 mt-16 sm:mt-20 md:mt-24 border-y text-3xl md:text-5xl ${GeistPixelSquare.className}`}>
                 <span>
                     B

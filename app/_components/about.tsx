@@ -9,10 +9,13 @@ import Link from "next/link";
 import { RiPagesLine } from "react-icons/ri";
 import Cli from "./cli";
 import OpenToWork from "@/components/OpenToWork";
+import Corners from "@/components/Corners";
 
 export function About() {
     return (
         <div className="relative">
+            <Corners />
+
             {/* about */}
             <div className="flex items-center w-full border-y relative pt-65 sm:pt-55 md:pt-45">
                 <AboveAboutBanner />

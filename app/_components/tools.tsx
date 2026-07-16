@@ -1,3 +1,4 @@
+import Corners from "@/components/Corners";
 import { tools } from "@/data/root";
 import { getIcon } from "@/lib/icon";
 import { GeistPixelSquare } from "geist/font/pixel";
@@ -55,7 +56,8 @@ function ToolCard({ tool, idx }: { tool: (typeof tools)[0]; idx: number }) {
 
 export function Tools() {
     return (
-        <div>
+        <div className="relative">
+            <Corners />
             <h2
                 className={`p-4 sm:p-6 mt-16 sm:mt-20 md:mt-24 border-y text-3xl md:text-5xl ${GeistPixelSquare.className}`}
             >
