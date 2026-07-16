@@ -10,7 +10,7 @@ import BorderLayoutForStaticPages from "@/components/BorderLayoutForStaticPages"
 export const metadata: Metadata = {
     title: "About — Location & Background",
     description:
-        "Prabhat Mishra is a software developer from Chhattisgarh, India. He works remotely and has experience building SaaS products for teams across India.",
+        "Software developer from Chhattisgarh, India working remotely with teams across the country.",
     openGraph: {
         title: "About Prabhat Mishra — Location & Background",
         description:

@@ -2,7 +2,13 @@ import BorderLayoutForStaticPages from "@/components/BorderLayoutForStaticPages"
 import { lastUpdated, usesEntries } from "@/data/uses";
 import { getIcon } from "@/lib/icon";
 import { GeistPixelSquare } from "geist/font/pixel";
+import type { Metadata } from "next";
 import { Fragment } from "react";
+
+export const metadata: Metadata = {
+    title: "Uses",
+    description: "Tools, languages, and frameworks I use daily.",
+};
 
 export default function UsesPage() {
     return (

@@ -27,10 +27,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     return {
         title: `Software Developer in ${city.name}, ${city.state}`,
-        description: `Prabhat Mishra is a full stack software developer from Chhattisgarh, India, experienced serving ${city.name}, ${city.state}, and working remotely.`,
+        description: `Software developer from Chhattisgarh, India with experience building products for teams in ${city.name}, ${city.state} and remotely across the country.`,
         openGraph: {
             title: `Software Developer in ${city.name} — Prabhat Mishra`,
-            description: `Full stack developer experienced working with ${city.name}, ${city.state}. Building SaaS products with TypeScript, React, Next.js, Node.js, Python & Go.`,
+            description: `Software developer with experience building products for teams in ${city.name}, ${city.state}. I work with TypeScript, React, Next.js, Node.js, Python & Go.`,
         },
         alternates: {
             canonical: `${envvars.BASE_URL}/locations/${city.slug}`,
@@ -54,7 +54,7 @@ export default async function CityPage({ params }: Props) {
 
     const webPageLd = buildWebPageJsonLd(
         `Software Developer in ${city.name}, ${city.state}`,
-        `Full stack software developer from Chhattisgarh experienced working remotely with teams in ${city.name} and ${city.region}.`,
+        `Software developer from Chhattisgarh with remote experience in ${city.name} and ${city.region}.`,
         `${envvars.BASE_URL}/locations/${city.slug}`,
         "Software Development",
     );
@@ -65,7 +65,7 @@ export default async function CityPage({ params }: Props) {
             <JsonLd jsonLd={breadcrumbLd} />
             <BorderLayoutForStaticPages
                 title={`${city.name}, ${city.state}`}
-                desc="Full stack software developer from Chhattisgarh, working remotely."
+                desc="Software developer from Chhattisgarh, working remotely."
                 lastUpdated={lastUpdated}
             >
                 <div className="pt-4">
