@@ -18,15 +18,16 @@ export function Experiance() {
     }
     return (
         <div className="relative">
-            <Corners />
             <h2
-                className={`p-4 sm:p-6 mt-16 sm:mt-20 md:mt-24 border-y text-3xl md:text-5xl ${GeistPixelSquare.className}`}
+                className={`relative p-4 sm:p-6 mt-16 sm:mt-20 md:mt-24 border-y text-3xl md:text-5xl ${GeistPixelSquare.className}`}
             >
+                <Corners bottom={false} />
                 <span>Ex</span>
                 <span className=" text-muted-foreground">perience</span>
             </h2>
 
             <div className="relative mt-4">
+                <Corners top={false} />
                 <span className="absolute -top-5 left-0 my-1 mx-4 font-mono text-[10px] text-muted-foreground/50">
                     flex sm:gap-2 justify-between px-4
                 </span>

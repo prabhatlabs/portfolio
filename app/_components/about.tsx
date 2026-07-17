@@ -17,6 +17,7 @@ export function About() {
             {/* about */}
             <div className="flex items-center w-full border-y relative z-50 pt-65 sm:pt-55 md:pt-45">
                 <AboveAboutBanner />
+                <Corners bottom={false} />
                 <StatusBar className="absolute top-0 right-0 text-xs text-muted-foreground" />
                 <div className="p-4 md:px-6 flex flex-col justify-center z-10">
                     <OpenToWork />
@@ -48,7 +49,6 @@ export function About() {
 
             {/* contacts */}
             <div className="my-4 flex items-center w-full ml-px border-y relative">
-                <Corners />
                 <span className="absolute bottom-full my-0.5 left-4 md:left-6 font-mono text-[10px] text-muted-foreground/50">
                     flex items-center w-fit
                 </span>
@@ -87,7 +87,7 @@ export function About() {
 
             {/* cli */}
             <div className="my-4 flex items-center w-full ml-px border-y relative">
-                <Corners />
+                <Corners top={false} />
                 <div className="w-4 md:w-6 shrink-0"></div>
                 <Cli />
                 <div className="w-4 md:w-6 shrink-0"></div>
