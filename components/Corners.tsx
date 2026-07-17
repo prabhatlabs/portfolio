@@ -2,8 +2,8 @@ export default function Corners({
     top = true,
     bottom = true,
 }: {
-    top?: bool;
-    bottom?: bool;
+    top?: boolean;
+    bottom?: boolean;
 }) {
     return (
         <>
