@@ -31,7 +31,7 @@ function ToolCard({ tool, idx }: { tool: (typeof tools)[0]; idx: number }) {
                     </div>
                 )}
 
-                <div className="flex gap-px items-center">
+                <div className="flex gap-1 items-center">
                     {tool.links.map((link, idx) => {
                         const IconComp = getIcon(link.iconName);
                         return (

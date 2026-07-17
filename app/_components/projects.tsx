@@ -52,7 +52,7 @@ function ProjectCard({
                     </div>
                 )}
 
-                <div className="flex gap-px items-center">
+                <div className="flex gap-1 items-center">
                     {project.links.map((link, idx) => {
                         const IconComp = getIcon(link.iconName);
                         return (

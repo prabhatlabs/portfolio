@@ -19,14 +19,13 @@ export function Topbar() {
 
                 {/* main text left side */}
                 <div className="w-full sm:w-fit">
-                    <h2 className={`text-2xl ${GeistPixelSquare.className}`}>
-                        prabhatlabs
-                        <span className="text-foreground/60">.dev</span>
+                    <h2 className={`text-2xl text-accent-foreground bg-accent px-0.5 w-fit ${GeistPixelSquare.className}`}>
+                        prabhatlabs.dev
                     </h2>
                 </div>
 
                 {/* main action buttons right side */}
-                <ThemeToggle className="border-x rounded-none" />
+                <ThemeToggle className="border-x hover:border rounded-none" />
             </div>
         </div>
     );

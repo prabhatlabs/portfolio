@@ -1,6 +1,7 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
+import { GeistPixelSquare } from "geist/font/pixel";
 
 export default function OpenToWork() {
     const [showOverlay, setShowOverlay] = useState(true);
@@ -29,9 +30,9 @@ export default function OpenToWork() {
                             ease: "circInOut",
                         }}
                         onAnimationComplete={() => setShowOverlay(false)}
-                        className="fixed p-1 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full overflow-hidden flex items-center justify-center"
+                        className={`fixed p-1 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full overflow-hidden flex items-center justify-center`}
                     >
-                        <span className="text-2xl font-bold whitespace-nowrap">
+                        <span className={`${GeistPixelSquare.className} text-2xl font-bold whitespace-nowrap `}>
                             prabhatlabs
                             <span className="text-muted-foreground">.dev</span>
                         </span>

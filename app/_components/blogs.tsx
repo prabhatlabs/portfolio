@@ -46,7 +46,7 @@ function BlogCard({
                         </Fragment>
                     ))}
                 </div>
-                <h3 className="font-semibold my-1">{blog.title}</h3>
+                <h3 className="font-semibold leading-4.5 my-1">{blog.title}</h3>
                 <p className="text-sm text-muted-foreground line-clamp-3">
                     {blog.description}
                 </p>
@@ -55,7 +55,7 @@ function BlogCard({
                 <div className="flex gap-px items-center">
                     <span className="border group text-sm bg-foreground/10 px-1.5 py-0.5 flex items-center gap-2 justify-center">
                         <VscLinkExternal className="size-4 group-hover:-translate-y-1/4 group-hover:translate-x-1/4 transition-transform duration-300" />
-                        Full Blog
+                        Read More
                     </span>
                 </div>
             </div>

@@ -311,15 +311,15 @@ export const tools = [
         skills: [skills.go],
         links: [
             {
-                name: "GitHub",
-                url: "https://github.com/prabhatlabs/go-tunnel",
-                iconName: "IoLogoGithub",
-                target: "_blank",
-            },
-            {
                 name: "Blog",
                 url: "/blog/building-a-minimal-self-hosted-port-forwarding-tool-in-go",
                 iconName: "VscLinkExternal",
+                target: "_blank",
+            },
+            {
+                name: "GitHub",
+                url: "https://github.com/prabhatlabs/go-tunnel",
+                iconName: "IoLogoGithub",
                 target: "_blank",
             },
         ],
