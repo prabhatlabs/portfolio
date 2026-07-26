@@ -2,13 +2,15 @@
 
 import { formatDateTime } from "@/lib/time";
 import { cn } from "@/lib/utils";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { IoMdPlay } from "react-icons/io";
-import { motion, AnimatePresence } from "framer-motion";
+import { AiFillMuted } from "react-icons/ai";
 import { IpGeo, VisitorCounter } from "./VisitorCounter";
 
 function DateTime({ className }: { className?: string }) {
-    const [time, setTime] = useState<string>(formatDateTime(new Date().getTime()));
+    const [time, setTime] = useState<string>(
+        formatDateTime(new Date().getTime()),
+    );
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -21,7 +23,10 @@ function DateTime({ className }: { className?: string }) {
     }, []);
 
     return (
-        <span suppressHydrationWarning={true} className={cn(className, "w-36 text-center")}>
+        <span
+            suppressHydrationWarning={true}
+            className={cn(className, "w-36 text-center")}
+        >
             {time}
         </span>
     );
@@ -35,7 +40,12 @@ const FONTS: {
     transform?: string;
 }[] = [
     { family: "serif" },
-    { family: "sans-serif", weight: "900", spacing: "0.15em", transform: "uppercase" },
+    {
+        family: "sans-serif",
+        weight: "900",
+        spacing: "0.15em",
+        transform: "uppercase",
+    },
     { family: "monospace", style: "italic", weight: "100" },
     { family: "cursive", weight: "300" },
     { family: "fantasy", weight: "900", spacing: "0.1em" },
@@ -43,14 +53,30 @@ const FONTS: {
     { family: "Georgia, serif", style: "italic" },
     { family: '"Courier New", monospace', weight: "700" },
     { family: "Impact, fantasy", spacing: "0.05em", transform: "uppercase" },
-    { family: '"Comic Sans MS", cursive', weight: "300", transform: "lowercase" },
+    {
+        family: '"Comic Sans MS", cursive',
+        weight: "300",
+        transform: "lowercase",
+    },
     { family: '"Trebuchet MS", sans-serif', weight: "800", style: "italic" },
     { family: '"Palatino Linotype", serif', weight: "400", spacing: "0.2em" },
     { family: '"Lucida Console", monospace', weight: "100", style: "oblique" },
-    { family: '"Arial Black", sans-serif', transform: "uppercase", spacing: "0.08em" },
+    {
+        family: '"Arial Black", sans-serif',
+        transform: "uppercase",
+        spacing: "0.08em",
+    },
     { family: '"Book Antiqua", serif', style: "italic", weight: "700" },
-    { family: '"Brush Script MT", cursive', weight: "400", transform: "capitalize" },
-    { family: '"Copperplate Gothic Bold", fantasy', weight: "400", spacing: "0.3em" },
+    {
+        family: '"Brush Script MT", cursive',
+        weight: "400",
+        transform: "capitalize",
+    },
+    {
+        family: '"Copperplate Gothic Bold", fantasy',
+        weight: "400",
+        spacing: "0.3em",
+    },
     { family: '"Garamond", serif', weight: "300", style: "italic" },
     { family: '"Century Gothic", sans-serif', weight: "900" },
     {
@@ -67,7 +93,13 @@ const CYCLE_1_END = 2700;
 const CYCLE_2_START = 3600;
 const CYCLE_2_END = 4829;
 
-function FullScreenPlay({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+function FullScreenPlay({
+    isOpen,
+    onClose,
+}: {
+    isOpen: boolean;
+    onClose: () => void;
+}) {
     const [phase, setPhase] = useState<0 | 1 | null>(null);
     const [fontIndex, setFontIndex] = useState(0);
     const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -156,7 +188,10 @@ function FullScreenPlay({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
                     initial={{ scaleY: 0, opacity: 0 }}
                     animate={{ scaleY: 1, opacity: 1 }}
                     exit={{ scaleY: 0, opacity: 0 }}
-                    transition={{ duration: FADE_IN / 1000, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{
+                        duration: FADE_IN / 1000,
+                        ease: [0.22, 1, 0.36, 1],
+                    }}
                     style={{ originY: 0.5 }}
                     className="fixed top-0 left-0 w-dvw h-dvh bg-background z-50 flex items-center justify-center"
                 >
@@ -174,10 +209,13 @@ function FullScreenPlay({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
                                 fontWeight: FONTS[fontIndex].weight,
                                 fontStyle: FONTS[fontIndex].style,
                                 letterSpacing: FONTS[fontIndex].spacing,
-                                textTransform: FONTS[fontIndex].transform as any,
+                                textTransform: FONTS[fontIndex]
+                                    .transform as any,
                             }}
                         >
-                            {phase === 0 ? "Prabhat Mishra" : "Software Developer"}
+                            {phase === 0
+                                ? "Prabhat Mishra"
+                                : "Software Developer"}
                         </span>
                     )}
                 </motion.div>
@@ -186,7 +224,13 @@ function FullScreenPlay({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
     );
 }
 
-export function StatusBar({ className }: { className?: string }) {
+export function StatusBar({
+    className,
+    setIsMutedAction,
+}: {
+    className?: string;
+    setIsMutedAction?: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
     const [ipGeoData, setIpGeoData] = useState<null | IpGeo>(null);
 
     useEffect(() => {
@@ -196,30 +240,49 @@ export function StatusBar({ className }: { className?: string }) {
         }
     }, []);
 
-    const [isFullScreen, setIsFullScreen] = useState(false);
-
     return (
-        <div className={cn(className, "flex justify-end flex-wrap items-center")}>
-            {ipGeoData?.ip && <span className="px-1 border-l border-b">{ipGeoData.ip}</span>}
-            {ipGeoData?.ping && <span className="px-1 border-l border-b">{ipGeoData.ping}ms</span>}
-            {ipGeoData?.city && <span className="px-1 border-l border-b">{ipGeoData.city}</span>}
+        <div
+            className={cn(className, "flex justify-end flex-wrap items-center")}
+        >
+            {ipGeoData?.ip && (
+                <span className="px-1 border-l border-b">{ipGeoData.ip}</span>
+            )}
+            {ipGeoData?.ping && (
+                <span className="px-1 border-l border-b">
+                    {ipGeoData.ping}ms
+                </span>
+            )}
+            {ipGeoData?.city && (
+                <span className="px-1 border-l border-b">{ipGeoData.city}</span>
+            )}
             {ipGeoData?.region && (
-                <span className="px-1 border-l border-b">{ipGeoData.region}</span>
+                <span className="px-1 border-l border-b">
+                    {ipGeoData.region}
+                </span>
             )}
             {ipGeoData?.country && (
-                <span className="px-1 border-l border-b">{ipGeoData.country}</span>
+                <span className="px-1 border-l border-b">
+                    {ipGeoData.country}
+                </span>
             )}
-            {ipGeoData?.os && <span className="px-1 border-l border-b">{ipGeoData?.os}</span>}
+            {ipGeoData?.os && (
+                <span className="px-1 border-l border-b">{ipGeoData?.os}</span>
+            )}
             <DateTime className="px-1 border-l border-b" />
-            <VisitorCounter onIpGeoData={setIpGeoData} className="w-fit px-1 border-l border-b" />
-            <button
-                onClick={() => setIsFullScreen(true)}
-                className="px-2 border-l border-b flex items-center justify-center gap-0.5"
-            >
-                <IoMdPlay className="size-3 fill-muted-foreground" />
-                <span>Play</span>
-            </button>
-            <FullScreenPlay isOpen={isFullScreen} onClose={() => setIsFullScreen(false)} />
+            <VisitorCounter
+                onIpGeoData={setIpGeoData}
+                className="w-fit px-1 border-l border-b"
+            />
+            {setIsMutedAction && (
+                <button
+                    onClick={() => setIsMutedAction((p) => !p)}
+                    className="px-1 border-l border-b flex items-center justify-center gap-0.5"
+                >
+                    <AiFillMuted className="size-3 fill-muted-foreground" />
+                    <span>Mute</span>
+                </button>
+            )}
+            {/*<FullScreenPlay isOpen={isFullScreen} onClose={() => setIsFullScreen(false)} />*/}
         </div>
     );
 }

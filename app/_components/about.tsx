@@ -1,3 +1,5 @@
+"use client";
+
 import AboveAboutBanner from "@/components/AboveAboutBanner";
 import { StatusBar } from "@/components/StatusBar";
 import RenderText from "@/components/ui/render-text";
@@ -10,15 +12,17 @@ import { RiPagesLine } from "react-icons/ri";
 import Cli from "./cli";
 import OpenToWork from "@/components/OpenToWork";
 import Corners from "@/components/Corners";
+import { useState } from "react";
 
 export function About() {
+    const [isMuted, setIsMutedAction] = useState(true);
     return (
         <div className="relative">
             {/* about */}
-            <div className="flex items-center w-full border-y relative z-50 pt-65 sm:pt-55 md:pt-45">
-                <AboveAboutBanner />
+            <div className="flex items-center w-full border-y relative z-50 pt-60 sm:pt-45 md:pt-65">
+                <AboveAboutBanner isMuted={isMuted} />
                 <Corners bottom={false} />
-                <StatusBar className="absolute top-0 right-0 text-xs text-muted-foreground" />
+                <StatusBar setIsMutedAction={setIsMutedAction} className="absolute top-0 right-0 text-xs text-muted-foreground" />
                 <div className="p-4 md:px-6 flex flex-col justify-center z-10">
                     <OpenToWork />
                     <h1
