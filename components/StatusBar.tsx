@@ -4,7 +4,7 @@ import { formatDateTime } from "@/lib/time";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { AiFillMuted } from "react-icons/ai";
+import { IoPauseSharp, IoPlaySharp } from "react-icons/io5";
 import { IpGeo, VisitorCounter } from "./VisitorCounter";
 
 function DateTime({ className }: { className?: string }) {
@@ -227,9 +227,11 @@ function FullScreenPlay({
 export function StatusBar({
     className,
     setIsMutedAction,
+    isMuted,
 }: {
     className?: string;
     setIsMutedAction?: React.Dispatch<React.SetStateAction<boolean>>;
+    isMuted: boolean;
 }) {
     const [ipGeoData, setIpGeoData] = useState<null | IpGeo>(null);
 
@@ -278,8 +280,12 @@ export function StatusBar({
                     onClick={() => setIsMutedAction((p) => !p)}
                     className="px-1 border-l border-b flex items-center justify-center gap-0.5"
                 >
-                    <AiFillMuted className="size-3 fill-muted-foreground" />
-                    <span>Mute</span>
+                    {isMuted ? (
+                        <IoPlaySharp className="size-3 fill-muted-foreground" />
+                    ) : (
+                        <IoPauseSharp className="size-3 fill-muted-foreground" />
+                    )}
+                    <span>{isMuted ? "Play" : "Pause"}</span>
                 </button>
             )}
             {/*<FullScreenPlay isOpen={isFullScreen} onClose={() => setIsFullScreen(false)} />*/}

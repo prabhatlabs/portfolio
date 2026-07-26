@@ -19,10 +19,9 @@ export function About() {
     return (
         <div className="relative">
             {/* about */}
-            <div className="flex items-center w-full border-y relative z-50 pt-70 sm:pt-65 md:pt-80">
+            <div className="flex items-center w-full border-b relative z-50 pt-70 sm:pt-65 md:pt-80">
                 <AboveAboutBanner isMuted={isMuted} />
-                <Corners bottom={false} />
-                <StatusBar setIsMutedAction={setIsMutedAction} className="absolute top-0 right-0 text-xs text-muted-foreground" />
+                <StatusBar isMuted={isMuted} setIsMutedAction={setIsMutedAction} className="absolute top-0 right-0 text-xs text-muted-foreground" />
                 <div className="p-4 md:px-6 flex flex-col justify-center z-10">
                     <OpenToWork />
                     <h1
