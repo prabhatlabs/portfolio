@@ -44,7 +44,7 @@ export default function AboveAboutBanner({
     const [data, setData] = useState<DitherFrameData | null>(null);
 
     useEffect(() => {
-        loadDitherFile("/output.dith").then(setData);
+        loadDitherFile("/star_boy_rotated_240p.dith").then(setData);
     }, []);
 
     return (
@@ -60,7 +60,7 @@ export default function AboveAboutBanner({
                     fps={data.fps}
                     playing={data.frames.length > 1}
                     colors={["var(--background)", "var(--foreground)"]}
-                    audioSrc="/i_just_wanna_get_rotated.mp3"
+                    audioSrc="/star_boy_rotated.mp3"
                     muted={isMuted}
                 />}
             </div>
