@@ -104,16 +104,16 @@ export default function PageContent() {
             <JsonLd jsonLd={skillsLd} />
             <JsonLd jsonLd={projectsLd} />
             <JsonLd jsonLd={toolsLd} />
-            <div className="overflow-hidden lg:p-6">
-                <div className="lg:h-[calc(100dvh-48px)] h-dvh overflow-auto relative border">
+            <div className="overflow-hidden lg:p-6 transition-all duration-300">
+                <div className="lg:h-[calc(100dvh-48px)] h-dvh overflow-auto relative lg:border">
                     <div className="h-6 md:h-20 w-full border-b">
                         <div className="max-w-3xl mx-auto border-x h-full relative"></div>
                     </div>
 
                     {/* main content */}
                     <div className="z-10 max-w-3xl mx-auto relative">
-                        <div className="-z-10 absolute top-0 left-0 w-4 h-full border-l"></div>
-                        <div className="">
+                        {/*<div className="-z-10 absolute top-0 left-0 w-4 h-full border-l"></div>*/}
+                        <div className="border-x">
                             <Topbar />
                             <About />
                             <Experiance />
@@ -124,7 +124,7 @@ export default function PageContent() {
                             <Blogs />
                             <Footer />
                         </div>
-                        <div className="-z-10 absolute top-0 right-0 w-4 h-full border-r"></div>
+                        {/*<div className="-z-10 absolute top-0 right-0 w-4 h-full border-r"></div>*/}
                     </div>
 
                     <div className="h-fit md:h-20 w-full border-t">

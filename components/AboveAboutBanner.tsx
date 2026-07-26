@@ -49,10 +49,10 @@ export default function AboveAboutBanner({
 
     return (
         <div className="absolute top-0 flex items-center w-full">
-            <div className="w-full mask-r-from-90% mask-l-from-90% mask-t-from-90% mask-b-to-80%">
+            <div className="w-full mask-t-from-75% md:mask-t-from-80% mask-b-from-40%">
                 {data && <DitherCanvas
                     // className="w-full h-full"
-                    className="h-124 sm:h-full sm:w-full"
+                    className="h-100 sm:h-full w-full object-cover"
                     frames={data.frames}
                     width={data.width}
                     height={data.height}
