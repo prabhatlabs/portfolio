@@ -62,10 +62,10 @@ export function Experiance() {
                             )}
                             <div className="space-y-0.5 sm:space-y-1.5">
                                 <h3 className="sm:text-lg font-semibold leading-4">
-                                    {experience.company}
+                                    {experience.position}
                                 </h3>
                                 <p className="text-sm sm:text-base text-muted-foreground leading-4">
-                                    {`${experience.position} • ${experience.location}`}
+                                    {`${experience.company} • ${experience.location}`}
                                 </p>
                                 <p className="block sm:hidden text-sm text-muted-foreground leading-4">
                                     {experience.period}
