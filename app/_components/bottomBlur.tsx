@@ -37,7 +37,7 @@ export default function BottomBlur() {
     return (
         <div
             ref={ref}
-            className={`h-40 w-full z-100 fixed bottom-0 left-0 bg-background/20 backdrop-blur-3xl mask-t-from-0% transition-opacity duration-500 ${isNearBottom ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+            className={`h-40 w-full z-100 pointer-events-none fixed bottom-0 left-0 bg-background/20 backdrop-blur-3xl mask-t-from-0% transition-opacity duration-500 ${isNearBottom ? "opacity-0 pointer-events-none" : "opacity-100"}`}
         ></div>
     );
 }
