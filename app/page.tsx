@@ -20,6 +20,7 @@ import { Projects } from "./_components/projects";
 import { Skills } from "./_components/skills";
 import { Tools } from "./_components/tools";
 import { Topbar } from "./_components/topbar";
+import BottomBlur from "./_components/bottomBlur";
 
 const skillsValues = Object.values(skills);
 const skillsLd = buildItemListJsonLd(
@@ -49,9 +50,7 @@ const toolsApps = tools
     }));
 const toolsLd = buildSoftwareApplicationJsonLd(toolsApps);
 
-const breadcrumbLd = buildBreadcrumbListJsonLd([
-    { name: "Home", url: envvars.BASE_URL },
-]);
+const breadcrumbLd = buildBreadcrumbListJsonLd([{ name: "Home", url: envvars.BASE_URL }]);
 
 const webPageLd = buildWebPageJsonLd(
     "Prabhat Mishra | Software Developer",
@@ -63,33 +62,27 @@ const webPageLd = buildWebPageJsonLd(
 const faqLd = buildFAQJsonLd([
     {
         question: "Who is Prabhat Mishra?",
-        answer:
-            "Prabhat Mishra is a self-taught full stack software developer from India specializing in TypeScript, React, Next.js, Node.js, Python, and Go. He builds privacy-first, scalable SaaS products and is available for freelance projects and full-time roles.",
+        answer: "Prabhat Mishra is a self-taught full stack software developer from India specializing in TypeScript, React, Next.js, Node.js, Python, and Go. He builds privacy-first, scalable SaaS products and is available for freelance projects and full-time roles.",
     },
     {
         question: "What tech stack does Prabhat Mishra use?",
-        answer:
-            "Prabhat Mishra works with TypeScript, JavaScript, React, Next.js, Node.js, Express, Python, Go, PostgreSQL, MongoDB, Redis, Prisma, Docker, Cloudflare, and Tailwind CSS among other tools.",
+        answer: "Prabhat Mishra works with TypeScript, JavaScript, React, Next.js, Node.js, Express, Python, Go, PostgreSQL, MongoDB, Redis, Prisma, Docker, Cloudflare, and Tailwind CSS among other tools.",
     },
     {
         question: "How can I hire Prabhat Mishra?",
-        answer:
-            "Prabhat Mishra is open to freelance projects and full-time software development roles. You can reach out via email at prabhatm8000@gmail.com or connect on LinkedIn at linkedin.com/in/prabhatm8000.",
+        answer: "Prabhat Mishra is open to freelance projects and full-time software development roles. You can reach out via email at prabhatm8000@gmail.com or connect on LinkedIn at linkedin.com/in/prabhatm8000.",
     },
     {
         question: "Is Prabhat Mishra available for remote work?",
-        answer:
-            "Yes, Prabhat Mishra is available for remote software development positions and freelance contracts worldwide.",
+        answer: "Yes, Prabhat Mishra is available for remote software development positions and freelance contracts worldwide.",
     },
     {
         question: "Does Prabhat Mishra have a computer science degree?",
-        answer:
-            "No, Prabhat Mishra is a self-taught software developer without a formal CS degree. He has built a strong portfolio through practical experience, internships, and freelance work.",
+        answer: "No, Prabhat Mishra is a self-taught software developer without a formal CS degree. He has built a strong portfolio through practical experience, internships, and freelance work.",
     },
     {
         question: "What projects has Prabhat Mishra built?",
-        answer:
-            "Prabhat Mishra has built rum-core (a Real User Monitoring SaaS), Blade Tools (privacy-first browser-based tool suite), Mapware (IP threat intelligence platform), Ref.com (link management SaaS), and Go Tunnel (self-hosted reverse port-forwarding CLI), among others.",
+        answer: "Prabhat Mishra has built rum-core (a Real User Monitoring SaaS), Blade Tools (privacy-first browser-based tool suite), Mapware (IP threat intelligence platform), Ref.com (link management SaaS), and Go Tunnel (self-hosted reverse port-forwarding CLI), among others.",
     },
 ]);
 
@@ -132,23 +125,23 @@ export default function PageContent() {
                             <div className="text-muted-foreground flex items-center justify-between text-xs py-1 px-2">
                                 <p>prabhatlabs.dev &copy; 2026</p>
                                 <div className="flex gap-2 items-center">
-                                    {myInfo.contacts
-                                        .slice(0, 3)
-                                        .map((contact) => {
-                                            return (
-                                                <Link
-                                                    key={contact.name}
-                                                    href={contact.url}
-                                                    className={`hover:underline transition-all duration-300`}
-                                                >
-                                                    {contact.name}.com
-                                                </Link>
-                                            );
-                                        })}
+                                    {myInfo.contacts.slice(0, 3).map((contact) => {
+                                        return (
+                                            <Link
+                                                key={contact.name}
+                                                href={contact.url}
+                                                className={`hover:underline transition-all duration-300`}
+                                            >
+                                                {contact.name}.com
+                                            </Link>
+                                        );
+                                    })}
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <BottomBlur />
                 </div>
             </div>
         </>
