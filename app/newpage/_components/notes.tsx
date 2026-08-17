@@ -2,7 +2,8 @@
 
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
-import { IoPin, IoPinOutline, IoTrashOutline } from "react-icons/io5";
+import { IoTrashOutline } from "react-icons/io5";
+import { MdOutlinePushPin, MdPushPin } from "react-icons/md";
 
 type Note = {
     id: string;
@@ -103,9 +104,9 @@ export default function Notes() {
                             title={note.pinned ? "Unpin" : "Pin"}
                         >
                             {note.pinned ? (
-                                <IoPin className="size-4" />
+                                <MdPushPin className="size-4" />
                             ) : (
-                                <IoPinOutline className="size-4" />
+                                <MdOutlinePushPin className="size-4" />
                             )}
                         </button>
                         <span className="flex-1 text-sm text-white/80 break-all">
