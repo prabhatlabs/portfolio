@@ -1,6 +1,9 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { IoTrashOutline } from "react-icons/io5";
 import { MdOutlinePushPin, MdPushPin } from "react-icons/md";
@@ -8,6 +11,7 @@ import { MdOutlinePushPin, MdPushPin } from "react-icons/md";
 type Note = {
     id: string;
     text: string;
+    link: string;
     pinned: boolean;
     createdAt: number;
 };
@@ -32,6 +36,7 @@ function saveNotes(notes: Note[]) {
 export default function Notes() {
     const [notes, setNotes] = useState<Note[]>([]);
     const [draft, setDraft] = useState("");
+    const [draftLink, setDraftLink] = useState("");
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
@@ -45,12 +50,20 @@ export default function Notes() {
 
     const addNote = () => {
         const text = draft.trim();
+        const link = draftLink.trim();
         if (!text) return;
         setNotes((prev) => [
-            { id: crypto.randomUUID(), text, pinned: false, createdAt: Date.now() },
+            {
+                id: crypto.randomUUID(),
+                text,
+                link,
+                pinned: false,
+                createdAt: Date.now(),
+            },
             ...prev,
         ]);
         setDraft("");
+        setDraftLink("");
     };
 
     const togglePin = (id: string) => {
@@ -72,35 +85,43 @@ export default function Notes() {
 
     return (
         <div className="w-full max-w-2xl mx-auto px-4">
-            <div className="flex gap-2 mb-6">
-                <input
+            <div className="flex flex-col w-full gap-2 p-2 mb-6 border">
+                <Input
+                    className="py-4"
                     type="text"
                     value={draft}
                     onChange={(e) => setDraft(e.target.value)}
-                    onKeyDown={(e) => e.key === "Enter" && addNote()}
+                    // onKeyDown={(e) => e.key === "Enter" && addNote()}
                     placeholder="Write a note..."
-                    className="flex-1 bg-white/5 border border-white/10 text-white px-4 py-2.5 text-sm placeholder:text-white/30 focus:outline-none focus:border-white/25"
                 />
-                <button
-                    onClick={addNote}
-                    className="px-4 py-2.5 bg-white/10 text-white text-sm border border-white/10 hover:bg-white/20 transition-colors"
-                >
+                <Input
+                    className="py-4"
+                    type="text"
+                    value={draftLink}
+                    onChange={(e) => setDraftLink(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && addNote()}
+                    placeholder="Add link"
+                />
+                <Button onClick={addNote} variant={"secondary"} size={"sm"}>
                     Add
-                </button>
+                </Button>
             </div>
 
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 w-full h-125 overflow-auto">
                 {sorted.map((note) => (
                     <div
                         key={note.id}
                         className={cn(
-                            "flex items-center gap-3 px-4 py-3 border border-white/10 group transition-colors",
-                            note.pinned ? "bg-white/10" : "bg-white/5",
+                            "flex w-full items-center gap-3 px-4 py-3 border group transition-colors",
+                            note.pinned
+                                ? "bg-foreground/10"
+                                : "bg-foreground/0",
                         )}
                     >
-                        <button
+                        <Button
                             onClick={() => togglePin(note.id)}
-                            className="shrink-0 text-white/40 hover:text-white transition-colors"
+                            size={"icon-sm"}
+                            variant={"outline"}
                             title={note.pinned ? "Unpin" : "Pin"}
                         >
                             {note.pinned ? (
@@ -108,17 +129,28 @@ export default function Notes() {
                             ) : (
                                 <MdOutlinePushPin className="size-4" />
                             )}
-                        </button>
-                        <span className="flex-1 text-sm text-white/80 break-all">
-                            {note.text}
-                        </span>
-                        <button
+                        </Button>
+                        <div className="w-full">
+                            <p className="flex-1 text-sm break-all">
+                                {note.text}
+                            </p>
+                            <Link
+                                href={note.link}
+                                target="_blank"
+                                className="text-sm text-blue-500 break-all truncate w-[40%]"
+                            >
+                                {note.link}
+                            </Link>
+                        </div>
+                        <Button
+                            variant={"destructive"}
+                            size={"icon-sm"}
                             onClick={() => deleteNote(note.id)}
-                            className="shrink-0 text-white/30 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-all"
+                            className="group-hover:opacity-100"
                             title="Delete"
                         >
                             <IoTrashOutline className="size-4" />
-                        </button>
+                        </Button>
                     </div>
                 ))}
             </div>
